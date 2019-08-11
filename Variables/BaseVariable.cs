@@ -4,42 +4,14 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture
 {
-    public abstract class Subject<T> : BaseVariable, IStackTraceObject
+    public abstract class Subject<T> : BaseVariable
     {
-        public List<StackTraceEntry> StackTraces { get { return _stackTraces; } }
-        private List<StackTraceEntry> _stackTraces = new List<StackTraceEntry>();
-
         public List<IVariableObserver<T>> Observers { get { return _observers; } }
         private List<IVariableObserver<T>> _observers = new List<IVariableObserver<T>>();
-
-        public void AddStackTrace()
-        {
-#if UNITY_EDITOR
-            if (SOArchitecture_Settings.Instance.EnableDebug)
-            {
-                var stackTrace = StackTraceEntry.Create();
-                _stackTraces.Insert(0, stackTrace);
-                Debug.Log(stackTrace);
-            }
-#endif
-        }
-
-        public void AddStackTrace(object value)
-        {
-#if UNITY_EDITOR
-            if (SOArchitecture_Settings.Instance.EnableDebug)
-            {
-                var stackTrace = StackTraceEntry.Create(value);
-                _stackTraces.Insert(0, stackTrace);
-                Debug.Log(stackTrace);
-            }
-#endif
-        }
 
         public override void Raise()
         {
             ClampValue();
-            AddStackTrace();
             for (int i = _observers.Count - 1; i >= 0; i--)
             {
                 _observers[i].OnVariableChanged((T)BaseValue);
