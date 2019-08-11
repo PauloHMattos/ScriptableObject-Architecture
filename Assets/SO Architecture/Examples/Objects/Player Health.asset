@@ -16,9 +16,9 @@ MonoBehaviour:
     _value: 
   _resetWhenStart: 1
   _defaultValue: 100
-  _value: 62.1
+  _value: 100
   _readOnly: 0
   _raiseWarning: 1
-  _isClamped: 0
+  _isClamped: 1
   _minClampedValue: 0
-  _maxClampedValue: 0
+  _maxClampedValue: 100
