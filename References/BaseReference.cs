@@ -55,12 +55,12 @@ namespace ScriptableObjectArchitecture
 
             return copy;
         }
-        public void AddListener(IVariableObserver<TBase> observer)
+        public void AddListener(IVariableObserver observer)
         {
             if (_variable != null)
                 _variable.AddObserver(observer);
         }
-        public void RemoveListener(IVariableObserver<TBase> observer)
+        public void RemoveListener(IVariableObserver observer)
         {
             if (_variable != null)
                 _variable.RemoveObserver(observer);

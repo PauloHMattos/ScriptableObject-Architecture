@@ -1,7 +1,7 @@
 ﻿namespace ScriptableObjectArchitecture
 {
-    public interface IVariableObserver<T>
+    public interface IVariableObserver
     {
-        void OnVariableChanged(T variable);
+        void OnVariableChanged();
     }
 }

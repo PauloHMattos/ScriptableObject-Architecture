@@ -1,27 +1,22 @@
-﻿using UnityEditor;
+﻿using System;
+using System.Reflection;
+using UnityEditor;
 using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
-    public abstract class BaseGameEventListenerEditor : UnityEditor.Editor
+    public abstract class BaseListnerEditor : UnityEditor.Editor
     {
-        private IStackTraceObject Target { get { return (IStackTraceObject)target; } }
         private SerializedProperty DeveloperDescription { get { return serializedObject.FindProperty("DeveloperDescription"); } }
-
-        private StackTrace _stackTrace;
+        
         protected SerializedProperty _event;
         private SerializedProperty _debugColor;
         private SerializedProperty _response;
         private SerializedProperty _enableDebug;
         private SerializedProperty _showDebugFields;
 
-        protected abstract void DrawRaiseButton();
-
         protected virtual void OnEnable()
         {
-            _stackTrace = new StackTrace(Target, true);
-            _stackTrace.OnRepaint.AddListener(Repaint);
-
             _event = serializedObject.FindProperty("_event");
             _debugColor = serializedObject.FindProperty("_debugColor");
             _response = serializedObject.FindProperty("_response");
@@ -29,16 +24,7 @@ namespace ScriptableObjectArchitecture.Editor
             _showDebugFields = serializedObject.FindProperty("_showDebugFields");
         }
 
-        protected virtual void DrawGameEventField()
-        {
-            EditorGUILayout.ObjectField(_event, new GUIContent("Event", "Event which will trigger the response"));
 
-        }
-
-        protected virtual void DrawResponseField()
-        {
-            EditorGUILayout.PropertyField(_response, new GUIContent("Response"));
-        }
 
         public override void OnInspectorGUI()
         {
@@ -52,6 +38,16 @@ namespace ScriptableObjectArchitecture.Editor
             serializedObject.ApplyModifiedProperties();
         }
 
+        protected virtual void DrawGameEventField()
+        {
+            EditorGUILayout.ObjectField(_event, new GUIContent("Event", "Event which will trigger the response"));
+        }
+
+        protected virtual void DrawResponseField()
+        {
+            EditorGUILayout.PropertyField(_response, new GUIContent("Response"));
+        }
+
         protected virtual void DrawDeveloperDescription()
         {
             EditorGUILayout.PropertyField(DeveloperDescription);
@@ -59,7 +55,6 @@ namespace ScriptableObjectArchitecture.Editor
 
         private void DrawDebugging()
         {
-
             _showDebugFields.boolValue = EditorGUILayout.Foldout(_showDebugFields.boolValue, new GUIContent("Show Debug Fields"));
             if (!_showDebugFields.boolValue)
             {
@@ -70,8 +65,6 @@ namespace ScriptableObjectArchitecture.Editor
             using (new EditorGUI.IndentLevelScope())
             {
                 DrawRaiseButton();
-
-                _stackTrace.Draw();
             }
 
 
@@ -89,9 +82,57 @@ namespace ScriptableObjectArchitecture.Editor
                     EditorGUILayout.PropertyField(_debugColor, new GUIContent("Debug Color", "Color used to draw debug gizmos in the scene"));
                 }
             }
-
-
             EditorGUILayout.Space();
+        }
+
+        protected virtual void DrawRaiseButton()
+        {
+            SerializedProperty property = serializedObject.FindProperty("_debugValue");
+
+            EditorGUILayout.PropertyField(property);
+
+            if (GUILayout.Button("Raise"))
+            {
+                CallMethod(GetDebugValue(property));
+            }
+        }
+
+       protected virtual object GetDebugValue(SerializedProperty property)
+        {
+            Type targetType = property.serializedObject.targetObject.GetType();
+            FieldInfo targetField = targetType.GetField("_debugValue", BindingFlags.Instance | BindingFlags.NonPublic);
+
+            return targetField.GetValue(property.serializedObject.targetObject);
+        }
+
+        protected abstract void CallMethod(object value);
+    }
+
+    public abstract class BaseGameEventListenerEditor : BaseListnerEditor
+    {
+        private IStackTraceObject Target { get { return (IStackTraceObject)target; } }
+        
+        private StackTrace _stackTrace;
+
+
+        protected override void OnEnable()
+        {
+            _stackTrace = new StackTrace(Target, true);
+            _stackTrace.OnRepaint.AddListener(Repaint);
+
+            base.OnEnable();
+        }
+
+
+        protected override void DrawRaiseButton()
+        {
+            base.DrawRaiseButton();
+            DrawStackTrace();
+        }
+
+        protected virtual void DrawStackTrace()
+        {
+            _stackTrace.Draw();
         }
     } 
 }

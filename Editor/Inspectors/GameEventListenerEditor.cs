@@ -15,12 +15,15 @@ namespace ScriptableObjectArchitecture.Editor
 
             _raiseMethod = target.GetType().BaseType.GetMethod("OnEventRaised");
         }
-        protected override void DrawRaiseButton()
+
+        protected override object GetDebugValue(SerializedProperty property)
         {
-            if (GUILayout.Button("Raise"))
-            {
-                _raiseMethod.Invoke(target, null);
-            }
+            return null;
+        }
+
+        protected override void CallMethod(object value)
+        {
+            _raiseMethod.Invoke(target, null);
         }
     } 
 }
