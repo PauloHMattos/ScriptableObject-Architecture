@@ -19,36 +19,36 @@ namespace ScriptableObjectArchitecture
         private TType _previousValue;
 
 
-        public override void OnVariableChanged(TType variable)
+        public override void OnVariableChanged()
         {
             if (_constrain)
             {
-                var result = _previousValue.CompareTo(variable);
+                var result = _previousValue.CompareTo(_variable.Value);
                 if (_equals)
                 {
                     if ((_bigger && result >= 0) || (_smaller && result <= 0))
                     {
-                        base.OnVariableChanged(variable);
+                        base.OnVariableChanged();
                     }
                     else if (result == 0)
                     {
-                        base.OnVariableChanged(variable);
+                        base.OnVariableChanged();
                     }
                 }
                 else
                 {
                     if ((_bigger && result > 0) || (_smaller && result < 0))
                     {
-                        base.OnVariableChanged(variable);
+                        base.OnVariableChanged();
                     }
                     else if (result != 0)
                     {
-                        base.OnVariableChanged(variable);
+                        base.OnVariableChanged();
                     }
                 }
             }
-            base.OnVariableChanged(variable);
-            _previousValue = variable;
+            base.OnVariableChanged();
+            _previousValue = _variable.Value;
         }
     }
 }

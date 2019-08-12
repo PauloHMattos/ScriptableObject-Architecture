@@ -4,30 +4,31 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture
 {
-    public abstract class Subject<T> : BaseVariable
+    public abstract class Subject : BaseVariable
     {
-        public List<IVariableObserver<T>> Observers { get { return _observers; } }
-        private List<IVariableObserver<T>> _observers = new List<IVariableObserver<T>>();
+        public List<IVariableObserver> Observers { get { return _observers; } }
+        private List<IVariableObserver> _observers = new List<IVariableObserver>();
 
         public override void Raise()
         {
             ClampValue();
             for (int i = _observers.Count - 1; i >= 0; i--)
             {
-                _observers[i].OnVariableChanged((T)BaseValue);
+                _observers[i].OnVariableChanged();
             }
         }
 
-        public virtual void AddObserver(IVariableObserver<T> observer)
+        public virtual void AddObserver(IVariableObserver observer)
         {
             if (!_observers.Contains(observer)) _observers.Add(observer);
         }
 
-        public virtual void RemoveObserver(IVariableObserver<T> observer)
+        public virtual void RemoveObserver(IVariableObserver observer)
         {
             if (_observers.Contains(observer)) _observers.Remove(observer);
         }
     }
+
 
     public abstract class BaseVariable : SOArchitectureBaseObject
     {
@@ -53,7 +54,7 @@ namespace ScriptableObjectArchitecture
         {
         }
     }
-    public abstract class BaseVariable<T> : Subject<T>
+    public abstract class BaseVariable<T> : Subject
     {
         public virtual T Value
         {
@@ -135,7 +136,7 @@ namespace ScriptableObjectArchitecture
             base.OnEnable();
             if (_resetWhenStart/* && Application.isPlaying*/)
             {
-                _value = _defaultValue;
+                Value = _defaultValue;
             }
         }
 

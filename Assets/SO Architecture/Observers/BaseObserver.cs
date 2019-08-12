@@ -2,68 +2,84 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
 namespace ScriptableObjectArchitecture
 {
-    public abstract class BaseObserver<TType, TVariable, TResponse> : DebuggableGameEventListener, IVariableObserver<TType>
-where TVariable : BaseVariable<TType>
-where TResponse : UnityEvent<TType>
+    public abstract class BaseObserver<TType, TVariable> : DebuggableGameEventListener, IVariableObserver
+        where TVariable : Subject
     {
         protected override ScriptableObject GameEvent => Variable;
 
         protected ScriptableObject Variable { get { return _variable; } }
-        protected override UnityEventBase Response { get { return _response; } }
 
-        [SerializeField]
-        private TVariable _PreviouslyRegisteredVariable = default(TVariable);
         [SerializeField]
         protected TVariable _variable = default(TVariable);
         [SerializeField]
-        private TResponse _response = default(TResponse);
+        private TVariable _previouslyRegisteredVariable = default(TVariable);
         [SerializeField]
         protected TType _debugValue = default(TType);
 
-        protected virtual void RaiseResponse(TType value)
-        {
-            _response.Invoke(value);
-        }
 
         private void OnEnable()
         {
             if (_variable != null)
+            {
                 Register();
+                OnVariableChanged();
+            }
         }
+
+
         private void OnDisable()
         {
             if (_variable != null)
-                _variable.RemoveObserver(this);
-        }
-        private void Register()
-        {
-            if (_PreviouslyRegisteredVariable != null)
             {
-                _PreviouslyRegisteredVariable.RemoveObserver(this);
+                Unregister();
             }
-
-            _variable.AddObserver(this);
-            _PreviouslyRegisteredVariable = _variable;
-        }
-
-        public virtual void OnVariableChanged(TType variable)
-        {
-            RaiseResponse(variable);
-
-            CreateDebugEntry(_response);
-
-            AddStackTrace(variable);
         }
 
         public void Log(TType value)
         {
             Debug.Log($"[{gameObject.name} - {Variable.name}]: {value}");
+        }
+
+        protected virtual void Register()
+        {
+            if (_previouslyRegisteredVariable != null)
+            {
+                _previouslyRegisteredVariable.RemoveObserver(this);
+            }
+
+            _variable.AddObserver(this);
+            _previouslyRegisteredVariable = _variable;
+        }
+
+        protected virtual void Unregister()
+        {
+            _variable.RemoveObserver(this);
+        }
+
+        protected abstract void RaiseResponse(TType value);
+        public abstract void OnVariableChanged();
+    }
+
+    public abstract class BaseObserver<TType, TVariable, TResponse> : BaseObserver<TType, TVariable>
+where TVariable : BaseVariable<TType>
+where TResponse : UnityEvent<TType>
+    {
+
+        protected override UnityEventBase Response { get { return _response; } }
+        
+        [SerializeField]
+        private TResponse _response = default(TResponse);
+
+        public override void OnVariableChanged()
+        {
+            RaiseResponse(_variable.Value);
+        }
+
+        protected override void RaiseResponse(TType value)
+        {
+            _response.Invoke(value);
         }
     }
 }

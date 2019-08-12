@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -105,6 +104,7 @@ where TResponse : UnityEvent<TType>
             _previouslyRegisteredEvent = _event;
         }
     }
+
     public abstract class DebuggableGameEventListener : SOArchitectureBaseMonobehaviour, IStackTraceObject
     {
 #pragma warning disable 0414

@@ -68,6 +68,7 @@ namespace ScriptableObjectArchitecture
             return typeof(T);
         }
     }
+
     public abstract class GameEventBase : SOArchitectureBaseObject, IGameEvent, IStackTraceObject
     {
         protected readonly List<IGameEventListener> _listeners = new List<IGameEventListener>();
