@@ -125,17 +125,23 @@ where TResponse : UnityEvent<TType>
         public void AddStackTrace(object obj)
         {
 #if UNITY_EDITOR
-            var stackTrace = StackTraceEntry.Create(obj);
-            StackTraces.Insert(0, stackTrace);
-            Debug.Log(stackTrace);
+            if (SOArchitecture_Settings.Instance.EnableDebug)
+            {
+                var stackTrace = StackTraceEntry.Create(obj);
+                StackTraces.Insert(0, stackTrace);
+                Debug.Log(stackTrace);
+            }
 #endif
         }
         public void AddStackTrace()
         {
 #if UNITY_EDITOR
-            var stackTrace = StackTraceEntry.Create();
-            StackTraces.Insert(0, stackTrace);
-            Debug.Log(stackTrace);
+            if (SOArchitecture_Settings.Instance.EnableDebug)
+            {
+                var stackTrace = StackTraceEntry.Create();
+                StackTraces.Insert(0, stackTrace);
+                Debug.Log(stackTrace);
+            }
 #endif
         }
         protected void CreateDebugEntry(UnityEventBase response)
