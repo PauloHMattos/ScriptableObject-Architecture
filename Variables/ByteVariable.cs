@@ -6,7 +6,7 @@ namespace ScriptableObjectArchitecture
         fileName = "ByteVariable.asset",
         menuName = SOArchitecture_Utility.ADVANCED_VARIABLE_SUBMENU + "byte",
         order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 6)]
-    public class ByteVariable : BaseVariable<byte>
+    public class ByteVariable : NumericVariable<byte, ByteVariable>
     {
         public override bool Clampable { get { return true; } }
         protected override byte ClampValue(byte value)
@@ -23,6 +23,26 @@ namespace ScriptableObjectArchitecture
             {
                 return value;
             }
+        }
+
+        public override void Add(byte other)
+        {
+            Value += other;
+        }
+
+        public override void Subtract(byte other)
+        {
+            Value -= other;
+        }
+
+        public override void Add(ByteVariable other)
+        {
+            Value += other.Value;
+        }
+
+        public override void Subtract(ByteVariable other)
+        {
+            Value -= other.Value;
         }
     } 
 }
