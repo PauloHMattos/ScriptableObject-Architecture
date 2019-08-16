@@ -6,7 +6,7 @@ namespace ScriptableObjectArchitecture
         fileName = "UnsignedShortVariable.asset",
         menuName = SOArchitecture_Utility.ADVANCED_VARIABLE_SUBMENU + "ushort",
         order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 18)]
-    public class UShortVariable : BaseVariable<ushort>
+    public class UShortVariable : NumericVariable<ushort, UShortVariable>
     {
         public override bool Clampable { get { return true; } }
         protected override ushort ClampValue(ushort value)
@@ -23,6 +23,26 @@ namespace ScriptableObjectArchitecture
             {
                 return value;
             }
+        }
+
+        public override void Add(ushort other)
+        {
+            Value += other;
+        }
+
+        public override void Subtract(ushort other)
+        {
+            Value -= other;
+        }
+
+        public override void Add(UShortVariable other)
+        {
+            Value += other.Value;
+        }
+
+        public override void Subtract(UShortVariable other)
+        {
+            Value -= other.Value;
         }
     } 
 }

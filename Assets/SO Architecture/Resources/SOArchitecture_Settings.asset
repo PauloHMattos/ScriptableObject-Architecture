@@ -16,4 +16,4 @@ MonoBehaviour:
   _codeGenerationTargetDirectory: /3rd Party/SO Architecture
   _codeGenerationAllowOverwrite: 0
   _defualtCreateAssetMenuOrder: 120
-  _enableDebug: 1
+  _enableDebug: 0

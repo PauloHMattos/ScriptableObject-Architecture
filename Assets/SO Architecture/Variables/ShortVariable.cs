@@ -6,7 +6,7 @@ namespace ScriptableObjectArchitecture
         fileName = "ShortVariable.asset",
         menuName = SOArchitecture_Utility.ADVANCED_VARIABLE_SUBMENU + "short",
         order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 14)]
-    public class ShortVariable : BaseVariable<short>
+    public class ShortVariable : NumericVariable<short, ShortVariable>
     {
         public override bool Clampable { get { return true; } }
         protected override short ClampValue(short value)
@@ -23,6 +23,26 @@ namespace ScriptableObjectArchitecture
             {
                 return value;
             }
+        }
+
+        public override void Add(short other)
+        {
+            Value += other;
+        }
+
+        public override void Subtract(short other)
+        {
+            Value -= other;
+        }
+
+        public override void Add(ShortVariable other)
+        {
+            Value += other.Value;
+        }
+
+        public override void Subtract(ShortVariable other)
+        {
+            Value -= other.Value;
         }
     } 
 }

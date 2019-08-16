@@ -6,7 +6,7 @@ namespace ScriptableObjectArchitecture
         fileName = "IntVariable.asset",
         menuName = SOArchitecture_Utility.VARIABLE_SUBMENU + "int",
         order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 4)]
-    public class IntVariable : BaseVariable<int>
+    public class IntVariable : NumericVariable<int, IntVariable>
     {
         public override bool Clampable { get { return true; } }
         protected override int ClampValue(int value)
@@ -23,6 +23,26 @@ namespace ScriptableObjectArchitecture
             {
                 return value;
             }
+        }
+
+        public override void Add(int other)
+        {
+            Value += other;
+        }
+
+        public override void Subtract(int other)
+        {
+            Value -= other;
+        }
+
+        public override void Add(IntVariable other)
+        {
+            Value += other.Value;
+        }
+
+        public override void Subtract(IntVariable other)
+        {
+            Value -= other.Value;
         }
     } 
 }

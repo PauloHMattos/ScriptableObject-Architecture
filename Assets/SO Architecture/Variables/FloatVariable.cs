@@ -6,7 +6,7 @@ namespace ScriptableObjectArchitecture
         fileName = "FloatVariable.asset",
         menuName = SOArchitecture_Utility.VARIABLE_SUBMENU + "float",
         order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 3)]
-    public class FloatVariable : BaseVariable<float>
+    public class FloatVariable : NumericVariable<float, FloatVariable>
     {
         public override bool Clampable { get { return true; } }
         protected override float ClampValue(float value)
@@ -23,6 +23,26 @@ namespace ScriptableObjectArchitecture
             {
                 return value;
             }
+        }
+
+        public override void Add(float other)
+        {
+            Value += other;
+        }
+
+        public override void Subtract(float other)
+        {
+            Value -= other;
+        }
+
+        public override void Add(FloatVariable other)
+        {
+            Value += other.Value;
+        }
+
+        public override void Subtract(FloatVariable other)
+        {
+            Value -= other.Value;
         }
     } 
 }
