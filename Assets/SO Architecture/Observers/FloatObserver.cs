@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ScriptableObjectArchitecture
 {
 	[AddComponentMenu(SOArchitecture_Utility.OBSERVER_SUBMENU + "Float Observer")]
-	public sealed class FloatObserver : NumericObserver<float, FloatVariable, FloatUnityEvent>
+	public sealed class FloatObserver : NumericObserver<float, FloatVariable, FloatReference, FloatUnityEvent>
 	{
         protected override void RaiseResponse(float value)
         {

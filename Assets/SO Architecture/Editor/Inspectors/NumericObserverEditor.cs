@@ -3,15 +3,41 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    [CustomEditor(typeof(NumericObserver<,,,>), true)]
+    public class NumericObserverEditor2 : NumericObserverEditor
+    {
+        private SerializedProperty _comparationReference;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            _comparationReference = serializedObject.FindProperty("_comparationReference");
+        }
+
+        protected override void DrawGameEventField()
+        {
+            base.DrawGameEventField();
+        }
+
+        protected override void DrawConditions()
+        {
+            if (!_constrain.boolValue)
+                return;
+
+            EditorGUILayout.PropertyField(_comparationReference);
+            base.DrawConditions();
+        }
+    }
+
     [CustomEditor(typeof(NumericObserver<,,>), true)]
     public class NumericObserverEditor : BaseObserverEditor
     {
-        private SerializedProperty _constrain;
+        protected SerializedProperty _constrain;
 
-        private SerializedProperty _equals;
-        private SerializedProperty _smaller;
-        private SerializedProperty _bigger;
-        private SerializedProperty _modifierCurve;
+        protected SerializedProperty _equals;
+        protected SerializedProperty _smaller;
+        protected SerializedProperty _bigger;
+        protected SerializedProperty _modifierCurve;
 
         private static readonly string[] DifferentLabels =
         {
@@ -39,12 +65,17 @@ namespace ScriptableObjectArchitecture.Editor
 
         protected override void DrawGameEventField()
         {
-            base.DrawGameEventField();
+            //base.DrawGameEventField();
+            EditorGUILayout.ObjectField(_event, new GUIContent("Variable", "Variable which will trigger the response"));
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(_modifierCurve);
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(_constrain, new GUIContent("Apply conditions?"));
+            DrawConditions();
+        }
 
+        protected virtual void DrawConditions()
+        { 
             if (!_constrain.boolValue)
                 return;
 
