@@ -84,7 +84,10 @@ namespace ScriptableObjectArchitecture.Editor
                 {
                     // Value changed, raise events
                     serializedObject.ApplyModifiedProperties();
-                    Target.Raise();
+                    if (Application.isPlaying)
+                    {
+                        Target.Raise();
+                    }
                 }
             }
         }

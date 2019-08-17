@@ -35,14 +35,24 @@ namespace ScriptableObjectArchitecture
             Value -= other;
         }
 
+        public  void Multiply(float other)
+        {
+            Value *= other;
+        }
+
         public override void Add(FloatVariable other)
         {
-            Value += other.Value;
+            Value += other;
         }
 
         public override void Subtract(FloatVariable other)
         {
-            Value -= other.Value;
+            Value -= other;
+        }
+
+        public  void Multiply(FloatVariable other)
+        {
+            Value *= other;
         }
     } 
 }

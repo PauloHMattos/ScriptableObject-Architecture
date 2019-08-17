@@ -18,6 +18,16 @@ namespace ScriptableObjectArchitecture
             Value -= other;
         }
 
+        public void Cross(Vector3 other)
+        {
+            Value = Vector3.Cross(Value, other);
+        }
+
+        public void Multiply(float other)
+        {
+            Value *= other;
+        }
+
         public override void Add(Vector3Variable other)
         {
             Value += other.Value;
@@ -26,6 +36,16 @@ namespace ScriptableObjectArchitecture
         public override void Subtract(Vector3Variable other)
         {
             Value -= other.Value;
+        }
+
+        public void Cross(Vector3Variable other)
+        {
+            Value = Vector3.Cross(Value, other);
+        }
+
+        public void Multiply(FloatVariable other)
+        {
+            Value *= other;
         }
     }
 }
