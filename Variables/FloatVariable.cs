@@ -35,7 +35,7 @@ namespace ScriptableObjectArchitecture
             Value -= other;
         }
 
-        public  void Multiply(float other)
+        public void Multiply(float other)
         {
             Value *= other;
         }
@@ -50,9 +50,9 @@ namespace ScriptableObjectArchitecture
             Value -= other;
         }
 
-        public  void Multiply(FloatVariable other)
+        public void Multiply(FloatVariable other)
         {
             Value *= other;
         }
-    } 
+    }
 }
