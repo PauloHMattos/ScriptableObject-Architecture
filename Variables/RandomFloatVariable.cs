@@ -2,12 +2,11 @@
 
 namespace ScriptableObjectArchitecture
 {
-
     [CreateAssetMenu(
         fileName = "RandomFloatVariable.asset",
         menuName = SOArchitecture_Utility.VARIABLE_SUBMENU + "Random/float",
         order = 124)]
-    public class RandomFloatVariable : FloatVariable
+    public class RandomFloatVariable : ReadOnlyFloatVariable
     {
         [SerializeField]
         private int _seed;
@@ -48,26 +47,10 @@ namespace ScriptableObjectArchitecture
             }
         }
 
-        public override bool ReadOnly
-        {
-            get
-            {
-                return _readOnly;
-            }
-        }
-
         public override void OnEnable()
         {
             base.OnEnable();
             Seed = _seed;
-        }
-
-
-        public override void Awake()
-        {
-            base.Awake();
-            _readOnly = true;
-            _resetWhenStart = false;
         }
     }
 }

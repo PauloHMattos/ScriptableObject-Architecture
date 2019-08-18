@@ -3,16 +3,16 @@
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomEditor(typeof(RandomFloatVariable), true)]
-    public class RandomFloatVariableEditor : ReadOnlyVariableEditor
+    public class RandomFloatVariableEditor : ReadOnlyFloatVariableEditor
     {
         private RandomFloatVariable Target { get { return (RandomFloatVariable)target; } }
-        
+
         protected override void DrawValue()
         {
-            using (var scope = new EditorGUI.DisabledGroupScope(true))
-            {
-                EditorGUILayout.FloatField("Value", Target.Value);
-            }
+            // Call Value.get so the displayed value also gets updated
+            var value = Target.Value;
+            base.DrawValue();
+
 
             var newSeed = EditorGUILayout.IntField("Seed", Target.Seed);
             if (newSeed != Target.Seed)
