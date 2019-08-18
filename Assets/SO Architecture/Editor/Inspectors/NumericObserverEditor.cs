@@ -65,8 +65,8 @@ namespace ScriptableObjectArchitecture.Editor
 
         protected override void DrawGameEventField()
         {
-            //base.DrawGameEventField();
-            EditorGUILayout.ObjectField(_event, new GUIContent("Variable", "Variable which will trigger the response"));
+            base.DrawGameEventField();
+            //EditorGUILayout.ObjectField(_event, new GUIContent("Variable", "Variable which will trigger the response"));
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(_modifierCurve);
             EditorGUILayout.Space();

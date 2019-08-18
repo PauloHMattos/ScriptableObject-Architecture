@@ -4,7 +4,67 @@ using UnityEngine.Events;
 
 namespace ScriptableObjectArchitecture
 {
-    public abstract class BaseObserver<TType, TVariable> : DebuggableGameEventListener, IVariableObserver
+    public abstract class BaseObserver : DebuggableGameEventListener, IVariableObserver
+    {
+        public abstract void OnVariableChanged();
+
+        public enum ListnerOption
+        {
+            OnChanged,
+            OnUpdate,
+            OnLateUpdate,
+            OnFixedUpdate,
+            OnTimeInterval
+        }
+
+        [SerializeField]
+        protected ListnerOption _listnerOption = ListnerOption.OnChanged;
+        private float _lastTime;
+        [SerializeField]
+        private float _delay;
+
+        public float LastTime { get => _lastTime; set => _lastTime = value; }
+        public float Delay { get => _delay; set => _delay = value; }
+
+        protected virtual void Update()
+        {
+            if (_listnerOption.HasFlag(ListnerOption.OnUpdate))
+            {
+                OnVariableChanged();
+            }
+            else if (_listnerOption.HasFlag(ListnerOption.OnTimeInterval))
+            {
+                // TODO
+                if (Time.time - _lastTime >= _delay)
+                {
+                    _lastTime = Time.time;
+                    OnVariableChanged();
+                }
+            }
+        }
+
+        protected virtual void LateUpdate()
+        {
+            if (_listnerOption.HasFlag(ListnerOption.OnLateUpdate))
+            {
+                OnVariableChanged();
+            }
+        }
+
+        protected virtual void FixedUpdate()
+        {
+            if (_listnerOption.HasFlag(ListnerOption.OnFixedUpdate))
+            {
+                OnVariableChanged();
+            }
+        }
+
+
+        public abstract void Register();
+        public abstract void Unregister();
+    }
+
+    public abstract class BaseObserver<TType, TVariable> : BaseObserver
         where TVariable : Subject
     {
         protected override ScriptableObject GameEvent => Variable;
@@ -18,18 +78,20 @@ namespace ScriptableObjectArchitecture
         [SerializeField]
         protected TType _debugValue = default(TType);
 
-
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             if (_variable != null)
             {
-                Register();
+                if (_listnerOption == ListnerOption.OnChanged)
+                {
+                    Register();
+                }
                 OnVariableChanged();
             }
         }
 
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             if (_variable != null)
             {
@@ -37,12 +99,8 @@ namespace ScriptableObjectArchitecture
             }
         }
 
-        public void Log(TType value)
-        {
-            Debug.Log($"[{gameObject.name} - {Variable.name}]: {value}");
-        }
 
-        protected virtual void Register()
+        public override void Register()
         {
             if (_previouslyRegisteredVariable != null)
             {
@@ -53,13 +111,12 @@ namespace ScriptableObjectArchitecture
             _previouslyRegisteredVariable = _variable;
         }
 
-        protected virtual void Unregister()
+        public override void Unregister()
         {
             _variable.RemoveObserver(this);
         }
 
         protected abstract void RaiseResponse(TType value);
-        public abstract void OnVariableChanged();
     }
 
     public abstract class BaseObserver<TType, TVariable, TResponse> : BaseObserver<TType, TVariable>
@@ -81,5 +138,6 @@ where TResponse : UnityEvent<TType>
         {
             _response.Invoke(value);
         }
+
     }
 }
