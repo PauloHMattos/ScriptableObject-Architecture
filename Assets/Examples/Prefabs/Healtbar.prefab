@@ -97,6 +97,8 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _listnerOption: 0
+  _delay: 0
   _variable: {fileID: 11400000, guid: 00040033833585f4b940c1e6c8d5d2e1, type: 2}
   _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 
@@ -116,6 +118,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: ScriptableObjectArchitecture.StringUnityEvent, ScriptableObject-Architecture,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  _format: HP {0:0.00}
 --- !u!1 &1259392919135328
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +289,8 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _listnerOption: 0
+  _delay: 0
   _variable: {fileID: 11400000, guid: 00040033833585f4b940c1e6c8d5d2e1, type: 2}
   _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 0
