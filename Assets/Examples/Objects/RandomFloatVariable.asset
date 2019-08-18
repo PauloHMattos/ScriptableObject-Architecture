@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeveloperDescription:
     _value: 
-  _resetWhenStart: 1
+  _resetWhenStart: 0
   _defaultValue: 0
-  _value: 37.181133
+  _value: 34.748405
   _readOnly: 1
   _raiseWarning: 1
   _isClamped: 1
   _minClampedValue: 0
   _maxClampedValue: 50
+  _seed: 0
+  _state:
+    s0: 1900725046
+    s1: 559298752
+    s2: 107093222
+    s3: 556206921
