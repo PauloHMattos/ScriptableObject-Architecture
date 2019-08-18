@@ -11,7 +11,6 @@ namespace ScriptableObjectArchitecture
 
         public override void Raise()
         {
-            ClampValue();
             for (int i = _observers.Count - 1; i >= 0; i--)
             {
                 _observers[i].OnVariableChanged();
@@ -40,7 +39,6 @@ namespace ScriptableObjectArchitecture
 
         public abstract void Raise();
 
-        protected abstract void ClampValue();
 
         public virtual void Awake()
         {
@@ -64,9 +62,7 @@ namespace ScriptableObjectArchitecture
             }
             set
             {
-                _value = value;
-                ClampValue();
-                Raise();
+                SetValue(value);
             }
         }
         public virtual T MinClampValue
@@ -110,18 +106,18 @@ namespace ScriptableObjectArchitecture
             }
             set
             {
-                Value = (T)value;
+                SetValue((T)value);
             }
         }
 
         [SerializeField]
-        private bool _resetWhenStart = true;
+        protected bool _resetWhenStart = true;
         [SerializeField]
         protected T _defaultValue;
         [SerializeField]
         protected T _value = default(T);
         [SerializeField]
-        private bool _readOnly = false;
+        protected bool _readOnly = false;
         [SerializeField]
         private bool _raiseWarning = true;
         [SerializeField]
@@ -134,9 +130,13 @@ namespace ScriptableObjectArchitecture
         public override void OnEnable()
         {
             base.OnEnable();
-            if (_resetWhenStart/* && Application.isPlaying*/)
+            if (_resetWhenStart && !ReadOnly/* && Application.isPlaying*/)
             {
-                Value = _defaultValue;
+                SetValue(_defaultValue);
+            }
+            else
+            {
+                Raise();
             }
         }
 
@@ -153,6 +153,7 @@ namespace ScriptableObjectArchitecture
             }
 
             _value = value;
+            Raise();
             return value;
         }
 
@@ -170,11 +171,6 @@ namespace ScriptableObjectArchitecture
                 return;
 
             Debug.LogWarning("Tried to set value on " + name + ", but value is readonly!", this);
-        }
-
-        protected override void ClampValue()
-        {
-            _value = SetValue(_value);
         }
 
         public override string ToString()

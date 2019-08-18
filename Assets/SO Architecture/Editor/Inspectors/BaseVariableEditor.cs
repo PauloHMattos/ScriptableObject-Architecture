@@ -4,6 +4,31 @@ using UnityEditor.AnimatedValues;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+
+    [CustomEditor(typeof(ReadOnlyVariable<,>), true)]
+    public class ReadOnlyVariableEditor : BaseVariableEditor
+    {
+
+        private BaseVariable Target { get { return (BaseVariable)target; } }
+        
+        protected override void DrawValue()
+        {
+            string content = "Cannot display value. No PropertyDrawer for (" + Target.Type + ") [" + Target.ToString() + "]";
+
+            using (var scope = new EditorGUI.DisabledGroupScope(true))
+            {
+                GenericPropertyDrawer.DrawPropertyDrawerLayout(Target.Type, new GUIContent("Value"), _valueProperty, new GUIContent(content, content));
+            }
+
+            var obj = Target.BaseValue;
+        }
+
+        protected override void DrawReadonlyField()
+        {
+
+        }
+    }
+
     [CustomEditor(typeof(BaseVariable<>), true)]
     public class BaseVariableEditor : UnityEditor.Editor
     {
@@ -13,7 +38,7 @@ namespace ScriptableObjectArchitecture.Editor
 
         private SerializedProperty _defaultValueProperty;
         private SerializedProperty _resetProperty;
-        private SerializedProperty _valueProperty;
+        protected SerializedProperty _valueProperty;
         private SerializedProperty _developerDescription;
         private SerializedProperty _readOnly;
         private SerializedProperty _raiseWarning;
@@ -23,7 +48,7 @@ namespace ScriptableObjectArchitecture.Editor
         private AnimBool _raiseWarningAnimation;
         private AnimBool _resetOnStartAnimation;
         private AnimBool _isClampedVariableAnimation;
-        
+
         private const string READONLY_TOOLTIP = "Should this value be changable during runtime? Will still be editable in the inspector regardless";
 
         protected virtual void OnEnable()
@@ -101,18 +126,18 @@ namespace ScriptableObjectArchitecture.Editor
 
             using (var anim = new EditorGUILayout.FadeGroupScope(_isClampedVariableAnimation.faded))
             {
-                if(anim.visible)
+                if (anim.visible)
                 {
                     using (new EditorGUI.IndentLevelScope())
                     {
                         EditorGUILayout.PropertyField(_minValueProperty);
                         EditorGUILayout.PropertyField(_maxValueProperty);
                     }
-                }                
+                }
             }
-            
+
         }
-        protected void DrawReadonlyField()
+        protected virtual void DrawReadonlyField()
         {
             if (_isClamped.boolValue)
                 return;
