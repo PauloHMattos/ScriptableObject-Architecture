@@ -4,12 +4,12 @@ using UnityEditor;
 namespace ScriptableObjectArchitecture.Editor
 {
 
-    [CustomEditor(typeof(ReadOnlyVariable<>), true)]
-    public class ReadOnlyVariableEditor : BaseVariableEditor
+    [CustomEditor(typeof(ReadOnlyFloatVariable), true)]
+    public class ReadOnlyFloatVariableEditor : BaseVariableEditor
     {
 
-        private BaseVariable Target { get { return (BaseVariable)target; } }
-        
+        private ReadOnlyFloatVariable Target { get { return (ReadOnlyFloatVariable)target; } }
+
         protected override void DrawValue()
         {
             string content = "Cannot display value. No PropertyDrawer for (" + Target.Type + ") [" + Target.ToString() + "]";
@@ -18,13 +18,19 @@ namespace ScriptableObjectArchitecture.Editor
             {
                 GenericPropertyDrawer.DrawPropertyDrawerLayout(Target.Type, new GUIContent("Value"), _valueProperty, new GUIContent(content, content));
             }
-
-            var obj = Target.BaseValue;
         }
 
         protected override void DrawReadonlyField()
         {
 
         }
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            EditorGUILayout.Space();
+            EditorGUILayout.HelpBox("ReadOnly variables does not trigger changed events", MessageType.Info);
+        }
     }
+
 }

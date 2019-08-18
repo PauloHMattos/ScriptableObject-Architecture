@@ -1,6 +1,6 @@
 ﻿namespace ScriptableObjectArchitecture
 {
-    public abstract class ReadOnlyVariable<TBase> : BaseVariable<TBase>
+    public abstract class ReadOnlyFloatVariable : FloatVariable
     {
         public override bool ReadOnly
         {
@@ -16,6 +16,7 @@
             _readOnly = true;
             _resetWhenStart = false;
         }
-
     }
+
+
 }

@@ -175,7 +175,7 @@ namespace ScriptableObjectArchitecture
 
         public override string ToString()
         {
-            return _value == null ? "null" : _value.ToString();
+            return _value == null ? "null" : Value.ToString();
         }
         public static implicit operator T(BaseVariable<T> variable)
         {
