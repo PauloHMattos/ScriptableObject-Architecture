@@ -967,6 +967,77 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: ScriptableObjectArchitecture.Vector2UnityEvent, ScriptableObject-Architecture,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &1967340091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967340089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb43355ea144692951efe3859aa3ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeveloperDescription:
+    _value: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _listnerOption: 4
+  _delay: 3
+  _variable: {fileID: 11400000, guid: b29a733e39d189343b70986d75d28d5a, type: 2}
+  _previouslyRegisteredVariable: {fileID: 11400000, guid: b29a733e39d189343b70986d75d28d5a,
+    type: 2}
+  _debugValue: 0
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 00040033833585f4b940c1e6c8d5d2e1, type: 2}
+        m_MethodName: Add
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: ScriptableObjectArchitecture.FloatUnityEvent, ScriptableObject-Architecture,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  _modifierCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 5.0005703
+      outSlope: 5.0005703
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9998471
+      value: 4.999806
+      inSlope: 5.0005703
+      outSlope: 5.0005703
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _constrain: 0
+  _equals: 0
+  _bigger: 0
+  _smaller: 0
+  _comparationReference:
+    _useConstant: 0
+    _constantValue: 0
+    _variable: {fileID: 0}
 --- !u!1001 &1991808075
 PrefabInstance:
   m_ObjectHideFlags: 0
