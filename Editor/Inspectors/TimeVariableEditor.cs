@@ -6,7 +6,6 @@ namespace ScriptableObjectArchitecture.Editor
     [CustomEditor(typeof(TimeVariable), true)]
     public class TimeVariableEditor : ReadOnlyFloatVariableEditor
     {
-
         private TimeVariable Target { get { return (TimeVariable)target; } }
         private SerializedProperty _timeType;
 
@@ -23,5 +22,4 @@ namespace ScriptableObjectArchitecture.Editor
             EditorGUILayout.PropertyField(_timeType, new GUIContent("Type"));
         }
     }
-
 }

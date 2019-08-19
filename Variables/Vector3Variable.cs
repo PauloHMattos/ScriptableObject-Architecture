@@ -28,19 +28,51 @@ namespace ScriptableObjectArchitecture
             Value *= other;
         }
 
+        public void Scale(Vector3 other)
+        {
+            _value.Scale(other);
+        }
+
+        public void Scale(Vector3Variable other)
+        {
+            _value.Scale(other);
+        }
+
+        public void Scale(Vector2Variable other)
+        {
+            _value.Scale(other.Value);
+        }
+
         public override void Add(Vector3Variable other)
         {
             Value += other.Value;
+        }
+
+        public void Add(Vector2Variable other)
+        {
+            _value.x += other.Value.x;
+            _value.y += other.Value.y;
         }
 
         public override void Subtract(Vector3Variable other)
         {
             Value -= other.Value;
         }
+        public void Subtract(Vector2Variable other)
+        {
+            _value.x -= other.Value.x;
+            _value.y -= other.Value.y;
+        }
 
         public void Cross(Vector3Variable other)
         {
             Value = Vector3.Cross(Value, other);
+        }
+
+
+        public void Cross(Vector2Variable other)
+        {
+            Value = Vector3.Cross(Value, other.Value);
         }
 
         public void Multiply(FloatVariable other)
