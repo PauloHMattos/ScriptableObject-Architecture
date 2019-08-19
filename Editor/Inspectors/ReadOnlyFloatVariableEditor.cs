@@ -8,7 +8,7 @@ namespace ScriptableObjectArchitecture.Editor
     public class ReadOnlyFloatVariableEditor : BaseVariableEditor
     {
 
-        private ReadOnlyFloatVariable Target { get { return (ReadOnlyFloatVariable)target; } }
+        private BaseVariable Target { get { return (BaseVariable)target; } }
 
         protected override void DrawValue()
         {
@@ -32,5 +32,4 @@ namespace ScriptableObjectArchitecture.Editor
             EditorGUILayout.HelpBox("ReadOnly variables does not trigger changed events", MessageType.Info);
         }
     }
-
 }

@@ -6,7 +6,7 @@ namespace ScriptableObjectArchitecture.Editor
     public class AxisVariableEditor : ReadOnlyFloatVariableEditor
     {
         private AxisVariable Target { get { return (AxisVariable)target; } }
-        private SerializedProperty _axisName;
+        protected SerializedProperty _axisName;
         private SerializedProperty _raw;
 
         protected override void OnEnable()
@@ -17,11 +17,9 @@ namespace ScriptableObjectArchitecture.Editor
         }
         protected override void DrawValue()
         {
-            // Call Value.get so the displayed value also gets updated
-            var value = Target.Value;
             base.DrawValue();
-            EditorGUILayout.PropertyField(_axisName);
             EditorGUILayout.PropertyField(_raw);
+            EditorGUILayout.PropertyField(_axisName);
         }
     }
 }
