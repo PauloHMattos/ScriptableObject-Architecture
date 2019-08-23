@@ -16,7 +16,9 @@
 
         // Add Component Menus
         public const string ADD_COMPONENT_ROOT_MENU = "SO Architecture/";
-        public const string EVENT_LISTENER_SUBMENU = ADD_COMPONENT_ROOT_MENU + "Event Listeners/";
+        public const string EVENTS_SUBMENU = ADD_COMPONENT_ROOT_MENU + "Events/";
+        public const string EVENT_LISTENER_SUBMENU = EVENTS_SUBMENU + "Listeners/";
+        public const string EVENT_RAISER_SUBMENU = EVENTS_SUBMENU + "Raisers/";
         public const string OBSERVER_SUBMENU = ADD_COMPONENT_ROOT_MENU + "Observers/";
     }
 }

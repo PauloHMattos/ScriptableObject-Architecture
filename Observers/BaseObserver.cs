@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace ScriptableObjectArchitecture
 {
-    public abstract class BaseObserver : DebuggableGameEventListener, IVariableObserver
+    public abstract class BaseObserver : DebuggableGameEventListener, IVariableObserver, IGameEventListener
     {
         public abstract void OnVariableChanged();
 
@@ -14,25 +15,44 @@ namespace ScriptableObjectArchitecture
             OnUpdate,
             OnLateUpdate,
             OnFixedUpdate,
-            OnTimeInterval
+            OnTimeInterval,
+            OnEvent
         }
 
         [SerializeField]
         protected ListnerOption _listnerOption = ListnerOption.OnChanged;
+        [SerializeField]
+        protected GameEvent _gameEvent;
         private float _lastTime;
         [SerializeField]
         private float _delay;
 
         public float LastTime { get => _lastTime; set => _lastTime = value; }
         public float Delay { get => _delay; set => _delay = value; }
+        
+        protected virtual void OnEnable()
+        {
+            if (_listnerOption == ListnerOption.OnEvent && _gameEvent != null)
+            {
+                _gameEvent.AddListener(this);
+            }
+        }
+
+        protected virtual void OnDisable()
+        {
+            if (_gameEvent != null)
+            {
+                _gameEvent.RemoveListener(this);
+            }
+        }
 
         protected virtual void Update()
         {
-            if (_listnerOption.HasFlag(ListnerOption.OnUpdate))
+            if (_listnerOption == ListnerOption.OnUpdate)
             {
                 OnVariableChanged();
             }
-            else if (_listnerOption.HasFlag(ListnerOption.OnTimeInterval))
+            else if (_listnerOption == ListnerOption.OnTimeInterval)
             {
                 // TODO
                 if (Time.time - _lastTime >= _delay)
@@ -45,7 +65,7 @@ namespace ScriptableObjectArchitecture
 
         protected virtual void LateUpdate()
         {
-            if (_listnerOption.HasFlag(ListnerOption.OnLateUpdate))
+            if (_listnerOption == ListnerOption.OnLateUpdate)
             {
                 OnVariableChanged();
             }
@@ -53,7 +73,7 @@ namespace ScriptableObjectArchitecture
 
         protected virtual void FixedUpdate()
         {
-            if (_listnerOption.HasFlag(ListnerOption.OnFixedUpdate))
+            if (_listnerOption == ListnerOption.OnFixedUpdate)
             {
                 OnVariableChanged();
             }
@@ -62,6 +82,11 @@ namespace ScriptableObjectArchitecture
 
         public abstract void Register();
         public abstract void Unregister();
+
+        public void OnEventRaised()
+        {
+            OnVariableChanged();
+        }
     }
 
     public abstract class BaseObserver<TType, TVariable> : BaseObserver
@@ -72,29 +97,45 @@ namespace ScriptableObjectArchitecture
         protected ScriptableObject Variable { get { return _variable; } }
 
         [SerializeField]
+        protected bool _raiseOnStart = true;
+        [SerializeField]
         protected TVariable _variable = default(TVariable);
         [SerializeField]
         private TVariable _previouslyRegisteredVariable = default(TVariable);
         [SerializeField]
         protected TType _debugValue = default(TType);
 
-        protected virtual void OnEnable()
+        protected virtual void Start()
         {
-            if (_variable != null)
+            if (_raiseOnStart && _variable != null)
             {
-                if (_listnerOption == ListnerOption.OnChanged)
-                {
-                    Register();
-                }
                 OnVariableChanged();
             }
         }
 
-
-        protected virtual void OnDisable()
+        protected override void OnEnable()
         {
             if (_variable != null)
             {
+                base.OnEnable();
+                if (_listnerOption == ListnerOption.OnChanged)
+                {
+                    Register();
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"{ToString()}: Variable not defined. Disabling component", this);
+                this.enabled = false;
+            }
+        }
+
+
+        protected override void OnDisable()
+        {
+            if (_variable != null)
+            {
+                base.OnDisable();
                 Unregister();
             }
         }
@@ -138,6 +179,5 @@ where TResponse : UnityEvent<TType>
         {
             _response.Invoke(value);
         }
-
     }
 }
