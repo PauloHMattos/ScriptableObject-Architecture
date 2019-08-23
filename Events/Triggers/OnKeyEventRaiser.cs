@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture
 {
+    [AddComponentMenu(SOArchitecture_Utility.EVENT_RAISER_SUBMENU + "On Key Raiser")]
     public class OnKeyEventRaiser : BaseGameEventRaiser
     {
         public KeyCodeReference key;
@@ -15,15 +16,15 @@ namespace ScriptableObjectArchitecture
             if (!key.IsValueDefined)
                 return;
 
-            if (Input.GetKeyDown(key.Value))
+            if (eventType.HasFlag(EventType.Down) && Input.GetKeyDown(key.Value))
             {
                 response.Invoke();
             }
-            if (Input.GetKey(key.Value))
+            if (eventType.HasFlag(EventType.Hold) && Input.GetKey(key.Value))
             {
                 response.Invoke();
             }
-            if (Input.GetKeyUp(key.Value))
+            if (eventType.HasFlag(EventType.Up) && Input.GetKeyUp(key.Value))
             {
                 response.Invoke();
             }
