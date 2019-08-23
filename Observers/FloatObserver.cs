@@ -7,7 +7,15 @@ namespace ScriptableObjectArchitecture
 	{
         protected override void RaiseResponse(float value)
         {
-            base.RaiseResponse(_modifierCurve.Evaluate(value));
+            if (_sample)
+            {
+                value = _modifierCurve.Evaluate(value);
+            }
+            else
+            {
+                value = _modifierCurve.Evaluate(value) * value;
+            }
+            base.RaiseResponse(value);
         }
     }
 }

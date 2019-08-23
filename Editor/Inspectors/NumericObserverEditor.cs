@@ -33,6 +33,7 @@ namespace ScriptableObjectArchitecture.Editor
     public class NumericObserverEditor : BaseObserverEditor
     {
         protected SerializedProperty _constrain;
+        protected SerializedProperty _sample;
 
         protected SerializedProperty _equals;
         protected SerializedProperty _smaller;
@@ -61,6 +62,7 @@ namespace ScriptableObjectArchitecture.Editor
             _smaller = serializedObject.FindProperty("_smaller");
             _bigger = serializedObject.FindProperty("_bigger");
             _modifierCurve = serializedObject.FindProperty("_modifierCurve");
+            _sample = serializedObject.FindProperty("_sample");
         }
 
         protected override void DrawGameEventField()
@@ -69,6 +71,7 @@ namespace ScriptableObjectArchitecture.Editor
             //EditorGUILayout.ObjectField(_event, new GUIContent("Variable", "Variable which will trigger the response"));
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(_modifierCurve);
+            EditorGUILayout.PropertyField(_sample);
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(_constrain, new GUIContent("Apply conditions?"));
             DrawConditions();

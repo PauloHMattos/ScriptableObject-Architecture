@@ -34,6 +34,7 @@ namespace ScriptableObjectArchitecture
         where TResponse : UnityEvent<TType>
     {
         [SerializeField] protected AnimationCurve _modifierCurve = new AnimationCurve();
+        [SerializeField] protected bool _sample = true;
         [SerializeField] private bool _constrain = false;
         [SerializeField] private bool _equals = false;
         [SerializeField] private bool _bigger = false;

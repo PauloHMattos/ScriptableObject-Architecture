@@ -8,7 +8,16 @@ namespace ScriptableObjectArchitecture
 	{
         protected override void RaiseResponse(int value)
         {
-            base.RaiseResponse(Mathf.RoundToInt(_modifierCurve.Evaluate(value)));
+            float val;
+            if (_sample)
+            {
+                val = _modifierCurve.Evaluate(value);
+            }
+            else
+            {
+                val = _modifierCurve.Evaluate(value) * value;
+            }
+            base.RaiseResponse(Mathf.RoundToInt(val));
         }
     }
 }
