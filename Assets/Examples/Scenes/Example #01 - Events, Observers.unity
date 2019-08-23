@@ -639,6 +639,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _sample: 1
   _constrain: 0
   _equals: 1
   _bigger: 0
@@ -709,6 +710,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _sample: 1
   _constrain: 1
   _equals: 1
   _bigger: 0
@@ -1109,11 +1111,15 @@ PrefabInstance:
     - target: {fileID: 794136485, guid: 30898bb5526f8f542aa93bfaac20d996, type: 3}
       propertyPath: _variable
       value: 
-      objectReference: {fileID: 11400000, guid: b29a733e39d189343b70986d75d28d5a,
+      objectReference: {fileID: 11400000, guid: 00040033833585f4b940c1e6c8d5d2e1,
         type: 2}
     - target: {fileID: 794136485, guid: 30898bb5526f8f542aa93bfaac20d996, type: 3}
       propertyPath: _listnerOption
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 794136485, guid: 30898bb5526f8f542aa93bfaac20d996, type: 3}
+      propertyPath: _format
+      value: HP {0:0.}
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30898bb5526f8f542aa93bfaac20d996, type: 3}
