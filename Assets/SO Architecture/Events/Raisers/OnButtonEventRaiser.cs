@@ -10,22 +10,22 @@ namespace ScriptableObjectArchitecture
         public EventType eventType;
 
 
-        private void Update()
+        protected override void Update()
         {
             if (string.IsNullOrEmpty(buttonName))
                 return;
 
             if (eventType.HasFlag(EventType.Down) && Input.GetButtonDown(buttonName))
             {
-                response.Invoke();
+                _response.Invoke();
             }
             if (eventType.HasFlag(EventType.Hold) && Input.GetButton(buttonName))
             {
-                response.Invoke();
+                _response.Invoke();
             }
             if (eventType.HasFlag(EventType.Up) && Input.GetButtonUp(buttonName))
             {
-                response.Invoke();
+                _response.Invoke();
             }
         }
 
