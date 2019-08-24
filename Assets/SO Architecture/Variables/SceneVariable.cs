@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ScriptableObjectArchitecture
 {
@@ -29,6 +30,11 @@ namespace ScriptableObjectArchitecture
                 // any kind of expectation for a user to be able to set this at runtime.
                 return true;
             }
+        }
+
+        public void Load()
+        {
+            SceneManager.LoadScene(Value.SceneName, LoadSceneMode.Single);
         }
     }
 

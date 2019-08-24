@@ -2,6 +2,7 @@
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    [CanEditMultipleObjects]
     [CustomEditor(typeof(BaseGameEventRaiser), true)]
     public class BaseGameEventRaiserEditor : UnityEditor.Editor
     {
