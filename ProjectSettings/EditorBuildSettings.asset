@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: 'Assets/Examples/1. Basic/Scenes/Example #01 - Events, Observers.unity'
-    guid: 576c8d711e4aec1478245fb49d7f0147
+    path: Assets/Examples/2. Intermediary/Scenes/Game.unity
+    guid: ed803ab317c415b40bc3847352c9849c
   m_configObjects: {}

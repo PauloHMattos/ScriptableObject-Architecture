@@ -408,3 +408,4 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: ScriptableObjectArchitecture.BoolUnityEvent, ScriptableObject-Architecture,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  invert: 0
