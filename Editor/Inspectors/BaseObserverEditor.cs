@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using Type = System.Type;
 
 namespace ScriptableObjectArchitecture.Editor
 {
