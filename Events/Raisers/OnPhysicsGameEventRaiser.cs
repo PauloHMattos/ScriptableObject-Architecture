@@ -7,7 +7,7 @@ namespace ScriptableObjectArchitecture
     {
         public LifeCycle _lifeCycle;
         [SerializeField]
-        private string _tag;
+        private string _tag = "";
         public LayerMask layerMask;
 
         [Flags]
@@ -20,7 +20,7 @@ namespace ScriptableObjectArchitecture
 
         protected bool CheckTagAndLayer(string collisionTag, int collisionLayer)
         {
-            if (string.IsNullOrEmpty(_tag) || !collisionTag.Equals(_tag))
+            if (!string.IsNullOrEmpty(_tag) && !collisionTag.Equals(_tag))
             {
                 return false;
             }
@@ -40,7 +40,7 @@ namespace ScriptableObjectArchitecture
                 return;
             }
             
-            response.Invoke();
+            _response.Invoke();
         }
         protected void OnStay(string collisionTag, int collisionLayer)
         {
@@ -54,7 +54,7 @@ namespace ScriptableObjectArchitecture
                 return;
             }
 
-            response.Invoke();
+            _response.Invoke();
         }
         protected void OnExit(string collisionTag, int collisionLayer)
         {
@@ -68,7 +68,7 @@ namespace ScriptableObjectArchitecture
                 return;
             }
 
-            response.Invoke();
+            _response.Invoke();
         }
     }
 }

@@ -11,22 +11,22 @@ namespace ScriptableObjectArchitecture
         public EventType eventType;
 
 
-        private void Update()
+        protected override void Update()
         {
             if (!key.IsValueDefined)
                 return;
 
             if (eventType.HasFlag(EventType.Down) && Input.GetKeyDown(key.Value))
             {
-                response.Invoke();
+                _response.Invoke();
             }
             if (eventType.HasFlag(EventType.Hold) && Input.GetKey(key.Value))
             {
-                response.Invoke();
+                _response.Invoke();
             }
             if (eventType.HasFlag(EventType.Up) && Input.GetKeyUp(key.Value))
             {
-                response.Invoke();
+                _response.Invoke();
             }
         }
 
