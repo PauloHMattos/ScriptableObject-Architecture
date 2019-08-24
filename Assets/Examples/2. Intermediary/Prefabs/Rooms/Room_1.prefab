@@ -577,7 +577,7 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 0
+  _listnerOption: 1
   _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 0
@@ -622,3 +622,4 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: ScriptableObjectArchitecture.BoolUnityEvent, ScriptableObject-Architecture,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  invert: 0
