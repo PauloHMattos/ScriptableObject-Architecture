@@ -1,0 +1,40 @@
+﻿using System;
+using UnityEngine;
+
+namespace ScriptableObjectArchitecture
+{
+    [AddComponentMenu(SOArchitecture_Utility.EVENT_RAISER_SUBMENU + "On Button Raiser")]
+    public class OnButtonEventRaiser : BaseGameEventRaiser
+    {
+        public string buttonName;
+        public EventType eventType;
+
+
+        protected override void Update()
+        {
+            if (string.IsNullOrEmpty(buttonName))
+                return;
+
+            if (eventType.HasFlag(EventType.Down) && Input.GetButtonDown(buttonName))
+            {
+                _response.Invoke();
+            }
+            if (eventType.HasFlag(EventType.Hold) && Input.GetButton(buttonName))
+            {
+                _response.Invoke();
+            }
+            if (eventType.HasFlag(EventType.Up) && Input.GetButtonUp(buttonName))
+            {
+                _response.Invoke();
+            }
+        }
+
+        [Flags]
+        public enum EventType
+        {
+            Down = 1,
+            Hold = 2,
+            Up = 4
+        }
+    }
+}

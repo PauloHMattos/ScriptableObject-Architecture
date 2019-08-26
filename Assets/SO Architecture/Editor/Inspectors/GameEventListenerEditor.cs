@@ -25,5 +25,10 @@ namespace ScriptableObjectArchitecture.Editor
         {
             _raiseMethod.Invoke(target, null);
         }
+
+        protected override void DrawRaiseButton()
+        {
+            base.DrawRaiseButton();
+        }
     } 
 }

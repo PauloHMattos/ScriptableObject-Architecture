@@ -1,17 +1,17 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using Type = System.Type;
 
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomEditor(typeof(BaseObserver<,>), true)]
-    public class BaseObserverEditor : BaseListnerEditor
+    public class BaseObserverEditor : BaseListenerEditor
     {
         private BaseObserver Target { get { return (BaseObserver)target; } }
 
         protected MethodInfo _raiseMethod;
-        private SerializedProperty _listnerOption;
+        private SerializedProperty _listenerOption;
         private SerializedProperty _gameEvent;
         private SerializedProperty _delay;
         private SerializedProperty _raiseOnStart;
@@ -21,12 +21,12 @@ namespace ScriptableObjectArchitecture.Editor
             base.OnEnable();
             _raiseMethod = target.GetType().BaseType.GetMethod("OnVariableChanged");
             _event = serializedObject.FindProperty("_variable");
-            _listnerOption = serializedObject.FindProperty("_listnerOption");
+            _listenerOption = serializedObject.FindProperty("_listenerOption");
             _gameEvent = serializedObject.FindProperty("_gameEvent");
             _delay = serializedObject.FindProperty("_delay");
             _raiseOnStart = serializedObject.FindProperty("_raiseOnStart");
         }
-        
+
         protected override void CallMethod(object value)
         {
             _raiseMethod.Invoke(target, new object[1] { value });
@@ -39,10 +39,10 @@ namespace ScriptableObjectArchitecture.Editor
 
             using (var scope = new EditorGUI.ChangeCheckScope())
             {
-                EditorGUILayout.PropertyField(_listnerOption);
+                EditorGUILayout.PropertyField(_listenerOption);
 
 
-                if (_listnerOption.enumValueIndex == (int)BaseObserver.ListnerOption.OnEvent)
+                if (_listenerOption.enumValueIndex == (int)BaseObserver.ListenerOption.OnEvent)
                 {
                     EditorGUI.indentLevel = 1;
                     EditorGUILayout.PropertyField(_gameEvent);
@@ -53,7 +53,7 @@ namespace ScriptableObjectArchitecture.Editor
                 {
                     if (Application.isPlaying)
                     {
-                        if (_listnerOption.enumValueIndex == (int) BaseObserver.ListnerOption.OnChanged)
+                        if (_listenerOption.enumValueIndex == (int)BaseObserver.ListenerOption.OnChanged)
                         {
                             Target.Register();
                         }
@@ -64,7 +64,7 @@ namespace ScriptableObjectArchitecture.Editor
                     }
                 }
 
-                if (_listnerOption.enumValueIndex == (int)BaseObserver.ListnerOption.OnTimeInterval)
+                if (_listenerOption.enumValueIndex == (int)BaseObserver.ListenerOption.OnTimeInterval)
                 {
                     EditorGUILayout.PropertyField(_delay);
                 }

@@ -17,13 +17,15 @@ namespace ScriptableObjectArchitecture.Editor
         // Serialized Properties
         private const string SCENE_INFO_PROPERTY = "_value";
 
-        public override void OnInspectorGUI()
+        protected override void DrawReadonlyField()
         {
-            serializedObject.Update();
-
-            DrawValue();
-            DrawDeveloperDescription();
         }
+
+        protected override void DrawClampedFields()
+        {
+        }
+
+
         protected override void DrawValue()
         {
             var sceneVariable = (SceneVariable)target;

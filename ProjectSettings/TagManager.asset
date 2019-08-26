@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Floor
+  - Room
+  - Destroyer
+  - Laser
   layers:
   - Default
   - TransparentFX
@@ -14,7 +18,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - Obstacle
   - 
   - 
   - 
@@ -40,4 +44,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1999208561
+    locked: 0
+  - name: Decorations
+    uniqueID: 1342611107
+    locked: 0
+  - name: Object
+    uniqueID: 465636267
+    locked: 0
+  - name: Player
+    uniqueID: 901796207
     locked: 0
