@@ -5,25 +5,25 @@ public class Laser : MonoBehaviour
 {
     public Sprite on, off;
 
-    private new SpriteRenderer renderer;
-    private new BoxCollider2D collider;
+    private SpriteRenderer _renderer;
+    private BoxCollider2D _collider;
 
     public void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<BoxCollider2D>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     public void Toggle()
     {
-        collider.enabled = !collider.enabled;
-        if (collider.enabled)
+        _collider.enabled = !_collider.enabled;
+        if (_collider.enabled)
         {
-            renderer.sprite = on;
+            _renderer.sprite = on;
         }
         else
         {
-            renderer.sprite = off;
+            _renderer.sprite = off;
         }
     }
 }
