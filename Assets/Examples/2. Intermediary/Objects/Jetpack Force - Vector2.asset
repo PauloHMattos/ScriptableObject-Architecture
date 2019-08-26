@@ -16,7 +16,7 @@ MonoBehaviour:
     _value: 
   _resetWhenStart: 0
   _defaultValue: {x: 0, y: 75}
-  _value: {x: 0, y: 70}
+  _value: {x: 0, y: 4}
   _readOnly: 1
   _raiseWarning: 1
   _isClamped: 0
