@@ -33,8 +33,8 @@ namespace ScriptableObjectArchitecture
         where TVariable : BaseVariable<TType>
         where TResponse : UnityEvent<TType>
     {
-        [SerializeField] protected AnimationCurve _modifierCurve = new AnimationCurve();
-        [SerializeField] protected bool _sample = true;
+        [SerializeField, DisplayField] protected AnimationCurve _modifierCurve = AnimationCurve.Constant(0, 1, 1);
+        [SerializeField, DisplayField] protected bool _sample = true;
         [SerializeField] private bool _constrain = false;
         [SerializeField] private bool _equals = false;
         [SerializeField] private bool _bigger = false;
@@ -51,6 +51,7 @@ namespace ScriptableObjectArchitecture
 
         protected virtual bool ShouldRaise()
         {
+            
             if (_constrain)
             {
                 var result = _variable.Value.CompareTo(GetComparisonValue());

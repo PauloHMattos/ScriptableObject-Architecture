@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace ScriptableObjectArchitecture
 {
@@ -9,7 +10,7 @@ namespace ScriptableObjectArchitecture
     {
         public abstract void OnVariableChanged();
 
-        public enum ListnerOption
+        public enum ListenerOption
         {
             OnChanged,
             OnUpdate,
@@ -19,8 +20,8 @@ namespace ScriptableObjectArchitecture
             OnEvent
         }
 
-        [SerializeField]
-        protected ListnerOption _listnerOption = ListnerOption.OnChanged;
+        [FormerlySerializedAs("_listnerOption")] [SerializeField]
+        protected ListenerOption _listenerOption = ListenerOption.OnChanged;
         [SerializeField]
         protected GameEvent _gameEvent;
         private float _lastTime;
@@ -32,7 +33,7 @@ namespace ScriptableObjectArchitecture
         
         protected virtual void OnEnable()
         {
-            if (_listnerOption == ListnerOption.OnEvent && _gameEvent != null)
+            if (_listenerOption == ListenerOption.OnEvent && _gameEvent != null)
             {
                 _gameEvent.AddListener(this);
             }
@@ -48,11 +49,11 @@ namespace ScriptableObjectArchitecture
 
         protected virtual void Update()
         {
-            if (_listnerOption == ListnerOption.OnUpdate)
+            if (_listenerOption == ListenerOption.OnUpdate)
             {
                 OnVariableChanged();
             }
-            else if (_listnerOption == ListnerOption.OnTimeInterval)
+            else if (_listenerOption == ListenerOption.OnTimeInterval)
             {
                 // TODO
                 if (Time.time - _lastTime >= _delay)
@@ -65,7 +66,7 @@ namespace ScriptableObjectArchitecture
 
         protected virtual void LateUpdate()
         {
-            if (_listnerOption == ListnerOption.OnLateUpdate)
+            if (_listenerOption == ListenerOption.OnLateUpdate)
             {
                 OnVariableChanged();
             }
@@ -73,7 +74,7 @@ namespace ScriptableObjectArchitecture
 
         protected virtual void FixedUpdate()
         {
-            if (_listnerOption == ListnerOption.OnFixedUpdate)
+            if (_listenerOption == ListenerOption.OnFixedUpdate)
             {
                 OnVariableChanged();
             }
@@ -118,7 +119,7 @@ namespace ScriptableObjectArchitecture
             if (_variable != null)
             {
                 base.OnEnable();
-                if (_listnerOption == ListnerOption.OnChanged)
+                if (_listenerOption == ListenerOption.OnChanged)
                 {
                     Register();
                 }

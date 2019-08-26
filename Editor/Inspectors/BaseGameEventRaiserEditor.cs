@@ -6,6 +6,9 @@ namespace ScriptableObjectArchitecture.Editor
     [CustomEditor(typeof(BaseGameEventRaiser), true)]
     public class BaseGameEventRaiserEditor : UnityEditor.Editor
     {
+
+        private static readonly string[] _dontIncludeMe = new string[] { "m_Script" };
+
         private BaseGameEventRaiser Target { get { return (BaseGameEventRaiser)target; } }
         protected SerializedProperty _response;
 
@@ -18,7 +21,15 @@ namespace ScriptableObjectArchitecture.Editor
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-            base.OnInspectorGUI();
+
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+
+            EditorGUILayout.LabelField("General", EditorStyles.boldLabel);
+
+            DrawPropertiesExcluding(serializedObject, _dontIncludeMe);
+
+            EditorGUILayout.EndVertical();
+
             DrawResponse();
             serializedObject.ApplyModifiedProperties();
         }
@@ -26,7 +37,13 @@ namespace ScriptableObjectArchitecture.Editor
         protected void DrawResponse()
         {
             EditorGUILayout.Space();
+
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            EditorGUILayout.LabelField("Response", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(_response);
+            EditorGUILayout.EndVertical();
         }
+
+
     }
 }

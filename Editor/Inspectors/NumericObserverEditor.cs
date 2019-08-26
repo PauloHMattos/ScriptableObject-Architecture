@@ -3,32 +3,6 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
-    [CustomEditor(typeof(NumericObserver<,,,>), true)]
-    public class NumericObserverEditor2 : NumericObserverEditor
-    {
-        private SerializedProperty _comparationReference;
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            _comparationReference = serializedObject.FindProperty("_comparationReference");
-        }
-
-        protected override void DrawGameEventField()
-        {
-            base.DrawGameEventField();
-        }
-
-        protected override void DrawConditions()
-        {
-            if (!_constrain.boolValue)
-                return;
-
-            EditorGUILayout.PropertyField(_comparationReference);
-            base.DrawConditions();
-        }
-    }
-
     [CustomEditor(typeof(NumericObserver<,,>), true)]
     public class NumericObserverEditor : BaseObserverEditor
     {
@@ -39,6 +13,7 @@ namespace ScriptableObjectArchitecture.Editor
         protected SerializedProperty _smaller;
         protected SerializedProperty _bigger;
         protected SerializedProperty _modifierCurve;
+        private SerializedProperty _comparationReference;
 
         private static readonly string[] DifferentLabels =
         {
@@ -63,24 +38,32 @@ namespace ScriptableObjectArchitecture.Editor
             _bigger = serializedObject.FindProperty("_bigger");
             _modifierCurve = serializedObject.FindProperty("_modifierCurve");
             _sample = serializedObject.FindProperty("_sample");
+            _comparationReference = serializedObject.FindProperty("_comparationReference");
         }
 
-        protected override void DrawGameEventField()
+        protected override void DrawCustomFields()
         {
-            base.DrawGameEventField();
-            //EditorGUILayout.ObjectField(_event, new GUIContent("Variable", "Variable which will trigger the response"));
-            EditorGUILayout.Space();
-            EditorGUILayout.PropertyField(_modifierCurve);
-            EditorGUILayout.PropertyField(_sample);
-            EditorGUILayout.Space();
-            EditorGUILayout.PropertyField(_constrain, new GUIContent("Apply conditions?"));
+            base.DrawCustomFields();
+
+
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+
+            _constrain.boolValue = EditorGUILayout.BeginToggleGroup("Conditions", _constrain.boolValue);
             DrawConditions();
+            EditorGUILayout.EndToggleGroup();
+
+            EditorGUILayout.EndVertical();
         }
 
         protected virtual void DrawConditions()
         { 
             if (!_constrain.boolValue)
                 return;
+
+            if (_comparationReference != null)
+            {
+                EditorGUILayout.PropertyField(_comparationReference, new GUIContent("Comp. Reference"));
+            }
 
             var equalValue = _equals.boolValue ? 0 : 1;
             var newEquals = GUILayout.Toolbar(equalValue, new[] {"==", "!="});
