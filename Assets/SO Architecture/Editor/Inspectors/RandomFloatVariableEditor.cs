@@ -5,7 +5,16 @@ namespace ScriptableObjectArchitecture.Editor
     [CustomEditor(typeof(RandomFloatVariable), true)]
     public class RandomFloatVariableEditor : ReadOnlyFloatVariableEditor
     {
+        private SerializedProperty _useTimeAsSeed;
         private RandomFloatVariable Target { get { return (RandomFloatVariable)target; } }
+
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            _useTimeAsSeed = serializedObject.FindProperty("_useTimeAsSeed");
+        }
+
 
         protected override void DrawValue()
         {
@@ -13,11 +22,14 @@ namespace ScriptableObjectArchitecture.Editor
             var value = Target.Value;
             base.DrawValue();
 
-
-            var newSeed = EditorGUILayout.IntField("Seed", Target.Seed);
-            if (newSeed != Target.Seed)
+            EditorGUILayout.PropertyField(_useTimeAsSeed);
+            using (var scope = new EditorGUI.DisabledGroupScope(_useTimeAsSeed.boolValue))
             {
-                Target.Seed = newSeed;
+                var newSeed = EditorGUILayout.IntField("Seed", Target.Seed);
+                if (newSeed != Target.Seed)
+                {
+                    Target.Seed = newSeed;
+                }
             }
         }
     }
