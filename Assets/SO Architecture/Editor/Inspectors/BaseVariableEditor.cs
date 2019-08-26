@@ -52,30 +52,21 @@ namespace ScriptableObjectArchitecture.Editor
         {
             serializedObject.Update();
 
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             DrawValue();
             DrawReadonlyField();
+            EditorGUILayout.EndVertical();
+
             DrawClampedFields();
+
             DrawDeveloperDescription();
         }
 
         protected virtual void DrawValue()
         {
+            EditorGUILayout.LabelField("General", EditorStyles.boldLabel);
+
             string content = "Cannot display value. No PropertyDrawer for (" + Target.Type + ") [" + Target.ToString() + "]";
-
-            EditorGUILayout.PropertyField(_resetProperty);
-            _resetOnStartAnimation.target = _resetProperty.boolValue;
-
-            using (var anim = new EditorGUILayout.FadeGroupScope(_resetOnStartAnimation.faded))
-            {
-                if (anim.visible)
-                {
-                    using (new EditorGUI.IndentLevelScope())
-                    {
-                        GenericPropertyDrawer.DrawPropertyDrawerLayout(Target.Type, new GUIContent("Default Value"),
-                            _defaultValueProperty, new GUIContent(content, content));
-                    }
-                }
-            }
 
             using (var scope = new EditorGUI.ChangeCheckScope())
             {
@@ -91,32 +82,47 @@ namespace ScriptableObjectArchitecture.Editor
                     }
                 }
             }
+
+            EditorGUILayout.PropertyField(_resetProperty);
+            _resetOnStartAnimation.target = _resetProperty.boolValue;
+
+            using (var anim = new EditorGUILayout.FadeGroupScope(_resetOnStartAnimation.faded))
+            {
+                if (anim.visible)
+                {
+                    using (new EditorGUI.IndentLevelScope())
+                    {
+                        GenericPropertyDrawer.DrawPropertyDrawerLayout(Target.Type, new GUIContent("Default Value"),
+                            _defaultValueProperty, new GUIContent(content, content));
+                    }
+                }
+            }
         }
-        protected void DrawClampedFields()
+        protected virtual void DrawClampedFields()
         {
             if (!IsClampable)
                 return;
 
-            EditorGUILayout.PropertyField(_isClamped);
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+
+            _isClamped.boolValue = EditorGUILayout.BeginToggleGroup("Clamp Value", _isClamped.boolValue);
+            EditorGUILayout.EndToggleGroup();
+
             _isClampedVariableAnimation.target = _isClamped.boolValue;
 
             using (var anim = new EditorGUILayout.FadeGroupScope(_isClampedVariableAnimation.faded))
             {
                 if (anim.visible)
                 {
-                    using (new EditorGUI.IndentLevelScope())
-                    {
-                        EditorGUILayout.PropertyField(_minValueProperty);
-                        EditorGUILayout.PropertyField(_maxValueProperty);
-                    }
+                    EditorGUILayout.PropertyField(_minValueProperty, new GUIContent("Min Value"));
+                    EditorGUILayout.PropertyField(_maxValueProperty, new GUIContent("Max Value"));
                 }
             }
-
+            EditorGUILayout.EndVertical();
         }
         protected virtual void DrawReadonlyField()
         {
-            if (_isClamped.boolValue)
-                return;
+            EditorGUI.BeginDisabledGroup(_isClamped.boolValue);
 
             EditorGUILayout.PropertyField(_readOnly, new GUIContent("Read Only", READONLY_TOOLTIP));
 
@@ -130,6 +136,8 @@ namespace ScriptableObjectArchitecture.Editor
                     EditorGUI.indentLevel--;
                 }
             }
+
+            EditorGUI.EndDisabledGroup();
         }
         protected void DrawDeveloperDescription()
         {

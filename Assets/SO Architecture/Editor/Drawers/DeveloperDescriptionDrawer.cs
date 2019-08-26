@@ -6,39 +6,47 @@ namespace ScriptableObjectArchitecture.Editor
     [CustomPropertyDrawer(typeof(DeveloperDescription))]
     public class DeveloperDescriptionDrawer : PropertyDrawer
     {
+        
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return GetHeight(property);
+            return 0;
         }
+        
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             DrawTitle(ref position, property);
             DrawTextArea(ref position, property);
+            EditorGUILayout.EndVertical();
 
-            EditorGUILayout.Space();
+            //EditorGUILayout.Space();
             property.serializedObject.ApplyModifiedProperties();
         }
         private void DrawTitle(ref Rect rect, SerializedProperty property)
         {
+            /*
             if (HasContent(property))
             {
-                rect.height = 0;
+                //rect.height = 0;
+                return;
             }
-
-            EditorGUI.LabelField(rect, new GUIContent("Description", "Click below this field to add a description"));
+            */
+            EditorGUILayout.LabelField(new GUIContent("Description", "Click below this field to add a description"), EditorStyles.boldLabel);
+            //EditorGUI.LabelField(rect, new GUIContent("Description", "Click below this field to add a description"), EditorStyles.boldLabel);
         }
         private void DrawTextArea(ref Rect rect, SerializedProperty property)
         {
             SerializedProperty stringValue = property.FindPropertyRelative("_value");
-
+            /*
             if (!HasContent(property))
                 rect.y += EditorGUIUtility.singleLineHeight;
+            */
+            //rect.height = GetHeight(property);
 
-            rect.height = GetHeight(property);
-
-            EditorGUI.indentLevel++;
-            stringValue.stringValue = EditorGUI.TextArea(rect, stringValue.stringValue, Styles.TextAreaStyle);
-            EditorGUI.indentLevel--;
+            //EditorGUI.indentLevel++;
+            stringValue.stringValue = EditorGUILayout.TextArea(stringValue.stringValue, Styles.TextAreaStyle);
+            //stringValue.stringValue = EditorGUI.TextArea(rect, , Styles.TextAreaStyle);
+            //EditorGUI.indentLevel--;
 
             HandleInput(rect, property);
         }

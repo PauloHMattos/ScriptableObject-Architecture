@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
-    public abstract class BaseListnerEditor : UnityEditor.Editor
+    public abstract class BaseListenerEditor : UnityEditor.Editor
     {
         private SerializedProperty DeveloperDescription { get { return serializedObject.FindProperty("DeveloperDescription"); } }
         
@@ -28,14 +29,32 @@ namespace ScriptableObjectArchitecture.Editor
 
         public override void OnInspectorGUI()
         {
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            EditorGUILayout.LabelField("General", EditorStyles.boldLabel);
             DrawGameEventField();
-            DrawResponseField();
+            EditorGUILayout.EndVertical();
 
+            DrawCustomFields();
+
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            EditorGUILayout.LabelField("Response", EditorStyles.boldLabel);
+            DrawResponseField();
+            EditorGUILayout.EndVertical();
+
+
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             DrawDebugging();
+            EditorGUILayout.EndVertical();
+
 
             DrawDeveloperDescription();
 
             serializedObject.ApplyModifiedProperties();
+        }
+
+        protected virtual void DrawCustomFields()
+        {
+            DisplayFieldDrawer.DrawCustomFields(target, serializedObject);
         }
 
         protected virtual void DrawGameEventField()
@@ -53,48 +72,54 @@ namespace ScriptableObjectArchitecture.Editor
             EditorGUILayout.PropertyField(DeveloperDescription);
         }
 
-        private void DrawDebugging()
+        protected virtual void DrawDebugging()
         {
-            _showDebugFields.boolValue = EditorGUILayout.Foldout(_showDebugFields.boolValue, new GUIContent("Show Debug Fields"));
-            if (!_showDebugFields.boolValue)
-            {
-                return;
-            }
-
-            EditorGUILayout.LabelField("Callback Debugging", EditorStyles.boldLabel);
             using (new EditorGUI.IndentLevelScope())
             {
-                DrawRaiseButton();
-            }
-
-
-            EditorGUILayout.Space();
-            EditorGUILayout.Space();
-
-
-            EditorGUILayout.LabelField("Gizmo Debugging", EditorStyles.boldLabel);
-            using (new EditorGUI.IndentLevelScope())
-            {
-                EditorGUILayout.PropertyField(_enableDebug, new GUIContent("Enable Gizmo Debugging"));
-
-                using (new EditorGUI.DisabledGroupScope(!_enableDebug.boolValue))
+                var style = EditorStyles.foldout;
+                style.font = EditorStyles.boldFont;
+                _showDebugFields.boolValue =
+                    EditorGUILayout.Foldout(_showDebugFields.boolValue, new GUIContent("Debug"), style);
+                if (!_showDebugFields.boolValue)
                 {
-                    EditorGUILayout.PropertyField(_debugColor, new GUIContent("Debug Color", "Color used to draw debug gizmos in the scene"));
+                    return;
+                }
+
+                DrawRaiseButton();
+                
+
+                EditorGUILayout.LabelField("Gizmo Debugging", EditorStyles.boldLabel);
+                using (new EditorGUI.IndentLevelScope())
+                {
+                    EditorGUILayout.PropertyField(_enableDebug, new GUIContent("Enable Gizmo"));
+
+                    using (new EditorGUI.DisabledGroupScope(!_enableDebug.boolValue))
+                    {
+                        EditorGUILayout.PropertyField(_debugColor,
+                            new GUIContent("Debug Color", "Color used to draw debug gizmos in the scene"));
+                    }
                 }
             }
-            EditorGUILayout.Space();
         }
 
         protected virtual void DrawRaiseButton()
         {
-            SerializedProperty property = serializedObject.FindProperty("_debugValue");
-
-            EditorGUILayout.PropertyField(property);
-
-            if (GUILayout.Button("Raise"))
+            EditorGUILayout.LabelField("Callback Debugging", EditorStyles.boldLabel);
+            using (new EditorGUI.IndentLevelScope())
             {
-                CallMethod(GetDebugValue(property));
+                SerializedProperty property = serializedObject.FindProperty("_debugValue");
+                if (property != null)
+                {
+                    EditorGUILayout.PropertyField(property);
+                }
+
+                if (GUILayout.Button("Raise"))
+                {
+                    CallMethod(GetDebugValue(property));
+                }
             }
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
         }
 
        protected virtual object GetDebugValue(SerializedProperty property)
@@ -108,7 +133,7 @@ namespace ScriptableObjectArchitecture.Editor
         protected abstract void CallMethod(object value);
     }
 
-    public abstract class BaseGameEventListenerEditor : BaseListnerEditor
+    public abstract class BaseGameEventListenerEditor : BaseListenerEditor
     {
         private IStackTraceObject Target { get { return (IStackTraceObject)target; } }
         

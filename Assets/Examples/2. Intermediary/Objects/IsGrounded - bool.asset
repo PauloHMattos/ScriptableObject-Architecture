@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeveloperDescription:
     _value: 
-  _resetWhenStart: 1
+  _resetWhenStart: 0
   _defaultValue: 0
-  _value: 0
+  _value: 1
   _readOnly: 0
   _raiseWarning: 1
   _isClamped: 0
