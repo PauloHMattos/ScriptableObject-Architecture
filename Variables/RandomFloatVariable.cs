@@ -9,6 +9,8 @@ namespace ScriptableObjectArchitecture
     public class RandomFloatVariable : ReadOnlyFloatVariable
     {
         [SerializeField]
+        private bool _useTimeAsSeed;
+        [SerializeField]
         private int _seed;
         [SerializeField]
         private Random.State _state;
@@ -50,7 +52,14 @@ namespace ScriptableObjectArchitecture
         public override void OnEnable()
         {
             base.OnEnable();
-            Seed = _seed;
+            if (_useTimeAsSeed)
+            {
+                Seed = System.Environment.TickCount;
+            }
+            else
+            {
+                Seed = _seed;
+            }
         }
     }
 }
