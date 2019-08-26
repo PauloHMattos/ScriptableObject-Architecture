@@ -49,6 +49,12 @@ namespace ScriptableObjectArchitecture
             }
         }
 
+        public bool UseTimeAsSeed
+        {
+            get { return _useTimeAsSeed; }
+            set { _useTimeAsSeed = value; }
+        }
+
         public override void OnEnable()
         {
             base.OnEnable();
