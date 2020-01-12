@@ -125,7 +125,7 @@ where TResponse : UnityEvent<TType>
         public void AddStackTrace(object obj)
         {
 #if UNITY_EDITOR
-            if (SOArchitecture_Settings.Instance.EnableDebug)
+            if (SOArchitecturePreferences.IsDebugEnabled)
             {
                 var stackTrace = StackTraceEntry.Create(obj);
                 StackTraces.Insert(0, stackTrace);
@@ -136,7 +136,7 @@ where TResponse : UnityEvent<TType>
         public void AddStackTrace()
         {
 #if UNITY_EDITOR
-            if (SOArchitecture_Settings.Instance.EnableDebug)
+            if (SOArchitecturePreferences.IsDebugEnabled)
             {
                 var stackTrace = StackTraceEntry.Create();
                 StackTraces.Insert(0, stackTrace);
@@ -260,7 +260,7 @@ where TResponse : UnityEvent<TType>
         }
         private bool EnableGizmoDebuggin()
         {
-            if (!SOArchitecture_Settings.Instance.DrawEventGizmos)
+            if (!SOArchitecturePreferences.AreGizmosEnabled)
                 return false;
 
             return _enableGizmoDebugging;

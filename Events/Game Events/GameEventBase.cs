@@ -84,22 +84,22 @@ namespace ScriptableObjectArchitecture
         public void AddStackTrace()
         {
 #if UNITY_EDITOR
-            if (SOArchitecture_Settings.Instance.EnableDebug)
+            if (SOArchitecturePreferences.IsDebugEnabled)
             {
                 var stackTrace = StackTraceEntry.Create();
                 _stackTraces.Insert(0, stackTrace);
-                Debug.Log(stackTrace);
+                //Debug.Log(stackTrace);
             }
 #endif
         }
         public void AddStackTrace(object value)
         {
 #if UNITY_EDITOR
-            if (SOArchitecture_Settings.Instance.EnableDebug)
+            if (SOArchitecturePreferences.IsDebugEnabled)
             {
                 var stackTrace = StackTraceEntry.Create(value);
                 _stackTraces.Insert(0, stackTrace);
-                Debug.Log(stackTrace);
+                //Debug.Log(stackTrace);
             }
 #endif
         }
