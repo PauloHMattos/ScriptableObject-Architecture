@@ -9,10 +9,6 @@ namespace ScriptableObjectArchitecture.Editor
     {
         private AnimatorObserver Target { get { return (AnimatorObserver)target; } }
 
-        public void OnEnable()
-        {
-        }
-
         public override void OnInspectorGUI()
         {
             if (Target.Animator == null)

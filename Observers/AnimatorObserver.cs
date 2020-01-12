@@ -33,6 +33,9 @@ namespace ScriptableObjectArchitecture
 
         public void Update()
         {
+            if (!Application.isPlaying)
+                return;
+
             for (var i = 0; i < variables.Count; i++)
             {
                 if (Animator.parameters.Length <= i || variables[i] == null)
