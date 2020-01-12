@@ -84,6 +84,7 @@ namespace ScriptableObjectArchitecture
 #endif
 
 #pragma warning disable 0649
+
         [SerializeField]
         private string _sceneName;
 
@@ -92,6 +93,7 @@ namespace ScriptableObjectArchitecture
 
         [SerializeField]
         private bool _isSceneEnabled;
+
 #pragma warning restore
 
         public SceneInfo()
