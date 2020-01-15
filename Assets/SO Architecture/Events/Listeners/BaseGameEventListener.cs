@@ -129,7 +129,7 @@ where TResponse : UnityEvent<TType>
             {
                 var stackTrace = StackTraceEntry.Create(obj);
                 StackTraces.Insert(0, stackTrace);
-                Debug.Log(stackTrace);
+                //Debug.Log(stackTrace);
             }
 #endif
         }
@@ -140,7 +140,7 @@ where TResponse : UnityEvent<TType>
             {
                 var stackTrace = StackTraceEntry.Create();
                 StackTraces.Insert(0, stackTrace);
-                Debug.Log(stackTrace);
+                //Debug.Log(stackTrace);
             }
 #endif
         }
