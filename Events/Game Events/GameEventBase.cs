@@ -12,7 +12,7 @@ namespace ScriptableObjectArchitecture
         [SerializeField]
         protected T _debugValue = default(T);
 
-        public void Raise(T value)
+        public virtual void Raise(T value)
         {
             if (!Enabled)
                 return;
@@ -77,7 +77,7 @@ namespace ScriptableObjectArchitecture
         [SerializeField]
         protected bool _enabled = true;
 
-        public bool Enabled => _enabled;
+        public virtual bool Enabled => _enabled;
         public List<StackTraceEntry> StackTraces { get { return _stackTraces; } }
         private List<StackTraceEntry> _stackTraces = new List<StackTraceEntry>();
 
