@@ -16,7 +16,7 @@ jobs:
       uses: paulhatch/semantic-version@v2
       with:
         # The branch to count commits on
-        branch: "master"
+        branch: "upm"
         # The prefix to use to identify tags
         tag_prefix: ""
         # A string which, if present in a git commit, indicates that a change represents a major (breaking) change
