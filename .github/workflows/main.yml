@@ -41,7 +41,7 @@ jobs:
         #  rm -f Samples.meta
         #  git commit -am "fix: Samples => Samples~"
         #fi
-        sed -i 's/**VERSION**/${{ steps.versioning.outputs.version }}/g' package.json
+        sed -i 's/VERSION/${{ steps.versioning.outputs.version }}/g' package.json
         git commit -am "fix: Package Version"
         
         git tag ${{ steps.versioning.outputs.version }} upm
