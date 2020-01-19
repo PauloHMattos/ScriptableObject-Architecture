@@ -27,7 +27,7 @@ jobs:
     - name: split upm branch
       run: |
         git subtree split --prefix="$PKG_ROOT" --branch upm
-        git tag $steps.versioning.outputs.version upm
+        git tag ${{ steps.versioning.outputs.version }} upm
         git push origin upm --tags
       env:
         PKG_ROOT: Assets/SO Architecture
@@ -38,7 +38,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: $steps.versioning.outputs.version
-        release_name: Release $steps.versioning.outputs.version
+        tag_name: ${{ steps.versioning.outputs.version }}
+        release_name: Release ${{ steps.versioning.outputs.version }}
         draft: false
         prerelease: false
