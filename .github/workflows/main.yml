@@ -8,15 +8,12 @@ jobs:
     name: split upm branch
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    
+    - uses: actions/checkout@v1
     - name: Create Version
       uses: paulhatch/semantic-version@v2
       with:
         # The branch to count commits on
-        branch: "upm"
+        branch: "master"
         # The prefix to use to identify tags
         tag_prefix: ""
         # A string which, if present in a git commit, indicates that a change represents a major (breaking) change
