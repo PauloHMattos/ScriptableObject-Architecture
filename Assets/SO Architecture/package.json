@@ -8,4 +8,15 @@
     "dependencies": 
     {
     }
+	"samples": [
+    {
+      "displayName": "Pong",
+      "description": "Clone of the classic pong from 1972",
+      "path": "Samples~/Pong"
+    },
+    {
+      "displayName": "Jetpack Joyride",
+      "description": "Simple clone from the mobile game Jetpack Joyride",
+      "path": "Samples~/Jetpack"
+    }
 }
