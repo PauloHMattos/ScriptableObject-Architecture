@@ -16,7 +16,7 @@ jobs:
       uses: paulhatch/semantic-version@v2
       with:
         # The branch to count commits on
-        branch: "master"
+        branch: "upm"
         # The prefix to use to identify tags
         tag_prefix: ""
         # A string which, if present in a git commit, indicates that a change represents a major (breaking) change
@@ -32,14 +32,18 @@ jobs:
         git branch -d upm &> /dev/null || echo upm branch not found
         git subtree split --prefix="$PKG_ROOT" --branch upm
         git checkout upm
+        
+        git config --global user.name 'github-bot'
+        git config --global user.email 'github-bot@users.noreply.github.com'
+        
         if [[ -d "Samples" ]]; then
           git mv Samples Samples~
           rm -f Samples.meta
-          git config --global user.name 'github-bot'
-          git config --global user.email 'github-bot@users.noreply.github.com'
           git commit -am "fix: Samples => Samples~"
         fi
         sed -i 's/**VERSION**/${{ steps.versioning.outputs.version }}/g' package.json
+        git commit -am "fix: Package Version"
+        
         git tag ${{ steps.versioning.outputs.version }} upm
         git push -f -u origin upm --tags
       env:
