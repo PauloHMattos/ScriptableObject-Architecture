@@ -2,17 +2,16 @@
 
 namespace ScriptableObjectArchitecture
 {
-    [CreateAssetMenu(
-        fileName = "GameObjectPool.asset",
-        menuName = SOArchitecture_Utility.COLLECTION_SUBMENU + "Pools/GameObject",
-        order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 0)]
-    public class GameObjectPool : GameObjectCollection
+    public class GameObjectPool : MonoBehaviour
     {
         public bool _allowGrowth = true;
         public float _growthFactor = 1.5f;
         public GameObject _prefab;
         public int _poolCapacity = 10;
         public bool _defaultState = false;
+
+        [SerializeField]
+        private GameObjectCollection _pool;
 
         protected GameObject Prefab
         {
@@ -24,11 +23,11 @@ namespace ScriptableObjectArchitecture
 
         public GameObject GetGameObject()
         {
-            for (int i = 0; i < List.Count; i++)
+            for (int i = 0; i < _pool.Count; i++)
             {
-                if (!_list[i].activeInHierarchy)
+                if (!_pool[i].activeInHierarchy)
                 {
-                    return _list[i];
+                    return _pool[i];
                 }
             }
 
@@ -38,9 +37,7 @@ namespace ScriptableObjectArchitecture
                 GameObject obj = null;
                 for (int i = 0; i < _poolCapacity * _growthFactor; i++)
                 {
-                    obj = Instantiate(_prefab);
-                    obj.SetActive(_defaultState);
-                    Add(obj);
+                    InstantiateToPool();
                 }
                 return obj;
             }
@@ -58,12 +55,22 @@ namespace ScriptableObjectArchitecture
                 return;
             }
 
+            if (_pool == null)
+            {
+                _pool = ScriptableObject.CreateInstance<GameObjectCollection>();
+            }
+
             for (int i = 0; i < _poolCapacity; i++)
             {
-                var obj = Instantiate(_prefab);
-                obj.SetActive(_defaultState);
-                Add(obj);
+                InstantiateToPool();
             }
+        }
+
+        private void InstantiateToPool()
+        {
+            var obj = Instantiate(_prefab);
+            obj.SetActive(_defaultState);
+            _pool.Add(obj);
         }
     }
 }
