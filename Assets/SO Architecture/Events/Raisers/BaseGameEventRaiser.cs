@@ -7,9 +7,15 @@ namespace ScriptableObjectArchitecture
 {
     public abstract class BaseGameEventRaiser : MonoBehaviour
     {
-        [FormerlySerializedAs("response")]
+#if UNITY_EDITOR
         [SerializeField, HideInInspector]
-        protected UnityEvent _response;
+        private bool _showGeneral;
+        [SerializeField, HideInInspector]
+        private bool _showEvents;
+#endif
+        [FormerlySerializedAs("response"), FormerlySerializedAs("_response")]
+        [SerializeField, HideInInspector]
+        protected UnityEvent _events;
 
         protected virtual void Update()
         {

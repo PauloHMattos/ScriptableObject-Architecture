@@ -17,15 +17,15 @@ namespace ScriptableObjectArchitecture
 
             if (eventType.HasFlag(EventType.Down) && Input.GetButtonDown(buttonName))
             {
-                _response.Invoke();
+                _events.Invoke();
             }
             if (eventType.HasFlag(EventType.Hold) && Input.GetButton(buttonName))
             {
-                _response.Invoke();
+                _events.Invoke();
             }
             if (eventType.HasFlag(EventType.Up) && Input.GetButtonUp(buttonName))
             {
-                _response.Invoke();
+                _events.Invoke();
             }
         }
 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Game - SceneVariable
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
   _resetWhenStart: 1
   _defaultValue:
@@ -20,7 +21,7 @@ MonoBehaviour:
     _sceneIndex: -1
     _isSceneEnabled: 0
   _value:
-    _sceneName: Assets/Examples/2. Intermediary/Scenes/Game.unity
+    _sceneName: 
     _sceneIndex: -1
     _isSceneEnabled: 0
   _readOnly: 0

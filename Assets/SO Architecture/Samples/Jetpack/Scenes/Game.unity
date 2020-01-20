@@ -225,7 +225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090ed8495bb748119cffef3e18b891d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _response:
+  _showGeneral: 0
+  _showEvents: 0
+  _events:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 80965158}
@@ -321,7 +323,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -840,7 +846,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -975,7 +985,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -1233,7 +1247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6740bb059ffa48f7b4472c651a69f30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _response:
+  _showGeneral: 0
+  _showEvents: 0
+  _events:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 8cc3c46a7f634224dad6a1a405833c61, type: 2}
@@ -1276,7 +1292,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -1335,7 +1355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73fc9411b8847f79d327a16b280a0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _response:
+  _showGeneral: 0
+  _showEvents: 0
+  _events:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1095118143}
@@ -1448,7 +1470,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -1506,7 +1532,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: "kl\xE7jkl\xE7jkl\xE7"
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -1573,7 +1603,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090ed8495bb748119cffef3e18b891d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _response:
+  _showGeneral: 0
+  _showEvents: 0
+  _events:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1179925171}
@@ -1653,7 +1685,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -1788,7 +1824,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -2037,7 +2077,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -2325,7 +2369,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -2400,7 +2448,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 1
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -2628,6 +2680,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3101097972620637632, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: _showResponseFields
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101097972620637632, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: _showDebugFields
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101097972620637632, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: _showGeneralFields
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101097972620637632, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: DeveloperDescription._showDescription
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3101097972620637633, guid: cfc028070e688c647a05ea07f1c6993f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2692,6 +2764,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: _showDebugFields
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: _showResponseFields
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: _showDescription
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: DeveloperDescription._showDescription
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: _showCustomFields
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: _showGeneralFields
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707997876501063805, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: _showGeneral
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707997876501063805, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: _showEvents
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfc028070e688c647a05ea07f1c6993f, type: 3}

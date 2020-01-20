@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -151,7 +152,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -172,8 +177,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!82 &142396718
 AudioSource:
   m_ObjectHideFlags: 0
@@ -437,8 +440,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 17
@@ -457,8 +458,8 @@ MonoBehaviour:
     occurs, so instead we''re going to implement an event using Scriptable Objects
 
 
-    Notice how the Particle System is hooked up without a single line of code being
-    written'
+    Notice
+    how the Particle System is hooked up without a single line of code being written'
 --- !u!222 &214446047
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -480,12 +481,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 1
+  _listenerOption: 1
+  _gameEvent: {fileID: 0}
   _delay: 0
+  _raiseOnStart: 1
   _variable: {fileID: 0}
   _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 
@@ -503,8 +510,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.StringUnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   _format: 
 --- !u!1 &598580665
 GameObject:
@@ -533,8 +538,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598580665}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -612,12 +618,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 1
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 0
+  _listenerOption: 0
+  _gameEvent: {fileID: 0}
   _delay: 0
+  _raiseOnStart: 1
   _variable: {fileID: 11400000, guid: 00040033833585f4b940c1e6c8d5d2e1, type: 2}
   _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 0
@@ -635,8 +647,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.FloatUnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   _modifierCurve:
     serializedVersion: 2
     m_Curve:
@@ -701,12 +711,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 1
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 0
+  _listenerOption: 0
+  _gameEvent: {fileID: 0}
   _delay: 0
+  _raiseOnStart: 1
   _variable: {fileID: 11400000, guid: 00040033833585f4b940c1e6c8d5d2e1, type: 2}
   _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 0
@@ -724,8 +740,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.FloatUnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   _modifierCurve:
     serializedVersion: 2
     m_Curve:
@@ -890,12 +904,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 1
+  _listenerOption: 1
+  _gameEvent: {fileID: 0}
   _delay: 0
+  _raiseOnStart: 1
   _variable: {fileID: 11400000, guid: 256f249e6293b90438367f6a234613ac, type: 2}
   _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: {x: 0, y: 0}
@@ -978,8 +998,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.Vector2UnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &1967340091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,12 +1011,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 4
+  _listenerOption: 4
+  _gameEvent: {fileID: 0}
   _delay: 3
+  _raiseOnStart: 1
   _variable: {fileID: 11400000, guid: b29a733e39d189343b70986d75d28d5a, type: 2}
   _previouslyRegisteredVariable: {fileID: 11400000, guid: b29a733e39d189343b70986d75d28d5a,
     type: 2}
@@ -1017,8 +1041,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.FloatUnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   _modifierCurve:
     serializedVersion: 2
     m_Curve:
@@ -1059,6 +1081,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: bf703b66185ebd74bb40e65dd6764a9d,
+        type: 2}
+    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Add
+      objectReference: {fileID: 0}
+    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1881607898596468, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
       propertyPath: m_Name
       value: Sphere Of Pain With Event
@@ -1106,31 +1153,6 @@ PrefabInstance:
     - target: {fileID: 4839017886741306, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
-      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
-      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
-      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
-      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: bf703b66185ebd74bb40e65dd6764a9d,
-        type: 2}
-    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
-      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: Add
-      objectReference: {fileID: 0}
-    - target: {fileID: 2026806758, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
-      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4be13ed8fe0751a4093279a926769b1b, type: 3}
@@ -1224,6 +1246,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2111935889}
     m_Modifications:
+    - target: {fileID: 794136485, guid: 30898bb5526f8f542aa93bfaac20d996, type: 3}
+      propertyPath: _format
+      value: HP {0:0.}
+      objectReference: {fileID: 0}
     - target: {fileID: 1259392919135328, guid: 30898bb5526f8f542aa93bfaac20d996, type: 3}
       propertyPath: m_Name
       value: Healtbar
@@ -1332,10 +1358,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 794136485, guid: 30898bb5526f8f542aa93bfaac20d996, type: 3}
-      propertyPath: _format
-      value: HP {0:0.}
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30898bb5526f8f542aa93bfaac20d996, type: 3}

@@ -6,7 +6,6 @@ namespace ScriptableObjectArchitecture.Editor
     [CustomPropertyDrawer(typeof(DeveloperDescription))]
     public class DeveloperDescriptionDrawer : PropertyDrawer
     {
-        
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             return 0;
@@ -14,42 +13,31 @@ namespace ScriptableObjectArchitecture.Editor
         
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            var _showDescription = property.FindPropertyRelative("_showDescription");
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            DrawTitle(ref position, property);
-            DrawTextArea(ref position, property);
+            using (new EditorGUI.IndentLevelScope())
+            {
+                var style = EditorStyles.foldout;
+                style.font = EditorStyles.boldFont;
+                _showDescription.boolValue =
+                    EditorGUILayout.Foldout(_showDescription.boolValue, new GUIContent("Description"), style);
+            }
+            if (_showDescription.boolValue)
+            {
+                DrawTextArea(ref position, property);
+            }
             EditorGUILayout.EndVertical();
 
-            //EditorGUILayout.Space();
             property.serializedObject.ApplyModifiedProperties();
         }
-        private void DrawTitle(ref Rect rect, SerializedProperty property)
-        {
-            /*
-            if (HasContent(property))
-            {
-                //rect.height = 0;
-                return;
-            }
-            */
-            EditorGUILayout.LabelField(new GUIContent("Description", "Click below this field to add a description"), EditorStyles.boldLabel);
-            //EditorGUI.LabelField(rect, new GUIContent("Description", "Click below this field to add a description"), EditorStyles.boldLabel);
-        }
+
         private void DrawTextArea(ref Rect rect, SerializedProperty property)
         {
             SerializedProperty stringValue = property.FindPropertyRelative("_value");
-            /*
-            if (!HasContent(property))
-                rect.y += EditorGUIUtility.singleLineHeight;
-            */
-            //rect.height = GetHeight(property);
-
-            //EditorGUI.indentLevel++;
             stringValue.stringValue = EditorGUILayout.TextArea(stringValue.stringValue, Styles.TextAreaStyle);
-            //stringValue.stringValue = EditorGUI.TextArea(rect, , Styles.TextAreaStyle);
-            //EditorGUI.indentLevel--;
-
             HandleInput(rect, property);
         }
+
         private void HandleInput(Rect textAreaRect, SerializedProperty property)
         {
             Event e = Event.current;
@@ -67,38 +55,23 @@ namespace ScriptableObjectArchitecture.Editor
                 }
             }
         }
+
         private void RemoveFocus(SerializedProperty property)
         {
             GUI.FocusControl(null);
             Repaint(property);
         }
+
         private void Repaint(SerializedProperty property)
         {
             EditorUtility.SetDirty(property.serializedObject.targetObject);
         }
-        private static bool HasContent(SerializedProperty property)
-        {
-            string content = GetContent(property);
 
-            return content != "" && content != string.Empty;
-        }
         private static string GetContent(SerializedProperty property)
         {
             return property.FindPropertyRelative("_value").stringValue;
         }
-        private static float GetHeight(SerializedProperty property)
-        {
-            string content = GetContent(property);
-
-            if (!HasContent(property))
-            {
-                return EditorGUIUtility.singleLineHeight * 2;
-            }
-            else
-            {
-                return Styles.TextAreaStyle.CalcHeight(new GUIContent(content), Screen.width);
-            }
-        }
+        
         private static class Styles
         {
             public static GUIStyle TextAreaStyle;

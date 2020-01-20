@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lasers Rotation - float
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
   _resetWhenStart: 0
   _defaultValue: 0
