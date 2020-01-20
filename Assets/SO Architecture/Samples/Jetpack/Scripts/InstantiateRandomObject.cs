@@ -6,14 +6,14 @@ using UnityEngine;
 public class InstantiateRandomObject : MonoBehaviour
 {
     public Transform parent;
-    public GameObject [] availableObjects;
+    public GameObjectPool [] availablePools;
     public Vector3Reference [] availablePositions;
     public Vector3Reference [] availableScales;
     public FloatReference [] availableRotations;
 
     public void Spawn()
     {
-        var obj = availableObjects[Random.Range(0, availableObjects.Length)];
+        var obj = availablePools[Random.Range(0, availablePools.Length)].GetGameObject();
 
         Vector3 pos;
         if (availablePositions != null && availablePositions.Length > 0)
@@ -48,7 +48,10 @@ public class InstantiateRandomObject : MonoBehaviour
 
         //if (parent != null)
         {
-            Instantiate(obj, pos, rot, parent).transform.localScale = scl;
+            obj.transform.position = pos;
+            obj.transform.rotation = rot;
+            obj.transform.localScale = scl;
+            obj.SetActive(true);
         }
     }
 }

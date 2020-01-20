@@ -8,5 +8,22 @@ namespace ScriptableObjectArchitecture
 	    order = 120)]
 	public class AudioClipVariable : BaseVariable<AudioClip>
 	{
-	}
+        public AudioSource Source;
+
+        public void Play()
+        {
+            if (Source != null)
+            {
+                Source.Play();
+            }
+        }
+
+        public void Stop()
+        {
+            if (Source != null)
+            {
+                Source.Stop();
+            }
+        }
+    }
 }

@@ -21,9 +21,9 @@ MonoBehaviour:
     _sceneIndex: -1
     _isSceneEnabled: 0
   _value:
-    _sceneName: 
-    _sceneIndex: -1
-    _isSceneEnabled: 0
+    _sceneName: Assets/SO Architecture/Samples/Jetpack/Scenes/Game.unity
+    _sceneIndex: 0
+    _isSceneEnabled: 1
   _readOnly: 0
   _raiseWarning: 1
   _isClamped: 0
