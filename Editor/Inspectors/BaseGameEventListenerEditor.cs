@@ -14,7 +14,12 @@ namespace ScriptableObjectArchitecture.Editor
         private SerializedProperty _debugColor;
         private SerializedProperty _response;
         private SerializedProperty _enableDebug;
+        private SerializedProperty _showGeneralFields;
+        private SerializedProperty _showResponseFields;
+        private SerializedProperty _showCustomFields;
         private SerializedProperty _showDebugFields;
+        private SerializedProperty _showDescription;
+        private GUIStyle _headerStyle;
 
         protected virtual void OnEnable()
         {
@@ -22,30 +27,53 @@ namespace ScriptableObjectArchitecture.Editor
             _debugColor = serializedObject.FindProperty("_debugColor");
             _response = serializedObject.FindProperty("_response");
             _enableDebug = serializedObject.FindProperty("_enableGizmoDebugging");
+            _showGeneralFields = serializedObject.FindProperty("_showGeneralFields");
+            _showResponseFields = serializedObject.FindProperty("_showResponseFields");
+            _showCustomFields = serializedObject.FindProperty("_showCustomFields");
             _showDebugFields = serializedObject.FindProperty("_showDebugFields");
+            _showDescription = serializedObject.FindProperty("_showDescription");
+
         }
 
 
 
         public override void OnInspectorGUI()
         {
+            _headerStyle = EditorStyles.foldout;
+            _headerStyle.font = EditorStyles.boldFont;
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            EditorGUILayout.LabelField("General", EditorStyles.boldLabel);
-            DrawGameEventField();
+
+            using (new EditorGUI.IndentLevelScope())
+            {
+                _showGeneralFields.boolValue =
+                    EditorGUILayout.Foldout(_showGeneralFields.boolValue, new GUIContent("General"), _headerStyle);
+            }
+            if (_showGeneralFields.boolValue)
+            {
+                DrawGameEventField();
+            }
             EditorGUILayout.EndVertical();
+
 
             DrawCustomFields();
 
+
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            EditorGUILayout.LabelField("Response", EditorStyles.boldLabel);
-            DrawResponseField();
+            using (new EditorGUI.IndentLevelScope())
+            {
+                _showResponseFields.boolValue =
+                    EditorGUILayout.Foldout(_showResponseFields.boolValue, new GUIContent("Response"), _headerStyle);
+            }
+            if (_showResponseFields.boolValue)
+            {
+                DrawResponseField();
+            }
             EditorGUILayout.EndVertical();
 
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             DrawDebugging();
             EditorGUILayout.EndVertical();
-
 
             DrawDeveloperDescription();
 
@@ -54,7 +82,23 @@ namespace ScriptableObjectArchitecture.Editor
 
         protected virtual void DrawCustomFields()
         {
-            DisplayFieldDrawer.DrawCustomFields(target, serializedObject);
+            var fields = DisplayFieldDrawer.GetCustomFields(target);
+            if (fields.Count == 0)
+            {
+                return;
+            }
+
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            using (new EditorGUI.IndentLevelScope())
+            {
+                _showCustomFields.boolValue =
+                    EditorGUILayout.Foldout(_showCustomFields.boolValue, new GUIContent("Fields"), _headerStyle);
+            }
+            if (_showCustomFields.boolValue)
+            {
+                DisplayFieldDrawer.DrawCustomFields(fields, serializedObject);
+            }
+            EditorGUILayout.EndVertical();
         }
 
         protected virtual void DrawGameEventField()

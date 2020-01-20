@@ -45,7 +45,7 @@ namespace ScriptableObjectArchitecture
             }
 
             _lastTime = Time.time;
-            _response.Invoke();
+            _events.Invoke();
         }
 
         [Flags]

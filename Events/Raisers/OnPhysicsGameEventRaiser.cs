@@ -40,7 +40,7 @@ namespace ScriptableObjectArchitecture
                 return;
             }
             
-            _response.Invoke();
+            _events.Invoke();
         }
         protected void OnStay(string collisionTag, int collisionLayer)
         {
@@ -54,7 +54,7 @@ namespace ScriptableObjectArchitecture
                 return;
             }
 
-            _response.Invoke();
+            _events.Invoke();
         }
         protected void OnExit(string collisionTag, int collisionLayer)
         {
@@ -68,7 +68,7 @@ namespace ScriptableObjectArchitecture
                 return;
             }
 
-            _response.Invoke();
+            _events.Invoke();
         }
     }
 }

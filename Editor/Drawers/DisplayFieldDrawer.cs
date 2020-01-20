@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -24,19 +25,18 @@ namespace ScriptableObjectArchitecture.Editor
             return 0;
         }
 
-        public static void DrawCustomFields(UnityEngine.Object target, SerializedObject serializedObject)
+        public static List<FieldInfo> GetCustomFields(UnityEngine.Object target)
         {
+            List<FieldInfo> fields = new List<FieldInfo>();
             var bindingFlags = BindingFlags.Instance |
                                BindingFlags.NonPublic |
                                BindingFlags.Public;
-            var fields = target.GetType().GetFields(bindingFlags).Where(f => f.GetCustomAttribute<DisplayFieldAttribute>(true) != null).ToList();
-            if (fields.Count == 0)
-            {
-                return;
-            }
+            fields.AddRange(target.GetType().GetFields(bindingFlags).Where(f => f.GetCustomAttribute<DisplayFieldAttribute>(true) != null));
+            return fields;
+        }
 
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            EditorGUILayout.LabelField("Fields", EditorStyles.boldLabel);
+        public static void DrawCustomFields(List<FieldInfo> fields, SerializedObject serializedObject)
+        {
             foreach (var fieldInfo in fields)
             {
                 var attribute = fieldInfo.GetCustomAttribute(typeof(DisplayFieldAttribute), true);
@@ -49,7 +49,6 @@ namespace ScriptableObjectArchitecture.Editor
                     }
                 }
             }
-            EditorGUILayout.EndVertical();
         }
     }
 }

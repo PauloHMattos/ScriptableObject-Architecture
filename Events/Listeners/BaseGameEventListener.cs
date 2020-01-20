@@ -107,7 +107,14 @@ where TResponse : UnityEvent<TType>
 
     public abstract class DebuggableGameEventListener : SOArchitectureBaseMonobehaviour, IStackTraceObject
     {
+#if UNITY_EDITOR
 #pragma warning disable 0414
+        [SerializeField]
+        private bool _showGeneralFields = false;
+        [SerializeField]
+        private bool _showResponseFields = false;
+        [SerializeField]
+        private bool _showCustomFields = false;
         [SerializeField]
         private bool _showDebugFields = false;
         [SerializeField]
@@ -115,6 +122,7 @@ where TResponse : UnityEvent<TType>
         [SerializeField]
         private Color _debugColor = Color.cyan;
 #pragma warning restore
+#endif
 
         public List<StackTraceEntry> StackTraces { get { return _stackTraces; } }
         private List<StackTraceEntry> _stackTraces = new List<StackTraceEntry>();

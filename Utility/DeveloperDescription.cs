@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+
+using System;
 using UnityEngine;
 
 namespace ScriptableObjectArchitecture
@@ -12,6 +14,10 @@ namespace ScriptableObjectArchitecture
             _value = value;
         }
 
+#pragma warning disable 0414
+        [SerializeField]
+        private bool _showDescription = false;
+#pragma warning restore 0414
         [SerializeField]
         private string _value = string.Empty;
 
@@ -52,3 +58,5 @@ namespace ScriptableObjectArchitecture
         }
     }
 }
+
+#endif

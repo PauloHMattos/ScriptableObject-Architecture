@@ -18,15 +18,15 @@ namespace ScriptableObjectArchitecture
 
             if (eventType.HasFlag(EventType.Down) && Input.GetKeyDown(key.Value))
             {
-                _response.Invoke();
+                _events.Invoke();
             }
             if (eventType.HasFlag(EventType.Hold) && Input.GetKey(key.Value))
             {
-                _response.Invoke();
+                _events.Invoke();
             }
             if (eventType.HasFlag(EventType.Up) && Input.GetKeyUp(key.Value))
             {
-                _response.Invoke();
+                _events.Invoke();
             }
         }
 
