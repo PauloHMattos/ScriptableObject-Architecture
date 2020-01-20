@@ -20,7 +20,7 @@ namespace ScriptableObjectArchitecture
         }
 
         [SerializeField]
-        private List<T> _list = new List<T>();
+        protected List<T> _list = new List<T>();
 
         public override IList List
         {
