@@ -162,7 +162,7 @@ namespace ScriptableObjectArchitecture
     }
 
     public abstract class BaseObserver<TType, TVariable, TResponse> : BaseObserver<TType, TVariable>
-where TVariable : BaseVariable<TType>
+where TVariable : BaseVariable<TType>, ISubject
 where TResponse : UnityEvent<TType>
     {
 
