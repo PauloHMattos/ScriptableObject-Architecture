@@ -4,12 +4,21 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture
 {
-    public abstract class Subject : BaseVariable
+    public interface ISubject
+    {
+        List<IVariableObserver> Observers { get; }
+
+        void Raise();
+        void AddObserver(IVariableObserver observer);
+        void RemoveObserver(IVariableObserver observer);
+    }
+
+    public abstract class Subject : SOArchitectureBaseObject, ISubject
     {
         public List<IVariableObserver> Observers { get { return _observers; } }
         private List<IVariableObserver> _observers = new List<IVariableObserver>();
 
-        public override void Raise()
+        public virtual void Raise()
         {
             for (int i = _observers.Count - 1; i >= 0; i--)
             {
@@ -29,15 +38,13 @@ namespace ScriptableObjectArchitecture
     }
 
 
-    public abstract class BaseVariable : SOArchitectureBaseObject
+    public abstract class BaseVariable : Subject
     {
         public abstract bool IsClamped { get; }
         public abstract bool Clampable { get; }
         public abstract bool ReadOnly { get; }
         public abstract System.Type Type { get; }
         public abstract object BaseValue { get; set; }
-
-        public abstract void Raise();
 
 
         public virtual void Awake()
@@ -52,7 +59,7 @@ namespace ScriptableObjectArchitecture
         {
         }
     }
-    public abstract class BaseVariable<T> : Subject
+    public abstract class BaseVariable<T> : BaseVariable
     {
         public virtual T Value
         {

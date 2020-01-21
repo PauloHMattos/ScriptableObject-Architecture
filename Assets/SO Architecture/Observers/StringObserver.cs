@@ -17,7 +17,7 @@ namespace ScriptableObjectArchitecture
 
         public override void OnVariableChanged()
         {
-            RaiseResponse(string.Format(_format, _variable.BaseValue));
+            RaiseResponse(string.Format(_format, _variable.ToString()));
         }
 
         protected override void RaiseResponse(string value)
