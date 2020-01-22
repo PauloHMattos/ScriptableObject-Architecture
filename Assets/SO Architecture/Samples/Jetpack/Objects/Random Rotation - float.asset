@@ -13,19 +13,22 @@ MonoBehaviour:
   m_Name: Random Rotation - float
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneral: 1
+  _showCustomFields: 0
   _resetWhenStart: 0
   _defaultValue: 0
-  _value: 87.8678
+  _value: 327.62717
   _readOnly: 1
   _raiseWarning: 1
   _isClamped: 1
   _minClampedValue: 0
   _maxClampedValue: 360
   _useTimeAsSeed: 1
-  _seed: 948441781
+  _seed: 205285578
   _state:
-    s0: 948441781
-    s1: -22725014
-    s2: 1384012243
-    s3: -1565500608
+    s0: -972162526
+    s1: -276889301
+    s2: 975748727
+    s3: 311132838

@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: IsAlive - bool
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneral: 1
+  _showCustomFields: 0
   _resetWhenStart: 1
   _defaultValue: 1
   _value: 1
