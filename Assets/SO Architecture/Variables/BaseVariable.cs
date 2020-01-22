@@ -1,42 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ScriptableObjectArchitecture
 {
-    public interface ISubject
-    {
-        List<IVariableObserver> Observers { get; }
-
-        void Raise();
-        void AddObserver(IVariableObserver observer);
-        void RemoveObserver(IVariableObserver observer);
-    }
-
-    public abstract class Subject : SOArchitectureBaseObject, ISubject
-    {
-        public List<IVariableObserver> Observers { get { return _observers; } }
-        private List<IVariableObserver> _observers = new List<IVariableObserver>();
-
-        public virtual void Raise()
-        {
-            for (int i = _observers.Count - 1; i >= 0; i--)
-            {
-                _observers[i].OnVariableChanged();
-            }
-        }
-
-        public virtual void AddObserver(IVariableObserver observer)
-        {
-            if (!_observers.Contains(observer)) _observers.Add(observer);
-        }
-
-        public virtual void RemoveObserver(IVariableObserver observer)
-        {
-            if (_observers.Contains(observer)) _observers.Remove(observer);
-        }
-    }
-
-
     public abstract class BaseVariable : Subject
     {
         public abstract bool IsClamped { get; }

@@ -35,8 +35,6 @@ namespace ScriptableObjectArchitecture.Editor
 
         }
 
-
-
         public override void OnInspectorGUI()
         {
             _headerStyle = EditorStyles.foldout;
