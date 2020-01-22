@@ -15,10 +15,13 @@ MonoBehaviour:
   DeveloperDescription:
     _showDescription: 0
     _value: 
+  _showObservers: 0
+  _showGeneral: 0
+  _showCustomFields: 0
   _resetWhenStart: 0
   _defaultValue: 0
-  _value: 60
-  _readOnly: 1
+  _value: 0
+  _readOnly: 0
   _raiseWarning: 1
   _isClamped: 0
   _minClampedValue: 0

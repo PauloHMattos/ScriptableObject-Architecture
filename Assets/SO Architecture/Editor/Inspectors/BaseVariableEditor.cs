@@ -6,7 +6,7 @@ namespace ScriptableObjectArchitecture.Editor
 {
 
     [CustomEditor(typeof(BaseVariable<>), true)]
-    public class BaseVariableEditor : UnityEditor.Editor
+    public class BaseVariableEditor : SubjectEditor
     {
         private BaseVariable Target { get { return (BaseVariable)target; } }
         protected bool IsClampable { get { return Target.Clampable; } }
@@ -15,24 +15,26 @@ namespace ScriptableObjectArchitecture.Editor
         private SerializedProperty _defaultValueProperty;
         private SerializedProperty _resetProperty;
         protected SerializedProperty _valueProperty;
-        private SerializedProperty _developerDescription;
         private SerializedProperty _readOnly;
         private SerializedProperty _raiseWarning;
         private SerializedProperty _isClamped;
         private SerializedProperty _minValueProperty;
         private SerializedProperty _maxValueProperty;
+
         private AnimBool _raiseWarningAnimation;
         private AnimBool _resetOnStartAnimation;
         private AnimBool _isClampedVariableAnimation;
 
+        private SerializedProperty _showGeneral;
+        private SerializedProperty _showCustomFields;
         private const string READONLY_TOOLTIP = "Should this value be changable during runtime? Will still be editable in the inspector regardless";
 
-        protected virtual void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             _defaultValueProperty = serializedObject.FindProperty("_defaultValue");
             _resetProperty = serializedObject.FindProperty("_resetWhenStart");
             _valueProperty = serializedObject.FindProperty("_value");
-            _developerDescription = serializedObject.FindProperty("DeveloperDescription");
             _readOnly = serializedObject.FindProperty("_readOnly");
             _raiseWarning = serializedObject.FindProperty("_raiseWarning");
             _isClamped = serializedObject.FindProperty("_isClamped");
@@ -47,25 +49,39 @@ namespace ScriptableObjectArchitecture.Editor
 
             _isClampedVariableAnimation = new AnimBool(_isClamped.boolValue);
             _isClampedVariableAnimation.valueChanged.AddListener(Repaint);
+
+            _showGeneral = serializedObject.FindProperty("_showGeneral");
+            _showCustomFields = serializedObject.FindProperty("_showCustomFields");
         }
         public override void OnInspectorGUI()
         {
+            var _headerStyle = EditorStyles.foldout;
+            _headerStyle.font = EditorStyles.boldFont;
             serializedObject.Update();
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            DrawValue();
-            DrawReadonlyField();
+            using (new EditorGUI.IndentLevelScope())
+            {
+                _showGeneral.boolValue =
+                    EditorGUILayout.Foldout(_showGeneral.boolValue, new GUIContent("General"), _headerStyle);
+            }
+            if (_showGeneral.boolValue)
+            {
+                DrawValue();
+                DrawReadonlyField();
+                DrawClampedFields();
+            }
+
             EditorGUILayout.EndVertical();
 
-            DrawClampedFields();
+            DrawCustomFields();
 
-            DrawDeveloperDescription();
+            serializedObject.ApplyModifiedProperties();
+            base.OnInspectorGUI();
         }
 
         protected virtual void DrawValue()
         {
-            EditorGUILayout.LabelField("General", EditorStyles.boldLabel);
-
             string content = "Cannot display value. No PropertyDrawer for (" + Target.Type + ") [" + Target.ToString() + "]";
 
             using (var scope = new EditorGUI.ChangeCheckScope())
@@ -83,7 +99,8 @@ namespace ScriptableObjectArchitecture.Editor
                 }
             }
 
-            EditorGUILayout.PropertyField(_resetProperty);
+            _resetProperty.boolValue = EditorGUILayout.BeginToggleGroup(new GUIContent("Reset on Start"), _resetProperty.boolValue);
+            EditorGUILayout.EndToggleGroup();
             _resetOnStartAnimation.target = _resetProperty.boolValue;
 
             using (var anim = new EditorGUILayout.FadeGroupScope(_resetOnStartAnimation.faded))
@@ -98,50 +115,72 @@ namespace ScriptableObjectArchitecture.Editor
                 }
             }
         }
+
+        protected virtual void DrawCustomFields()
+        {
+
+            var _headerStyle = EditorStyles.foldout;
+            _headerStyle.font = EditorStyles.boldFont;
+            var fields = DisplayFieldDrawer.GetCustomFields(target);
+            if (fields.Count == 0)
+            {
+                return;
+            }
+
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            using (new EditorGUI.IndentLevelScope())
+            {
+                _showCustomFields.boolValue =
+                    EditorGUILayout.Foldout(_showCustomFields.boolValue, new GUIContent("Fields"), _headerStyle);
+            }
+            if (_showCustomFields.boolValue)
+            {
+                DisplayFieldDrawer.DrawCustomFields(fields, serializedObject);
+            }
+            EditorGUILayout.EndVertical();
+        }
+
         protected virtual void DrawClampedFields()
         {
             if (!IsClampable)
                 return;
 
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-
+            EditorGUI.BeginDisabledGroup(_readOnly.boolValue);
             _isClamped.boolValue = EditorGUILayout.BeginToggleGroup("Clamp Value", _isClamped.boolValue);
             EditorGUILayout.EndToggleGroup();
-
             _isClampedVariableAnimation.target = _isClamped.boolValue;
 
             using (var anim = new EditorGUILayout.FadeGroupScope(_isClampedVariableAnimation.faded))
             {
                 if (anim.visible)
                 {
-                    EditorGUILayout.PropertyField(_minValueProperty, new GUIContent("Min Value"));
-                    EditorGUILayout.PropertyField(_maxValueProperty, new GUIContent("Max Value"));
+                    using (new EditorGUI.IndentLevelScope())
+                    {
+                        EditorGUILayout.PropertyField(_minValueProperty, new GUIContent("Min Value"));
+                        EditorGUILayout.PropertyField(_maxValueProperty, new GUIContent("Max Value"));
+                    }
                 }
             }
-            EditorGUILayout.EndVertical();
-        }
-        protected virtual void DrawReadonlyField()
-        {
-            EditorGUI.BeginDisabledGroup(_isClamped.boolValue);
-
-            EditorGUILayout.PropertyField(_readOnly, new GUIContent("Read Only", READONLY_TOOLTIP));
-
-            _raiseWarningAnimation.target = _readOnly.boolValue;
-            using (var fadeGroup = new EditorGUILayout.FadeGroupScope(_raiseWarningAnimation.faded))
-            {
-                if (fadeGroup.visible)
-                {
-                    EditorGUI.indentLevel++;
-                    EditorGUILayout.PropertyField(_raiseWarning);
-                    EditorGUI.indentLevel--;
-                }
-            }
-
             EditorGUI.EndDisabledGroup();
         }
-        protected void DrawDeveloperDescription()
+
+        protected virtual void DrawReadonlyField()
         {
-            EditorGUILayout.PropertyField(_developerDescription);
+            _readOnly.boolValue = EditorGUILayout.BeginToggleGroup(new GUIContent("Read Only", READONLY_TOOLTIP), _readOnly.boolValue);
+            EditorGUILayout.EndToggleGroup();
+            _raiseWarningAnimation.target = _readOnly.boolValue;
+
+            using (var anim = new EditorGUILayout.FadeGroupScope(_raiseWarningAnimation.faded))
+            {
+                if (anim.visible)
+                {
+                    using (new EditorGUI.IndentLevelScope())
+                    {
+                        EditorGUILayout.PropertyField(_raiseWarning);
+                    }
+                    _isClamped.boolValue = false;
+                }
+            }
         }
     }
 }

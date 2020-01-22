@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Room Speed - Vector2
   m_EditorClassIdentifier: 
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneral: 1
+  _showCustomFields: 0
   _resetWhenStart: 0
   _defaultValue: {x: 0, y: 0}
   _value: {x: -5, y: 0}
@@ -22,3 +25,4 @@ MonoBehaviour:
   _isClamped: 0
   _minClampedValue: {x: 0, y: 0}
   _maxClampedValue: {x: 0, y: 0}
+  a: 0

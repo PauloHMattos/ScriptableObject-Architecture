@@ -225,6 +225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090ed8495bb748119cffef3e18b891d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
   _showGeneral: 0
   _showEvents: 0
   _events:
@@ -1247,6 +1250,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6740bb059ffa48f7b4472c651a69f30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
   _showGeneral: 0
   _showEvents: 0
   _events:
@@ -1355,6 +1361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73fc9411b8847f79d327a16b280a0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
   _showGeneral: 0
   _showEvents: 0
   _events:
@@ -1603,6 +1612,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090ed8495bb748119cffef3e18b891d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
   _showGeneral: 0
   _showEvents: 0
   _events:
@@ -2837,6 +2849,14 @@ PrefabInstance:
     - target: {fileID: 1475984346, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
       propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475984346, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
+      propertyPath: _showEvents
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475984346, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
+      propertyPath: _showGeneral
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3829497018167051960, guid: d4d005e8b01e5fb408266ba65374327f,
         type: 3}
