@@ -15,7 +15,8 @@ MonoBehaviour:
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showGeneral: 1
+  _showObservers: 0
+  _showGeneral: 0
   _showCustomFields: 0
   _resetWhenStart: 0
   _defaultValue: 0

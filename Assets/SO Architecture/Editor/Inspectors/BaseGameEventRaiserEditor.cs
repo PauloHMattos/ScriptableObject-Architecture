@@ -5,7 +5,7 @@ namespace ScriptableObjectArchitecture.Editor
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(BaseGameEventRaiser), true)]
-    public class BaseGameEventRaiserEditor : UnityEditor.Editor
+    public class BaseGameEventRaiserEditor : SOArchitectureBaseMonoBehaviourEditor
     {
 
         private static readonly string[] _dontIncludeMe = new string[] { "m_Script" };
@@ -16,8 +16,9 @@ namespace ScriptableObjectArchitecture.Editor
         protected SerializedProperty _showEvents;
 
 
-        protected virtual void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             _events = serializedObject.FindProperty("_events");
             _showGeneral = serializedObject.FindProperty("_showGeneral");
             _showEvents = serializedObject.FindProperty("_showEvents");
@@ -52,7 +53,7 @@ namespace ScriptableObjectArchitecture.Editor
                 DrawEvents();
             }
             EditorGUILayout.EndVertical();
-
+            base.OnInspectorGUI();
             serializedObject.ApplyModifiedProperties();
         }
 

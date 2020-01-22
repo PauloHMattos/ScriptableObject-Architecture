@@ -105,7 +105,7 @@ where TResponse : UnityEvent<TType>
         }
     }
 
-    public abstract class DebuggableGameEventListener : SOArchitectureBaseMonobehaviour, IStackTraceObject
+    public abstract class DebuggableGameEventListener : SOArchitectureBaseMonoBehaviour, IStackTraceObject
     {
 #if UNITY_EDITOR
 #pragma warning disable 0414
