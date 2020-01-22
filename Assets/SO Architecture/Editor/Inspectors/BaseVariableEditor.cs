@@ -76,7 +76,7 @@ namespace ScriptableObjectArchitecture.Editor
 
             DrawCustomFields();
 
-
+            serializedObject.ApplyModifiedProperties();
             base.OnInspectorGUI();
         }
 
