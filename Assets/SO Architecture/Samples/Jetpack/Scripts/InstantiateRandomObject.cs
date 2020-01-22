@@ -52,6 +52,20 @@ public class InstantiateRandomObject : MonoBehaviour
             obj.transform.rotation = rot;
             obj.transform.localScale = scl;
             obj.SetActive(true);
+
+            for(int i = 0; i < obj.transform.childCount; i++)
+            {
+                var child = obj.transform.GetChild(i);
+                child.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void OnDisable()
+    {
+        foreach (var pool in availablePools)
+        {
+            pool.Clear();
         }
     }
 }

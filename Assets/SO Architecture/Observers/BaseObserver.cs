@@ -108,10 +108,7 @@ namespace ScriptableObjectArchitecture
 
         protected virtual void Start()
         {
-            if (_raiseOnStart && _variable != null)
-            {
-                OnVariableChanged();
-            }
+            
         }
 
         protected override void OnEnable()
@@ -122,6 +119,11 @@ namespace ScriptableObjectArchitecture
                 if (_listenerOption == ListenerOption.OnChanged)
                 {
                     Register();
+                }
+
+                if (_raiseOnStart)
+                {
+                    OnVariableChanged();
                 }
             }
             else

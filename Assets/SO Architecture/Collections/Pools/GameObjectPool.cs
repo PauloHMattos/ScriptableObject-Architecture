@@ -1,63 +1,52 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ScriptableObjectArchitecture
 {
-    public class GameObjectPool : MonoBehaviour
+    [CreateAssetMenu(
+        fileName = "GameObjectPool.asset",
+        menuName = SOArchitecture_Utility.COLLECTION_SUBMENU + "/Pools/GameObject",
+        order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 0)]
+    public class GameObjectPool : GameObjectCollection
     {
         public bool _allowGrowth = true;
         public float _growthFactor = 1.5f;
-        public GameObject _prefab;
+        public GameObjectReference _prefab;
         public int _poolCapacity = 10;
         public bool _defaultState = false;
 
-        [SerializeField]
-        private GameObjectCollection _pool;
-
-        protected GameObject Prefab
-        {
-            get
-            {
-                return _prefab;
-            }
-        }
-
         public GameObject GetGameObject()
         {
-            for (int i = 0; i < _pool.Count; i++)
+            for (int i = 0; i < _list.Count; i++)
             {
-                if (!_pool[i].activeInHierarchy)
+                if (!_list[i].activeInHierarchy)
                 {
-                    return _pool[i];
+                    return _list[i];
                 }
             }
 
             // Add more objects to pool
             if (_allowGrowth)
             {
-                GameObject obj = null;
+                int index = _list.Count;
                 for (int i = 0; i < _poolCapacity * _growthFactor; i++)
                 {
                     InstantiateToPool();
                 }
-                return obj;
+                return _list[index];
             }
             else
             {
-                Debug.LogWarning("Unable to get object from pool");
+                throw new System.InvalidOperationException("Unable to get object from pool. Activate allowGrowth");
             }
-            return null;
         }
 
         private void OnEnable()
         {
-            if (_prefab == null)
+            Clear();
+            if (!_prefab.IsValueDefined || !Application.isPlaying)
             {
                 return;
-            }
-
-            if (_pool == null)
-            {
-                _pool = ScriptableObject.CreateInstance<GameObjectCollection>();
             }
 
             for (int i = 0; i < _poolCapacity; i++)
@@ -65,12 +54,38 @@ namespace ScriptableObjectArchitecture
                 InstantiateToPool();
             }
         }
+        /*
+        private void OnDisable()
+        {
+            Debug.Log("OnDisable");
+            Clear();
+        }
+
+        private void OnDestroy()
+        {
+            Debug.Log("OnDestroy");
+            Clear();
+        }
+        */
 
         private void InstantiateToPool()
         {
-            var obj = Instantiate(_prefab);
+            var obj = Instantiate(_prefab.Value);
             obj.SetActive(_defaultState);
-            _pool.Add(obj);
+            _list.Add(obj);
+        }
+
+        public override void Clear()
+        {
+            for (int i = _list.Count - 1; i >= 0; i--)
+            {
+                if (_list[i] != null)
+                {
+                    Destroy(_list[i]);
+                }
+            }
+
+            base.Clear();
         }
     }
 }
