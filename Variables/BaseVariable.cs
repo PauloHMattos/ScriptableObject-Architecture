@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ScriptableObjectArchitecture
@@ -46,6 +45,14 @@ namespace ScriptableObjectArchitecture
         public abstract System.Type Type { get; }
         public abstract object BaseValue { get; set; }
 
+#if UNITY_EDITOR
+#pragma warning disable 0414
+        [SerializeField]
+        private bool _showGeneral = false;
+        [SerializeField]
+        private bool _showCustomFields = false;
+#pragma warning restore
+#endif
 
         public virtual void Awake()
         {
