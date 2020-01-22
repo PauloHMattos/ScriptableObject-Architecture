@@ -1,35 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ScriptableObjectArchitecture
 {
-    public abstract class Subject : BaseVariable
-    {
-        public List<IVariableObserver> Observers { get { return _observers; } }
-        private List<IVariableObserver> _observers = new List<IVariableObserver>();
-
-        public override void Raise()
-        {
-            for (int i = _observers.Count - 1; i >= 0; i--)
-            {
-                _observers[i].OnVariableChanged();
-            }
-        }
-
-        public virtual void AddObserver(IVariableObserver observer)
-        {
-            if (!_observers.Contains(observer)) _observers.Add(observer);
-        }
-
-        public virtual void RemoveObserver(IVariableObserver observer)
-        {
-            if (_observers.Contains(observer)) _observers.Remove(observer);
-        }
-    }
-
-
-    public abstract class BaseVariable : SOArchitectureBaseObject
+    public abstract class BaseVariable : Subject
     {
         public abstract bool IsClamped { get; }
         public abstract bool Clampable { get; }
@@ -37,8 +10,14 @@ namespace ScriptableObjectArchitecture
         public abstract System.Type Type { get; }
         public abstract object BaseValue { get; set; }
 
-        public abstract void Raise();
-
+#if UNITY_EDITOR
+#pragma warning disable 0414
+        [SerializeField]
+        private bool _showGeneral = false;
+        [SerializeField]
+        private bool _showCustomFields = false;
+#pragma warning restore
+#endif
 
         public virtual void Awake()
         {
@@ -52,7 +31,7 @@ namespace ScriptableObjectArchitecture
         {
         }
     }
-    public abstract class BaseVariable<T> : Subject
+    public abstract class BaseVariable<T> : BaseVariable
     {
         public virtual T Value
         {
