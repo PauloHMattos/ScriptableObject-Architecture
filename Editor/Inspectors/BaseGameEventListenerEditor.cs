@@ -18,7 +18,6 @@ namespace ScriptableObjectArchitecture.Editor
         private SerializedProperty _showResponseFields;
         private SerializedProperty _showCustomFields;
         private SerializedProperty _showDebugFields;
-        private SerializedProperty _showDescription;
         private GUIStyle _headerStyle;
 
         protected virtual void OnEnable()
@@ -31,8 +30,6 @@ namespace ScriptableObjectArchitecture.Editor
             _showResponseFields = serializedObject.FindProperty("_showResponseFields");
             _showCustomFields = serializedObject.FindProperty("_showCustomFields");
             _showDebugFields = serializedObject.FindProperty("_showDebugFields");
-            _showDescription = serializedObject.FindProperty("_showDescription");
-
         }
 
         public override void OnInspectorGUI()

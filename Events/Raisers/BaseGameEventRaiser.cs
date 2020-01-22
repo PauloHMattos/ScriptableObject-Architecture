@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 namespace ScriptableObjectArchitecture
 {
-    public abstract class BaseGameEventRaiser : MonoBehaviour
+    public abstract class BaseGameEventRaiser : SOArchitectureBaseMonoBehaviour
     {
 #if UNITY_EDITOR
         [SerializeField, HideInInspector]

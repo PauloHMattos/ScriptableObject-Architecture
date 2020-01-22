@@ -6,7 +6,7 @@ namespace ScriptableObjectArchitecture
     /// Base class for SOArchitecture assets
     /// Implements developer descriptions
     /// </summary>
-    public abstract class SOArchitectureBaseMonobehaviour : MonoBehaviour
+    public abstract class SOArchitectureBaseMonoBehaviour : MonoBehaviour
     {
 #if UNITY_EDITOR
 #pragma warning disable 0414
