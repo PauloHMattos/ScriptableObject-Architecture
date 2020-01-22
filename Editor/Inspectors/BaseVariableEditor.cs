@@ -4,8 +4,9 @@ using UnityEditor.AnimatedValues;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+
     [CustomEditor(typeof(BaseVariable<>), true)]
-    public class BaseVariableEditor : UnityEditor.Editor
+    public class BaseVariableEditor : SubjectEditor
     {
         private BaseVariable Target { get { return (BaseVariable)target; } }
         protected bool IsClampable { get { return Target.Clampable; } }
@@ -14,7 +15,6 @@ namespace ScriptableObjectArchitecture.Editor
         private SerializedProperty _defaultValueProperty;
         private SerializedProperty _resetProperty;
         protected SerializedProperty _valueProperty;
-        private SerializedProperty _developerDescription;
         private SerializedProperty _readOnly;
         private SerializedProperty _raiseWarning;
         private SerializedProperty _isClamped;
@@ -27,15 +27,14 @@ namespace ScriptableObjectArchitecture.Editor
 
         private SerializedProperty _showGeneral;
         private SerializedProperty _showCustomFields;
-        private GUIStyle _headerStyle;
         private const string READONLY_TOOLTIP = "Should this value be changable during runtime? Will still be editable in the inspector regardless";
 
-        protected virtual void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             _defaultValueProperty = serializedObject.FindProperty("_defaultValue");
             _resetProperty = serializedObject.FindProperty("_resetWhenStart");
             _valueProperty = serializedObject.FindProperty("_value");
-            _developerDescription = serializedObject.FindProperty("DeveloperDescription");
             _readOnly = serializedObject.FindProperty("_readOnly");
             _raiseWarning = serializedObject.FindProperty("_raiseWarning");
             _isClamped = serializedObject.FindProperty("_isClamped");
@@ -56,9 +55,8 @@ namespace ScriptableObjectArchitecture.Editor
         }
         public override void OnInspectorGUI()
         {
-            _headerStyle = EditorStyles.foldout;
+            var _headerStyle = EditorStyles.foldout;
             _headerStyle.font = EditorStyles.boldFont;
-
             serializedObject.Update();
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
@@ -78,7 +76,8 @@ namespace ScriptableObjectArchitecture.Editor
 
             DrawCustomFields();
 
-            DrawDeveloperDescription();
+
+            base.OnInspectorGUI();
         }
 
         protected virtual void DrawValue()
@@ -119,6 +118,9 @@ namespace ScriptableObjectArchitecture.Editor
 
         protected virtual void DrawCustomFields()
         {
+
+            var _headerStyle = EditorStyles.foldout;
+            _headerStyle.font = EditorStyles.boldFont;
             var fields = DisplayFieldDrawer.GetCustomFields(target);
             if (fields.Count == 0)
             {
@@ -179,10 +181,6 @@ namespace ScriptableObjectArchitecture.Editor
                     _isClamped.boolValue = false;
                 }
             }
-        }
-        protected void DrawDeveloperDescription()
-        {
-            EditorGUILayout.PropertyField(_developerDescription);
         }
     }
 }
