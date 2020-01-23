@@ -114,8 +114,6 @@ where TResponse : UnityEvent<TType>
         [SerializeField]
         private bool _showResponseFields = false;
         [SerializeField]
-        private bool _showCustomFields = false;
-        [SerializeField]
         private bool _showDebugFields = false;
         [SerializeField]
         private bool _enableGizmoDebugging = true;

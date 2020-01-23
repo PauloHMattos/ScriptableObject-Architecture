@@ -1,10 +1,19 @@
 ﻿using System.Collections;
+using UnityEngine;
 using Type = System.Type;
 
 namespace ScriptableObjectArchitecture
 {
     public abstract class BaseCollection : SOArchitectureBaseObject, IEnumerable
     {
+
+#if UNITY_EDITOR
+#pragma warning disable 0414
+        [SerializeField]
+        private bool _showCollectionItems = false;
+#pragma warning restore
+#endif
+
         public object this[int index]
         {
             get

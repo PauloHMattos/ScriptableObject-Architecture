@@ -5,13 +5,10 @@ using UnityEditorInternal;
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomEditor(typeof(BaseCollection), true)]
-    public class CollectionEditor : UnityEditor.Editor
+    public class CollectionEditor : SOArchitectureBaseObjectEditor
     {
         private BaseCollection Target { get { return (BaseCollection)target; } }
-        private SerializedProperty DeveloperDescriptionProperty
-        {
-            get { return serializedObject.FindProperty(DESCRIPTION_PROPERTY_NAME); }
-        }
+        
         private SerializedProperty CollectionItemsProperty
         {
             get { return serializedObject.FindProperty(LIST_PROPERTY_NAME); }
@@ -26,6 +23,8 @@ namespace ScriptableObjectArchitecture.Editor
         private const bool LIST_DISPLAY_ADD_BUTTON = true;
         private const bool LIST_DISPLAY_REMOVE_BUTTON = true;
 
+        private SerializedProperty _showCollectionItems;
+
         private GUIContent _titleGUIContent;
         private GUIContent _noPropertyDrawerWarningGUIContent;
 
@@ -36,8 +35,9 @@ namespace ScriptableObjectArchitecture.Editor
         private const string LIST_PROPERTY_NAME = "_list";
         private const string DESCRIPTION_PROPERTY_NAME = "DeveloperDescription";
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             _titleGUIContent = new GUIContent(string.Format(TITLE_FORMAT, Target.Type));
             _noPropertyDrawerWarningGUIContent = new GUIContent(string.Format(NO_PROPERTY_WARNING_FORMAT, Target.Type));
 
@@ -52,15 +52,28 @@ namespace ScriptableObjectArchitecture.Editor
                 drawHeaderCallback = DrawHeader,
                 drawElementCallback = DrawElement,
             };
+
+            _showCollectionItems = serializedObject.FindProperty("_showCollectionItems");
         }
         public override void OnInspectorGUI()
         {
+            var _headerStyle = EditorStyles.foldout;
+            _headerStyle.font = EditorStyles.boldFont;
             EditorGUI.BeginChangeCheck();
 
-            _reorderableList.DoLayoutList();
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            using (new EditorGUI.IndentLevelScope())
+            {
+                _showCollectionItems.boolValue =
+                    EditorGUILayout.Foldout(_showCollectionItems.boolValue, new GUIContent("Items"), _headerStyle);
+            }
+            if (_showCollectionItems.boolValue)
+            {
+                _reorderableList.DoLayoutList();
+            }
+            EditorGUILayout.EndVertical();
 
-            EditorGUILayout.PropertyField(DeveloperDescriptionProperty);
-
+            base.OnInspectorGUI();
             if (EditorGUI.EndChangeCheck())
             {
                 serializedObject.ApplyModifiedProperties();
