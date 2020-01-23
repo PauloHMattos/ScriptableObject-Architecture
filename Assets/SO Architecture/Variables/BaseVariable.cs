@@ -14,8 +14,6 @@ namespace ScriptableObjectArchitecture
 #pragma warning disable 0414
         [SerializeField]
         private bool _showGeneral = false;
-        [SerializeField]
-        private bool _showCustomFields = false;
 #pragma warning restore
 #endif
 
@@ -89,21 +87,21 @@ namespace ScriptableObjectArchitecture
             }
         }
 
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected bool _resetWhenStart = true;
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected T _defaultValue;
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected T _value = default(T);
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected bool _readOnly = false;
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private bool _raiseWarning = true;
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected bool _isClamped = false;
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected T _minClampedValue = default(T);
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected T _maxClampedValue = default(T);
 
         public override void OnEnable()

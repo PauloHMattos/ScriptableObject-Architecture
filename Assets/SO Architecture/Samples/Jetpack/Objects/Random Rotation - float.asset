@@ -12,23 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff614072d4a96ed4f99df92c823146f6, type: 3}
   m_Name: Random Rotation - float
   m_EditorClassIdentifier: 
+  _showCustomFields: 1
   DeveloperDescription:
     _showDescription: 0
     _value: 
+  _showObservers: 0
   _showGeneral: 1
-  _showCustomFields: 0
   _resetWhenStart: 0
   _defaultValue: 0
-  _value: 327.62717
+  _value: 102.584435
   _readOnly: 1
   _raiseWarning: 1
   _isClamped: 1
   _minClampedValue: 0
   _maxClampedValue: 360
   _useTimeAsSeed: 1
-  _seed: 205285578
+  _seed: 214290921
   _state:
-    s0: -972162526
-    s1: -276889301
-    s2: 975748727
-    s3: 311132838
+    s0: 214290921
+    s1: -255819282
+    s2: -151150361
+    s3: 125639204

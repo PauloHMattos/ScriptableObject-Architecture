@@ -28,7 +28,6 @@ namespace ScriptableObjectArchitecture.Editor
             ">=",
         };
 
-
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -41,10 +40,18 @@ namespace ScriptableObjectArchitecture.Editor
             _comparationReference = serializedObject.FindProperty("_comparationReference");
         }
 
+        protected override void DrawGameEventField()
+        {
+            base.DrawGameEventField();
+            //EditorGUI.indentLevel++;
+            //EditorGUILayout.PropertyField(_modifierCurve, new GUIContent("Mod. curve"));
+            //EditorGUILayout.PropertyField(_sample, new GUIContent("Evaluate"));
+            //EditorGUI.indentLevel--;
+        }
+
         protected override void DrawCustomFields()
         {
             base.DrawCustomFields();
-
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
 
@@ -54,6 +61,7 @@ namespace ScriptableObjectArchitecture.Editor
 
             EditorGUILayout.EndVertical();
         }
+
 
         protected virtual void DrawConditions()
         { 

@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 3235906432345214063}
   - component: {fileID: 3235906432345214062}
   - component: {fileID: 3235906432345214061}
-  - component: {fileID: 3235906432345214060}
   - component: {fileID: 8664679984235457839}
   - component: {fileID: -3817792235800863808}
   - component: {fileID: 5649268864322421068}
   - component: {fileID: -6051920150937430118}
   - component: {fileID: 8428904922224385625}
   - component: {fileID: -8855100466308114257}
+  - component: {fileID: 2275499481712890579}
   m_Layer: 9
   m_Name: laser_fast
   m_TagString: Laser
@@ -137,81 +137,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3235906432345214060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3235906432345214059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eb43355ea144692951efe3859aa3ee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeveloperDescription:
-    _showDescription: 0
-    _value: 
-  _showGeneralFields: 0
-  _showResponseFields: 0
-  _showCustomFields: 0
-  _showDebugFields: 0
-  _enableGizmoDebugging: 1
-  _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listenerOption: 5
-  _gameEvent: {fileID: 0}
-  _delay: 0
-  _raiseOnStart: 1
-  _variable: {fileID: 11400000, guid: 9002c73afe4a54b44aebe42983abb1b9, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
-  _debugValue: 0
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3235906432345214061}
-        m_MethodName: set_angularVelocity
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _modifierCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 2.0013123
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 2.0013123
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _sample: 0
-  _constrain: 0
-  _equals: 0
-  _bigger: 0
-  _smaller: 0
-  _comparationReference:
-    _useConstant: 0
-    _constantValue: 0
-    _variable: {fileID: 0}
 --- !u!114 &8664679984235457839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73fc9411b8847f79d327a16b280a0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showCustomFields: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
   _showGeneral: 0
   _showEvents: 0
   _events:
@@ -257,12 +186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed1dc96f9fac854dac5bb8f292c5f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showCustomFields: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
   _showGeneralFields: 1
   _showResponseFields: 0
-  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -329,6 +258,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090ed8495bb748119cffef3e18b891d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showCustomFields: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
   _showGeneral: 0
   _showEvents: 0
   _events:
@@ -363,12 +296,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cbbfa38df843d3aca0834a194a91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showCustomFields: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
   _showGeneralFields: 0
   _showResponseFields: 0
-  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -416,3 +349,78 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   invert: 0
+--- !u!114 &2275499481712890579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3235906432345214059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb43355ea144692951efe3859aa3ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showCustomFields: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _showGeneralFields: 1
+  _showResponseFields: 1
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _listenerOption: 0
+  _gameEvent: {fileID: 0}
+  _delay: 0
+  _raiseOnStart: 1
+  _variable: {fileID: 11400000, guid: 9002c73afe4a54b44aebe42983abb1b9, type: 2}
+  _previouslyRegisteredVariable: {fileID: 0}
+  _debugValue: 0
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3235906432345214061}
+        m_MethodName: set_angularVelocity
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _modifierCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 2.0013123
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 2.0013123
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _sample: 0
+  _constrain: 0
+  _equals: 0
+  _bigger: 0
+  _smaller: 0
+  _comparationReference:
+    _useConstant: 0
+    _constantValue: 0
+    _variable: {fileID: 0}
