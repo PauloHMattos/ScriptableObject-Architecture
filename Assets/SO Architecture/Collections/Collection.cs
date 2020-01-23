@@ -19,7 +19,7 @@ namespace ScriptableObjectArchitecture
             }
         }
 
-        [SerializeField, SerializeReference]
+        [SerializeField, HideInInspector]
         protected List<T> _list = new List<T>();
 
         public override IList List

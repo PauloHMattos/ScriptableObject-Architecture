@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f2ca5fefc21504ab12906a2e5892ff, type: 3}
   m_Name: CoinsPool
   m_EditorClassIdentifier: 
+  _showCustomFields: 1
   DeveloperDescription:
     _showDescription: 0
     _value: 
+  _showCollectionItems: 1
   _list: []
-  _allowGrowth: 1
-  _growthFactor: 1.5
   _prefab:
     _useConstant: 1
     _constantValue: {fileID: 2845643654338821645, guid: 9cde6ea4565dc994b8c144c539302d55,
@@ -25,3 +25,5 @@ MonoBehaviour:
     _variable: {fileID: 0}
   _poolCapacity: 10
   _defaultState: 0
+  _allowGrowth: 1
+  _growthFactor: 1.5

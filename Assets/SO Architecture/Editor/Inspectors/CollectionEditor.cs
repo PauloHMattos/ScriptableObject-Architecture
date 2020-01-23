@@ -55,12 +55,13 @@ namespace ScriptableObjectArchitecture.Editor
 
             _showCollectionItems = serializedObject.FindProperty("_showCollectionItems");
         }
-        public override void OnInspectorGUI()
+
+        protected override void DrawCustomFields()
         {
+            base.DrawCustomFields();
+
             var _headerStyle = EditorStyles.foldout;
             _headerStyle.font = EditorStyles.boldFont;
-            EditorGUI.BeginChangeCheck();
-
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
@@ -72,13 +73,8 @@ namespace ScriptableObjectArchitecture.Editor
                 _reorderableList.DoLayoutList();
             }
             EditorGUILayout.EndVertical();
-
-            base.OnInspectorGUI();
-            if (EditorGUI.EndChangeCheck())
-            {
-                serializedObject.ApplyModifiedProperties();
-            }
         }
+
         private void DrawHeader(Rect rect)
         {
             EditorGUI.LabelField(rect, _titleGUIContent);

@@ -9,11 +9,11 @@ namespace ScriptableObjectArchitecture
         order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 0)]
     public class GameObjectPool : GameObjectCollection
     {
-        public bool _allowGrowth = true;
-        public float _growthFactor = 1.5f;
         public GameObjectReference _prefab;
         public int _poolCapacity = 10;
         public bool _defaultState = false;
+        public bool _allowGrowth = true;
+        public float _growthFactor = 1.5f;
 
         public GameObject GetGameObject()
         {
