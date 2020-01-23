@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168ff32065cd13747a95ae8c9d2a0232, type: 3}
   m_Name: IsAlive - bool
   m_EditorClassIdentifier: 
-  DeveloperDescription:
-    _showDescription: 1
-    _value: 
-  _showObservers: 1
-  _showGeneral: 1
   _showCustomFields: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _showObservers: 0
+  _showGeneral: 0
   _resetWhenStart: 1
   _defaultValue: 1
-  _value: 0
+  _value: 1
   _readOnly: 0
   _raiseWarning: 1
   _isClamped: 0

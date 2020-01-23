@@ -79,6 +79,21 @@ namespace ScriptableObjectArchitecture
 
         public virtual bool Enabled => _enabled;
         public List<StackTraceEntry> StackTraces { get { return _stackTraces; } }
+
+#if UNITY_EDITOR
+#pragma warning disable 0414
+        [SerializeField]
+        private bool _showListners = false;
+        //[SerializeField]
+        //private bool _showStackTrace = false;
+#pragma warning restore
+#endif
+
+        public List<IGameEventListener> Listeners
+        {
+            get => _listeners;
+        }
+
         private List<StackTraceEntry> _stackTraces = new List<StackTraceEntry>();
 
         public void AddStackTrace()

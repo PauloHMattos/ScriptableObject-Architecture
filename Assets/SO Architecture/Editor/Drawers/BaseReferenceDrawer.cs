@@ -43,12 +43,12 @@ namespace ScriptableObjectArchitecture.Editor
             constantValue = property.FindPropertyRelative("_constantValue");
             variable = property.FindPropertyRelative("_variable");
                         
-            int oldIndent = ResetIndent();
+            //int oldIndent = ResetIndent();
 
             Rect fieldRect = DrawLabel(position, property, label);
             DrawField(position, fieldRect);
 
-            EndIndent(oldIndent);
+            //EndIndent(oldIndent);
             
             property.serializedObject.ApplyModifiedProperties();
         }
