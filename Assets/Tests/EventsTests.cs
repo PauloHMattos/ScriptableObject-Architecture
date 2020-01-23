@@ -14,8 +14,8 @@ namespace Tests
         private GameObject listenerGameObject;
         private GameEventRaiser eventRaiser;
 
-        [UnityTest, Performance]
-        public IEnumerator GameEventInvokeTest([Values(1, 2, 10, 100, 1000)] int count)
+        [Test, Performance]
+        public void GameEventInvokeTest([Values(1, 2, 10, 100, 1000)] int count)
         {
             Measure.Method(() => eventRaiser.Raise()).WarmupCount(0).MeasurementCount(1).IterationsPerMeasurement(count).GC().Run();
         }
