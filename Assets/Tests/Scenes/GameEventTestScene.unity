@@ -198,7 +198,7 @@ MonoBehaviour:
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showGeneralFields: 0
+  _showGeneralFields: 1
   _showResponseFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
