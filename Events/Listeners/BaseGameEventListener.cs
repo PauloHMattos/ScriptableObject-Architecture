@@ -27,9 +27,9 @@ where TResponse : UnityEvent<TType>
         public void OnEventRaised(TType value)
         {
             RaiseResponse(value);
-
+#if UNITY_EDITOR
             CreateDebugEntry(_response);
-
+#endif
             AddStackTrace(value);
         }
         private void RaiseResponse(TType value)
@@ -67,16 +67,16 @@ where TResponse : UnityEvent<TType>
         [SerializeField]
         private TEvent _previouslyRegisteredEvent = default(TEvent);
         [SerializeField]
-        private TEvent _event = default(TEvent);
+        protected TEvent _event = default(TEvent);
         [SerializeField]
         private TResponse _response = default(TResponse);
 
         public void OnEventRaised()
         {
             RaiseResponse();
-
+#if UNITY_EDITOR
             CreateDebugEntry(_response);
-
+#endif
             AddStackTrace();
         }
         protected void RaiseResponse()
@@ -135,7 +135,6 @@ where TResponse : UnityEvent<TType>
             {
                 var stackTrace = StackTraceEntry.Create(obj);
                 StackTraces.Insert(0, stackTrace);
-                //Debug.Log(stackTrace);
             }
 #endif
         }
@@ -146,13 +145,14 @@ where TResponse : UnityEvent<TType>
             {
                 var stackTrace = StackTraceEntry.Create();
                 StackTraces.Insert(0, stackTrace);
-                //Debug.Log(stackTrace);
             }
 #endif
         }
+
+
+#if UNITY_EDITOR
         protected void CreateDebugEntry(UnityEventBase response)
         {
-#if UNITY_EDITOR
             for (int i = 0; i < response.GetPersistentEventCount(); i++)
             {
                 GameObject gameObjectTarget = GetGameObject(response.GetPersistentTarget(i));
@@ -169,10 +169,8 @@ where TResponse : UnityEvent<TType>
 
                 _debugEntries.Add(new DebugEvent(gameObjectTarget, functionName));
             }
-#endif
         }
 
-#if UNITY_EDITOR
         private const float DOTTED_LINE_LENGTH = 5;
         private const float DOT_LENGTH = 0.5f;
         private const float DOT_WIDTH = 3;
