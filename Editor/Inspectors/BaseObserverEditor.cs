@@ -44,9 +44,9 @@ namespace ScriptableObjectArchitecture.Editor
 
                 if (_listenerOption.enumValueIndex == (int)BaseObserver.ListenerOption.OnEvent)
                 {
-                    EditorGUI.indentLevel = 1;
+                    EditorGUI.indentLevel++;
                     EditorGUILayout.PropertyField(_gameEvent);
-                    EditorGUI.indentLevel = 0;
+                    EditorGUI.indentLevel--;
                 }
 
                 if (scope.changed)

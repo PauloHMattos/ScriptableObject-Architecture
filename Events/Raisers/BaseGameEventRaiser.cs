@@ -8,10 +8,12 @@ namespace ScriptableObjectArchitecture
     public abstract class BaseGameEventRaiser : SOArchitectureBaseMonoBehaviour
     {
 #if UNITY_EDITOR
+#pragma warning disable 0414
         [SerializeField, HideInInspector]
         private bool _showGeneral;
         [SerializeField, HideInInspector]
         private bool _showEvents;
+#pragma warning restore
 #endif
         [FormerlySerializedAs("response"), FormerlySerializedAs("_response")]
         [SerializeField, HideInInspector]

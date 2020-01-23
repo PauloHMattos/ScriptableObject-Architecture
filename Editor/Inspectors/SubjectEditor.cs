@@ -17,13 +17,10 @@ namespace ScriptableObjectArchitecture.Editor
             _showObservers = serializedObject.FindProperty("_showObservers");
         }
 
-        public override void OnInspectorGUI()
+        protected override void DrawDeveloperDescription()
         {
             var headerStyle = EditorStyles.foldout;
             headerStyle.font = EditorStyles.boldFont;
-
-            serializedObject.Update();
-
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
@@ -36,8 +33,7 @@ namespace ScriptableObjectArchitecture.Editor
             }
 
             EditorGUILayout.EndVertical();
-
-            base.OnInspectorGUI();
+            base.DrawDeveloperDescription();
         }
 
         protected void DrawObservers()

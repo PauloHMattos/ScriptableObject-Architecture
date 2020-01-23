@@ -20,12 +20,12 @@ namespace ScriptableObjectArchitecture
             OnEvent
         }
 
-        [FormerlySerializedAs("_listnerOption")] [SerializeField]
+        [FormerlySerializedAs("_listnerOption"), SerializeField, HideInInspector]
         protected ListenerOption _listenerOption = ListenerOption.OnChanged;
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected GameEvent _gameEvent;
         private float _lastTime;
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private float _delay;
 
         public float LastTime { get => _lastTime; set => _lastTime = value; }
@@ -97,22 +97,14 @@ namespace ScriptableObjectArchitecture
 
         protected ScriptableObject Variable { get { return _variable; } }
 
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected bool _raiseOnStart = true;
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected TVariable _variable = default(TVariable);
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private TVariable _previouslyRegisteredVariable = default(TVariable);
-        [SerializeField]
+        [SerializeField, HideInInspector]
         protected TType _debugValue = default(TType);
-
-        protected virtual void Start()
-        {
-            if (_raiseOnStart && _variable != null)
-            {
-                OnVariableChanged();
-            }
-        }
 
         protected override void OnEnable()
         {
@@ -122,6 +114,10 @@ namespace ScriptableObjectArchitecture
                 if (_listenerOption == ListenerOption.OnChanged)
                 {
                     Register();
+                }
+                if (_raiseOnStart)
+                {
+                    OnVariableChanged();
                 }
             }
             else
@@ -165,7 +161,6 @@ namespace ScriptableObjectArchitecture
 where TVariable : BaseVariable<TType>, ISubject
 where TResponse : UnityEvent<TType>
     {
-
         protected override UnityEventBase Response { get { return _response; } }
         
         [SerializeField]

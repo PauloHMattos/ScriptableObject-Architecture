@@ -7,9 +7,6 @@ namespace ScriptableObjectArchitecture.Editor
     [CustomEditor(typeof(BaseGameEventRaiser), true)]
     public class BaseGameEventRaiserEditor : SOArchitectureBaseMonoBehaviourEditor
     {
-
-        private static readonly string[] _dontIncludeMe = new string[] { "m_Script" };
-
         private BaseGameEventRaiser Target { get { return (BaseGameEventRaiser)target; } }
         protected SerializedProperty _events;
         protected SerializedProperty _showGeneral;
@@ -24,24 +21,17 @@ namespace ScriptableObjectArchitecture.Editor
             _showEvents = serializedObject.FindProperty("_showEvents");
         }
 
-        public override void OnInspectorGUI()
+        protected void DrawEvents()
         {
+            EditorGUILayout.PropertyField(_events);
+        }
+
+        protected override void DrawCustomFields()
+        {
+            base.DrawCustomFields();
+
             var headerStyle = EditorStyles.foldout;
             headerStyle.font = EditorStyles.boldFont;
-            serializedObject.Update();
-
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            using (new EditorGUI.IndentLevelScope())
-            {
-                _showGeneral.boolValue =
-                    EditorGUILayout.Foldout(_showGeneral.boolValue, new GUIContent("General"), headerStyle);
-            }
-            if (_showGeneral.boolValue)
-            {
-                DrawPropertiesExcluding(serializedObject, _dontIncludeMe);
-            }
-            EditorGUILayout.EndVertical();
-
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
@@ -53,20 +43,7 @@ namespace ScriptableObjectArchitecture.Editor
                 DrawEvents();
             }
             EditorGUILayout.EndVertical();
-            base.OnInspectorGUI();
-            serializedObject.ApplyModifiedProperties();
         }
-
-        protected void DrawEvents()
-        {
-            EditorGUILayout.Space();
-
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            EditorGUILayout.LabelField("Response", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(_events);
-            EditorGUILayout.EndVertical();
-        }
-
 
     }
 }

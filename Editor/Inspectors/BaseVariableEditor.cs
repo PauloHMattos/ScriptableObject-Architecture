@@ -26,7 +26,6 @@ namespace ScriptableObjectArchitecture.Editor
         private AnimBool _isClampedVariableAnimation;
 
         private SerializedProperty _showGeneral;
-        private SerializedProperty _showCustomFields;
         private const string READONLY_TOOLTIP = "Should this value be changable during runtime? Will still be editable in the inspector regardless";
 
         protected override void OnEnable()
@@ -51,7 +50,6 @@ namespace ScriptableObjectArchitecture.Editor
             _isClampedVariableAnimation.valueChanged.AddListener(Repaint);
 
             _showGeneral = serializedObject.FindProperty("_showGeneral");
-            _showCustomFields = serializedObject.FindProperty("_showCustomFields");
         }
         public override void OnInspectorGUI()
         {
@@ -64,20 +62,23 @@ namespace ScriptableObjectArchitecture.Editor
             {
                 _showGeneral.boolValue =
                     EditorGUILayout.Foldout(_showGeneral.boolValue, new GUIContent("General"), _headerStyle);
-            }
-            if (_showGeneral.boolValue)
-            {
-                DrawValue();
-                DrawReadonlyField();
-                DrawClampedFields();
+                if (_showGeneral.boolValue)
+                {
+                    DrawGeneral();
+                }
             }
 
             EditorGUILayout.EndVertical();
 
-            DrawCustomFields();
-
             serializedObject.ApplyModifiedProperties();
             base.OnInspectorGUI();
+        }
+
+        protected virtual void DrawGeneral()
+        {
+            DrawValue();
+            DrawReadonlyField();
+            DrawClampedFields();
         }
 
         protected virtual void DrawValue()
@@ -114,30 +115,6 @@ namespace ScriptableObjectArchitecture.Editor
                     }
                 }
             }
-        }
-
-        protected virtual void DrawCustomFields()
-        {
-
-            var _headerStyle = EditorStyles.foldout;
-            _headerStyle.font = EditorStyles.boldFont;
-            var fields = DisplayFieldDrawer.GetCustomFields(target);
-            if (fields.Count == 0)
-            {
-                return;
-            }
-
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            using (new EditorGUI.IndentLevelScope())
-            {
-                _showCustomFields.boolValue =
-                    EditorGUILayout.Foldout(_showCustomFields.boolValue, new GUIContent("Fields"), _headerStyle);
-            }
-            if (_showCustomFields.boolValue)
-            {
-                DisplayFieldDrawer.DrawCustomFields(fields, serializedObject);
-            }
-            EditorGUILayout.EndVertical();
         }
 
         protected virtual void DrawClampedFields()

@@ -54,6 +54,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -148,12 +149,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb43355ea144692951efe3859aa3ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showCustomFields: 0
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 1
+  _showResponseFields: 1
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 5
+  _listenerOption: 0
   _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 1
@@ -174,8 +179,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.FloatUnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   _modifierCurve:
     serializedVersion: 2
     m_Curve:
@@ -221,7 +224,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73fc9411b8847f79d327a16b280a0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _response:
+  _showCustomFields: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _showGeneral: 0
+  _showEvents: 0
+  _events:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1836142204968680398}
@@ -235,8 +244,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   _lifeCycle: 1
   _tag: Destroyer
   layerMask:
@@ -254,12 +261,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed1dc96f9fac854dac5bb8f292c5f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showCustomFields: 0
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 2
+  _listenerOption: 2
   _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 1
@@ -280,8 +291,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.Vector2UnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!70 &56510110170843733
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -324,7 +333,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090ed8495bb748119cffef3e18b891d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _response:
+  _showCustomFields: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _showGeneral: 0
+  _showEvents: 0
+  _events:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5565925575093228550}
@@ -338,8 +353,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   lifeCycle: 1
   interval:
     _useConstant: 1
@@ -358,12 +371,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cbbfa38df843d3aca0834a194a91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showCustomFields: 0
   DeveloperDescription:
+    _showDescription: 0
     _value: 
+  _showGeneralFields: 0
+  _showResponseFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 0
+  _listenerOption: 0
   _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 0
@@ -406,6 +423,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.BoolUnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   invert: 0
