@@ -1,5 +1,5 @@
 {
-    "name": "Editor.Tests",
+    "name": "ScriptableObject-Architecture.Tests.Editor",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
