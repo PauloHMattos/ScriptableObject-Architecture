@@ -39,7 +39,7 @@ namespace ScriptableObjectArchitecture.Editor
             using (new EditorGUI.IndentLevelScope())
             {
                 _showListeners.boolValue =
-                    EditorGUILayout.Foldout(_showListeners.boolValue, new GUIContent("Listers"), headerStyle);
+                    EditorGUILayout.Foldout(_showListeners.boolValue, new GUIContent("Listeners"), headerStyle);
             }
             if (_showListeners.boolValue)
             {
