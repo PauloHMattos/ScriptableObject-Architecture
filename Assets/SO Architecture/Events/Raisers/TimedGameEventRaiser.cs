@@ -6,6 +6,7 @@ namespace ScriptableObjectArchitecture
     [AddComponentMenu(SOArchitecture_Utility.EVENT_RAISER_SUBMENU + "Timed Raiser")]
     public class TimedGameEventRaiser : BaseGameEventRaiser
     {
+        [Group("General")]
         public LifeCycle lifeCycle;
         public FloatReference interval;
         public float timeUntilNext;

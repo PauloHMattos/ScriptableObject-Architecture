@@ -8,11 +8,11 @@ namespace ScriptableObjectArchitecture
         order = 124)]
     public class RandomFloatVariable : ReadOnlyFloatVariable
     {
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private bool _useTimeAsSeed;
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private int _seed;
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private Random.State _state;
 
         public override bool Clampable { get { return true; } }

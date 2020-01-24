@@ -7,13 +7,8 @@ public class MultiLine : Attribute
 }
 
 
-[AttributeUsage(AttributeTargets.Field)]
-public class GroupAttribute : Attribute
+[AttributeUsage(AttributeTargets.Class)]
+public class HideBaseFieldsAttribute : Attribute
 {
-    public string header;
 
-    public GroupAttribute(string header)
-    {
-        this.header = header;
-    }
 }
