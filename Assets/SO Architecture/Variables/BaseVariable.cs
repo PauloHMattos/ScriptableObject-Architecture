@@ -87,16 +87,20 @@ namespace ScriptableObjectArchitecture
             }
         }
 
+        [Group("General")]
         [SerializeField, HideInInspector]
         protected bool _resetWhenStart = true;
         [SerializeField, HideInInspector]
         protected T _defaultValue;
         [SerializeField, HideInInspector]
         protected T _value = default(T);
+
         [SerializeField, HideInInspector]
         protected bool _readOnly = false;
         [SerializeField, HideInInspector]
         private bool _raiseWarning = true;
+        
+        [Group("Test")]
         [SerializeField, HideInInspector]
         protected bool _isClamped = false;
         [SerializeField, HideInInspector]

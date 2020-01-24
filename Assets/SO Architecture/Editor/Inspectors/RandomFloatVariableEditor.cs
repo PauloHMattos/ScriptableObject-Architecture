@@ -15,7 +15,6 @@ namespace ScriptableObjectArchitecture.Editor
             _useTimeAsSeed = serializedObject.FindProperty("_useTimeAsSeed");
         }
 
-
         protected override void DrawValue()
         {
             // Call Value.get so the displayed value also gets updated
@@ -31,6 +30,11 @@ namespace ScriptableObjectArchitecture.Editor
                     Target.Seed = newSeed;
                 }
             }
+        }
+
+        protected override void DrawClampedFields(bool disableWithReadOnly)
+        {
+            base.DrawClampedFields(false);
         }
     }
 }

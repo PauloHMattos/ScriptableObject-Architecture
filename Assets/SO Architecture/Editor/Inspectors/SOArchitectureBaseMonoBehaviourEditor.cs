@@ -3,7 +3,7 @@
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomEditor(typeof(SOArchitectureBaseMonoBehaviour), true)]
-    public class SOArchitectureBaseMonoBehaviourEditor : SOArchitectureBaseObjectEditor
+    public class SOArchitectureBaseMonoBehaviourEditor : SOArchitectureBaseEditor
     {
     }
 }

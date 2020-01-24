@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ScriptableObjectArchitecture.Editor
 {
 
-    [CustomEditor(typeof(Subject), true)]
+    //[CustomEditor(typeof(Subject), true)]
     public class SubjectEditor : SOArchitectureBaseObjectEditor
     {
         private Subject Target { get { return (Subject)target; } }

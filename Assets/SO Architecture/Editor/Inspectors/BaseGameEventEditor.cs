@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
@@ -10,8 +11,7 @@ namespace ScriptableObjectArchitecture.Editor
 
         private StackTrace _stackTrace;
         private SerializedProperty _enabledProperty;
-        private SerializedProperty _showListners;
-        //private SerializedProperty _showStackTrace;
+        private SerializedProperty _showListeners;
 
         protected abstract void DrawRaiseButton();
 
@@ -19,9 +19,8 @@ namespace ScriptableObjectArchitecture.Editor
         {
             base.OnEnable();
             _enabledProperty = serializedObject.FindProperty("_enabled");
-            _showListners = serializedObject.FindProperty("_showListners");
-            //_showStackTrace = serializedObject.FindProperty("_showStackTrace");
-            
+            _showListeners = serializedObject.FindProperty("_showListeners");
+
             _stackTrace = new StackTrace(Target);
             _stackTrace.OnRepaint.AddListener(Repaint);
         }
@@ -39,12 +38,17 @@ namespace ScriptableObjectArchitecture.Editor
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
-                _showListners.boolValue =
-                    EditorGUILayout.Foldout(_showListners.boolValue, new GUIContent("Listers"), headerStyle);
+                _showListeners.boolValue =
+                    EditorGUILayout.Foldout(_showListeners.boolValue, new GUIContent("Listeners"), headerStyle);
             }
-            if (_showListners.boolValue)
+            if (_showListeners.boolValue)
             {
-                DrawListners();
+                using (new EditorGUI.IndentLevelScope(1))
+                {
+                    EditorGUI.BeginDisabledGroup(true);
+                    DrawListners();
+                    EditorGUI.EndDisabledGroup();
+                }
             }
 
             EditorGUILayout.EndVertical();
@@ -61,28 +65,34 @@ namespace ScriptableObjectArchitecture.Editor
             base.DrawDeveloperDescription();
         }
 
-
-        protected void DrawListners()
+        protected virtual void DrawListners()
         {
-            EditorGUI.BeginDisabledGroup(true);
-            using (new EditorGUI.IndentLevelScope(1))
+            var count = Event.Listeners.Count + Event.Actions.Count;
+            var listeners = Event.Listeners;
+
+            EditorGUILayout.IntField("Size", count);
+            for (int i = 0; i < Event.Listeners.Count; i++)
             {
-                EditorGUILayout.IntField("Size", Event.Listeners.Count);
-                for (int i = 0; i < Event.Listeners.Count; i++)
+                var listener = listeners[i];
+                string label = $"Element {i}";
+                if (listener is Object)
                 {
-                    var listener = Event.Listeners[i];
-                    string label = $"Element {i}";
-                    if (listener is Object)
-                    {
-                        EditorGUILayout.ObjectField(label, listener as Object, listener.GetType(), true);
-                    }
-                    else
-                    {
-                        EditorGUILayout.TextField(label, $"{listener.ToString()}");
-                    }
+                    EditorGUILayout.ObjectField(label, listener as Object, listener.GetType(), true);
+                }
+                else
+                {
+                    EditorGUILayout.TextField(label, $"{listener.ToString()}");
                 }
             }
-            EditorGUI.EndDisabledGroup();
+
+            var actions = Event.Actions;
+            for (int i = 0; i < Event.Actions.Count; i++)
+            {
+                var action = actions[i];
+                string label = $"Element {Event.Listeners.Count + i}";
+                string value = $"{action.Method.ReflectedType.Name}.{action.Method.Name}";
+                EditorGUILayout.TextField(label, value);
+            }
         }
     }
 }

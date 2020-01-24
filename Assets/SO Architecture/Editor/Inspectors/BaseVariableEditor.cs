@@ -51,6 +51,7 @@ namespace ScriptableObjectArchitecture.Editor
 
             _showGeneral = serializedObject.FindProperty("_showGeneral");
         }
+
         public override void OnInspectorGUI()
         {
             var _headerStyle = EditorStyles.foldout;
@@ -78,7 +79,7 @@ namespace ScriptableObjectArchitecture.Editor
         {
             DrawValue();
             DrawReadonlyField();
-            DrawClampedFields();
+            DrawClampedFields(_readOnly.boolValue);
         }
 
         protected virtual void DrawValue()
@@ -117,12 +118,12 @@ namespace ScriptableObjectArchitecture.Editor
             }
         }
 
-        protected virtual void DrawClampedFields()
+        protected virtual void DrawClampedFields(bool disableWithReadOnly)
         {
             if (!IsClampable)
                 return;
 
-            EditorGUI.BeginDisabledGroup(_readOnly.boolValue);
+            EditorGUI.BeginDisabledGroup(disableWithReadOnly);
             _isClamped.boolValue = EditorGUILayout.BeginToggleGroup("Clamp Value", _isClamped.boolValue);
             EditorGUILayout.EndToggleGroup();
             _isClampedVariableAnimation.target = _isClamped.boolValue;

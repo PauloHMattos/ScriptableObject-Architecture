@@ -1,173 +1,211 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Malee;
 
 namespace ScriptableObjectArchitecture
 {
     public abstract class GameEventBase<T> : GameEventBase, IGameEvent<T>, IStackTraceObject
     {
         private readonly List<IGameEventListener<T>> _typedListeners = new List<IGameEventListener<T>>();
-        private readonly List<System.Action<T>> _typedActions = new List<System.Action<T>>();
+        private readonly List<Action<T>> _typedActions = new List<Action<T>>();
 
         [SerializeField]
         protected T _debugValue = default(T);
 
-        public virtual void Raise(T value)
+        public List<Action<T>> TypedActions
         {
-            if (!Enabled)
+            get => _typedActions;
+        }
+
+        public List<IGameEventListener<T>> TypedListeners
+        {
+            get => _typedListeners;
+        }
+
+        public override int GetActionsCount()
+        {
+            return base.GetActionsCount() + _typedActions.Count;
+        }
+
+        public override int GetListenersCount()
+        {
+            return base.GetListenersCount() + _typedListeners.Count;
+        }
+
+        public void Raise(T value)
+        {
+            if (!_enabled)
                 return;
 
+#if UNITY_EDITOR
             AddStackTrace(value);
-
+#endif
             for (int i = _typedListeners.Count - 1; i >= 0; i--)
                 _typedListeners[i].OnEventRaised(value);
-
-            for (int i = _listeners.Count - 1; i >= 0; i--)
-                _listeners[i].OnEventRaised();
 
             for (int i = _typedActions.Count - 1; i >= 0; i--)
                 _typedActions[i](value);
 
-            for (int i = _actions.Count - 1; i >= 0; i--)
-                _actions[i]();
-        }
-
-        public override void RaiseAsObject(object value)
-        {
-            Raise((T)value);
+            base.CallListeners();
         }
 
         public void AddListener(IGameEventListener<T> listener)
         {
             if (!_typedListeners.Contains(listener))
+            {
                 _typedListeners.Add(listener);
+            }
         }
+
         public void RemoveListener(IGameEventListener<T> listener)
         {
             if (_typedListeners.Contains(listener))
+            {
                 _typedListeners.Remove(listener);
+            }
         }
-        public void AddListener(System.Action<T> action)
+
+        public void AddListener(Action<T> action)
         {
             if (!_typedActions.Contains(action))
+            {
                 _typedActions.Add(action);
+            }
         }
-        public void RemoveListener(System.Action<T> action)
+
+        public void RemoveListener(Action<T> action)
         {
             if (_typedActions.Contains(action))
-                _typedActions.Remove(action);
+            { _typedActions.Remove(action); }
         }
+
+        public override void RemoveAll()
+        {
+            _typedActions.Clear();
+            _typedListeners.Clear();
+            base.RemoveAll();
+        }
+
         public override string ToString()
         {
             return "GameEventBase<" + typeof(T) + ">";
         }
 
-
-        public override System.Type GetEventType()
+        public override Type GetEventType()
         {
             return typeof(T);
         }
     }
 
-    public abstract class GameEventBase : SOArchitectureBaseObject, IGameEvent, IStackTraceObject
+    public abstract class GameEventBase : StackTraceObject, IGameEvent, IStackTraceObject
     {
-        protected readonly List<IGameEventListener> _listeners = new List<IGameEventListener>();
-        protected readonly List<System.Action> _actions = new List<System.Action>();
+        [HideInInspector] protected readonly List<IGameEventListener> _listeners = new List<IGameEventListener>();
+        [HideInInspector] protected readonly List<System.Action> _actions = new List<System.Action>();
 
+        [Group("General")]
         [SerializeField]
         protected bool _enabled = true;
-
-        public virtual bool Enabled => _enabled;
-        public List<StackTraceEntry> StackTraces { get { return _stackTraces; } }
 
 #if UNITY_EDITOR
 #pragma warning disable 0414
         [SerializeField]
-        private bool _showListners = false;
-        //[SerializeField]
-        //private bool _showStackTrace = false;
+        private bool _showListeners = false;
 #pragma warning restore
 #endif
+
+        public virtual int GetListenersCount()
+        {
+            return _listeners.Count;
+        }
+
+        public virtual int GetActionsCount()
+        {
+            return _actions.Count;
+        }
+        public List<Action> Actions
+        {
+            get => _actions;
+        }
 
         public List<IGameEventListener> Listeners
         {
             get => _listeners;
         }
 
-        private List<StackTraceEntry> _stackTraces = new List<StackTraceEntry>();
-
-        public void AddStackTrace()
+        public bool Enabled
         {
-#if UNITY_EDITOR
-            if (SOArchitecturePreferences.IsDebugEnabled)
-            {
-                var stackTrace = StackTraceEntry.Create();
-                _stackTraces.Insert(0, stackTrace);
-                //Debug.Log(stackTrace);
-            }
-#endif
+            get => _enabled;
         }
-        public void AddStackTrace(object value)
+
+        public void SetEnabled(bool enabled)
         {
-#if UNITY_EDITOR
-            if (SOArchitecturePreferences.IsDebugEnabled)
-            {
-                var stackTrace = StackTraceEntry.Create(value);
-                _stackTraces.Insert(0, stackTrace);
-                //Debug.Log(stackTrace);
-            }
-#endif
+            _enabled = enabled;
         }
 
         public void Raise()
         {
-            if (!Enabled)
+            if (!_enabled)
                 return;
 
+#if UNITY_EDITOR
             AddStackTrace();
-
-            for (int i = _listeners.Count - 1; i >= 0; i--)
-                _listeners[i].OnEventRaised();
-
-            for (int i = _actions.Count - 1; i >= 0; i--)
-                _actions[i]();
+#endif
+            CallListeners();
         }
 
-        public virtual void RaiseAsObject(object value)
+        protected virtual void CallListeners()
         {
-            Raise();
+            for (int i = _listeners.Count - 1; i >= 0; i--)
+            {
+                _listeners[i].OnEventRaised();
+            }
+            for (int i = _actions.Count - 1; i >= 0; i--)
+            {
+                _actions[i]();
+            }
         }
 
         public void AddListener(IGameEventListener listener)
         {
             if (!_listeners.Contains(listener))
+            {
                 _listeners.Add(listener);
+            }
         }
 
         public void RemoveListener(IGameEventListener listener)
         {
             if (_listeners.Contains(listener))
+            {
                 _listeners.Remove(listener);
+            }
         }
-        public void AddListener(System.Action action)
+        public void AddListener(Action action)
         {
             if (!_actions.Contains(action))
+            {
                 _actions.Add(action);
-        }
-        public void RemoveListener(System.Action action)
-        {
-            if (_actions.Contains(action))
-                _actions.Remove(action);
-        }
-        public void RemoveAll()
-        {
-            _listeners.RemoveRange(0, _listeners.Count);
-            _actions.RemoveRange(0, _listeners.Count);
+            }
         }
 
-        public virtual System.Type GetEventType()
+        public void RemoveListener(Action action)
         {
-            return null;
+            if (_actions.Contains(action))
+            {
+                _actions.Remove(action);
+            }
         }
-    } 
+
+        public virtual void RemoveAll()
+        {
+            _listeners.Clear();
+            _actions.Clear();
+        }
+
+        public virtual Type GetEventType()
+        {
+            return typeof(void);
+        }
+    }
 }

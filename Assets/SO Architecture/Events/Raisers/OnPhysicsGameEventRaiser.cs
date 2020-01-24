@@ -5,6 +5,7 @@ namespace ScriptableObjectArchitecture
 {
     public abstract class OnPhysicsGameEventRaiser : BaseGameEventRaiser
     {
+        [Group("General")]
         public LifeCycle _lifeCycle;
         [SerializeField]
         private string _tag = "";

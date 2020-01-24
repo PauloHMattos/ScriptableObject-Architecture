@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a78c7052899406438e9fc79486b45c0, type: 3}
-  m_Name: Fire1
+  m_Name: TestGameEvent
   m_EditorClassIdentifier: 
-  _showCustomFields: 1
+  _showCustomFields: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
   _enabled: 1
-  _showListners: 1
+  _showListeners: 0

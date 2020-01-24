@@ -20,12 +20,13 @@ namespace ScriptableObjectArchitecture
             OnEvent
         }
 
-        [FormerlySerializedAs("_listnerOption"), SerializeField, HideInInspector]
+        [Group("General")]
+        [FormerlySerializedAs("_listnerOption"), SerializeField]
         protected ListenerOption _listenerOption = ListenerOption.OnChanged;
-        [SerializeField, HideInInspector]
+        [SerializeField]
         protected GameEvent _gameEvent;
         private float _lastTime;
-        [SerializeField, HideInInspector]
+        [SerializeField]
         private float _delay;
 
         public float LastTime { get => _lastTime; set => _lastTime = value; }
@@ -97,13 +98,15 @@ namespace ScriptableObjectArchitecture
 
         protected ScriptableObject Variable { get { return _variable; } }
 
-        [SerializeField, HideInInspector]
+        [Group("General")]
+        [SerializeField]
         protected bool _raiseOnStart = true;
-        [SerializeField, HideInInspector]
+        [SerializeField]
         protected TVariable _variable = default(TVariable);
-        [SerializeField, HideInInspector]
+        [SerializeField]
         private TVariable _previouslyRegisteredVariable = default(TVariable);
-        [SerializeField, HideInInspector]
+
+        [SerializeField]
         protected TType _debugValue = default(TType);
 
         protected override void OnEnable()
@@ -127,7 +130,6 @@ namespace ScriptableObjectArchitecture
                 this.enabled = false;
             }
         }
-
 
         protected override void OnDisable()
         {
@@ -164,8 +166,8 @@ where TResponse : UnityEvent<TType>
     {
         protected override UnityEventBase Response { get { return _response; } }
         
-        [SerializeField]
-        private TResponse _response = default(TResponse);
+        [Group("Response"), SerializeField]
+        protected TResponse _response = default(TResponse);
 
         public override void OnVariableChanged()
         {

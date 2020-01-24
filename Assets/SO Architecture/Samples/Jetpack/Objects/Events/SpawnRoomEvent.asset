@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a78c7052899406438e9fc79486b45c0, type: 3}
   m_Name: SpawnRoomEvent
   m_EditorClassIdentifier: 
+  _showGroups: 1
+  _showCustomFields: 0
   DeveloperDescription:
+    _showDescription: 0
     _value: 
   _enabled: 1
+  _showListners: 0
