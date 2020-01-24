@@ -8,7 +8,7 @@ namespace ScriptableObjectArchitecture.Editor
 {
     public class SOArchitectureBaseEditor : UnityEditor.Editor
     {
-        private SerializedProperty _showGroups;
+        protected SerializedProperty _showGroups;
         private SerializedProperty _developerDescription;
 
         protected virtual void OnEnable()
