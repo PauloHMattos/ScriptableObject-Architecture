@@ -18,6 +18,4 @@
             _resetWhenStart = false;
         }
     }
-
-
 }
