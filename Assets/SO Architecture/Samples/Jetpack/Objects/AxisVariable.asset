@@ -9,12 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a78c7052899406438e9fc79486b45c0, type: 3}
-  m_Name: Fire1
+  m_Script: {fileID: 11500000, guid: ebbe66f7739373043aba5ca51359c05c, type: 3}
+  m_Name: AxisVariable
   m_EditorClassIdentifier: 
-  _showCustomFields: 1
+  _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _enabled: 1
-  _showListners: 1
+  _showObservers: 0
+  _showGeneral: 0
+  _resetWhenStart: 0
+  _defaultValue: 0
+  _value: 0
+  _readOnly: 1
+  _raiseWarning: 1
+  _isClamped: 0
+  _minClampedValue: 0
+  _maxClampedValue: 0
+  _axisName: Horizontal
+  _raw: 0

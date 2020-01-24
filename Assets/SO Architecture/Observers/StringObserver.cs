@@ -10,10 +10,10 @@ namespace ScriptableObjectArchitecture
         protected override UnityEventBase Response => _response;
         public string Format { get => _format; set => _format = value; }
 
+        [Group("Response"), SerializeField]
+        private string _format = "";
         [SerializeField]
         private StringUnityEvent _response = default(StringUnityEvent);
-        [SerializeField]
-        private string _format = "";
 
         public override void OnVariableChanged()
         {

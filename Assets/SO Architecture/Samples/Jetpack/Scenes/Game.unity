@@ -206,6 +206,10 @@ GameObject:
   - component: {fileID: 80965156}
   - component: {fileID: 80965158}
   - component: {fileID: 80965159}
+  - component: {fileID: 80965161}
+  - component: {fileID: 80965160}
+  - component: {fileID: 80965163}
+  - component: {fileID: 80965162}
   m_Layer: 0
   m_Name: Lasers Spawner
   m_TagString: Untagged
@@ -225,12 +229,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090ed8495bb748119cffef3e18b891d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showCustomFields: 0
+  _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showGeneral: 0
-  _showEvents: 0
   _events:
     m_PersistentCalls:
       m_Calls:
@@ -321,18 +323,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80965155}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18cbbfa38df843d3aca0834a194a91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showCustomFields: 0
+  _showGroups: 1
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showGeneralFields: 0
-  _showResponseFields: 0
-  _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
@@ -357,6 +356,134 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   invert: 0
+--- !u!114 &80965160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80965155}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6781b467167175a45a272c3787c44109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showGroups: 7
+  DeveloperDescription:
+    _showDescription: 1
+    _value: 
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _event: {fileID: 0}
+  _response:
+    m_PersistentCalls:
+      m_Calls: []
+  _previouslyRegisteredEvent: {fileID: 0}
+  _debugValue: {fileID: 0}
+--- !u!114 &80965161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80965155}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showGroups: 7
+  DeveloperDescription:
+    _showDescription: 1
+    _value: asdffdasdfadf
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _event: {fileID: 11400000, guid: 8cc3c46a7f634224dad6a1a405833c61, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1759129850}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 8cc3c46a7f634224dad6a1a405833c61,
+    type: 2}
+--- !u!114 &80965162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80965155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cbbfa38df843d3aca0834a194a91a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showGroups: 7
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _listenerOption: 0
+  _gameEvent: {fileID: 0}
+  _delay: 0
+  _raiseOnStart: 1
+  _variable: {fileID: 11400000, guid: fd19ea2c39a112b42b14d8ba2bb82ade, type: 2}
+  _previouslyRegisteredVariable: {fileID: 0}
+  _debugValue: 0
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1261228840}
+        m_MethodName: SetActive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  invert: 0
+--- !u!114 &80965163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80965155}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b28aa2ebce73340aef52e7e89300d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showGroups: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _listenerOption: 0
+  _gameEvent: {fileID: 0}
+  _delay: 0
+  _raiseOnStart: 1
+  _variable: {fileID: 0}
+  _previouslyRegisteredVariable: {fileID: 0}
+  _debugValue: 
+  _response:
+    m_PersistentCalls:
+      m_Calls: []
+  _format: 
 --- !u!1001 &153897795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -370,6 +497,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1475984346, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
       propertyPath: _showCustomFields
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475984346, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
+      propertyPath: _showGroups
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475984346, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
+      propertyPath: DeveloperDescription._showDescription
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9120365436971283635, guid: d4d005e8b01e5fb408266ba65374327f,
@@ -440,12 +575,12 @@ PrefabInstance:
     - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
         type: 3}
       propertyPath: _showGeneralFields
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
         type: 3}
       propertyPath: _showResponseFields
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
         type: 3}
@@ -485,7 +620,7 @@ PrefabInstance:
     - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
         type: 3}
       propertyPath: _showDebugFields
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
         type: 3}
@@ -1174,12 +1309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6740bb059ffa48f7b4472c651a69f30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showCustomFields: 1
+  _showGroups: 0
   DeveloperDescription:
-    _showDescription: 1
+    _showDescription: 0
     _value: 
-  _showGeneral: 0
-  _showEvents: 1
   _events:
     m_PersistentCalls:
       m_Calls:
@@ -1222,13 +1355,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cbbfa38df843d3aca0834a194a91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showCustomFields: 0
+  _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showGeneralFields: 1
-  _showResponseFields: 0
-  _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
@@ -1286,12 +1416,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73fc9411b8847f79d327a16b280a0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showCustomFields: 0
+  _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showGeneral: 0
-  _showEvents: 0
   _events:
     m_PersistentCalls:
       m_Calls:
@@ -1404,13 +1532,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cbbfa38df843d3aca0834a194a91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showCustomFields: 0
+  _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showGeneralFields: 0
-  _showResponseFields: 0
-  _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
@@ -1466,13 +1591,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cbbfa38df843d3aca0834a194a91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showCustomFields: 1
+  _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
-    _value: "kl\xE7jkl\xE7jkl\xE7"
-  _showGeneralFields: 1
-  _showResponseFields: 0
-  _showDebugFields: 0
+    _value: 
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
@@ -1538,12 +1660,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090ed8495bb748119cffef3e18b891d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showCustomFields: 0
+  _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showGeneral: 0
-  _showEvents: 0
   _events:
     m_PersistentCalls:
       m_Calls:
@@ -1794,13 +1914,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b28aa2ebce73340aef52e7e89300d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showCustomFields: 0
+  _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showGeneralFields: 1
-  _showResponseFields: 0
-  _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
@@ -2092,13 +2209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cbbfa38df843d3aca0834a194a91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showCustomFields: 0
+  _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showGeneralFields: 0
-  _showResponseFields: 0
-  _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 1
@@ -2171,13 +2285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cbbfa38df843d3aca0834a194a91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showCustomFields: 0
+  _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showGeneralFields: 0
-  _showResponseFields: 0
-  _showDebugFields: 1
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0

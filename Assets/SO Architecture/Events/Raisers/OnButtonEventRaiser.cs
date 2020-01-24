@@ -6,6 +6,7 @@ namespace ScriptableObjectArchitecture
     [AddComponentMenu(SOArchitecture_Utility.EVENT_RAISER_SUBMENU + "On Button Raiser")]
     public class OnButtonEventRaiser : BaseGameEventRaiser
     {
+        [Group("General")]
         public string buttonName;
         public EventType eventType;
 

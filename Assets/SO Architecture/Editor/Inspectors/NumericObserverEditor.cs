@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using System.Reflection;
+using UnityEditor;
 using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
@@ -7,12 +9,10 @@ namespace ScriptableObjectArchitecture.Editor
     public class NumericObserverEditor : BaseObserverEditor
     {
         protected SerializedProperty _constrain;
-        protected SerializedProperty _sample;
 
         protected SerializedProperty _equals;
         protected SerializedProperty _smaller;
         protected SerializedProperty _bigger;
-        protected SerializedProperty _modifierCurve;
         private SerializedProperty _comparationReference;
 
         private static readonly string[] DifferentLabels =
@@ -35,46 +35,32 @@ namespace ScriptableObjectArchitecture.Editor
             _equals = serializedObject.FindProperty("_equals");
             _smaller = serializedObject.FindProperty("_smaller");
             _bigger = serializedObject.FindProperty("_bigger");
-            _modifierCurve = serializedObject.FindProperty("_modifierCurve");
-            _sample = serializedObject.FindProperty("_sample");
             _comparationReference = serializedObject.FindProperty("_comparationReference");
         }
 
-        protected override void DrawGameEventField()
+        protected override void DrawCustomFields(List<FieldInfo> fields, SerializedObject serializedObject, string groupName)
         {
-            base.DrawGameEventField();
-            //EditorGUI.indentLevel++;
-            //EditorGUILayout.PropertyField(_modifierCurve, new GUIContent("Mod. curve"));
-            //EditorGUILayout.PropertyField(_sample, new GUIContent("Evaluate"));
-            //EditorGUI.indentLevel--;
-        }
-
-        protected override void DrawCustomFields()
-        {
-            base.DrawCustomFields();
-
-            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-
-            _constrain.boolValue = EditorGUILayout.BeginToggleGroup("Conditions", _constrain.boolValue);
-            DrawConditions();
-            EditorGUILayout.EndToggleGroup();
-
-            EditorGUILayout.EndVertical();
+            if (groupName.Equals("Conditions"))
+            {
+                _constrain.boolValue = EditorGUILayout.Toggle("Enabled", _constrain.boolValue);
+                EditorGUI.BeginDisabledGroup(!_constrain.boolValue);
+                DrawConditions();
+                EditorGUI.EndDisabledGroup();
+                return;
+            }
+            base.DrawCustomFields(fields, serializedObject, groupName);
         }
 
 
         protected virtual void DrawConditions()
-        { 
-            if (!_constrain.boolValue)
-                return;
-
+        {
             if (_comparationReference != null)
             {
                 EditorGUILayout.PropertyField(_comparationReference, new GUIContent("Comp. Reference"));
             }
 
             var equalValue = _equals.boolValue ? 0 : 1;
-            var newEquals = GUILayout.Toolbar(equalValue, new[] {"==", "!="});
+            var newEquals = GUILayout.Toolbar(equalValue, new[] { "==", "!=" });
             _equals.boolValue = newEquals == 0;
 
             if (equalValue != newEquals)

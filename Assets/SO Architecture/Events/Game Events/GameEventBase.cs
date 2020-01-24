@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Malee;
 
 namespace ScriptableObjectArchitecture
 {
@@ -99,9 +100,10 @@ namespace ScriptableObjectArchitecture
 
     public abstract class GameEventBase : StackTraceObject, IGameEvent, IStackTraceObject
     {
-        private readonly List<Action> _actions = new List<Action>();
-        private readonly List<IGameEventListener> _listeners = new List<IGameEventListener>();
+        [HideInInspector] protected readonly List<IGameEventListener> _listeners = new List<IGameEventListener>();
+        [HideInInspector] protected readonly List<System.Action> _actions = new List<System.Action>();
 
+        [Group("General")]
         [SerializeField]
         protected bool _enabled = true;
 

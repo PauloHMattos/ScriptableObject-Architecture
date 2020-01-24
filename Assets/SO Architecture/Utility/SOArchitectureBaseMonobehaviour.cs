@@ -11,7 +11,7 @@ namespace ScriptableObjectArchitecture
 #if UNITY_EDITOR
 #pragma warning disable 0414
         [SerializeField]
-        private bool _showCustomFields = false;
+        private int _showGroups = 0;
         [SerializeField]
         private DeveloperDescription DeveloperDescription = new DeveloperDescription();
 #pragma warning restore

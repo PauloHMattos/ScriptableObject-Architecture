@@ -9,21 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56a9b97a78f01f4b97f217c74f00246, type: 3}
-  m_Name: Coins - int
+  m_Script: {fileID: 11500000, guid: 7a78c7052899406438e9fc79486b45c0, type: 3}
+  m_Name: Fire1
   m_EditorClassIdentifier: 
   _showGroups: 0
-  _showCustomFields: 0
+  _showCustomFields: 1
   DeveloperDescription:
-    _showDescription: 1
+    _showDescription: 0
     _value: 
-  _showObservers: 1
-  _showGeneral: 1
-  _resetWhenStart: 1
-  _defaultValue: 0
-  _value: 0
-  _readOnly: 0
-  _raiseWarning: 1
-  _isClamped: 0
-  _minClampedValue: 0
-  _maxClampedValue: 0
+  _enabled: 1
+  _showListners: 0

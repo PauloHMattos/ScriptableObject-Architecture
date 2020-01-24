@@ -33,9 +33,9 @@ namespace ScriptableObjectArchitecture
         where TVariable : BaseVariable<TType>
         where TResponse : UnityEvent<TType>
     {
-        [SerializeField, HideInInspector] protected AnimationCurve _modifierCurve = AnimationCurve.Constant(0, 1, 1);
-        [SerializeField, HideInInspector] protected bool _sample = true;
-        [SerializeField, HideInInspector] private bool _constrain = false;
+        [Group("General"), SerializeField] protected AnimationCurve _modifierCurve = AnimationCurve.Constant(0, 1, 1);
+        [Group("General"), SerializeField] protected bool _sample = true;
+        [Group("Conditions"), SerializeField] protected bool _constrain = false;
         [SerializeField, HideInInspector] private bool _equals = false;
         [SerializeField, HideInInspector] private bool _bigger = false;
         [SerializeField, HideInInspector] private bool _smaller = false;

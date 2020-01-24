@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb12e3ad1486e2e4496d2933bc2e5456, type: 3}
   m_Name: StringCollection
   m_EditorClassIdentifier: 
+  _showGroups: 0
   _showCustomFields: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showCollectionItems: 0
+  _showCollectionItems: 1
   _list: []
-  a: 5
+  a: 26
   b: dfasdf
   c: 1.21
   d: 0

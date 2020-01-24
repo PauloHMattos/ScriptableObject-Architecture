@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomEditor(typeof(SceneVariable))]
-    internal sealed class SceneVariableEditor : BaseVariableEditor
+    internal sealed class SceneVariableEditor : SOArchitectureBaseObjectEditor
     {
         // UI
         private const string SCENE_NOT_ASSIGNED_WARNING = "Please assign a scene as the current serialized values for " +
@@ -17,16 +17,24 @@ namespace ScriptableObjectArchitecture.Editor
         // Serialized Properties
         private const string SCENE_INFO_PROPERTY = "_value";
 
-        protected override void DrawReadonlyField()
+        protected override void DrawCustomFields()
         {
+            var _headerStyle = EditorStyles.foldout;
+            _headerStyle.font = EditorStyles.boldFont;
+
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            using (new EditorGUI.IndentLevelScope())
+            {
+                _showGroups.boolValue = EditorGUILayout.Foldout(_showGroups.boolValue, new GUIContent("Scene Info"), _headerStyle);
+                if (_showGroups.boolValue)
+                {
+                    DrawSceneInfo();
+                }
+            }
+            EditorGUILayout.EndVertical();
         }
 
-        protected override void DrawClampedFields()
-        {
-        }
-
-
-        protected override void DrawValue()
+        private void DrawSceneInfo()
         {
             var sceneVariable = (SceneVariable)target;
             var sceneInfoProperty = serializedObject.FindProperty(SCENE_INFO_PROPERTY);
@@ -38,7 +46,7 @@ namespace ScriptableObjectArchitecture.Editor
             {
                 EditorGUILayout.HelpBox(SCENE_NOT_IN_BUILD_SETTINGS_WARNING, MessageType.Warning);
             }
-            else if(!sceneVariable.Value.IsSceneEnabled)
+            else if (!sceneVariable.Value.IsSceneEnabled)
             {
                 EditorGUILayout.HelpBox(SCENE_NOT_ENABLED_IN_BUILD_SETTINGS_WARNING, MessageType.Warning);
             }
@@ -48,6 +56,7 @@ namespace ScriptableObjectArchitecture.Editor
             {
                 EditorUtility.SetDirty(target);
             }
+            EditorGUILayout.Space();
             EditorGUILayout.Space();
             EditorGUILayout.Space();
             EditorGUILayout.Space();
