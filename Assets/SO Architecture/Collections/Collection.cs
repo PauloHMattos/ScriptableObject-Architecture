@@ -19,8 +19,8 @@ namespace ScriptableObjectArchitecture
             }
         }
 
-        [SerializeField]
-        private List<T> _list = new List<T>();
+        [SerializeField, HideInInspector]
+        protected List<T> _list = new List<T>();
 
         public override IList List
         {
@@ -47,7 +47,7 @@ namespace ScriptableObjectArchitecture
             if (_list.Contains(obj))
                 _list.Remove(obj);
         }
-        public void Clear()
+        public virtual void Clear()
         {
             _list.Clear();
         }
@@ -71,7 +71,7 @@ namespace ScriptableObjectArchitecture
         {
             return GetEnumerator();
         }
-        public IEnumerator<T> GetEnumerator()
+        public virtual IEnumerator<T> GetEnumerator()
         {
             return _list.GetEnumerator();
         }

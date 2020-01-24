@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f2ca5fefc21504ab12906a2e5892ff, type: 3}
+  m_Name: CoinsPool
+  m_EditorClassIdentifier: 
+  _showCustomFields: 1
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _showCollectionItems: 1
+  _list: []
+  _prefab:
+    _useConstant: 1
+    _constantValue: {fileID: 2845643654338821645, guid: 9cde6ea4565dc994b8c144c539302d55,
+      type: 3}
+    _variable: {fileID: 0}
+  _poolCapacity: 10
+  _defaultState: 0
+  _allowGrowth: 1
+  _growthFactor: 1.5

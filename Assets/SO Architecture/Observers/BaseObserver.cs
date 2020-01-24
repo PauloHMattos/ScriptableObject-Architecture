@@ -118,6 +118,7 @@ namespace ScriptableObjectArchitecture
                 {
                     Register();
                 }
+                
                 if (_raiseOnStart)
                 {
                     OnVariableChanged();

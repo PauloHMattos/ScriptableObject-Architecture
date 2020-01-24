@@ -233,9 +233,9 @@ MonoBehaviour:
   _events:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1836142204968680398}
-        m_MethodName: Destroy
-        m_Mode: 1
+      - m_Target: {fileID: 8421418850292596817}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -267,6 +267,7 @@ MonoBehaviour:
     _value: 
   _showGeneralFields: 0
   _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -377,6 +378,7 @@ MonoBehaviour:
     _value: 
   _showGeneralFields: 0
   _showResponseFields: 0
+  _showCustomFields: 0
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
