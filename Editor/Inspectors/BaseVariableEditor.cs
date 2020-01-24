@@ -51,6 +51,7 @@ namespace ScriptableObjectArchitecture.Editor
 
             _showGeneral = serializedObject.FindProperty("_showGeneral");
         }
+
         public override void OnInspectorGUI()
         {
             var _headerStyle = EditorStyles.foldout;
