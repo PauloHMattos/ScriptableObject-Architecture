@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a231661af38844caae4ded01abd631, type: 3}
   m_Name: Room Speed - Vector2
   m_EditorClassIdentifier: 
+  _showGroups: 0
   _showCustomFields: 0
   DeveloperDescription:
     _showDescription: 1

@@ -6,8 +6,8 @@ namespace ScriptableObjectArchitecture
     [AddComponentMenu(SOArchitecture_Utility.EVENT_RAISER_SUBMENU + "On Key Raiser")]
     public class OnKeyEventRaiser : BaseGameEventRaiser
     {
+        [Group("General")]
         public KeyCodeReference key;
-
         public EventType eventType;
 
 

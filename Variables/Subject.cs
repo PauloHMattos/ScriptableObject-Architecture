@@ -5,8 +5,8 @@ namespace ScriptableObjectArchitecture
 {
     public abstract class Subject : SOArchitectureBaseObject, ISubject
     {
-        public List<IVariableObserver> Observers { get { return _observers; } }
         private List<IVariableObserver> _observers = new List<IVariableObserver>();
+        public List<IVariableObserver> Observers { get { return _observers; } }
 
 #if UNITY_EDITOR
 #pragma warning disable 0414
