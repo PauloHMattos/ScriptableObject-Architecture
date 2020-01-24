@@ -26,9 +26,9 @@ where TResponse : UnityEvent<TType>
         public void OnEventRaised(TType value)
         {
             RaiseResponse(value);
-
+#if UNITY_EDITOR
             CreateDebugEntry(_response);
-
+#endif
             AddStackTrace(value);
         }
         private void RaiseResponse(TType value)
@@ -76,9 +76,9 @@ where TResponse : UnityEvent<TType>
         public void OnEventRaised()
         {
             RaiseResponse();
-
+#if UNITY_EDITOR
             CreateDebugEntry(_response);
-
+#endif
             AddStackTrace();
         }
         protected void RaiseResponse()

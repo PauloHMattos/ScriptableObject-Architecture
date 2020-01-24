@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee57c3bd88715984780e46334db400a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 0}
+  Event: {fileID: 11400000, guid: 4992b62d4c5f04044a07fcb44f0653bb, type: 2}
 --- !u!4 &541269481
 Transform:
   m_ObjectHideFlags: 0
@@ -203,8 +203,9 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
-  _event: {fileID: 0}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 4992b62d4c5f04044a07fcb44f0653bb,
+    type: 2}
+  _event: {fileID: 11400000, guid: 4992b62d4c5f04044a07fcb44f0653bb, type: 2}
   _response:
     m_PersistentCalls:
       m_Calls:
