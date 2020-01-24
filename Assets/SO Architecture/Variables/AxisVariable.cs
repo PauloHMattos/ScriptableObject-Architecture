@@ -8,7 +8,7 @@ namespace ScriptableObjectArchitecture
         order = 124)]
     public class AxisVariable : ReadOnlyFloatVariable
     {
-        [SerializeField]
+        [Group("Axis Config"), SerializeField]
         private string _axisName = "Horizontal";
         [SerializeField]
         private bool _raw = false;

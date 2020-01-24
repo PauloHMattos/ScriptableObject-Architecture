@@ -8,7 +8,7 @@ namespace ScriptableObjectArchitecture
         order = 124)]
     public class Axis2DVariable : Vector2Variable
     {
-        [SerializeField]
+        [Group("Axis Config"), SerializeField]
         private string _xAxisName = "Horizontal";
         [SerializeField]
         private string _yAxisName = "Vertical";
