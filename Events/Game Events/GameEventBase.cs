@@ -71,9 +71,10 @@ namespace ScriptableObjectArchitecture
 
     public abstract class GameEventBase : SOArchitectureBaseObject, IGameEvent, IStackTraceObject
     {
-        protected readonly List<IGameEventListener> _listeners = new List<IGameEventListener>();
-        protected readonly List<System.Action> _actions = new List<System.Action>();
+        [HideInInspector] protected readonly List<IGameEventListener> _listeners = new List<IGameEventListener>();
+        [HideInInspector] protected readonly List<System.Action> _actions = new List<System.Action>();
 
+        [Group("General")]
         [SerializeField]
         protected bool _enabled = true;
 

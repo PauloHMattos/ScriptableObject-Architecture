@@ -10,12 +10,13 @@ namespace ScriptableObjectArchitecture
         public abstract System.Type Type { get; }
         public abstract object BaseValue { get; set; }
 
-#if UNITY_EDITOR
-#pragma warning disable 0414
-        [SerializeField]
-        private bool _showGeneral = false;
-#pragma warning restore
-#endif
+//#if UNITY_EDITOR
+//#pragma warning disable 0414
+//        [SerializeField]
+//        private bool _showGeneral = false;
+
+//#pragma warning restore
+//#endif
 
         public virtual void Awake()
         {
@@ -87,21 +88,24 @@ namespace ScriptableObjectArchitecture
             }
         }
 
-        [SerializeField, HideInInspector]
+        [Group("General")]
+        [SerializeField]
         protected bool _resetWhenStart = true;
-        [SerializeField, HideInInspector]
+        [SerializeField]
         protected T _defaultValue;
-        [SerializeField, HideInInspector]
+        [SerializeField]
         protected T _value = default(T);
-        [SerializeField, HideInInspector]
+        [SerializeField]
         protected bool _readOnly = false;
-        [SerializeField, HideInInspector]
+        [SerializeField]
         private bool _raiseWarning = true;
-        [SerializeField, HideInInspector]
+        
+        [Group("Test")]
+        [SerializeField]
         protected bool _isClamped = false;
-        [SerializeField, HideInInspector]
+        [SerializeField]
         protected T _minClampedValue = default(T);
-        [SerializeField, HideInInspector]
+        [SerializeField]
         protected T _maxClampedValue = default(T);
 
         public override void OnEnable()
