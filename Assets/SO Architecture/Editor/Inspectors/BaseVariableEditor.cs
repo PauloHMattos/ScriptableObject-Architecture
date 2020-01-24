@@ -5,7 +5,7 @@ using UnityEditor.AnimatedValues;
 namespace ScriptableObjectArchitecture.Editor
 {
 
-    [CustomEditor(typeof(BaseVariable<>), true)]
+    //[CustomEditor(typeof(BaseVariable<>), true)]
     public class BaseVariableEditor : SubjectEditor
     {
         private BaseVariable Target { get { return (BaseVariable)target; } }
