@@ -208,7 +208,9 @@ namespace ScriptableObjectArchitecture.Editor
                 var property = serializedObject.FindProperty(fieldInfo.Name);
                 if (property != null)
                 {
+                    EditorGUI.BeginDisabledGroup(fieldInfo.GetCustomAttribute<ReadOnlyAttribute>() != null);
                     EditorGUILayout.PropertyField(property);
+                    EditorGUI.EndDisabledGroup();
 
                     bool required = property.propertyType == SerializedPropertyType.ObjectReference && property.objectReferenceValue == null;
                     if (required)
