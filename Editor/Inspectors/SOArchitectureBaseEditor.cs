@@ -209,6 +209,12 @@ namespace ScriptableObjectArchitecture.Editor
                 if (property != null)
                 {
                     EditorGUILayout.PropertyField(property);
+
+                    bool required = property.propertyType == SerializedPropertyType.ObjectReference && property.objectReferenceValue == null;
+                    if (required)
+                    {
+                        EditorGUILayout.HelpBox("Required field", MessageType.Error);
+                    }
                 }
             }
         }
