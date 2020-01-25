@@ -10,7 +10,6 @@ namespace ScriptableObjectArchitecture
         public string buttonName;
         public EventType eventType;
 
-
         protected override void Update()
         {
             if (string.IsNullOrEmpty(buttonName))
