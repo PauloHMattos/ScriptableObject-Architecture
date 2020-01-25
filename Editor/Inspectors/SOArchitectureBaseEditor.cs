@@ -80,7 +80,7 @@ namespace ScriptableObjectArchitecture.Editor
         public static Dictionary<string, List<FieldInfo>> GetCustomFields(UnityEngine.Object target)
         {
             var dict = new Dictionary<string, List<FieldInfo>>();
-            var bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
             string currentHeader = "";
 
