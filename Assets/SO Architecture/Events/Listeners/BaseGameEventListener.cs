@@ -21,6 +21,7 @@ where TResponse : UnityEvent<TType>
 
         [Group("Debug")]
         [SerializeField]
+        [Label("Value"), ReadOnly]
         protected TType _debugValue = default(TType);
 
         public void OnEventRaised(TType value)
