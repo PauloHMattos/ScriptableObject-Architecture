@@ -1,7 +1,8 @@
 ﻿using System;
+using UnityEngine;
 
 [AttributeUsage(AttributeTargets.Field)]
-public class RequiredAttribute : Attribute
+public class RequiredAttribute : PropertyAttribute
 {
     public RequiredAttribute()
     {
