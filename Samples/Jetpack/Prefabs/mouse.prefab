@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1475984346}
   - component: {fileID: 7969562467115840119}
   - component: {fileID: 3829497018167051960}
+  - component: {fileID: 1759129851}
   m_Layer: 0
   m_Name: mouse
   m_TagString: Player
@@ -54,6 +55,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -139,23 +141,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed1dc96f9fac854dac5bb8f292c5f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showGroups: 3
   DeveloperDescription:
+    _showDescription: 0
     _value: 
-  _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 5
-  _gameEvent: {fileID: 11400000, guid: 8cc3c46a7f634224dad6a1a405833c61, type: 2}
+  _listenerOption: 5
   _delay: 1
-  _raiseOnStart: 0
+  _raiseOnStart: 1
   _variable: {fileID: 11400000, guid: 2f327813639ebc14bb04b4a8be713302, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: {x: 0, y: 0}
   _response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9120365436971283638}
-        m_MethodName: AddForce
+        m_MethodName: set_velocity
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -165,8 +166,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.Vector2UnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &9120365436971283596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07189043137a43ef81c581ce425534bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _response:
+  _showGroups: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _events:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9120365438399288102}
@@ -204,8 +207,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   _lifeCycle: 1
   _tag: Floor
   layerMask:
@@ -223,7 +224,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07189043137a43ef81c581ce425534bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _response:
+  _showGroups: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _events:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9120365438399288102}
@@ -248,8 +253,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   _lifeCycle: 4
   _tag: Floor
   layerMask:
@@ -267,7 +270,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07189043137a43ef81c581ce425534bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _response:
+  _showGroups: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _events:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: fd19ea2c39a112b42b14d8ba2bb82ade, type: 2}
@@ -281,8 +288,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   _lifeCycle: 1
   _tag: Laser
   layerMask:
@@ -324,6 +329,40 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 31f2f91325b213a4f8405974da2f1daa, type: 2}
   - {fileID: 11400000, guid: fd19ea2c39a112b42b14d8ba2bb82ade, type: 2}
   - {fileID: 11400000, guid: 00040033833585f4b940c1e6c8d5d2e1, type: 2}
+--- !u!114 &1759129851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120365436971283636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showGroups: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _event: {fileID: 11400000, guid: 8cc3c46a7f634224dad6a1a405833c61, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9120365436971283639}
+        m_MethodName: OnVariableChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _previouslyRegisteredEvent: {fileID: 0}
 --- !u!1 &9120365438399288101
 GameObject:
   m_ObjectHideFlags: 0
@@ -5029,11 +5068,12 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: ff88174780966524983a5e9ace08890d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

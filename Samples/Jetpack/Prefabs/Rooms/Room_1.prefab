@@ -45,6 +45,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -125,6 +126,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -205,6 +207,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -285,6 +288,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -365,6 +369,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -473,17 +478,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed1dc96f9fac854dac5bb8f292c5f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showGroups: 3
   DeveloperDescription:
+    _showDescription: 0
     _value: 
-  _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 2
-  _gameEvent: {fileID: 0}
+  _listenerOption: 5
   _delay: 0
   _raiseOnStart: 1
   _variable: {fileID: 11400000, guid: 37f31d7a30d07d34284e13789df0a6db, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: {x: 0, y: 0}
   _response:
     m_PersistentCalls:
@@ -499,8 +503,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.Vector2UnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!61 &1260921980
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -539,7 +541,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73fc9411b8847f79d327a16b280a0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _response:
+  _showGroups: 0
+  DeveloperDescription:
+    _showDescription: 0
+    _value: 
+  _events:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4707997876501063805}
@@ -553,8 +559,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   _lifeCycle: 1
   _tag: Destroyer
   layerMask:
@@ -572,17 +576,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cbbfa38df843d3aca0834a194a91a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _showGroups: 0
   DeveloperDescription:
+    _showDescription: 0
     _value: 
-  _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 1
-  _gameEvent: {fileID: 0}
+  _listenerOption: 1
   _delay: 0
   _raiseOnStart: 0
   _variable: {fileID: 11400000, guid: fd19ea2c39a112b42b14d8ba2bb82ade, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 0
   _response:
     m_PersistentCalls:
@@ -620,6 +623,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.BoolUnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   invert: 0
