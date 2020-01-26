@@ -17,6 +17,13 @@ namespace ScriptableObjectArchitecture
 
         public override bool Clampable { get { return false; } }
 
+        public override void Awake()
+        {
+            base.Awake();
+            _readOnly = true;
+            _resetWhenStart = false;
+        }
+
         public override Vector2 Value
         {
             get

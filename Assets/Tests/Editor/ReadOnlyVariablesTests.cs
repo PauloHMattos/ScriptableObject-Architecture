@@ -7,31 +7,17 @@ using UnityEngine;
 
 namespace Tests
 {
-
     [TestFixture]
-    public class VariablesTests
+    public class ReadOnlyVariablesTests
     {
         public static IEnumerable TestCases
         {
             get
             {
-                yield return new TestCaseData(ScriptableObject.CreateInstance<StringVariable>(), "string");
-                yield return new TestCaseData(ScriptableObject.CreateInstance<BoolVariable>(), true);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<CharVariable>(), 'g');
-                yield return new TestCaseData(ScriptableObject.CreateInstance<ShortVariable>(), (short)100);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<IntVariable>(), 100);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<LongVariable>(), (long)100);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<ByteVariable>(), (byte)255);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<SByteVariable>(), (sbyte)127);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<UShortVariable>(), (ushort)100);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<UIntVariable>(), (uint)100);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<ULongVariable>(), (ulong)100);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<FloatVariable>(), 100.0f);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<DoubleVariable>(), 100.0);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<Vector2Variable>(), Vector2.down);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<Vector2IntVariable>(), Vector2Int.down);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<Vector3Variable>(), Vector3.down);
-                yield return new TestCaseData(ScriptableObject.CreateInstance<Vector4Variable>(), Vector4.one);
+                yield return new TestCaseData(ScriptableObject.CreateInstance<TimeVariable>(), 100.0f);
+                yield return new TestCaseData(ScriptableObject.CreateInstance<RandomFloatVariable>(), 100.0f);
+                yield return new TestCaseData(ScriptableObject.CreateInstance<AxisVariable>(), 100.0f);
+                yield return new TestCaseData(ScriptableObject.CreateInstance<Axis2DVariable>(), Vector2.down);
             }
         }
 
@@ -72,49 +58,13 @@ namespace Tests
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void ChangeVariableValueTest<T, U>(T variable, U value) where T : BaseVariable<U>
-        {
-            Assert.AreEqual(default(U), variable.Value);
-            variable.Value = value;
-            Assert.AreEqual(value, variable.Value);
-            Assert.AreEqual(value, (U)variable);
-        }
-
-        [Test]
-        [TestCaseSource(nameof(TestCases))]
         public void ChangeReadOnlyVariableValueTest<T, U>(T variable, U value) where T : BaseVariable<U>
         {
-            Assert.AreEqual(default(U), variable.Value);
-            variable.ReadOnly = true;
-
+            //Assert.AreEqual(default(U), variable.Value);
             Debug.unityLogger.logEnabled = false;
             variable.Value = value;
             Debug.unityLogger.logEnabled = true;
-
-            Assert.AreEqual(default(U), variable.Value);
-        }
-
-        [Test]
-        [TestCaseSource(nameof(TestCases))]
-        public void ChangeClampableVariableValueTest<T, U>(T variable, U value) where T : BaseVariable<U>
-        {
-            if (!variable.Clampable)
-            {
-                Assert.Pass();
-                return;
-            }
-
-            variable.Value = value;
-            Assert.AreEqual(value, variable.Value);
-
-            variable.IsClamped = true;
-            variable.MinClampValue = default;
-            variable.MaxClampValue = default;
-            Assert.AreEqual(default(U), variable.Value);
-
-            variable.MinClampValue = value;
-            variable.MaxClampValue = value;
-            Assert.AreEqual(value, variable.Value);
+            Assert.AreNotEqual(value, variable.Value);
         }
 
         [Test]
@@ -127,9 +77,11 @@ namespace Tests
             variable.AddObserver(mockAction);
             variable.AddObserver(mockObserver);
 
+            Debug.unityLogger.logEnabled = false;
             variable.Value = value;
-            mockAction.Received(1).Invoke();
-            mockObserver.Received(1).OnVariableChanged();
+            Debug.unityLogger.logEnabled = true;
+            mockAction.DidNotReceive().Invoke();
+            mockObserver.DidNotReceive().OnVariableChanged();
 
             ScriptableObject.DestroyImmediate(variable);
         }
