@@ -1,7 +1,8 @@
 ﻿using System;
+using UnityEngine;
 
 [AttributeUsage(AttributeTargets.Field)]
-public class ReadOnlyAttribute : Attribute
+public class ReadOnlyAttribute : PropertyAttribute
 {
     public ReadOnlyAttribute()
     {

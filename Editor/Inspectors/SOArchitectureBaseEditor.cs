@@ -206,17 +206,17 @@ namespace ScriptableObjectArchitecture.Editor
             foreach (var fieldInfo in fields)
             {
                 var property = serializedObject.FindProperty(fieldInfo.Name);
-                if (property != null)
+                if (property == null)
                 {
-                    EditorGUI.BeginDisabledGroup(fieldInfo.GetCustomAttribute<ReadOnlyAttribute>() != null);
-                    EditorGUILayout.PropertyField(property);
-                    EditorGUI.EndDisabledGroup();
+                    continue;
+                }
 
-                    bool required = property.propertyType == SerializedPropertyType.ObjectReference && property.objectReferenceValue == null;
-                    if (required)
-                    {
-                        EditorGUILayout.HelpBox("Required field", MessageType.Error);
-                    }
+                EditorGUILayout.PropertyField(property);
+
+                bool required = property.propertyType == SerializedPropertyType.ObjectReference && property.objectReferenceValue == null;
+                if (required)
+                {
+                    EditorGUILayout.HelpBox("Required field", MessageType.Error);
                 }
             }
         }
