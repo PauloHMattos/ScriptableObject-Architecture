@@ -335,11 +335,9 @@ MonoBehaviour:
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
-  _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 0
   _variable: {fileID: 11400000, guid: fd19ea2c39a112b42b14d8ba2bb82ade, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 0
   _response:
     m_PersistentCalls:
@@ -434,11 +432,9 @@ MonoBehaviour:
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
-  _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 1
   _variable: {fileID: 11400000, guid: fd19ea2c39a112b42b14d8ba2bb82ade, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 0
   _response:
     m_PersistentCalls:
@@ -474,16 +470,14 @@ MonoBehaviour:
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
-  _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 1
   _variable: {fileID: 0}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 
+  _format: 
   _response:
     m_PersistentCalls:
       m_Calls: []
-  _format: 
 --- !u!1001 &153897795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -491,22 +485,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1475984346, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
-      propertyPath: _showEvents
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475984346, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
-      propertyPath: _showCustomFields
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475984346, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
-      propertyPath: _showGroups
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475984346, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
-      propertyPath: DeveloperDescription._showDescription
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9120365436971283635, guid: d4d005e8b01e5fb408266ba65374327f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -567,66 +545,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: mouse
       objectReference: {fileID: 0}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
+    - target: {fileID: 9120365438399288103, guid: d4d005e8b01e5fb408266ba65374327f,
         type: 3}
-      propertyPath: _response.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
-        type: 3}
-      propertyPath: _showGeneralFields
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
-        type: 3}
-      propertyPath: _showResponseFields
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
-        type: 3}
-      propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
-        type: 3}
-      propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
-        type: 3}
-      propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 1759129850}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
-        type: 3}
-      propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
-        type: 3}
-      propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
-        type: 3}
-      propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
-        type: 3}
-      propertyPath: _showDebugFields
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
-        type: 3}
-      propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_velocity
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: ff88174780966524983a5e9ace08890d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
 --- !u!1 &225854808
@@ -1362,11 +1285,9 @@ MonoBehaviour:
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
-  _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 0
   _variable: {fileID: 11400000, guid: fd19ea2c39a112b42b14d8ba2bb82ade, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 0
   _response:
     m_PersistentCalls:
@@ -1539,11 +1460,9 @@ MonoBehaviour:
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
-  _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 0
   _variable: {fileID: 11400000, guid: fd19ea2c39a112b42b14d8ba2bb82ade, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 0
   _response:
     m_PersistentCalls:
@@ -1598,11 +1517,9 @@ MonoBehaviour:
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
-  _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 0
   _variable: {fileID: 11400000, guid: fd19ea2c39a112b42b14d8ba2bb82ade, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 0
   _response:
     m_PersistentCalls:
@@ -1921,12 +1838,11 @@ MonoBehaviour:
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
-  _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 1
   _variable: {fileID: 11400000, guid: b924c3076f67be349a7e6ba88ebb2580, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 
+  _format: '{0}'
   _response:
     m_PersistentCalls:
       m_Calls:
@@ -1941,7 +1857,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _format: '{0}'
 --- !u!114 &1522940003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2216,11 +2131,9 @@ MonoBehaviour:
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 1
-  _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 0
   _variable: {fileID: 11400000, guid: fd19ea2c39a112b42b14d8ba2bb82ade, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 0
   _response:
     m_PersistentCalls:
@@ -2292,11 +2205,9 @@ MonoBehaviour:
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
-  _gameEvent: {fileID: 0}
   _delay: 0
   _raiseOnStart: 1
   _variable: {fileID: 11400000, guid: fd19ea2c39a112b42b14d8ba2bb82ade, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
   _debugValue: 0
   _response:
     m_PersistentCalls:
@@ -2517,22 +2428,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3101097972620637632, guid: cfc028070e688c647a05ea07f1c6993f,
         type: 3}
-      propertyPath: _showResponseFields
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3101097972620637632, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: _showDebugFields
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3101097972620637632, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: _showGeneralFields
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3101097972620637632, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: DeveloperDescription._showDescription
+      propertyPath: _showGroups
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3101097972620637633, guid: cfc028070e688c647a05ea07f1c6993f,
@@ -2594,51 +2490,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Room_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3101097972620637639, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: _showDebugFields
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: _showResponseFields
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: _showDescription
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: DeveloperDescription._showDescription
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: _showCustomFields
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: _showGeneralFields
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4707997876501063805, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: _showGeneral
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4707997876501063805, guid: cfc028070e688c647a05ea07f1c6993f,
-        type: 3}
-      propertyPath: _showEvents
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfc028070e688c647a05ea07f1c6993f, type: 3}

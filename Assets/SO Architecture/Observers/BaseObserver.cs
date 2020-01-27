@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace ScriptableObjectArchitecture
 {
-    public abstract class BaseObserver : DebuggableGameEventListener, IVariableObserver, IGameEventListener
+    public abstract class BaseObserver : DebuggableGameEventListener, IVariableObserver
     {
         public abstract void OnVariableChanged();
 
@@ -17,37 +14,16 @@ namespace ScriptableObjectArchitecture
             OnLateUpdate,
             OnFixedUpdate,
             OnTimeInterval,
-            OnEvent
+            None,
         }
 
         [Group("General")]
-        [FormerlySerializedAs("_listnerOption"), SerializeField]
-        protected ListenerOption _listenerOption = ListenerOption.OnChanged;
-        [SerializeField]
-        protected GameEvent _gameEvent;
+        [SerializeField] protected ListenerOption _listenerOption = ListenerOption.OnChanged;
+        [SerializeField] private float _delay;
         private float _lastTime;
-        [SerializeField]
-        private float _delay;
 
-        public float LastTime { get => _lastTime; set => _lastTime = value; }
         public float Delay { get => _delay; set => _delay = value; }
         
-        protected virtual void OnEnable()
-        {
-            if (_listenerOption == ListenerOption.OnEvent && _gameEvent != null)
-            {
-                _gameEvent.AddListener(this);
-            }
-        }
-
-        protected virtual void OnDisable()
-        {
-            if (_gameEvent != null)
-            {
-                _gameEvent.RemoveListener(this);
-            }
-        }
-
         protected virtual void Update()
         {
             if (_listenerOption == ListenerOption.OnUpdate)
@@ -56,7 +32,6 @@ namespace ScriptableObjectArchitecture
             }
             else if (_listenerOption == ListenerOption.OnTimeInterval)
             {
-                // TODO
                 if (Time.time - _lastTime >= _delay)
                 {
                     _lastTime = Time.time;
@@ -80,40 +55,22 @@ namespace ScriptableObjectArchitecture
                 OnVariableChanged();
             }
         }
-
-
-        public abstract void Register();
-        public abstract void Unregister();
-
-        public void OnEventRaised()
-        {
-            OnVariableChanged();
-        }
     }
 
     public abstract class BaseObserver<TType, TVariable> : BaseObserver
         where TVariable : Subject
     {
-        protected override ScriptableObject GameEvent => Variable;
-
-        protected ScriptableObject Variable { get { return _variable; } }
+        protected override ScriptableObject GameEvent { get { return _variable; } }
 
         [Group("General")]
-        [SerializeField]
-        protected bool _raiseOnStart = true;
-        [SerializeField]
-        protected TVariable _variable = default(TVariable);
-        [SerializeField]
-        private TVariable _previouslyRegisteredVariable = default(TVariable);
+        [SerializeField] protected bool _raiseOnStart = true;
+        [SerializeField] protected TVariable _variable = default;
+        [SerializeField] protected TType _debugValue = default;
 
-        [SerializeField]
-        protected TType _debugValue = default(TType);
-
-        protected override void OnEnable()
+        protected virtual void OnEnable()
         {
             if (_variable != null)
             {
-                base.OnEnable();
                 if (_listenerOption == ListenerOption.OnChanged)
                 {
                     Register();
@@ -130,28 +87,20 @@ namespace ScriptableObjectArchitecture
             }
         }
 
-        protected override void OnDisable()
+        protected virtual void OnDisable()
         {
             if (_variable != null)
             {
-                base.OnDisable();
                 Unregister();
             }
         }
 
-
-        public override void Register()
+        public void Register()
         {
-            if (_previouslyRegisteredVariable != null)
-            {
-                _previouslyRegisteredVariable.RemoveObserver(this);
-            }
-
             _variable.AddObserver(this);
-            _previouslyRegisteredVariable = _variable;
         }
 
-        public override void Unregister()
+        public void Unregister()
         {
             _variable.RemoveObserver(this);
         }
@@ -166,7 +115,7 @@ where TResponse : UnityEvent<TType>
         protected override UnityEventBase Response { get { return _response; } }
         
         [Group("Response"), SerializeField]
-        protected TResponse _response = default(TResponse);
+        protected TResponse _response = default;
 
         public override void OnVariableChanged()
         {

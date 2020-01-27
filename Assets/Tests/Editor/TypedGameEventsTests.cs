@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Tests
 {
+
     [TestFixture]
     public class TypedGameEventsTests
     {
