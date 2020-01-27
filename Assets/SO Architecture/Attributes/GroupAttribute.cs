@@ -1,15 +1,33 @@
 ﻿using System;
 using UnityEditor;
+using UnityEngine;
 
 [AttributeUsage(AttributeTargets.Field)]
 public class GroupAttribute : Attribute
 {
-    public string header;
-    public bool hidden;
+    public GUIContent Label;
+    public bool Hidden;
+    public Color Tint { get; set; }
 
-    public GroupAttribute(string header, bool hidden = false)
+    public GroupAttribute(string text)
     {
-        this.header = header;
-        this.hidden = hidden;
+        Label = new GUIContent(text);
+    }
+
+    public GroupAttribute(string text, string iconName = "")
+    {
+        Label = EditorGUIUtility.IconContent(iconName, text);
+        Label.text = text;
+    }
+}
+
+[AttributeUsage(AttributeTargets.Field)]
+public class GroupColorAttribute : Attribute
+{
+    public Color Color { get; set; }
+
+    public GroupColorAttribute(byte R, byte G, byte B)
+    {
+        Color = new Color(R, G, B);
     }
 }

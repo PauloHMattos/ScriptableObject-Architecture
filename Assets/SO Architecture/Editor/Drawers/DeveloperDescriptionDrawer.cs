@@ -17,10 +17,9 @@ namespace ScriptableObjectArchitecture.Editor
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
-                var style = EditorStyles.foldout;
-                style.font = EditorStyles.boldFont;
-                _showDescription.boolValue =
-                    EditorGUILayout.Foldout(_showDescription.boolValue, new GUIContent("Description"), style);
+                var content = new GUIContent("Description");
+                content.image = EditorGUIUtility.IconContent("TextAsset Icon").image;
+                _showDescription.boolValue = EditorGUILayout.Foldout(_showDescription.boolValue, content);
             }
             if (_showDescription.boolValue)
             {

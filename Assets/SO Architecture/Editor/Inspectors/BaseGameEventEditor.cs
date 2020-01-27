@@ -33,13 +33,11 @@ namespace ScriptableObjectArchitecture.Editor
 
         protected override void DrawDeveloperDescription()
         {
-            var headerStyle = EditorStyles.foldout;
-            headerStyle.font = EditorStyles.boldFont;
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
                 _showListeners.boolValue =
-                    EditorGUILayout.Foldout(_showListeners.boolValue, new GUIContent("Listeners"), headerStyle);
+                    EditorGUILayout.Foldout(_showListeners.boolValue, new GUIContent("Listeners"));
             }
             if (_showListeners.boolValue)
             {

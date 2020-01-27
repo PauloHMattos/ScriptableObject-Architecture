@@ -54,15 +54,13 @@ namespace ScriptableObjectArchitecture.Editor
 
         public override void OnInspectorGUI()
         {
-            var _headerStyle = EditorStyles.foldout;
-            _headerStyle.font = EditorStyles.boldFont;
             serializedObject.Update();
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
                 _showGeneral.boolValue =
-                    EditorGUILayout.Foldout(_showGeneral.boolValue, new GUIContent("General"), _headerStyle);
+                    EditorGUILayout.Foldout(_showGeneral.boolValue, new GUIContent("General"));
                 if (_showGeneral.boolValue)
                 {
                     DrawGeneral();

@@ -7,6 +7,13 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    internal class FieldGroup
+    {
+        public GUIContent GUIContent;
+        public List<FieldInfo> Fields = new List<FieldInfo>();
+        public Color? Color;
+    }
+
     public class SOArchitectureBaseEditor : UnityEditor.Editor
     {
         protected SerializedProperty _showGroups;
@@ -32,12 +39,12 @@ namespace ScriptableObjectArchitecture.Editor
 
             serializedObject.ApplyModifiedProperties();
         }
-        private Dictionary<string, List<FieldInfo>> GetCustomFields()
+        private Dictionary<string, FieldGroup> GetCustomFields()
         {
-            var dict = new Dictionary<string, List<FieldInfo>>();
+            var dict = new Dictionary<string, FieldGroup>();
             var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
-            string currentHeader = "";
+            GUIContent currentHeader = new GUIContent();
 
             var targetType = target.GetType();
             var fields = targetType.GetFields(bindingFlags);
@@ -62,16 +69,24 @@ namespace ScriptableObjectArchitecture.Editor
                 var header = field.GetCustomAttribute<GroupAttribute>(true);
                 if (header != null)
                 {
-                    currentHeader = header.header;
-                    if (header.hidden)
+                    currentHeader = header.Label;
+                    if (header.Hidden)
                         continue;
                 }
 
-                if (!dict.ContainsKey(currentHeader))
+                if (!dict.ContainsKey(currentHeader.text))
                 {
-                    dict.Add(currentHeader, new List<FieldInfo>());
+                    var group = new FieldGroup();
+                    group.GUIContent = currentHeader;
+
+                    var colorAttr = field.GetCustomAttributes<ColorAttribute>().Where(c => c.Background).FirstOrDefault();
+                    if (colorAttr != null && colorAttr.Background)
+                    {
+                        group.Color = colorAttr.Color;
+                    }
+                    dict.Add(currentHeader.text, group);
                 }
-                dict[currentHeader].Add(field);
+                dict[currentHeader.text].Fields.Add(field);
             }
             return dict;
         }
@@ -103,9 +118,6 @@ namespace ScriptableObjectArchitecture.Editor
 
         private void DrawButtonsGroup()
         {
-            var _headerStyle = EditorStyles.foldout;
-            _headerStyle.font = EditorStyles.boldFont;
-
             var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
             var targetType = target.GetType();
@@ -133,7 +145,7 @@ namespace ScriptableObjectArchitecture.Editor
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 using (new EditorGUI.IndentLevelScope())
                 {
-                    _showButttons.boolValue = EditorGUILayout.Foldout(_showButttons.boolValue, new GUIContent("Buttons"), _headerStyle);
+                    _showButttons.boolValue = EditorGUILayout.Foldout(_showButttons.boolValue, new GUIContent("Buttons"));
                     if (_showButttons.boolValue)
                     {
                         var buttonText = string.IsNullOrEmpty(buttonAttribute.Text) ? method.Name : buttonAttribute.Text;
@@ -175,8 +187,6 @@ namespace ScriptableObjectArchitecture.Editor
                 return;
             }
 
-            var _headerStyle = EditorStyles.foldout;
-            _headerStyle.font = EditorStyles.boldFont;
             int showFlags = _showGroups.intValue;
 
             for (int i = 0; i < groups.Count; i++)
@@ -184,17 +194,24 @@ namespace ScriptableObjectArchitecture.Editor
                 var group = groups.ElementAt(i);
                 bool show = IsBitSet(showFlags, i);
 
+                Color _prevColor = GUI.backgroundColor;
+                if (group.Value.Color.HasValue)
+                {
+                    GUI.backgroundColor = group.Value.Color.Value;
+                }
+
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 using (new EditorGUI.IndentLevelScope())
                 {
-                    show = EditorGUILayout.Foldout(show, new GUIContent(group.Key), _headerStyle);
+                    show = EditorGUILayout.Foldout(show, group.Value.GUIContent);
                     if (show)
                     {
-                        var fields = group.Value;
+                        var fields = group.Value.Fields;
                         DrawCustomFields(fields, serializedObject, group.Key);
                     }
                 }
                 EditorGUILayout.EndVertical();
+                GUI.backgroundColor = _prevColor;
 
                 SetBit(ref showFlags, i, show);
             }
