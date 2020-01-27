@@ -11,7 +11,7 @@ namespace ScriptableObjectArchitecture
     {
 #if UNITY_EDITOR
 #pragma warning disable 0414
-        [Group("Debug")]
+        [Group("Debug", "Search Icon")]
         [SerializeField]
         protected bool _enableGizmoDebugging = true;
         [SerializeField]

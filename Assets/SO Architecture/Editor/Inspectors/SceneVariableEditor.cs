@@ -19,13 +19,12 @@ namespace ScriptableObjectArchitecture.Editor
 
         protected override void DrawCustomFields()
         {
-            var _headerStyle = EditorStyles.foldout;
-            _headerStyle.font = EditorStyles.boldFont;
-
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
-                _showGroups.boolValue = EditorGUILayout.Foldout(_showGroups.boolValue, new GUIContent("Scene Info"), _headerStyle);
+                var label = new GUIContent("Scene Info");
+                label.image = EditorGUIUtility.IconContent("SceneAsset Icon").image;
+                _showGroups.boolValue = EditorGUILayout.Foldout(_showGroups.boolValue, label);
                 if (_showGroups.boolValue)
                 {
                     DrawSceneInfo();

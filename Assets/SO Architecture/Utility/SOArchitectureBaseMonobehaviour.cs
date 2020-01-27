@@ -13,6 +13,8 @@ namespace ScriptableObjectArchitecture
         [SerializeField]
         private int _showGroups = 0;
         [SerializeField]
+        private bool _showButttons = false;
+        [SerializeField]
         private DeveloperDescription DeveloperDescription = new DeveloperDescription();
 #pragma warning restore
 #endif

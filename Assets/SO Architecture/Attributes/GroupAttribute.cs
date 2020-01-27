@@ -1,74 +1,33 @@
 ﻿using System;
 using UnityEditor;
+using UnityEngine;
 
 [AttributeUsage(AttributeTargets.Field)]
 public class GroupAttribute : Attribute
 {
-    public string header;
-    public bool hidden;
+    public GUIContent Label;
+    public bool Hidden;
+    public Color Tint { get; set; }
 
-    public GroupAttribute(string header, bool hidden = false)
+    public GroupAttribute(string text)
     {
-        this.header = header;
-        this.hidden = hidden;
+        Label = new GUIContent(text);
+    }
+
+    public GroupAttribute(string text, string iconName = "")
+    {
+        Label = EditorGUIUtility.IconContent(iconName, text);
+        Label.text = text;
     }
 }
 
-[AttributeUsage(AttributeTargets.Class)]
-public class HelpBoxAttribute : Attribute
-{
-    public string Message;
-    public HelpBoxType Type;
-
-    public HelpBoxAttribute(string message, HelpBoxType type)
-    {
-        Message = message;
-        Type = type;
-    }
-}
-
-public enum HelpBoxType
-{
-    //
-    // Resumo:
-    //     Neutral message.
-    None = 0,
-    //
-    // Resumo:
-    //     Info message.
-    Info = 1,
-    //
-    // Resumo:
-    //     Warning message.
-    Warning = 2,
-    //
-    // Resumo:
-    //     Error message.
-    Error = 3
-}
-
-/*
 [AttributeUsage(AttributeTargets.Field)]
-public class DrawAttribute : Attribute
+public class GroupColorAttribute : Attribute
 {
-    public string header;
+    public Color Color { get; set; }
 
-    public GroupAttribute(string header)
+    public GroupColorAttribute(byte R, byte G, byte B)
     {
-        this.header = header;
-        /*
-         * _reorderableList = new ReorderableList(
-                serializedObject,
-                CollectionItemsProperty,
-                ELEMENT_DRAGGABLE,
-                LIST_DISPLAY_HEADER,
-                LIST_DISPLAY_ADD_BUTTON,
-                LIST_DISPLAY_REMOVE_BUTTON)
-            {
-                drawHeaderCallback = DrawHeader,
-                drawElementCallback = DrawElement,
-            };
-         //*
+        Color = new Color(R, G, B);
     }
 }
-//*/

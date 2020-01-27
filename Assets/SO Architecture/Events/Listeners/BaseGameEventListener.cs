@@ -12,14 +12,14 @@ where TResponse : UnityEvent<TType>
         protected override ScriptableObject GameEvent { get { return _event; } }
         protected override UnityEventBase Response { get { return _response; } }
 
-        [Group("General"), SerializeField]
+        [Group("General", "GameManager Icon"), SerializeField]
         protected TEvent _event = default(TEvent);
-        [Group("Response"), SerializeField]
+        [Group("Response", "d_CollabMoved Icon"), SerializeField]
         protected TResponse _response = default(TResponse);
         [SerializeField]
         private TEvent _previouslyRegisteredEvent = default(TEvent);
 
-        [Group("Debug")]
+        [Group("Debug", "Search Icon")]
         [SerializeField]
         protected TType _debugValue = default(TType);
 
@@ -64,10 +64,10 @@ where TResponse : UnityEvent<TType>
         protected override ScriptableObject GameEvent { get { return _event; } }
         protected override UnityEventBase Response { get { return _response; } }
 
-        [Group("General"), SerializeField]
+        [Group("General", "GameManager Icon"), SerializeField]
         protected TEvent _event = default(TEvent);
 
-        [Group("Event"), SerializeField]
+        [Group("Response", "d_CollabMoved Icon"), SerializeField]
         protected TResponse _response = default(TResponse);
 
         [SerializeField, HideInInspector]

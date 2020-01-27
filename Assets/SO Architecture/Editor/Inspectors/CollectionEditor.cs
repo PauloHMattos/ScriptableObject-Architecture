@@ -57,15 +57,14 @@ namespace ScriptableObjectArchitecture.Editor
         }
         public override void OnInspectorGUI()
         {
-            var _headerStyle = EditorStyles.foldout;
-            _headerStyle.font = EditorStyles.boldFont;
             EditorGUI.BeginChangeCheck();
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
-                _showCollectionItems.boolValue =
-                    EditorGUILayout.Foldout(_showCollectionItems.boolValue, new GUIContent("Items"), _headerStyle);
+                var label = new GUIContent("Items");
+                label.image = EditorGUIUtility.IconContent("LightProbes Icon").image;
+                _showCollectionItems.boolValue = EditorGUILayout.Foldout(_showCollectionItems.boolValue, label);
             }
             if (_showCollectionItems.boolValue)
             {

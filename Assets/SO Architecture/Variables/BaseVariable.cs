@@ -75,7 +75,7 @@ namespace ScriptableObjectArchitecture
         public override bool IsClamped { get => _isClamped; set => _isClamped = value; }
         public override System.Type Type { get { return typeof(T); } }
 
-        [Group("General")]
+        [Group("General", "GameManager Icon")]
         [SerializeField, HideInInspector]
         protected bool _resetWhenStart = true;
         [SerializeField, HideInInspector]
@@ -88,7 +88,6 @@ namespace ScriptableObjectArchitecture
         [SerializeField, HideInInspector]
         private bool _raiseWarning = true;
 
-        [Group("Test")]
         [SerializeField, HideInInspector]
         protected bool _isClamped = false;
         [SerializeField, HideInInspector]

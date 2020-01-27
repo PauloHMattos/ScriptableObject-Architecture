@@ -6,6 +6,7 @@ using Type = System.Type;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+
     [CustomPropertyDrawer(typeof(BaseReference), true)]
     public sealed class BaseReferenceDrawer : PropertyDrawer
     {
