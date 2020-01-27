@@ -11,17 +11,17 @@ namespace ScriptableObjectArchitecture.Attributes
     {
         public GUIContent Label;
         public bool Hidden;
-        public Color Tint { get; set; }
 
         public GroupAttribute(string text)
         {
             Label = new GUIContent(text);
         }
 
-        public GroupAttribute(string text, string iconName = "")
+        public GroupAttribute(string text, string iconName = "") : this(text)
         {
-            Label = EditorGUIUtility.IconContent(iconName, text);
-            Label.text = text;
+#if UNITY_ENGINE
+            Label.image = EditorGUIUtility.IconContent(iconName, text).image;
+#endif
         }
     }
 }

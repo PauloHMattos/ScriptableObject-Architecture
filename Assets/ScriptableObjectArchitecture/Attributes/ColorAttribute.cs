@@ -22,6 +22,7 @@ namespace ScriptableObjectArchitecture.Attributes
             Color = new Color(R, G, B, A);
         }
 
+#if UNITY_ENGINE
         internal override void OnPreGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             if (Background)
@@ -48,5 +49,6 @@ namespace ScriptableObjectArchitecture.Attributes
                 GUI.color = _prevColor;
             }
         }
+#endif
     }
 }

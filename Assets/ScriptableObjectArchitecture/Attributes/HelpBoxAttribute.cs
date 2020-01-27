@@ -18,10 +18,12 @@ namespace ScriptableObjectArchitecture.Attributes
             Type = type;
         }
 
+#if UNITY_ENGINE
         internal override void OnPostGUI(Rect position, SerializedProperty property)
         {
             EditorGUILayout.HelpBox(Message, (MessageType) Type);
         }
+#endif
     }
 
 

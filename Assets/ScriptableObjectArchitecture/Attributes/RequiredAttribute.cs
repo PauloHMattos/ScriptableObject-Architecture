@@ -1,6 +1,6 @@
 ﻿using System;
-using UnityEngine;
 #if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 #endif
 
@@ -13,6 +13,7 @@ namespace ScriptableObjectArchitecture.Attributes
         {
         }
 
+#if UNITY_ENGINE
         internal override void OnPostGUI(Rect position, SerializedProperty property)
         {
             base.OnPostGUI(position, property);
@@ -23,5 +24,6 @@ namespace ScriptableObjectArchitecture.Attributes
                 EditorGUILayout.HelpBox("Required field", MessageType.Error);
             }
         }
+#endif
     }
 }
