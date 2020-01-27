@@ -9,7 +9,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
     [CustomEditor(typeof(AnimatorObserver), true)]
     public class AnimatorObserverEditor : UnityEditor.Editor
     {
-        private AnimatorObserver Target { get { return (AnimatorObserver)target; } }
+        private AnimatorObserver Target => (AnimatorObserver)target;
 
         public override void OnInspectorGUI()
         {
@@ -43,13 +43,13 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
                         throw new ArgumentOutOfRangeException();
                 }
 
-                if (Target.variables.Count <= i)
+                if (Target.Variables.Count <= i)
                 {
-                    Target.variables.Add(null);
+                    Target.Variables.Add(null);
                 }
 
-                Target.variables[i] = (BaseVariable) EditorGUILayout.ObjectField(new GUIContent(animatorParameter.name),
-                    Target.variables[i], variableType, false);
+                Target.Variables[i] = (BaseVariable) EditorGUILayout.ObjectField(new GUIContent(animatorParameter.name),
+                    Target.Variables[i], variableType, false);
             }
             EditorGUI.indentLevel = 0;
         }

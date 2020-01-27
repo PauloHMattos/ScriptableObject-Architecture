@@ -6,35 +6,34 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Events.Raisers
 {
-    [AddComponentMenu(SOArchitecture_Utility.EVENT_RAISER_SUBMENU + "On Key Raiser")]
+    [AddComponentMenu(SoArchitectureUtility.EVENT_RAISER_SUBMENU + "On Key Raiser")]
     public class OnKeyEventRaiser : BaseGameEventRaiser
     {
         [Group("General", "GameManager Icon")]
-        public KeyCodeReference key;
-        public EventType eventType;
-
+        public KeyCodeReference Key;
+        public EventType EventType;
 
         protected override void Update()
         {
-            if (!key.IsValueDefined)
+            if (!Key.IsValueDefined)
                 return;
 
-            if (eventType.HasFlag(EventType.Down) && Input.GetKeyDown(key.Value))
+            if (EventType.HasFlag(EventTypeOptions.Down) && Input.GetKeyDown(Key.Value))
             {
                 _events.Invoke();
             }
-            if (eventType.HasFlag(EventType.Hold) && Input.GetKey(key.Value))
+            if (EventType.HasFlag(EventTypeOptions.Hold) && Input.GetKey(Key.Value))
             {
                 _events.Invoke();
             }
-            if (eventType.HasFlag(EventType.Up) && Input.GetKeyUp(key.Value))
+            if (EventType.HasFlag(EventTypeOptions.Up) && Input.GetKeyUp(Key.Value))
             {
                 _events.Invoke();
             }
         }
 
         [Flags]
-        public enum EventType
+        public enum EventTypeOptions
         {
             Down = 1,
             Hold = 2,

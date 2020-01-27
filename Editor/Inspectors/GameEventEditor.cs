@@ -1,4 +1,4 @@
-﻿using ScriptableObjectArchitecture.Events.Game_Events;
+﻿using ScriptableObjectArchitecture.Events.GameEvents;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
     [CustomEditor(typeof(GameEventBase), true)]
     public sealed class GameEventEditor : BaseGameEventEditor
     {
-        private GameEvent Target { get { return (GameEvent)target; } }
+        private GameEvent Target => (GameEvent)target;
 
         protected override void DrawRaiseButton()
         {

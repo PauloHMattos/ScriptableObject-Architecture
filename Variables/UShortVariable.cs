@@ -5,11 +5,12 @@ namespace ScriptableObjectArchitecture.Variables
 {
     [CreateAssetMenu(
         fileName = "UnsignedShortVariable.asset",
-        menuName = SOArchitecture_Utility.ADVANCED_VARIABLE_SUBMENU + "ushort",
-        order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 18)]
+        menuName = SoArchitectureUtility.ADVANCED_VARIABLE_SUBMENU + "ushort",
+        order = SoArchitectureUtility.ASSET_MENU_ORDER_COLLECTIONS + 18)]
     public class UShortVariable : NumericVariable<ushort, UShortVariable>
     {
-        public override bool Clampable { get { return true; } }
+        public override bool Clampable => true;
+
         protected override ushort ClampValue(ushort value)
         {
             if (value.CompareTo(MinClampValue) < 0)

@@ -11,23 +11,17 @@ namespace ScriptableObjectArchitecture
     /// in the runtime assembly for the purpose of enabling editor-only additional features when playing such as
     /// gizmos and debugging.
     /// </summary>
-    public static class SOArchitecturePreferences
+    public static class SoArchitecturePreferences
     {
         /// <summary>
         /// Returns true if debug features should be enabled, otherwise false.
         /// </summary>
-        public static bool IsDebugEnabled
-        {
-            get { return GetBoolPref(ENABLE_DEBUG_PREF, ENABLE_DEBUG_DEFAULT); }
-        }
+        public static bool IsDebugEnabled => GetBoolPref(ENABLE_DEBUG_PREF, ENABLE_DEBUG_DEFAULT);
 
         /// <summary>
         /// Returns true if Gizmos should be enabled, otherwise false.
         /// </summary>
-        public static bool AreGizmosEnabled
-        {
-            get { return GetBoolPref(DRAW_EVENT_GIZMOS_PREF, DRAW_EVENT_GIZMOS_DEFAULT); }
-        }
+        public static bool AreGizmosEnabled => GetBoolPref(DRAW_EVENT_GIZMOS_PREF, DRAW_EVENT_GIZMOS_DEFAULT);
 
         // UI
         private const string PREFERENCES_TITLE_PATH = "Preferences/SOArchitecture";
@@ -48,11 +42,11 @@ namespace ScriptableObjectArchitecture
         private const string ASSET_MENU_ORDER_DESCRIPTION =
             "This determines the order in which the CreateAsset Context Menu will be placed into.";
 
-        private static readonly GUILayoutOption MAX_WIDTH;
+        private static readonly GUILayoutOption MaxWidth;
 
 #if UNITY_2018_3_OR_NEWER
         // Searchable Fields
-        private static readonly string[] KEYWORDS =
+        private static readonly string[] Keywords =
         {
             "Scriptable",
             "Architecture"
@@ -66,9 +60,9 @@ namespace ScriptableObjectArchitecture
         private const bool DRAW_EVENT_GIZMOS_DEFAULT = true;
         private const bool ENABLE_DEBUG_DEFAULT = true;
 
-        static SOArchitecturePreferences()
+        static SoArchitecturePreferences()
         {
-            MAX_WIDTH = GUILayout.MaxWidth(200f);
+            MaxWidth = GUILayout.MaxWidth(200f);
         }
 
 #if UNITY_2018_3_OR_NEWER
@@ -77,8 +71,8 @@ namespace ScriptableObjectArchitecture
         {
             return new SettingsProvider(PROJECT_TITLE_PATH, SettingsScope.Project)
             {
-                guiHandler = DrawProjectGUI,
-                keywords = KEYWORDS
+                guiHandler = DrawProjectGui,
+                keywords = Keywords
             };
         }
 
@@ -87,22 +81,22 @@ namespace ScriptableObjectArchitecture
         {
             return new SettingsProvider(PREFERENCES_TITLE_PATH, SettingsScope.User)
             {
-                guiHandler = DrawPersonalPrefsGUI,
-                keywords = KEYWORDS
+                guiHandler = DrawPersonalPrefsGui,
+                keywords = Keywords
             };
         }
 #endif
-        private static void DrawAllGUI()
+        private static void DrawAllGui()
         {
-            DrawProjectGUI();
-            DrawPersonalPrefsGUI();
+            DrawProjectGui();
+            DrawPersonalPrefsGui();
         }
 
-        private static void DrawProjectGUI(string value = "")
+        private static void DrawProjectGui(string value = "")
         {
             EditorGUILayout.LabelField(PROJECT_REFERENCES_HEADER, EditorStyles.boldLabel);
 
-            var settings = SOArchitecture_Settings.Instance;
+            var settings = SoArchitectureSettings.Instance;
 
             GUI.changed = false;
 
@@ -110,7 +104,7 @@ namespace ScriptableObjectArchitecture
             EditorGUILayout.HelpBox(CODE_GEN_DIRECTORY_DESCRIPTION, MessageType.Info);
             using (new EditorGUILayout.HorizontalScope())
             {
-                EditorGUILayout.LabelField(new GUIContent(CODE_GEN_DIRECTORY_LABEL), MAX_WIDTH);
+                EditorGUILayout.LabelField(new GUIContent(CODE_GEN_DIRECTORY_LABEL), MaxWidth);
                 var directory = EditorGUILayout.TextField(settings.CodeGenerationTargetDirectory);
                 settings.CodeGenerationTargetDirectory = directory;
             }
@@ -119,7 +113,7 @@ namespace ScriptableObjectArchitecture
             EditorGUILayout.HelpBox(ALLOW_OVERWRITE_DESCRIPTION, MessageType.Info);
             using (new EditorGUILayout.HorizontalScope())
             {
-                EditorGUILayout.LabelField(new GUIContent(ALLOW_OVERWRITE_LABEL), MAX_WIDTH);
+                EditorGUILayout.LabelField(new GUIContent(ALLOW_OVERWRITE_LABEL), MaxWidth);
                 var newOverwrite = EditorGUILayout.Toggle(settings.CodeGenerationAllowOverwrite);
                 settings.CodeGenerationAllowOverwrite = newOverwrite;
             }
@@ -128,7 +122,7 @@ namespace ScriptableObjectArchitecture
             EditorGUILayout.HelpBox(ASSET_MENU_ORDER_DESCRIPTION, MessageType.Info);
             using (new EditorGUILayout.HorizontalScope())
             {
-                EditorGUILayout.LabelField(ASSET_MENU_ORDER_LABEL, MAX_WIDTH);
+                EditorGUILayout.LabelField(ASSET_MENU_ORDER_LABEL, MaxWidth);
                 var newMenuOrder = EditorGUILayout.IntField(settings.DefaultCreateAssetMenuOrder);
                 settings.DefaultCreateAssetMenuOrder = newMenuOrder;
             }
@@ -139,7 +133,7 @@ namespace ScriptableObjectArchitecture
             }
         }
 
-        private static void DrawPersonalPrefsGUI(string value = "")
+        private static void DrawPersonalPrefsGui(string value = "")
         {
             EditorGUILayout.LabelField(USER_PREFERENCES_HEADER, EditorStyles.boldLabel);
 

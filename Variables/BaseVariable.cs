@@ -33,21 +33,12 @@ namespace ScriptableObjectArchitecture.Variables
     {
         public virtual T Value
         {
-            get
-            {
-                return GetValue();
-            }
-            set
-            {
-                SetValue(value);
-            }
+            get => GetValue();
+            set => SetValue(value);
         }
         public virtual T MinClampValue
         {
-            get
-            {
-                return Clampable ? _minClampedValue : default;
-            }
+            get => Clampable ? _minClampedValue : default;
             set
             {
                 if (Clampable)
@@ -58,10 +49,7 @@ namespace ScriptableObjectArchitecture.Variables
         }
         public virtual T MaxClampValue
         {
-            get
-            {
-                return Clampable ? _maxClampedValue : default;
-            }
+            get => Clampable ? _maxClampedValue : default;
             set
             {
                 if (Clampable)
@@ -71,10 +59,10 @@ namespace ScriptableObjectArchitecture.Variables
             }
         }
 
-        public override bool Clampable { get { return false; } }
+        public override bool Clampable => false;
         public override bool ReadOnly { get => _readOnly; set => _readOnly = value; }
         public override bool IsClamped { get => _isClamped; set => _isClamped = value; }
-        public override System.Type Type { get { return typeof(T); } }
+        public override System.Type Type => typeof(T);
 
         [Group("General", "GameManager Icon")]
         [SerializeField, HideInInspector]

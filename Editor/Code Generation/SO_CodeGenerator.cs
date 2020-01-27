@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace Assets.ScriptableObjectArchitecture.Editor.Code_Generation
 {
-    public static class SO_CodeGenerator
+    public static class SoCodeGenerator
     {
-        static SO_CodeGenerator()
+        static SoCodeGenerator()
         {
             CreateTargetDirectories();
             GatherFilePaths();
@@ -18,47 +18,47 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Code_Generation
         {
             _targetDirectories = new string[TYPE_COUNT]
             {
-                Application.dataPath + "/" + SOArchitecture_Settings.Instance.CodeGenerationTargetDirectory + "/Events/Listeners",
-                Application.dataPath + "/" + SOArchitecture_Settings.Instance.CodeGenerationTargetDirectory + "/Events/Game Events",
-                Application.dataPath + "/" + SOArchitecture_Settings.Instance.CodeGenerationTargetDirectory + "/References",
-                Application.dataPath + "/" + SOArchitecture_Settings.Instance.CodeGenerationTargetDirectory + "/Collections",
-                Application.dataPath + "/" + SOArchitecture_Settings.Instance.CodeGenerationTargetDirectory + "/Events/Responses",
-                Application.dataPath + "/" + SOArchitecture_Settings.Instance.CodeGenerationTargetDirectory + "/Variables",
-                Application.dataPath + "/" + SOArchitecture_Settings.Instance.CodeGenerationTargetDirectory + "/Observers",
+                Application.dataPath + "/" + SoArchitectureSettings.Instance.CodeGenerationTargetDirectory + "/Events/Listeners",
+                Application.dataPath + "/" + SoArchitectureSettings.Instance.CodeGenerationTargetDirectory + "/Events/Game Events",
+                Application.dataPath + "/" + SoArchitectureSettings.Instance.CodeGenerationTargetDirectory + "/References",
+                Application.dataPath + "/" + SoArchitectureSettings.Instance.CodeGenerationTargetDirectory + "/Collections",
+                Application.dataPath + "/" + SoArchitectureSettings.Instance.CodeGenerationTargetDirectory + "/Events/Responses",
+                Application.dataPath + "/" + SoArchitectureSettings.Instance.CodeGenerationTargetDirectory + "/Variables",
+                Application.dataPath + "/" + SoArchitectureSettings.Instance.CodeGenerationTargetDirectory + "/Observers",
             };
         }
         private static void GatherFilePaths()
         {
-            string assetPath = Application.dataPath;
-            string folderToStartSearch = Directory.GetParent(assetPath).FullName;
+            var assetPath = Application.dataPath;
+            var folderToStartSearch = Directory.GetParent(assetPath).FullName;
 
-            Queue<string> foldersToCheck = new Queue<string>();
+            var foldersToCheck = new Queue<string>();
             foldersToCheck.Enqueue(folderToStartSearch);
 
             while (foldersToCheck.Count > 0)
             {
-                string currentDirectory = foldersToCheck.Dequeue();
+                var currentDirectory = foldersToCheck.Dequeue();
 
-                foreach (string filePath in Directory.GetFiles(currentDirectory))
+                foreach (var filePath in Directory.GetFiles(currentDirectory))
                 {
-                    string fileName = Path.GetFileName(filePath);
+                    var fileName = Path.GetFileName(filePath);
 
-                    for (int i = 0; i < TYPE_COUNT; i++)
+                    for (var i = 0; i < TYPE_COUNT; i++)
                     {
                         if (_templateNames[i] == fileName)
                             _templatePaths[i] = filePath;
                     }
                 }
-                foreach (string subDirectory in Directory.GetDirectories(currentDirectory))
+                foreach (var subDirectory in Directory.GetDirectories(currentDirectory))
                 {
                     foldersToCheck.Enqueue(subDirectory);
                 }
             }
 
             //Double check that all filepaths were found
-            for (int i = 0; i < TYPE_COUNT; i++)
+            for (var i = 0; i < TYPE_COUNT; i++)
             {
-                if (_templatePaths[i] == default(string))
+                if (_templatePaths[i] == default)
                 {
                     Debug.LogError("Couldn't find path for " + _templatePaths[i]);
                 }
@@ -101,7 +101,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Code_Generation
         private static string[] _templatePaths = new string[TYPE_COUNT];
         private static string[,] _replacementStrings = null;
 
-        private static string TypeName { get { return _replacementStrings[1, 1]; } }
+        private static string TypeName => _replacementStrings[1, 1];
 
         public static void Generate(Data data)
         {
@@ -113,7 +113,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Code_Generation
             { "$ORDER$", data.Order.ToString() },
             };
 
-            for (int i = 0; i < TYPE_COUNT; i++)
+            for (var i = 0; i < TYPE_COUNT; i++)
             {
                 if (data.Types[i])
                 {
@@ -123,10 +123,10 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Code_Generation
         }
         private static void GenerateScript(int index)
         {
-            string targetFilePath = GetTargetFilePath(index);
-            string contents = GetScriptContents(index);
+            var targetFilePath = GetTargetFilePath(index);
+            var contents = GetScriptContents(index);
 
-            if (File.Exists(targetFilePath) && !SOArchitecture_Settings.Instance.CodeGenerationAllowOverwrite)
+            if (File.Exists(targetFilePath) && !SoArchitectureSettings.Instance.CodeGenerationAllowOverwrite)
             {
                 Debug.Log("Cannot create file at " + targetFilePath + " because a file already exists, and overwrites are disabled");
                 return;
@@ -139,12 +139,12 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Code_Generation
         }
         private static string GetScriptContents(int index)
         {
-            string templatePath = _templatePaths[index];
-            string templateContent = File.ReadAllText(templatePath);
+            var templatePath = _templatePaths[index];
+            var templateContent = File.ReadAllText(templatePath);
 
-            string output = templateContent;
+            var output = templateContent;
 
-            for (int i = 0; i < _replacementStrings.GetLength(0); i++)
+            for (var i = 0; i < _replacementStrings.GetLength(0); i++)
             {
                 output = output.Replace(_replacementStrings[i, 0], _replacementStrings[i, 1]);
             }

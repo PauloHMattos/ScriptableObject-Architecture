@@ -6,19 +6,19 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Events.Raisers
 {
-    [AddComponentMenu(SOArchitecture_Utility.EVENT_RAISER_SUBMENU + "Timed Raiser")]
+    [AddComponentMenu(SoArchitectureUtility.EVENT_RAISER_SUBMENU + "Timed Raiser")]
     public class TimedGameEventRaiser : BaseGameEventRaiser
     {
         [Group("General", "GameManager Icon")]
-        public LifeCycle lifeCycle;
-        public FloatReference interval;
-        public float timeUntilNext;
+        public LifeCycleOptions LifeCycle;
+        public FloatReference Interval;
+        public float TimeUntilNext;
 
         private float _lastTime;
 
         protected override void Update()
         {
-            if (lifeCycle.HasFlag(LifeCycle.OnUpdate))
+            if (LifeCycle.HasFlag(LifeCycleOptions.OnUpdate))
             {
                 Raise();
             }
@@ -26,7 +26,7 @@ namespace ScriptableObjectArchitecture.Events.Raisers
 
         protected virtual void LateUpdate()
         {
-            if (lifeCycle.HasFlag(LifeCycle.OnLateUpdate))
+            if (LifeCycle.HasFlag(LifeCycleOptions.OnLateUpdate))
             {
                 Raise();
             }
@@ -34,7 +34,7 @@ namespace ScriptableObjectArchitecture.Events.Raisers
 
         protected virtual void FixedUpdate()
         {
-            if (lifeCycle.HasFlag(LifeCycle.OnFixedUpdate))
+            if (LifeCycle.HasFlag(LifeCycleOptions.OnFixedUpdate))
             {
                 Raise();
             }
@@ -42,8 +42,8 @@ namespace ScriptableObjectArchitecture.Events.Raisers
 
         protected void Raise()
         {
-            timeUntilNext = Time.time - _lastTime;
-            if (timeUntilNext < interval.Value)
+            TimeUntilNext = Time.time - _lastTime;
+            if (TimeUntilNext < Interval.Value)
             {
                 return;
             }
@@ -53,7 +53,7 @@ namespace ScriptableObjectArchitecture.Events.Raisers
         }
 
         [Flags]
-        public enum LifeCycle
+        public enum LifeCycleOptions
         {
             OnUpdate = 1,
             OnLateUpdate = 2,

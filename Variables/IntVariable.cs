@@ -5,11 +5,12 @@ namespace ScriptableObjectArchitecture.Variables
 {
     [CreateAssetMenu(
         fileName = "IntVariable.asset",
-        menuName = SOArchitecture_Utility.VARIABLE_SUBMENU + "int",
-        order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 4)]
+        menuName = SoArchitectureUtility.VARIABLE_SUBMENU + "int",
+        order = SoArchitectureUtility.ASSET_MENU_ORDER_COLLECTIONS + 4)]
     public class IntVariable : NumericVariable<int, IntVariable>
     {
-        public override bool Clampable { get { return true; } }
+        public override bool Clampable => true;
+
         protected override int ClampValue(int value)
         {
             if (value.CompareTo(MinClampValue) < 0)

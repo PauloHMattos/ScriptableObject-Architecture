@@ -5,7 +5,7 @@ using ScriptableObjectArchitecture.Events.Listeners;
 using ScriptableObjectArchitecture.Utility;
 using UnityEngine;
 
-namespace ScriptableObjectArchitecture.Events.Game_Events
+namespace ScriptableObjectArchitecture.Events.GameEvents
 {
     public abstract class GameEventBase<T> : GameEventBase, IGameEvent<T>, IStackTraceObject
     {
@@ -13,17 +13,11 @@ namespace ScriptableObjectArchitecture.Events.Game_Events
         private readonly List<Action<T>> _typedActions = new List<Action<T>>();
 
         [SerializeField]
-        protected T _debugValue = default(T);
+        protected T _debugValue = default;
 
-        public List<Action<T>> TypedActions
-        {
-            get => _typedActions;
-        }
+        public List<Action<T>> TypedActions => _typedActions;
 
-        public List<IGameEventListener<T>> TypedListeners
-        {
-            get => _typedListeners;
-        }
+        public List<IGameEventListener<T>> TypedListeners => _typedListeners;
 
         public override int GetActionsCount()
         {
@@ -43,10 +37,10 @@ namespace ScriptableObjectArchitecture.Events.Game_Events
 #if UNITY_EDITOR
             AddStackTrace(value);
 #endif
-            for (int i = _typedListeners.Count - 1; i >= 0; i--)
+            for (var i = _typedListeners.Count - 1; i >= 0; i--)
                 _typedListeners[i].OnEventRaised(value);
 
-            for (int i = _typedActions.Count - 1; i >= 0; i--)
+            for (var i = _typedActions.Count - 1; i >= 0; i--)
                 _typedActions[i](value);
 
             base.CallListeners();
@@ -102,8 +96,8 @@ namespace ScriptableObjectArchitecture.Events.Game_Events
 
     public abstract class GameEventBase : StackTraceObject, IGameEvent, IStackTraceObject
     {
-        [HideInInspector] protected readonly List<IGameEventListener> _listeners = new List<IGameEventListener>();
-        [HideInInspector] protected readonly List<System.Action> _actions = new List<System.Action>();
+        private readonly List<IGameEventListener> _listeners = new List<IGameEventListener>();
+        private readonly List<System.Action> _actions = new List<System.Action>();
 
         [Group("General")]
         [SerializeField]
@@ -125,20 +119,11 @@ namespace ScriptableObjectArchitecture.Events.Game_Events
         {
             return _actions.Count;
         }
-        public List<Action> Actions
-        {
-            get => _actions;
-        }
+        public List<Action> Actions => _actions;
 
-        public List<IGameEventListener> Listeners
-        {
-            get => _listeners;
-        }
+        public List<IGameEventListener> Listeners => _listeners;
 
-        public bool Enabled
-        {
-            get => _enabled;
-        }
+        public bool Enabled => _enabled;
 
         public void SetEnabled(bool enabled)
         {
@@ -158,11 +143,11 @@ namespace ScriptableObjectArchitecture.Events.Game_Events
 
         protected virtual void CallListeners()
         {
-            for (int i = _listeners.Count - 1; i >= 0; i--)
+            for (var i = _listeners.Count - 1; i >= 0; i--)
             {
                 _listeners[i].OnEventRaised();
             }
-            for (int i = _actions.Count - 1; i >= 0; i--)
+            for (var i = _actions.Count - 1; i >= 0; i--)
             {
                 _actions[i]();
             }

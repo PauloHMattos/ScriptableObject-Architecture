@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using ScriptableObjectArchitecture.Attributes;
-using ScriptableObjectArchitecture.Events.Game_Events;
+using ScriptableObjectArchitecture.Events.GameEvents;
 using ScriptableObjectArchitecture.Utility;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +11,7 @@ using UnityEngine.Events;
 
 namespace ScriptableObjectArchitecture.Events.Listeners
 {
-    public abstract class DebuggableGameEventListener : SOArchitectureBaseMonoBehaviour, IStackTraceObject
+    public abstract class DebuggableGameEventListener : SoArchitectureBaseMonoBehaviour, IStackTraceObject
     {
 #if UNITY_EDITOR
 #pragma warning disable 0414
@@ -23,7 +23,7 @@ namespace ScriptableObjectArchitecture.Events.Listeners
 #pragma warning restore
 #endif
 
-        public List<StackTraceEntry> StackTraces { get { return _stackTraces; } }
+        public List<StackTraceEntry> StackTraces => _stackTraces;
         private List<StackTraceEntry> _stackTraces = new List<StackTraceEntry>();
 
         protected abstract ScriptableObject GameEvent { get; }
@@ -32,7 +32,7 @@ namespace ScriptableObjectArchitecture.Events.Listeners
         public void AddStackTrace(object obj)
         {
 #if UNITY_EDITOR
-            if (SOArchitecturePreferences.IsDebugEnabled)
+            if (SoArchitecturePreferences.IsDebugEnabled)
             {
                 var stackTrace = StackTraceEntry.Create(obj);
                 StackTraces.Insert(0, stackTrace);
@@ -44,7 +44,7 @@ namespace ScriptableObjectArchitecture.Events.Listeners
         public void AddStackTrace()
         {
 #if UNITY_EDITOR
-            if (SOArchitecturePreferences.IsDebugEnabled)
+            if (SoArchitecturePreferences.IsDebugEnabled)
             {
                 var stackTrace = StackTraceEntry.Create();
                 StackTraces.Insert(0, stackTrace);
@@ -55,9 +55,9 @@ namespace ScriptableObjectArchitecture.Events.Listeners
         protected void CreateDebugEntry(UnityEventBase response)
         {
 #if UNITY_EDITOR
-            for (int i = 0; i < response.GetPersistentEventCount(); i++)
+            for (var i = 0; i < response.GetPersistentEventCount(); i++)
             {
-                GameObject gameObjectTarget = GetGameObject(response.GetPersistentTarget(i));
+                var gameObjectTarget = GetGameObject(response.GetPersistentTarget(i));
 
                 if (gameObject == null || gameObjectTarget == null)
                     continue;
@@ -65,9 +65,9 @@ namespace ScriptableObjectArchitecture.Events.Listeners
                 if (Vector3.Distance(gameObject.transform.position, gameObjectTarget.transform.position) <= EVENT_MIN_DISTANCE)
                     continue;
 
-                string targetName = gameObject ? gameObject.name : "Null";
+                var targetName = gameObject ? gameObject.name : "Null";
 
-                string functionName = string.Format("{0} ({1})", targetName, response.GetPersistentMethodName(i));
+                var functionName = string.Format("{0} ({1})", targetName, response.GetPersistentMethodName(i));
 
                 _debugEntries.Add(new DebugEvent(gameObjectTarget, functionName));
             }
@@ -107,22 +107,22 @@ namespace ScriptableObjectArchitecture.Events.Listeners
         }
         private void DrawEvents()
         {
-            for (int i = _debugEntries.Count - 1; i >= 0; i--)
+            for (var i = _debugEntries.Count - 1; i >= 0; i--)
             {
                 DrawEvent(i);
             }
         }
         private void DrawEvent(int index)
         {
-            DebugEvent debugEvent = _debugEntries[index];
+            var debugEvent = _debugEntries[index];
 
             if (debugEvent.Target == null)
                 return;
 
             debugEvent.Offset += EVENT_MOVEMENT_SPEED * Time.deltaTime;
 
-            Vector3 delta = (debugEvent.Target.transform.position - gameObject.transform.position).normalized;
-            Vector3 position = gameObject.transform.position + (delta * debugEvent.Offset);
+            var delta = (debugEvent.Target.transform.position - gameObject.transform.position).normalized;
+            var position = gameObject.transform.position + (delta * debugEvent.Offset);
 
             DrawPoint(position, delta);
             DrawText(position, debugEvent);
@@ -137,7 +137,7 @@ namespace ScriptableObjectArchitecture.Events.Listeners
             if (!EnableGizmoDebuggin())
                 return;
 
-            string text = string.Join("\n", new string[] { GameEvent.name, debugEvent.FunctionName });
+            var text = string.Join("\n", new string[] { GameEvent.name, debugEvent.FunctionName });
 
             Handles.Label(position, text, Styles.TextStyle);
         }
@@ -146,14 +146,14 @@ namespace ScriptableObjectArchitecture.Events.Listeners
             if (!EnableGizmoDebuggin())
                 return;
 
-            List<GameObject> listeningObjects = new List<GameObject>();
+            var listeningObjects = new List<GameObject>();
 
-            for (int i = 0; i < Response.GetPersistentEventCount(); i++)
+            for (var i = 0; i < Response.GetPersistentEventCount(); i++)
             {
                 AddObject(listeningObjects, Response.GetPersistentTarget(i));
             }
 
-            foreach (GameObject obj in listeningObjects)
+            foreach (var obj in listeningObjects)
             {
                 if (gameObject == obj)
                     continue;
@@ -168,14 +168,14 @@ namespace ScriptableObjectArchitecture.Events.Listeners
         }
         private bool EnableGizmoDebuggin()
         {
-            if (!SOArchitecturePreferences.AreGizmosEnabled)
+            if (!SoArchitecturePreferences.AreGizmosEnabled)
                 return false;
 
             return _enableGizmoDebugging;
         }
         private void AddObject(List<GameObject> listeningObjects, Object obj)
         {
-            GameObject toAdd = GetGameObject(obj);
+            var toAdd = GetGameObject(obj);
 
             if (!listeningObjects.Contains(toAdd) && toAdd != null)
             {

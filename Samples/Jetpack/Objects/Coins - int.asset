@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Coins - int
   m_EditorClassIdentifier: 
   _showGroups: 0
-  _showCustomFields: 0
-  DeveloperDescription:
-    _showDescription: 1
+  _developerDescription:
+    _showDescription: 0
     _value: 
-  _showObservers: 1
-  _showGeneral: 1
+  _showObservers: 0
+  _showGeneral: 0
   _resetWhenStart: 1
   _defaultValue: 0
   _value: 0

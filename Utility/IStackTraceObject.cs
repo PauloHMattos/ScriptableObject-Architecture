@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ScriptableObjectArchitecture.Events.Game_Events;
+using ScriptableObjectArchitecture.Events.GameEvents;
 
 namespace ScriptableObjectArchitecture.Utility
 {

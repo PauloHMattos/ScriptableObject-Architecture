@@ -6,9 +6,9 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
 {
 
     //[CustomEditor(typeof(Subject), true)]
-    public class SubjectEditor : SOArchitectureBaseObjectEditor
+    public class SubjectEditor : SoArchitectureBaseObjectEditor
     {
-        private Subject Target { get { return (Subject)target; } }
+        private Subject Target => (Subject)target;
 
         private SerializedProperty _showObservers;
 
@@ -25,7 +25,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             {
                 var label = new GUIContent("Observers");
                 label.image = EditorGUIUtility.IconContent("ViewToolOrbit").image;
-                _showObservers.boolValue = EditorGUILayout.Foldout(_showObservers.boolValue, label);
+                _showObservers.boolValue = EditorGUILayout.Foldout(_showObservers.boolValue, label, EditorStyles.foldoutHeader);
             }
             if (_showObservers.boolValue)
             {
@@ -42,10 +42,10 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             using (new EditorGUI.IndentLevelScope(1))
             {
                 EditorGUILayout.IntField("Size", Target.Observers.Count);
-                for (int i = 0; i < Target.Observers.Count; i++)
+                for (var i = 0; i < Target.Observers.Count; i++)
                 {
                     var observer = Target.Observers[i];
-                    string label = $"Element {i}";
+                    var label = $"Element {i}";
                     if (observer is Object)
                     {
                         EditorGUILayout.ObjectField(label, observer as Object, observer.GetType(), true);

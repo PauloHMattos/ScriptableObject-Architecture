@@ -5,11 +5,12 @@ namespace ScriptableObjectArchitecture.Variables
 {
     [CreateAssetMenu(
         fileName = "UnsignedLongVariable.asset",
-        menuName = SOArchitecture_Utility.ADVANCED_VARIABLE_SUBMENU + "ulong",
-        order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 17)]
+        menuName = SoArchitectureUtility.ADVANCED_VARIABLE_SUBMENU + "ulong",
+        order = SoArchitectureUtility.ASSET_MENU_ORDER_COLLECTIONS + 17)]
     public class ULongVariable : NumericVariable<ulong, ULongVariable>
     {
-        public override bool Clampable { get { return true; } }
+        public override bool Clampable => true;
+
         protected override ulong ClampValue(ulong value)
         {
             if (value.CompareTo(MinClampValue) < 0)

@@ -12,7 +12,7 @@ namespace ScriptableObjectArchitecture.Observers
         [SerializeField]
         private Animator _animator;
 
-        public List<BaseVariable> variables = new List<BaseVariable>();
+        public List<BaseVariable> Variables = new List<BaseVariable>();
 
         public Animator Animator
         {
@@ -37,9 +37,9 @@ namespace ScriptableObjectArchitecture.Observers
             if (!Application.isPlaying)
                 return;
 
-            for (var i = 0; i < variables.Count; i++)
+            for (var i = 0; i < Variables.Count; i++)
             {
-                if (Animator.parameters.Length <= i || variables[i] == null)
+                if (Animator.parameters.Length <= i || Variables[i] == null)
                 {
                     continue;
                 }
@@ -48,19 +48,19 @@ namespace ScriptableObjectArchitecture.Observers
                 switch (parameter.type)
                 {
                     case AnimatorControllerParameterType.Float:
-                        _animator.SetFloat(parameter.name, ((FloatVariable) variables[i]).Value);
+                        _animator.SetFloat(parameter.name, ((FloatVariable) Variables[i]).Value);
                         break;
 
                     case AnimatorControllerParameterType.Int:
-                        _animator.SetInteger(parameter.name, ((IntVariable) variables[i]).Value);
+                        _animator.SetInteger(parameter.name, ((IntVariable) Variables[i]).Value);
                         break;
 
                     case AnimatorControllerParameterType.Bool:
-                        _animator.SetBool(parameter.name, ((BoolVariable) variables[i]).Value);
+                        _animator.SetBool(parameter.name, ((BoolVariable) Variables[i]).Value);
                         break;
 
                     case AnimatorControllerParameterType.Trigger:
-                        var trigger = (variables[i] as BoolVariable);
+                        var trigger = (Variables[i] as BoolVariable);
                         if (trigger != null && trigger.Value)
                         {
                             _animator.SetTrigger(parameter.name);

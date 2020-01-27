@@ -7,13 +7,13 @@ namespace ScriptableObjectArchitecture.Events.Raisers
     public abstract class OnPhysicsGameEventRaiser : BaseGameEventRaiser
     {
         [Group("General", "GameManager Icon")]
-        public LifeCycle _lifeCycle;
+        public LifeCycleOptions LifeCycle;
         [Tag]
         public string Tag = "";
-        public LayerMask layerMask;
+        public LayerMask LayerMask;
 
         [Flags]
-        public enum LifeCycle
+        public enum LifeCycleOptions
         {
             Enter = 1,
             Stay = 2,
@@ -27,12 +27,12 @@ namespace ScriptableObjectArchitecture.Events.Raisers
                 return false;
             }
 
-            return ((layerMask & (1 << collisionLayer)) != 0);
+            return ((LayerMask & (1 << collisionLayer)) != 0);
         }
 
         protected void OnEnter(string collisionTag, int collisionLayer)
         {
-            if (!_lifeCycle.HasFlag(LifeCycle.Enter))
+            if (!LifeCycle.HasFlag(LifeCycleOptions.Enter))
             {
                 return;
             }
@@ -46,7 +46,7 @@ namespace ScriptableObjectArchitecture.Events.Raisers
         }
         protected void OnStay(string collisionTag, int collisionLayer)
         {
-            if (!_lifeCycle.HasFlag(LifeCycle.Stay))
+            if (!LifeCycle.HasFlag(LifeCycleOptions.Stay))
             {
                 return;
             }
@@ -60,7 +60,7 @@ namespace ScriptableObjectArchitecture.Events.Raisers
         }
         protected void OnExit(string collisionTag, int collisionLayer)
         {
-            if (!_lifeCycle.HasFlag(LifeCycle.Exit))
+            if (!LifeCycle.HasFlag(LifeCycleOptions.Exit))
             {
                 return;
             }

@@ -6,7 +6,7 @@ namespace ScriptableObjectArchitecture.Variables
 {
     [CreateAssetMenu(
         fileName = "AxisVariable.asset",
-        menuName = SOArchitecture_Utility.VARIABLE_SUBMENU + "Axis",
+        menuName = SoArchitectureUtility.VARIABLE_SUBMENU + "Axis",
         order = 124)]
     public class AxisVariable : ReadOnlyFloatVariable
     {
@@ -15,7 +15,7 @@ namespace ScriptableObjectArchitecture.Variables
         [SerializeField]
         private bool _raw = false;
 
-        public override bool Clampable { get { return false; } }
+        public override bool Clampable => false;
 
         public override float Value
         {

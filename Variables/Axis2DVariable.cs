@@ -6,7 +6,7 @@ namespace ScriptableObjectArchitecture.Variables
 {
     [CreateAssetMenu(
         fileName = "Axis2DVariable.asset",
-        menuName = SOArchitecture_Utility.VARIABLE_SUBMENU + "2D Axis",
+        menuName = SoArchitectureUtility.VARIABLE_SUBMENU + "2D Axis",
         order = 124)]
     public class Axis2DVariable : Vector2Variable
     {
@@ -17,7 +17,7 @@ namespace ScriptableObjectArchitecture.Variables
         [SerializeField]
         private bool _raw = false;
 
-        public override bool Clampable { get { return false; } }
+        public override bool Clampable => false;
 
         public override void Awake()
         {

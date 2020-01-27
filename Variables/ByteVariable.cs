@@ -5,11 +5,12 @@ namespace ScriptableObjectArchitecture.Variables
 {
     [CreateAssetMenu(
         fileName = "ByteVariable.asset",
-        menuName = SOArchitecture_Utility.ADVANCED_VARIABLE_SUBMENU + "byte",
-        order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 6)]
+        menuName = SoArchitectureUtility.ADVANCED_VARIABLE_SUBMENU + "byte",
+        order = SoArchitectureUtility.ASSET_MENU_ORDER_COLLECTIONS + 6)]
     public class ByteVariable : NumericVariable<byte, ByteVariable>
     {
-        public override bool Clampable { get { return true; } }
+        public override bool Clampable => true;
+
         protected override byte ClampValue(byte value)
         {
             if (value.CompareTo(MinClampValue) < 0)

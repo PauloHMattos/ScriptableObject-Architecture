@@ -5,11 +5,12 @@ namespace ScriptableObjectArchitecture.Variables
 {
     [CreateAssetMenu(
         fileName = "FloatVariable.asset",
-        menuName = SOArchitecture_Utility.VARIABLE_SUBMENU + "float",
-        order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 3)]
+        menuName = SoArchitectureUtility.VARIABLE_SUBMENU + "float",
+        order = SoArchitectureUtility.ASSET_MENU_ORDER_COLLECTIONS + 3)]
     public class FloatVariable : NumericVariable<float, FloatVariable>
     {
-        public override bool Clampable { get { return true; } }
+        public override bool Clampable => true;
+
         protected override float ClampValue(float value)
         {
             if (value.CompareTo(MinClampValue) < 0)

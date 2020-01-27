@@ -18,7 +18,7 @@ namespace ScriptableObjectArchitecture.References
         [SerializeField]
         protected TBase _constantValue = default;
         [SerializeField]
-        private TVariable _variable = default(TVariable);
+        private TVariable _variable = default;
         public TVariable Variable
         {
             get => _variable;
@@ -31,10 +31,7 @@ namespace ScriptableObjectArchitecture.References
 
         public TBase Value
         {
-            get
-            {
-                return (_useConstant || _variable is null) ? _constantValue : _variable.Value;
-            }
+            get => (_useConstant || _variable is null) ? _constantValue : _variable.Value;
             set
             {
                 if (!_useConstant && !(_variable is null))
@@ -48,19 +45,13 @@ namespace ScriptableObjectArchitecture.References
                 }
             }
         }
-        public bool IsValueDefined
-        {
-            get
-            {
-                return _useConstant || !(_variable is null);
-            }
-        }
+        public bool IsValueDefined => _useConstant || !(_variable is null);
 
         public bool UseConstant { get => _useConstant; set => _useConstant = value; }
 
         public BaseReference CreateCopy()
         {
-            BaseReference<TBase, TVariable> copy = (BaseReference<TBase, TVariable>)System.Activator.CreateInstance(GetType());
+            var copy = (BaseReference<TBase, TVariable>)System.Activator.CreateInstance(GetType());
             copy._useConstant = _useConstant;
             copy._constantValue = _constantValue;
             copy._variable = _variable;

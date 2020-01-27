@@ -5,8 +5,8 @@ namespace Assets.ScriptableObjectArchitecture.Editor
 {
     public static class BaseReferenceHelper
     {
-        private const BindingFlags NonPublicBindingsFlag = BindingFlags.Instance | BindingFlags.NonPublic;
-        private const string ConstantValueName = "_constantValue";
+        private const BindingFlags NON_PUBLIC_BINDINGS_FLAG = BindingFlags.Instance | BindingFlags.NonPublic;
+        private const string CONSTANT_VALUE_NAME = "_constantValue";
     
         public static Type GetReferenceType(FieldInfo fieldInfo)
         {
@@ -14,7 +14,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor
         }
         public static Type GetValueType(FieldInfo fieldInfo)
         {
-            Type referenceType = GetReferenceType(fieldInfo);
+            var referenceType = GetReferenceType(fieldInfo);
         
             if (referenceType.IsGenericType)
             {
@@ -25,7 +25,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor
                 referenceType = referenceType.GetElementType();
             }
 
-            FieldInfo constantValueField = referenceType.GetField(ConstantValueName, NonPublicBindingsFlag);
+            var constantValueField = referenceType.GetField(CONSTANT_VALUE_NAME, NON_PUBLIC_BINDINGS_FLAG);
 
             return constantValueField.FieldType;
         }

@@ -5,7 +5,7 @@ namespace ScriptableObjectArchitecture.Variables
 {
     [CreateAssetMenu(
         fileName = "TimeVariable.asset",
-        menuName = SOArchitecture_Utility.VARIABLE_SUBMENU + "Time",
+        menuName = SoArchitectureUtility.VARIABLE_SUBMENU + "Time",
         order = 124)]
     public class TimeVariable : ReadOnlyFloatVariable
     {
@@ -14,7 +14,7 @@ namespace ScriptableObjectArchitecture.Variables
         [SerializeField]
         private TimeVariableType _timeType;
 
-        public override bool Clampable { get { return false; } }
+        public override bool Clampable => false;
 
         public override float Value
         {

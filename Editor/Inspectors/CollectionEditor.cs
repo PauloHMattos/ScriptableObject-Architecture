@@ -7,14 +7,11 @@ using UnityEngine;
 namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
 {
     [CustomEditor(typeof(BaseCollection), true)]
-    public class CollectionEditor : SOArchitectureBaseObjectEditor
+    public class CollectionEditor : SoArchitectureBaseObjectEditor
     {
-        private BaseCollection Target { get { return (BaseCollection)target; } }
-        
-        private SerializedProperty CollectionItemsProperty
-        {
-            get { return serializedObject.FindProperty(LIST_PROPERTY_NAME); }
-        }
+        private BaseCollection Target => (BaseCollection)target;
+
+        private SerializedProperty CollectionItemsProperty => serializedObject.FindProperty(LIST_PROPERTY_NAME);
 
         private ReorderableList _reorderableList;
 
@@ -27,21 +24,20 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
 
         private SerializedProperty _showCollectionItems;
 
-        private GUIContent _titleGUIContent;
-        private GUIContent _noPropertyDrawerWarningGUIContent;
+        private GUIContent _titleGuiContent;
+        private GUIContent _noPropertyDrawerWarningGuiContent;
 
         private const string TITLE_FORMAT = "List ({0})";
         private const string NO_PROPERTY_WARNING_FORMAT = "No PropertyDrawer for type [{0}]";
 
         // Property Names
         private const string LIST_PROPERTY_NAME = "_list";
-        private const string DESCRIPTION_PROPERTY_NAME = "DeveloperDescription";
 
         protected override void OnEnable()
         {
             base.OnEnable();
-            _titleGUIContent = new GUIContent(string.Format(TITLE_FORMAT, Target.Type));
-            _noPropertyDrawerWarningGUIContent = new GUIContent(string.Format(NO_PROPERTY_WARNING_FORMAT, Target.Type));
+            _titleGuiContent = new GUIContent(string.Format(TITLE_FORMAT, Target.Type));
+            _noPropertyDrawerWarningGuiContent = new GUIContent(string.Format(NO_PROPERTY_WARNING_FORMAT, Target.Type));
 
             _reorderableList = new ReorderableList(
                 serializedObject,
@@ -66,7 +62,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             {
                 var label = new GUIContent("Items");
                 label.image = EditorGUIUtility.IconContent("LightProbes Icon").image;
-                _showCollectionItems.boolValue = EditorGUILayout.Foldout(_showCollectionItems.boolValue, label);
+                _showCollectionItems.boolValue = EditorGUILayout.Foldout(_showCollectionItems.boolValue, label, EditorStyles.foldoutHeader);
             }
             if (_showCollectionItems.boolValue)
             {
@@ -82,16 +78,16 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
         }
         private void DrawHeader(Rect rect)
         {
-            EditorGUI.LabelField(rect, _titleGUIContent);
+            EditorGUI.LabelField(rect, _titleGuiContent);
         }
         private void DrawElement(Rect rect, int index, bool isActive, bool isFocused)
         {
-            rect = SOArchitecture_EditorUtility.GetReorderableListElementFieldRect(rect);
-            SerializedProperty property = CollectionItemsProperty.GetArrayElementAtIndex(index);
+            rect = SoArchitectureEditorUtility.GetReorderableListElementFieldRect(rect);
+            var property = CollectionItemsProperty.GetArrayElementAtIndex(index);
 
             EditorGUI.BeginDisabledGroup(DISABLE_ELEMENTS);
 
-            GenericPropertyDrawer.DrawPropertyDrawer(rect, new GUIContent("Element " + index), Target.Type, property, _noPropertyDrawerWarningGUIContent);
+            GenericPropertyDrawer.DrawPropertyDrawer(rect, new GUIContent("Element " + index), Target.Type, property, _noPropertyDrawerWarningGuiContent);
 
             EditorGUI.EndDisabledGroup();
         }

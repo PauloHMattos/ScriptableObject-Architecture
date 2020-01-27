@@ -1,15 +1,15 @@
 ﻿using ScriptableObjectArchitecture;
-using ScriptableObjectArchitecture.Events.Game_Events;
+using ScriptableObjectArchitecture.Events.GameEvents;
 using ScriptableObjectArchitecture.Utility;
 using UnityEditor;
 using UnityEngine;
 
 namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
 {
-    public abstract class BaseGameEventEditor : SOArchitectureBaseObjectEditor
+    public abstract class BaseGameEventEditor : SoArchitectureBaseObjectEditor
     {
-        private IStackTraceObject Target { get { return (IStackTraceObject)target; } }
-        private GameEventBase Event { get { return (GameEventBase)target; } }
+        private IStackTraceObject Target => (IStackTraceObject)target;
+        private GameEventBase Event => (GameEventBase)target;
 
         private StackTrace _stackTrace;
         private SerializedProperty _enabledProperty;
@@ -56,7 +56,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             EditorGUILayout.LabelField("Stack Trace", EditorStyles.boldLabel);
 
-            if (!SOArchitecturePreferences.IsDebugEnabled)
+            if (!SoArchitecturePreferences.IsDebugEnabled)
                 EditorGUILayout.HelpBox("Debug mode disabled\nStack traces will not be filed on raise!", MessageType.Warning);
 
             _stackTrace.Draw();
@@ -71,10 +71,10 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             var listeners = Event.Listeners;
 
             EditorGUILayout.IntField("Size", count);
-            for (int i = 0; i < Event.Listeners.Count; i++)
+            for (var i = 0; i < Event.Listeners.Count; i++)
             {
                 var listener = listeners[i];
-                string label = $"Element {i}";
+                var label = $"Element {i}";
                 if (listener is Object)
                 {
                     EditorGUILayout.ObjectField(label, listener as Object, listener.GetType(), true);
@@ -86,11 +86,11 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             }
 
             var actions = Event.Actions;
-            for (int i = 0; i < Event.Actions.Count; i++)
+            for (var i = 0; i < Event.Actions.Count; i++)
             {
                 var action = actions[i];
-                string label = $"Element {Event.Listeners.Count + i}";
-                string value = $"{action.Method.ReflectedType.Name}.{action.Method.Name}";
+                var label = $"Element {Event.Listeners.Count + i}";
+                var value = $"{action.Method.ReflectedType.Name}.{action.Method.Name}";
                 EditorGUILayout.TextField(label, value);
             }
         }

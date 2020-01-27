@@ -9,8 +9,8 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
     [CustomEditor(typeof(SceneCollection), true)]
     public class SceneCollectionEditor : CollectionEditor
     {
-        private SceneCollection Target { get { return (SceneCollection)target; } }
-        
+        private SceneCollection Target => (SceneCollection)target;
+
 
         public override void OnInspectorGUI()
         {
@@ -22,16 +22,17 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             }
         }
 
-
         private void SetEditorBuildSettingsScenes()
         {
             // Find valid Scene paths and make a list of EditorBuildSettingsScene
-            List<EditorBuildSettingsScene> editorBuildSettingsScenes = new List<EditorBuildSettingsScene>();
+            var editorBuildSettingsScenes = new List<EditorBuildSettingsScene>();
             foreach (SceneVariable sceneVariable in Target.List)
             {
-                string scenePath = AssetDatabase.GetAssetPath(sceneVariable.Value.Scene);
+                var scenePath = AssetDatabase.GetAssetPath(sceneVariable.Value.Scene);
                 if (!string.IsNullOrEmpty(scenePath))
+                {
                     editorBuildSettingsScenes.Add(new EditorBuildSettingsScene(scenePath, true));
+                }
             }
 
             // Set the Build Settings window Scene list

@@ -5,7 +5,7 @@ namespace ScriptableObjectArchitecture.Variables
 {
     [CreateAssetMenu(
         fileName = "RandomFloatVariable.asset",
-        menuName = SOArchitecture_Utility.VARIABLE_SUBMENU + "Random/float",
+        menuName = SoArchitectureUtility.VARIABLE_SUBMENU + "Random/float",
         order = 124)]
     public class RandomFloatVariable : ReadOnlyFloatVariable
     {
@@ -16,7 +16,7 @@ namespace ScriptableObjectArchitecture.Variables
         [SerializeField, HideInInspector]
         private Random.State _state;
 
-        public override bool Clampable { get { return true; } }
+        public override bool Clampable => true;
 
         public override float Value
         {
@@ -38,10 +38,7 @@ namespace ScriptableObjectArchitecture.Variables
 
         public int Seed
         {
-            get
-            {
-                return _seed;
-            }
+            get => _seed;
             set
             {
                 _seed = value;
@@ -52,8 +49,8 @@ namespace ScriptableObjectArchitecture.Variables
 
         public bool UseTimeAsSeed
         {
-            get { return _useTimeAsSeed; }
-            set { _useTimeAsSeed = value; }
+            get => _useTimeAsSeed;
+            set => _useTimeAsSeed = value;
         }
 
         public override void OnEnable()

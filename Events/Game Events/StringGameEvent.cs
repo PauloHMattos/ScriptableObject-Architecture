@@ -1,13 +1,13 @@
 ﻿using ScriptableObjectArchitecture.Utility;
 using UnityEngine;
 
-namespace ScriptableObjectArchitecture.Events.Game_Events
+namespace ScriptableObjectArchitecture.Events.GameEvents
 {
     [System.Serializable]
     [CreateAssetMenu(
         fileName = "StringGameEvent.asset",
-        menuName = SOArchitecture_Utility.GAME_EVENT + "string",
-        order = SOArchitecture_Utility.ASSET_MENU_ORDER_EVENTS + 2)]
+        menuName = SoArchitectureUtility.GAME_EVENT + "string",
+        order = SoArchitectureUtility.ASSET_MENU_ORDER_EVENTS + 2)]
     public sealed class StringGameEvent : GameEventBase<string>
     {
     } 

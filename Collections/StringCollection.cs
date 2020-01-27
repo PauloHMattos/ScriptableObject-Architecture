@@ -5,8 +5,8 @@ namespace ScriptableObjectArchitecture.Collections
 {
     [CreateAssetMenu(
         fileName = "StringCollection.asset",
-        menuName = SOArchitecture_Utility.COLLECTION_SUBMENU + "string",
-        order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 2)]
+        menuName = SoArchitectureUtility.COLLECTION_SUBMENU + "string",
+        order = SoArchitectureUtility.ASSET_MENU_ORDER_COLLECTIONS + 2)]
     public class StringCollection : Collection<string>
     {
     } 

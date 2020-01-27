@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Observers
 {
-	[AddComponentMenu(SOArchitecture_Utility.OBSERVER_SUBMENU + "Float Observer")]
+	[AddComponentMenu(SoArchitectureUtility.OBSERVER_SUBMENU + "Float Observer")]
 	public sealed class FloatObserver : NumericObserver<float, FloatVariable, FloatReference, FloatUnityEvent>
 	{
         protected override void RaiseResponse(float value)

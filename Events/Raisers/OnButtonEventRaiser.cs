@@ -5,34 +5,34 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Events.Raisers
 {
-    [AddComponentMenu(SOArchitecture_Utility.EVENT_RAISER_SUBMENU + "On Button Raiser")]
+    [AddComponentMenu(SoArchitectureUtility.EVENT_RAISER_SUBMENU + "On Button Raiser")]
     public class OnButtonEventRaiser : BaseGameEventRaiser
     {
         [Group("General", "GameManager Icon")]
-        public string buttonName;
-        public EventType eventType;
+        public string ButtonName;
+        public EventTypeOptions EventType;
 
         protected override void Update()
         {
-            if (string.IsNullOrEmpty(buttonName))
+            if (string.IsNullOrEmpty(ButtonName))
                 return;
 
-            if (eventType.HasFlag(EventType.Down) && Input.GetButtonDown(buttonName))
+            if (EventType.HasFlag(EventTypeOptions.Down) && Input.GetButtonDown(ButtonName))
             {
                 _events.Invoke();
             }
-            if (eventType.HasFlag(EventType.Hold) && Input.GetButton(buttonName))
+            if (EventType.HasFlag(EventTypeOptions.Hold) && Input.GetButton(ButtonName))
             {
                 _events.Invoke();
             }
-            if (eventType.HasFlag(EventType.Up) && Input.GetButtonUp(buttonName))
+            if (EventType.HasFlag(EventTypeOptions.Up) && Input.GetButtonUp(ButtonName))
             {
                 _events.Invoke();
             }
         }
 
         [Flags]
-        public enum EventType
+        public enum EventTypeOptions
         {
             Down = 1,
             Hold = 2,
