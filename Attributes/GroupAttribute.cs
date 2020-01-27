@@ -19,7 +19,7 @@ namespace ScriptableObjectArchitecture.Attributes
 
         public GroupAttribute(string text, string iconName = "") : this(text)
         {
-#if UNITY_ENGINE
+#if UNITY_EDITOR
             Label.image = EditorGUIUtility.IconContent(iconName, text).image;
 #endif
         }
