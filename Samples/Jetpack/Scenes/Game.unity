@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -329,6 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 1
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -367,6 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 7
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 1
     _value: 
@@ -391,6 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 7
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 1
     _value: asdffdasdfadf
@@ -426,6 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 7
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -464,6 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -485,6 +491,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1759129851, guid: d4d005e8b01e5fb408266ba65374327f, type: 3}
+      propertyPath: _showGroups
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120365436971283596, guid: d4d005e8b01e5fb408266ba65374327f,
+        type: 3}
+      propertyPath: _showGroups
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9120365436971283635, guid: d4d005e8b01e5fb408266ba65374327f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -544,6 +559,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120365436971283639, guid: d4d005e8b01e5fb408266ba65374327f,
+        type: 3}
+      propertyPath: _showGroups
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9120365438399288103, guid: d4d005e8b01e5fb408266ba65374327f,
         type: 3}
@@ -1078,7 +1098,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874266861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 1, z: -10}
+  m_LocalPosition: {x: 6.9, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 366205252}
@@ -1096,7 +1116,7 @@ PositionConstraint:
   m_GameObject: {fileID: 874266861}
   m_Enabled: 1
   m_Weight: 1
-  m_TranslationAtRest: {x: 6, y: 1, z: -10}
+  m_TranslationAtRest: {x: 6.9, y: 1, z: -10}
   m_TranslationOffset: {x: 0, y: 0, z: 0}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 0
@@ -1233,6 +1253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -1279,6 +1300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -1338,6 +1360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -1356,7 +1379,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _lifeCycle: 4
-  _tag: Room
+  Tag: 
   layerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -1454,6 +1477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -1511,6 +1535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -1578,6 +1603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -1832,6 +1858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -2125,6 +2152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -2199,6 +2227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
+  _showButttons: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
@@ -2490,6 +2519,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Room_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493746613377188027, guid: cfc028070e688c647a05ea07f1c6993f,
+        type: 3}
+      propertyPath: _showGroups
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfc028070e688c647a05ea07f1c6993f, type: 3}

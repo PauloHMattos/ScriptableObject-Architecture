@@ -20,7 +20,7 @@ namespace ScriptableObjectArchitecture.Observers
             None,
         }
 
-        [Group("General")]
+        [Group("General", "GameManager Icon")]
         [SerializeField] protected ListenerOption _listenerOption = ListenerOption.OnChanged;
         [SerializeField] private float _delay;
         private float _lastTime;
@@ -65,7 +65,7 @@ namespace ScriptableObjectArchitecture.Observers
     {
         protected override ScriptableObject GameEvent { get { return _variable; } }
 
-        [Group("General")]
+        [Group("General", "GameManager Icon")]
         [SerializeField] protected bool _raiseOnStart = true;
         [SerializeField] protected TVariable _variable = default;
         [SerializeField] protected TType _debugValue = default;
@@ -117,7 +117,7 @@ where TResponse : UnityEvent<TType>
     {
         protected override UnityEventBase Response { get { return _response; } }
         
-        [Group("Response"), SerializeField]
+        [Group("Response", "d_CollabMoved Icon"), SerializeField]
         protected TResponse _response = default;
 
         public override void OnVariableChanged()

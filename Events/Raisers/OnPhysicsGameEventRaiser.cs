@@ -6,10 +6,10 @@ namespace ScriptableObjectArchitecture.Events.Raisers
 {
     public abstract class OnPhysicsGameEventRaiser : BaseGameEventRaiser
     {
-        [Group("General")]
+        [Group("General", "GameManager Icon")]
         public LifeCycle _lifeCycle;
-        [SerializeField]
-        private string _tag = "";
+        [Tag]
+        public string Tag = "";
         public LayerMask layerMask;
 
         [Flags]
@@ -22,7 +22,7 @@ namespace ScriptableObjectArchitecture.Events.Raisers
 
         protected bool CheckTagAndLayer(string collisionTag, int collisionLayer)
         {
-            if (!string.IsNullOrEmpty(_tag) && !collisionTag.Equals(_tag))
+            if (!string.IsNullOrEmpty(Tag) && !collisionTag.Equals(Tag))
             {
                 return false;
             }

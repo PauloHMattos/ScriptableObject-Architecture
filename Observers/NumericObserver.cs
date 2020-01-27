@@ -36,9 +36,9 @@ namespace ScriptableObjectArchitecture.Observers
         where TVariable : BaseVariable<TType>
         where TResponse : UnityEvent<TType>
     {
-        [Group("General"), SerializeField] protected AnimationCurve _modifierCurve = AnimationCurve.Constant(0, 1, 1);
-        [Group("General"), SerializeField] protected bool _sample = true;
-        [Group("Conditions"), SerializeField] protected bool _constrain = false;
+        [Group("General", "GameManager Icon"), SerializeField] protected AnimationCurve _modifierCurve = AnimationCurve.Constant(0, 1, 1);
+        [SerializeField] protected bool _sample = true;
+        [Group("Conditions", "Preset.Context"), SerializeField] protected bool _constrain = false;
         [SerializeField, HideInInspector] private bool _equals = false;
         [SerializeField, HideInInspector] private bool _bigger = false;
         [SerializeField, HideInInspector] private bool _smaller = false;
