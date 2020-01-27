@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Fire1
   m_EditorClassIdentifier: 
   _showGroups: 0
-  _showCustomFields: 1
   DeveloperDescription:
     _showDescription: 0
     _value: 
   _enabled: 1
-  _showListners: 0
+  _showListeners: 0
