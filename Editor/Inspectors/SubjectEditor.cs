@@ -19,13 +19,11 @@ namespace ScriptableObjectArchitecture.Editor
 
         protected override void DrawDeveloperDescription()
         {
-            var headerStyle = EditorStyles.foldout;
-            headerStyle.font = EditorStyles.boldFont;
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
                 _showObservers.boolValue =
-                    EditorGUILayout.Foldout(_showObservers.boolValue, new GUIContent("Observers"), headerStyle);
+                    EditorGUILayout.Foldout(_showObservers.boolValue, new GUIContent("Observers"));
             }
             if (_showObservers.boolValue)
             {

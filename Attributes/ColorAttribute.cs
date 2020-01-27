@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-[AttributeUsage(AttributeTargets.Field)]
+[AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
 public class ColorAttribute : MultiPropertyAttribute
 {
     public Color Color { get; set; }
+    public bool Background { get; set; } = true;
     private Color _prevColor;
 
     public ColorAttribute(Color color)
@@ -21,12 +22,28 @@ public class ColorAttribute : MultiPropertyAttribute
 
     internal override void OnPreGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        _prevColor = GUI.color;
-        GUI.color = Color;
+        if (Background)
+        {
+            _prevColor = GUI.backgroundColor;
+            GUI.backgroundColor = Color;
+        }
+        else
+        {
+
+            _prevColor = GUI.color;
+            GUI.color = Color;
+        }
     }
 
     internal override void OnPostGUI(Rect position, SerializedProperty property)
     {
-        GUI.color = _prevColor;
+        if (Background)
+        {
+            GUI.backgroundColor = _prevColor;
+        }
+        else
+        {
+            GUI.color = _prevColor;
+        }
     }
 }
