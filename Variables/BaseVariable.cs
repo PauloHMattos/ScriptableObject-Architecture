@@ -4,11 +4,10 @@ namespace ScriptableObjectArchitecture
 {
     public abstract class BaseVariable : Subject
     {
-        public abstract bool IsClamped { get; }
+        public abstract bool IsClamped { get; set; }
         public abstract bool Clampable { get; }
-        public abstract bool ReadOnly { get; }
+        public abstract bool ReadOnly { get; set; }
         public abstract System.Type Type { get; }
-        public abstract object BaseValue { get; set; }
 
 #if UNITY_EDITOR
 #pragma warning disable 0414
@@ -35,7 +34,7 @@ namespace ScriptableObjectArchitecture
         {
             get
             {
-                return _value;
+                return GetValue();
             }
             set
             {
@@ -46,13 +45,13 @@ namespace ScriptableObjectArchitecture
         {
             get
             {
-                if(Clampable)
+                return Clampable ? _minClampedValue : default;
+            }
+            set
+            {
+                if (Clampable)
                 {
-                    return _minClampedValue;
-                }
-                else
-                {
-                    return default(T);
+                    _minClampedValue = value;
                 }
             }
         }
@@ -60,32 +59,21 @@ namespace ScriptableObjectArchitecture
         {
             get
             {
-                if(Clampable)
+                return Clampable ? _maxClampedValue : default;
+            }
+            set
+            {
+                if (Clampable)
                 {
-                    return _maxClampedValue;
-                }
-                else
-                {
-                    return default(T);
+                    _maxClampedValue = value;
                 }
             }
         }
 
         public override bool Clampable { get { return false; } }
-        public override bool ReadOnly { get { return _readOnly; } }
-        public override bool IsClamped { get { return _isClamped; } }
+        public override bool ReadOnly { get => _readOnly; set => _readOnly = value; }
+        public override bool IsClamped { get => _isClamped; set => _isClamped = value; }
         public override System.Type Type { get { return typeof(T); } }
-        public override object BaseValue
-        {
-            get
-            {
-                return Value;
-            }
-            set
-            {
-                SetValue((T)value);
-            }
-        }
 
         [Group("General", "GameManager Icon")]
         [SerializeField, HideInInspector]
@@ -93,19 +81,19 @@ namespace ScriptableObjectArchitecture
         [SerializeField, HideInInspector]
         protected T _defaultValue;
         [SerializeField, HideInInspector]
-        protected T _value = default(T);
+        protected T _value = default;
 
         [SerializeField, HideInInspector]
         protected bool _readOnly = false;
         [SerializeField, HideInInspector]
         private bool _raiseWarning = true;
-        
+
         [SerializeField, HideInInspector]
         protected bool _isClamped = false;
         [SerializeField, HideInInspector]
-        protected T _minClampedValue = default(T);
+        protected T _minClampedValue = default;
         [SerializeField, HideInInspector]
-        protected T _maxClampedValue = default(T);
+        protected T _maxClampedValue = default;
 
         public override void OnEnable()
         {
@@ -120,7 +108,20 @@ namespace ScriptableObjectArchitecture
             }
         }
 
-        public virtual T SetValue(T value)
+        protected virtual T GetValue()
+        {
+            if (_readOnly)
+            {
+                return _value;
+            }
+            if (Clampable && IsClamped)
+            {
+                SetValue(ClampValue(_value));
+            }
+            return _value;
+        }
+
+        protected virtual T SetValue(T value)
         {
             if (_readOnly)
             {
@@ -137,10 +138,6 @@ namespace ScriptableObjectArchitecture
             return value;
         }
 
-        public virtual T SetValue(BaseVariable<T> value)
-        {
-            return SetValue(value.Value);
-        }
         protected virtual T ClampValue(T value)
         {
             return value;
@@ -161,5 +158,5 @@ namespace ScriptableObjectArchitecture
         {
             return variable.Value;
         }
-    } 
+    }
 }

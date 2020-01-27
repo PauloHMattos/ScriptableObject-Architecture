@@ -5,7 +5,7 @@ namespace ScriptableObjectArchitecture
     [System.Serializable]
     public class BaseReference<TBase, TVariable> : BaseReference where TVariable : BaseVariable<TBase>
     {
-        public BaseReference() { }
+        public BaseReference() : this (default) { }
         public BaseReference(TBase baseValue)
         {
             _useConstant = true;
@@ -13,11 +13,20 @@ namespace ScriptableObjectArchitecture
         }
 
         [SerializeField]
-        protected bool _useConstant = false;
+        private bool _useConstant = false;
         [SerializeField]
-        protected TBase _constantValue = default(TBase);
+        protected TBase _constantValue = default;
         [SerializeField]
-        protected TVariable _variable = default(TVariable);
+        private TVariable _variable = default;
+        public TVariable Variable
+        {
+            get => _variable;
+            set
+            {
+                _useConstant = false;
+                _variable = value;
+            }
+        }
 
         public TBase Value
         {
@@ -46,6 +55,8 @@ namespace ScriptableObjectArchitecture
             }
         }
 
+        public bool UseConstant { get => _useConstant; set => _useConstant = value; }
+
         public BaseReference CreateCopy()
         {
             BaseReference<TBase, TVariable> copy = (BaseReference<TBase, TVariable>)System.Activator.CreateInstance(GetType());
@@ -55,28 +66,7 @@ namespace ScriptableObjectArchitecture
 
             return copy;
         }
-        public void AddListener(IVariableObserver observer)
-        {
-            if (_variable != null)
-                _variable.AddObserver(observer);
-        }
-        public void RemoveListener(IVariableObserver observer)
-        {
-            if (_variable != null)
-                _variable.RemoveObserver(observer);
-        }
-        /*
-        public void AddListener(System.Action action)
-        {
-            if (_variable != null)
-                _variable.AddListener(action);
-        }
-        public void RemoveListener(System.Action action)
-        {
-            if (_variable != null)
-                _variable.RemoveListener(action);
-        }
-        */
+        
         public override string ToString()
         {
             return Value.ToString();
@@ -86,5 +76,5 @@ namespace ScriptableObjectArchitecture
     //Can't get property drawer to work with generic arguments
     public abstract class BaseReference
     {
-    } 
+    }
 }
