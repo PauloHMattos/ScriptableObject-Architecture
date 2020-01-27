@@ -9,20 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6a231661af38844caae4ded01abd631, type: 3}
-  m_Name: Room Speed - Vector2
+  m_Script: {fileID: 11500000, guid: fb12e3ad1486e2e4496d2933bc2e5456, type: 3}
+  m_Name: StringCollection 1
   m_EditorClassIdentifier: 
   _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
-  _showObservers: 0
-  _showGeneral: 0
-  _resetWhenStart: 0
-  _defaultValue: {x: 0, y: 0}
-  _value: {x: -5, y: 0}
-  _readOnly: 1
-  _raiseWarning: 1
-  _isClamped: 0
-  _minClampedValue: {x: 0, y: 0}
-  _maxClampedValue: {x: 0, y: 0}
+  _showCollectionItems: 0
+  _list: []

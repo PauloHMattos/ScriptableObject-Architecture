@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2953c036c3bbfff4283215395edf0cd8, type: 3}
   m_Name: Game - SceneVariable
   m_EditorClassIdentifier: 
-  _showGroups: 3
-  _showCustomFields: 0
+  _showGroups: 0
   DeveloperDescription:
     _showDescription: 0
     _value: 
