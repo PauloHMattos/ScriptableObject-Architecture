@@ -1,11 +1,12 @@
-﻿using NSubstitute;
-using NUnit.Framework;
-using ScriptableObjectArchitecture;
-using System;
+﻿using System;
 using System.Collections;
+using NSubstitute;
+using NUnit.Framework;
+using ScriptableObjectArchitecture.Observers;
+using ScriptableObjectArchitecture.Variables;
 using UnityEngine;
 
-namespace Tests
+namespace Assets.Tests.Editor
 {
     [TestFixture]
     public class VariablesTests

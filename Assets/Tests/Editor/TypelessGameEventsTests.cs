@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using NSubstitute;
 using NUnit.Framework;
-using ScriptableObjectArchitecture;
-using Unity.PerformanceTesting;
-using UnityEditor.SceneManagement;
+using ScriptableObjectArchitecture.Events.Game_Events;
+using ScriptableObjectArchitecture.Events.Listeners;
 using UnityEngine;
-using UnityEngine.TestTools;
 
-namespace Tests
+namespace Assets.Tests.Editor
 {
 
     [TestFixture]
