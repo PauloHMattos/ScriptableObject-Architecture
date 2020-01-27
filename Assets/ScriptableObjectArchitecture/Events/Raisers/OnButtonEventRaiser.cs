@@ -8,7 +8,7 @@ namespace ScriptableObjectArchitecture.Events.Raisers
     [AddComponentMenu(SOArchitecture_Utility.EVENT_RAISER_SUBMENU + "On Button Raiser")]
     public class OnButtonEventRaiser : BaseGameEventRaiser
     {
-        [Group("General")]
+        [Group("General", "GameManager Icon")]
         public string buttonName;
         public EventType eventType;
 
