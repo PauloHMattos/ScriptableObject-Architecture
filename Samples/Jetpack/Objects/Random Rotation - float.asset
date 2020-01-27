@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff614072d4a96ed4f99df92c823146f6, type: 3}
+  m_Name: Random Rotation - float
+  m_EditorClassIdentifier: 
+  _showGroups: 1
+  _showCustomFields: 1
+  DeveloperDescription:
+    _showDescription: 1
+    _value: 
+  _showObservers: 1
+  _showGeneral: 1
+  _resetWhenStart: 0
+  _defaultValue: 0
+  _value: 0.13028468
+  _readOnly: 0
+  _raiseWarning: 1
+  _isClamped: 0
+  _minClampedValue: 0
+  _maxClampedValue: 360
+  _useTimeAsSeed: 1
+  _seed: 377329156
+  _state:
+    s0: 1244831094
+    s1: 1484825094
+    s2: 333944637
+    s3: 1351658795
