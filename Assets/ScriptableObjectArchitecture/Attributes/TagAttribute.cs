@@ -14,7 +14,7 @@ namespace ScriptableObjectArchitecture.Attributes
         {
         }
 
-#if UNITY_ENGINE
+#if UNITY_EDITOR
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             if (property.propertyType == SerializedPropertyType.String)

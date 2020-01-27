@@ -13,7 +13,7 @@ namespace ScriptableObjectArchitecture.Attributes
         {
         }
 
-#if UNITY_ENGINE
+#if UNITY_EDITOR
         internal override void OnPostGUI(Rect position, SerializedProperty property)
         {
             base.OnPostGUI(position, property);

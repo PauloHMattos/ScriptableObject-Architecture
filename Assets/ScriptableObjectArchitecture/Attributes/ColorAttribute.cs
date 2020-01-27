@@ -22,7 +22,7 @@ namespace ScriptableObjectArchitecture.Attributes
             Color = new Color(R, G, B, A);
         }
 
-#if UNITY_ENGINE
+#if UNITY_EDITOR
         internal override void OnPreGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             if (Background)
