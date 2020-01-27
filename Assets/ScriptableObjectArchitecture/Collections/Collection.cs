@@ -9,33 +9,16 @@ namespace ScriptableObjectArchitecture.Collections
     {
         public new T this[int index]
         {
-            get
-            {
-                return _list[index];
-            }
-            set
-            {
-                _list[index] = value;
-            }
+            get => _list[index];
+            set => _list[index] = value;
         }
 
         [SerializeField]
         private List<T> _list = new List<T>();
 
-        public override IList List
-        {
-            get
-            {
-                return _list;
-            }
-        }
-        public override Type Type
-        {
-            get
-            {
-                return typeof(T);
-            }
-        }
+        public override IList List => _list;
+
+        public override Type Type => typeof(T);
 
         public void Add(T obj)
         {

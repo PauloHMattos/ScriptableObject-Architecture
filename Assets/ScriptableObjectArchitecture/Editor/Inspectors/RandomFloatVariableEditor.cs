@@ -7,7 +7,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
     public class RandomFloatVariableEditor : ReadOnlyFloatVariableEditor
     {
         private SerializedProperty _useTimeAsSeed;
-        private RandomFloatVariable Target { get { return (RandomFloatVariable)target; } }
+        private RandomFloatVariable Target => (RandomFloatVariable)target;
 
 
         protected override void OnEnable()

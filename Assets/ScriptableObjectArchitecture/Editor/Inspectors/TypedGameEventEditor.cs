@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using ScriptableObjectArchitecture.Events.Game_Events;
+using ScriptableObjectArchitecture.Events.GameEvents;
 using UnityEditor;
 using UnityEngine;
 using Type = System.Type;
@@ -11,7 +11,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
     {
         private MethodInfo _raiseMethod;
 
-        private GameEventBase Event { get { return (GameEventBase)target; } }
+        private GameEventBase Event => (GameEventBase)target;
 
         protected override void OnEnable()
         {
@@ -27,7 +27,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
 
         protected override void DrawRaiseButton()
         {
-            SerializedProperty property = serializedObject.FindProperty("_debugValue");
+            var property = serializedObject.FindProperty("_debugValue");
             DrawDebugValue(property);
 
 
@@ -38,8 +38,8 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
         }
         protected object GetDebugValue(SerializedProperty property)
         {
-            Type targetType = property.serializedObject.targetObject.GetType();
-            FieldInfo targetField = targetType.GetField("_debugValue", BindingFlags.Instance | BindingFlags.NonPublic);
+            var targetType = property.serializedObject.targetObject.GetType();
+            var targetField = targetType.GetField("_debugValue", BindingFlags.Instance | BindingFlags.NonPublic);
             return targetField.GetValue(property.serializedObject.targetObject);
         }
         protected virtual void CallMethod(object value)

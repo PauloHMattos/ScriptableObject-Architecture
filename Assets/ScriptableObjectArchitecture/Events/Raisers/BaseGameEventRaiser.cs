@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace ScriptableObjectArchitecture.Events.Raisers
 {
-    public abstract class BaseGameEventRaiser : SOArchitectureBaseMonoBehaviour
+    public abstract class BaseGameEventRaiser : SoArchitectureBaseMonoBehaviour
     {
         [SerializeField]
         [Group("Response", "d_CollabMoved Icon")]

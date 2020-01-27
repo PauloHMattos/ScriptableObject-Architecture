@@ -3,8 +3,8 @@ using UnityEditor;
 
 namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
 {
-    [CustomEditor(typeof(SOArchitectureBaseObject), true)]
-    public class SOArchitectureBaseObjectEditor : SOArchitectureBaseEditor
+    [CustomEditor(typeof(SoArchitectureBaseObject), true)]
+    public class SoArchitectureBaseObjectEditor : SoArchitectureBaseEditor
     {
 
     }

@@ -10,7 +10,7 @@ namespace ScriptableObjectArchitecture.Attributes
     [AttributeUsage(AttributeTargets.Field)]
     public abstract class MultiPropertyAttribute : PropertyAttribute
     {
-        public IOrderedEnumerable<object> stored = null;
+        public IOrderedEnumerable<object> Stored = null;
 
 #if UNITY_EDITOR
         public virtual void OnGUI(Rect position, SerializedProperty property, GUIContent label)

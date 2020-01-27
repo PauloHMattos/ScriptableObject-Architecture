@@ -19,12 +19,12 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
         }
     }
 
-    public class DebuggableGameEventListenerEditor : SOArchitectureBaseMonoBehaviourEditor
+    public class DebuggableGameEventListenerEditor : SoArchitectureBaseMonoBehaviourEditor
     {
         private SerializedProperty _debugColor;
         private SerializedProperty _enableDebug;
 
-        private IStackTraceObject Target { get { return (IStackTraceObject)target; } }
+        private IStackTraceObject Target => (IStackTraceObject)target;
         private StackTrace _stackTrace;
 
         protected MethodInfo _raiseMethod;
@@ -79,7 +79,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             EditorGUILayout.LabelField("Callback Debugging", EditorStyles.boldLabel);
             using (new EditorGUI.IndentLevelScope())
             {
-                SerializedProperty property = serializedObject.FindProperty("_debugValue");
+                var property = serializedObject.FindProperty("_debugValue");
                 if (property != null)
                 {
                     EditorGUILayout.PropertyField(property);
@@ -103,8 +103,8 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             if (property == null)
                 return null;
 
-            Type targetType = property.serializedObject.targetObject.GetType();
-            FieldInfo targetField = targetType.GetField("_debugValue", BindingFlags.Instance | BindingFlags.NonPublic);
+            var targetType = property.serializedObject.targetObject.GetType();
+            var targetField = targetType.GetField("_debugValue", BindingFlags.Instance | BindingFlags.NonPublic);
             return targetField.GetValue(property.serializedObject.targetObject);
         }
 

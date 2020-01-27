@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 namespace ScriptableObjectArchitecture.Observers
 {
-	[AddComponentMenu(SOArchitecture_Utility.OBSERVER_SUBMENU + "String Observer")]
+	[AddComponentMenu(SoArchitectureUtility.OBSERVER_SUBMENU + "String Observer")]
 	public sealed class StringObserver : BaseObserver<string, Subject>
     {
         protected override UnityEventBase Response => _response;
@@ -16,7 +16,7 @@ namespace ScriptableObjectArchitecture.Observers
         [Group("Response"), SerializeField]
         private string _format = "";
         [SerializeField]
-        private StringUnityEvent _response = default(StringUnityEvent);
+        private StringUnityEvent _response = default;
 
         public override void OnVariableChanged()
         {

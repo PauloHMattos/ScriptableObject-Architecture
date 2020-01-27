@@ -5,8 +5,8 @@ namespace ScriptableObjectArchitecture.Variables
 {
     [CreateAssetMenu(
         fileName = "Vector3Variable.asset",
-        menuName = SOArchitecture_Utility.VARIABLE_SUBMENU + "Structs/Vector3",
-        order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 11)]
+        menuName = SoArchitectureUtility.VARIABLE_SUBMENU + "Structs/Vector3",
+        order = SoArchitectureUtility.ASSET_MENU_ORDER_COLLECTIONS + 11)]
     public sealed class Vector3Variable : NumericVariable<Vector3, Vector3Variable>
     {
         public override void Add(Vector3 other)

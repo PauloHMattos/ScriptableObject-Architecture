@@ -12,7 +12,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
         /// <summary>
         /// Options to display in the popup to select constant or variable.
         /// </summary>
-        private static readonly string[] popupOptions =
+        private static readonly string[] PopupOptions =
         {
             "Use Constant",
             "Use Variable"
@@ -27,25 +27,25 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
         private const string COULD_NOT_FIND_VALUE_FIELD_WARNING_FORMAT =
             "Could not find FieldInfo for [{0}] specific property drawer on type [{1}].";
 
-        private Type ValueType { get { return BaseReferenceHelper.GetValueType(fieldInfo); } }
-        private bool SupportsMultiLine { get { return SOArchitecture_EditorUtility.SupportsMultiLine(ValueType); } }
+        private Type ValueType => BaseReferenceHelper.GetValueType(fieldInfo);
+        private bool SupportsMultiLine => SoArchitectureEditorUtility.SupportsMultiLine(ValueType);
 
-        private SerializedProperty property;
-        private SerializedProperty useConstant;
-        private SerializedProperty constantValue;
-        private SerializedProperty variable;
+        private SerializedProperty _property;
+        private SerializedProperty _useConstant;
+        private SerializedProperty _constantValue;
+        private SerializedProperty _variable;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             // Get properties
-            this.property = property;
-            useConstant = property.FindPropertyRelative("_useConstant");
-            constantValue = property.FindPropertyRelative("_constantValue");
-            variable = property.FindPropertyRelative("_variable");
+            this._property = property;
+            _useConstant = property.FindPropertyRelative("_useConstant");
+            _constantValue = property.FindPropertyRelative("_constantValue");
+            _variable = property.FindPropertyRelative("_variable");
                         
             //int oldIndent = ResetIndent();
 
-            Rect fieldRect = DrawLabel(position, property, label);
+            var fieldRect = DrawLabel(position, property, label);
             DrawField(position, fieldRect);
 
             //EndIndent(oldIndent);
@@ -58,11 +58,11 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
         }
         private void DrawField(Rect position, Rect fieldRect)
         {
-            Rect buttonRect = GetPopupButtonRect(fieldRect);
-            Rect valueRect = GetValueRect(fieldRect, buttonRect);
+            var buttonRect = GetPopupButtonRect(fieldRect);
+            var valueRect = GetValueRect(fieldRect, buttonRect);
 
-            int result = DrawPopupButton(buttonRect, useConstant.boolValue ? 0 : 1);
-            useConstant.boolValue = result == 0;
+            var result = DrawPopupButton(buttonRect, _useConstant.boolValue ? 0 : 1);
+            _useConstant.boolValue = result == 0;
 
             DrawValue(position, valueRect);
         }
@@ -74,25 +74,25 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
                 GUI.Box(valueRect, string.Empty);
             }
 
-            if (useConstant.boolValue)
+            if (_useConstant.boolValue)
             {
                 DrawGenericPropertyField(valueRect);
             }
             else
             {
-                EditorGUI.PropertyField(valueRect, variable, GUIContent.none);
+                EditorGUI.PropertyField(valueRect, _variable, GUIContent.none);
             }
         }
         private void DrawGenericPropertyField(Rect valueRect)
         {
             if (ValueType != null)
             {
-                GenericPropertyDrawer.DrawPropertyDrawer(valueRect, GUIContent.none, ValueType, constantValue, GUIContent.none);
+                GenericPropertyDrawer.DrawPropertyDrawer(valueRect, GUIContent.none, ValueType, _constantValue, GUIContent.none);
             }
             else
             {
                 Debug.LogWarningFormat(
-                    property.objectReferenceValue,
+                    _property.objectReferenceValue,
                     COULD_NOT_FIND_VALUE_FIELD_WARNING_FORMAT,
                     CONSTANT_VALUE_PROPERTY_NAME,
                     ValueType);
@@ -103,17 +103,17 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
             return EditorGUI.IndentedRect(new Rect
             {
                 position = new Vector2(position.x, position.y + EditorGUIUtility.singleLineHeight),
-                size = new Vector2(position.width, EditorGUI.GetPropertyHeight(constantValue) + EditorGUIUtility.singleLineHeight)
+                size = new Vector2(position.width, EditorGUI.GetPropertyHeight(_constantValue) + EditorGUIUtility.singleLineHeight)
             });
         }
         private bool ShouldDrawMultiLineField()
         {
-            return useConstant.boolValue && SupportsMultiLine && EditorGUI.GetPropertyHeight(constantValue) > EditorGUIUtility.singleLineHeight;
+            return _useConstant.boolValue && SupportsMultiLine && EditorGUI.GetPropertyHeight(_constantValue) > EditorGUIUtility.singleLineHeight;
         }
         private int ResetIndent()
         {
             // Store old indent level and set it to 0, the PrefixLabel takes care of it
-            int indent = EditorGUI.indentLevel;
+            var indent = EditorGUI.indentLevel;
             EditorGUI.indentLevel = 0;
 
             return indent;
@@ -124,11 +124,11 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
         }
         private int DrawPopupButton(Rect rect, int value)
         {
-            return EditorGUI.Popup(rect, value, popupOptions, Styles.PopupStyle);
+            return EditorGUI.Popup(rect, value, PopupOptions, Styles.PopupStyle);
         }
         private Rect GetValueRect(Rect fieldRect, Rect buttonRect)
         {
-            Rect valueRect = new Rect(fieldRect);
+            var valueRect = new Rect(fieldRect);
             valueRect.x += buttonRect.width;
             valueRect.width -= buttonRect.width;
 
@@ -136,7 +136,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
         }
         private Rect GetPopupButtonRect(Rect fieldrect)
         {
-            Rect buttonRect = new Rect(fieldrect);
+            var buttonRect = new Rect(fieldrect);
             buttonRect.yMin += Styles.PopupStyle.margin.top;
             buttonRect.width = Styles.PopupStyle.fixedWidth + Styles.PopupStyle.margin.right;
             buttonRect.height = Styles.PopupStyle.fixedHeight + Styles.PopupStyle.margin.top;
@@ -148,10 +148,10 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
         {
             if (SupportsMultiLine)
             {
-                SerializedProperty constantValue = property.FindPropertyRelative(CONSTANT_VALUE_PROPERTY_NAME);
-                SerializedProperty useConstant = property.FindPropertyRelative(USE_CONSTANT_VALUE_PROPERTY_NAME);
+                var constantValue = property.FindPropertyRelative(CONSTANT_VALUE_PROPERTY_NAME);
+                var useConstant = property.FindPropertyRelative(USE_CONSTANT_VALUE_PROPERTY_NAME);
 
-                float constantPropertyHeight = EditorGUI.GetPropertyHeight(constantValue);
+                var constantPropertyHeight = EditorGUI.GetPropertyHeight(constantValue);
                 return !useConstant.boolValue || constantPropertyHeight <= EditorGUIUtility.singleLineHeight
                     ? EditorGUIUtility.singleLineHeight
                     : EditorGUIUtility.singleLineHeight * 2 + constantPropertyHeight;

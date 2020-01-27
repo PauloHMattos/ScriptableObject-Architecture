@@ -10,22 +10,22 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
 {
     internal class FieldGroup
     {
-        public GUIContent GUIContent;
+        public GUIContent GuiContent;
         public List<FieldInfo> Fields = new List<FieldInfo>();
         public Color? Color;
     }
 
-    public class SOArchitectureBaseEditor : UnityEditor.Editor
+    public class SoArchitectureBaseEditor : UnityEditor.Editor
     {
         protected SerializedProperty _showGroups;
-        protected SerializedProperty _showButttons;
+        protected SerializedProperty _showButtons;
         private SerializedProperty _developerDescription;
 
         protected virtual void OnEnable()
         {
             _showGroups = serializedObject.FindProperty("_showGroups");
-            _showButttons = serializedObject.FindProperty("_showButttons");
-            _developerDescription = serializedObject.FindProperty("DeveloperDescription");
+            _showButtons = serializedObject.FindProperty("_showButtons");
+            _developerDescription = serializedObject.FindProperty("_developerDescription");
         }
 
         public override void OnInspectorGUI()
@@ -45,7 +45,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             var dict = new Dictionary<string, FieldGroup>();
             var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
-            GUIContent currentHeader = new GUIContent();
+            var currentHeader = new GUIContent();
 
             var targetType = target.GetType();
             var fields = targetType.GetFields(bindingFlags);
@@ -53,7 +53,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
 
             foreach (var field in fields)
             {
-                if (!IsDrawable(field, hideBase, out bool isPrivate))
+                if (!IsDrawable(field, hideBase, out var isPrivate))
                 {
                     continue;
                 }
@@ -78,7 +78,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
                 if (!dict.ContainsKey(currentHeader.text))
                 {
                     var group = new FieldGroup();
-                    group.GUIContent = currentHeader;
+                    group.GuiContent = currentHeader;
 
                     var colorAttr = field.GetCustomAttributes<ColorAttribute>().Where(c => c.Background).FirstOrDefault();
                     if (colorAttr != null && colorAttr.Background)
@@ -132,7 +132,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
                     continue;
                 }
 
-                if (!IsDrawable(method, hideBase, out bool isPrivate))
+                if (!IsDrawable(method, hideBase, out var isPrivate))
                 {
                     continue;
                 }
@@ -146,8 +146,8 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 using (new EditorGUI.IndentLevelScope())
                 {
-                    _showButttons.boolValue = EditorGUILayout.Foldout(_showButttons.boolValue, new GUIContent("Buttons"));
-                    if (_showButttons.boolValue)
+                    _showButtons.boolValue = EditorGUILayout.Foldout(_showButtons.boolValue, new GUIContent("Buttons"), EditorStyles.foldoutHeader);
+                    if (_showButtons.boolValue)
                     {
                         var buttonText = string.IsNullOrEmpty(buttonAttribute.Text) ? method.Name : buttonAttribute.Text;
                         DrawButton(buttonText, method);
@@ -188,14 +188,14 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
                 return;
             }
 
-            int showFlags = _showGroups.intValue;
+            var showFlags = _showGroups.intValue;
 
-            for (int i = 0; i < groups.Count; i++)
+            for (var i = 0; i < groups.Count; i++)
             {
                 var group = groups.ElementAt(i);
-                bool show = IsBitSet(showFlags, i);
+                var show = IsBitSet(showFlags, i);
 
-                Color _prevColor = GUI.backgroundColor;
+                var prevColor = GUI.backgroundColor;
                 if (group.Value.Color.HasValue)
                 {
                     GUI.backgroundColor = group.Value.Color.Value;
@@ -204,7 +204,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 using (new EditorGUI.IndentLevelScope())
                 {
-                    show = EditorGUILayout.Foldout(show, group.Value.GUIContent);
+                    show = EditorGUILayout.Foldout(show, group.Value.GuiContent, EditorStyles.foldoutHeader);
                     if (show)
                     {
                         var fields = group.Value.Fields;
@@ -212,7 +212,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
                     }
                 }
                 EditorGUILayout.EndVertical();
-                GUI.backgroundColor = _prevColor;
+                GUI.backgroundColor = prevColor;
 
                 SetBit(ref showFlags, i, show);
             }

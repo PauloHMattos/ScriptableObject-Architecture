@@ -10,7 +10,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
     {
         public static void DrawPropertyDrawer(Rect rect, GUIContent label, Type type, SerializedProperty property, GUIContent errorLabel)
         {
-            if (SOArchitecture_EditorUtility.HasPropertyDrawer(type) || typeof(Object).IsAssignableFrom(type) || type.IsEnum)
+            if (SoArchitectureEditorUtility.HasPropertyDrawer(type) || typeof(Object).IsAssignableFrom(type) || type.IsEnum)
             {
                 //Unity doesn't like it when you have scene objects on assets,
                 //so we do some magic to display it anyway
@@ -25,7 +25,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
                 }
                 else if (type.IsAssignableFrom(typeof(Quaternion)))
                 {
-                    Vector4 displayValue = property.quaternionValue.ToVector4();
+                    var displayValue = property.quaternionValue.ToVector4();
 
                     property.quaternionValue = EditorGUI.Vector4Field(rect, label, displayValue).ToQuaternion();
                 }
@@ -46,7 +46,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
         
         public static void DrawPropertyDrawerLayout(Type type, GUIContent label, SerializedProperty property, GUIContent errorLabel)
         {
-            if (SOArchitecture_EditorUtility.HasPropertyDrawer(type) || typeof(Object).IsAssignableFrom(type) || type.IsEnum)
+            if (SoArchitectureEditorUtility.HasPropertyDrawer(type) || typeof(Object).IsAssignableFrom(type) || type.IsEnum)
             {
                 //Unity doesn't like it when you have scene objects on assets,
                 //so we do some magic to display it anyway
@@ -61,7 +61,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
                 }
                 else if (type.IsAssignableFrom(typeof(Quaternion)))
                 {
-                    Vector4 displayValue = property.quaternionValue.ToVector4();
+                    var displayValue = property.quaternionValue.ToVector4();
 
                     property.quaternionValue = EditorGUILayout.Vector4Field(label, displayValue).ToQuaternion();
                 }

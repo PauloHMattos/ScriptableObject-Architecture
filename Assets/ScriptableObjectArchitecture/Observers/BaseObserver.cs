@@ -63,7 +63,7 @@ namespace ScriptableObjectArchitecture.Observers
     public abstract class BaseObserver<TType, TVariable> : BaseObserver
         where TVariable : Subject
     {
-        protected override ScriptableObject GameEvent { get { return _variable; } }
+        protected override ScriptableObject GameEvent => _variable;
 
         [Group("General", "GameManager Icon")]
         [SerializeField] protected bool _raiseOnStart = true;
@@ -115,8 +115,8 @@ namespace ScriptableObjectArchitecture.Observers
 where TVariable : BaseVariable<TType>, ISubject
 where TResponse : UnityEvent<TType>
     {
-        protected override UnityEventBase Response { get { return _response; } }
-        
+        protected override UnityEventBase Response => _response;
+
         [Group("Response", "d_CollabMoved Icon"), SerializeField]
         protected TResponse _response = default;
 

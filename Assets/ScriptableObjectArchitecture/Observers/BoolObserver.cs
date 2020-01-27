@@ -7,11 +7,11 @@ namespace ScriptableObjectArchitecture.Observers
     public class BoolObserver : BaseObserver<bool, BoolVariable, BoolUnityEvent>
     {
         [Group("General", "GameManager Icon")]
-        public bool invert;
+        public bool Invert;
 
         protected override void RaiseResponse(bool value)
         {
-            if (invert)
+            if (Invert)
             {
                 value = !value;
             }

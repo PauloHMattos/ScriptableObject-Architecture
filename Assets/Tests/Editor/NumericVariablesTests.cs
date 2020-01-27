@@ -31,14 +31,14 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void AddToVariableTest<T, U>(T variable, U value) where T : NumericVariable<U, T>
+        public void AddToVariableTest<T, TU>(T variable, TU value) where T : NumericVariable<TU, T>
         {
-            Assert.AreEqual(default(U), variable.Value);
+            Assert.AreEqual(default(TU), variable.Value);
             variable.Add(value);
             Assert.AreEqual(value, variable.Value);
 
             var other = ScriptableObject.CreateInstance<T>();
-            Assert.AreEqual(default(U), other.Value);
+            Assert.AreEqual(default(TU), other.Value);
             other.Add(variable);
             Assert.AreEqual(value, other.Value);
 
@@ -47,19 +47,19 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void SubtractToVariableTest<T, U>(T variable, U value) where T : NumericVariable<U, T>
+        public void SubtractToVariableTest<T, TU>(T variable, TU value) where T : NumericVariable<TU, T>
         {
             variable.Value = value;
             Assert.AreEqual(value, variable.Value);
             variable.Subtract(value);
-            Assert.AreEqual(default(U), variable.Value);
+            Assert.AreEqual(default(TU), variable.Value);
 
             var other = ScriptableObject.CreateInstance<T>();
             other.Value = value;
             variable.Value = value;
             Assert.AreEqual(value, other.Value);
             other.Subtract(variable);
-            Assert.AreEqual(default(U), other.Value);
+            Assert.AreEqual(default(TU), other.Value);
 
             ScriptableObject.DestroyImmediate(variable);
         }

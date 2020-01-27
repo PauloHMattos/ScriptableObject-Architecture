@@ -14,7 +14,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
         protected SerializedProperty _equals;
         protected SerializedProperty _smaller;
         protected SerializedProperty _bigger;
-        private SerializedProperty _comparationReference;
+        private SerializedProperty _comparisonReference;
 
         private static readonly string[] DifferentLabels =
         {
@@ -36,7 +36,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             _equals = serializedObject.FindProperty("_equals");
             _smaller = serializedObject.FindProperty("_smaller");
             _bigger = serializedObject.FindProperty("_bigger");
-            _comparationReference = serializedObject.FindProperty("_comparationReference");
+            _comparisonReference = serializedObject.FindProperty("_comparisonReference");
         }
 
         protected override void DrawCustomFields(List<FieldInfo> fields, SerializedObject serializedObject, string groupName)
@@ -55,9 +55,9 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
 
         protected virtual void DrawConditions()
         {
-            if (_comparationReference != null)
+            if (_comparisonReference != null)
             {
-                EditorGUILayout.PropertyField(_comparationReference, new GUIContent("Comp. Reference"));
+                EditorGUILayout.PropertyField(_comparisonReference, new GUIContent("Comp. Reference"));
             }
 
             var equalValue = _equals.boolValue ? 0 : 1;

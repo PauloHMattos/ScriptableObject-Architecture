@@ -20,16 +20,16 @@ namespace ScriptableObjectArchitecture.Attributes
             if (property.propertyType == SerializedPropertyType.String)
             {
                 // generate the taglist + custom tags
-                List<string> tagList = new List<string>();
+                var tagList = new List<string>();
                 tagList.Add("(None)");
                 tagList.Add("Untagged");
                 tagList.AddRange(UnityEditorInternal.InternalEditorUtility.tags);
 
-                string propertyString = property.stringValue;
-                int index = 0;
+                var propertyString = property.stringValue;
+                var index = 0;
                 // check if there is an entry that matches the entry and get the index
                 // we skip index 0 as that is a special custom case
-                for (int i = 1; i < tagList.Count; i++)
+                for (var i = 1; i < tagList.Count; i++)
                 {
                     if (tagList[i] == propertyString)
                     {
@@ -55,7 +55,7 @@ namespace ScriptableObjectArchitecture.Attributes
             else
             {
                 EditorGUI.PropertyField(position, property, label, true);
-                string message = string.Format("{0} supports only string fields", typeof(TagAttribute).Name);
+                var message = string.Format("{0} supports only string fields", typeof(TagAttribute).Name);
                 EditorGUILayout.HelpBox(message, MessageType.Warning);
             }
         }

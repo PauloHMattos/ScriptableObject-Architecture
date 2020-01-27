@@ -5,8 +5,8 @@ namespace ScriptableObjectArchitecture.Collections
 {
     [CreateAssetMenu(
         fileName = "DoubleCollection.asset",
-        menuName = SOArchitecture_Utility.ADVANCED_VARIABLE_COLLECTION + "double",
-        order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 8)]
+        menuName = SoArchitectureUtility.ADVANCED_VARIABLE_COLLECTION + "double",
+        order = SoArchitectureUtility.ASSET_MENU_ORDER_COLLECTIONS + 8)]
     public class DoubleCollection : Collection<double>
     {
     } 

@@ -10,12 +10,12 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
     {
         private MultiPropertyAttribute RetrieveAttributes()
         {
-            MultiPropertyAttribute mAttribute = attribute as MultiPropertyAttribute;
+            var mAttribute = attribute as MultiPropertyAttribute;
 
             // Get the attribute list, sorted by "order".
-            if (mAttribute.stored == null)
+            if (mAttribute.Stored == null)
             {
-                mAttribute.stored = fieldInfo.GetCustomAttributes(typeof(MultiPropertyAttribute), false).OrderBy(s => ((PropertyAttribute)s).order);
+                mAttribute.Stored = fieldInfo.GetCustomAttributes(typeof(MultiPropertyAttribute), false).OrderBy(s => ((PropertyAttribute)s).order);
             }
 
             return mAttribute;
@@ -23,18 +23,18 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            MultiPropertyAttribute mAttribute = RetrieveAttributes();
+            var mAttribute = RetrieveAttributes();
 
             // If the attribute is invisible, regain the standard vertical spacing.
-            foreach (MultiPropertyAttribute attr in mAttribute.stored)
+            foreach (MultiPropertyAttribute attr in mAttribute.Stored)
                 if (!attr.IsVisible(property))
                     return -EditorGUIUtility.standardVerticalSpacing;
 
             // In case no attribute returns a modified height, return the property's default one:
-            float height = base.GetPropertyHeight(property, label);
+            var height = base.GetPropertyHeight(property, label);
 
             // Check if any of the attributes wants to modify height:
-            foreach (object atr in mAttribute.stored)
+            foreach (var atr in mAttribute.Stored)
             {
                 if (atr as MultiPropertyAttribute != null)
                 {
@@ -51,21 +51,21 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            MultiPropertyAttribute mAttribute = RetrieveAttributes();
+            var mAttribute = RetrieveAttributes();
 
             // Calls to IsVisible. If it returns false for any attribute, the property will not be rendered.
-            foreach (MultiPropertyAttribute attr in mAttribute.stored)
+            foreach (MultiPropertyAttribute attr in mAttribute.Stored)
                 if (!attr.IsVisible(property)) return;
 
             // Calls to OnPreRender before the last attribute draws the UI.
-            foreach (MultiPropertyAttribute attr in mAttribute.stored)
+            foreach (MultiPropertyAttribute attr in mAttribute.Stored)
                 attr.OnPreGUI(position, property, label);
 
             // The last attribute is in charge of actually drawing something:
-            ((MultiPropertyAttribute)mAttribute.stored.Last()).OnGUI(position, property, label);
+            ((MultiPropertyAttribute)mAttribute.Stored.Last()).OnGUI(position, property, label);
 
             // Calls to OnPostRender after the last attribute draws the UI. These are called in reverse order.
-            foreach (MultiPropertyAttribute attr in mAttribute.stored.Reverse())
+            foreach (MultiPropertyAttribute attr in mAttribute.Stored.Reverse())
                 attr.OnPostGUI(position, property);
         }
     }

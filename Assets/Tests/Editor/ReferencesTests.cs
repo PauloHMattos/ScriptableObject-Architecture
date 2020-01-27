@@ -35,7 +35,7 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void CreateCopyTest<T, U, V>(T reference, U variable, V value) where U : BaseVariable<V> where T : BaseReference<V, U>
+        public void CreateCopyTest<T, TU, TV>(T reference, TU variable, TV value) where TU : BaseVariable<TV> where T : BaseReference<TV, TU>
         {
             var copy = reference.CreateCopy();
 
@@ -44,7 +44,7 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void IsValueDefinedTest<T, U, V>(T reference, U variable, V value) where U : BaseVariable<V> where T : BaseReference<V, U>
+        public void IsValueDefinedTest<T, TU, TV>(T reference, TU variable, TV value) where TU : BaseVariable<TV> where T : BaseReference<TV, TU>
         {
             reference.UseConstant = false;
             Assert.IsFalse(reference.IsValueDefined);
@@ -60,7 +60,7 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void ToStringTest<T, U, V>(T reference, U variable, V value) where U : BaseVariable<V> where T : BaseReference<V, U>
+        public void ToStringTest<T, TU, TV>(T reference, TU variable, TV value) where TU : BaseVariable<TV> where T : BaseReference<TV, TU>
         {
             var defValue = reference.Value;
 
@@ -76,7 +76,7 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void ChangeReferenceValueTest<T, U, V>(T reference, U variable, V value) where U : BaseVariable<V> where T : BaseReference<V, U>
+        public void ChangeReferenceValueTest<T, TU, TV>(T reference, TU variable, TV value) where TU : BaseVariable<TV> where T : BaseReference<TV, TU>
         {
             var defValue = reference.Value;
 

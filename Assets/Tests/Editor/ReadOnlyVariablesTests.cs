@@ -24,16 +24,16 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void VariableTypeTest<T, U>(T variable, U value) where T : BaseVariable<U>
+        public void VariableTypeTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
         {
-            Assert.AreEqual(typeof(U), variable.Type);
+            Assert.AreEqual(typeof(TU), variable.Type);
 
             ScriptableObject.DestroyImmediate(variable);
         }
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void AddIVariableObserverTest<T, U>(T variable, U value) where T : BaseVariable<U>
+        public void AddIVariableObserverTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
         {
             var mockObserver = Substitute.For<IVariableObserver>();
             variable.AddObserver(mockObserver);
@@ -46,7 +46,7 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void AddActionObserverTest<T, U>(T variable, U value) where T : BaseVariable<U>
+        public void AddActionObserverTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
         {
             var mockAction = Substitute.For<Action>();
             variable.AddObserver(mockAction);
@@ -59,7 +59,7 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void ChangeReadOnlyVariableValueTest<T, U>(T variable, U value) where T : BaseVariable<U>
+        public void ChangeReadOnlyVariableValueTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
         {
             //Assert.AreEqual(default(U), variable.Value);
             Debug.unityLogger.logEnabled = false;
@@ -70,7 +70,7 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void RaiseVariableChangedEventTest<T, U>(T variable, U value) where T : BaseVariable<U>
+        public void RaiseVariableChangedEventTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
         {
             var mockAction = Substitute.For<Action>();
             var mockObserver = Substitute.For<IVariableObserver>();
@@ -89,7 +89,7 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void RemoveIVariableObserverTest<T, U>(T variable, U value) where T : BaseVariable<U>
+        public void RemoveIVariableObserverTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
         {
             var mockObserver = Substitute.For<IVariableObserver>();
             variable.AddObserver(mockObserver);
@@ -101,7 +101,7 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void RemoveActionObserverTest<T, U>(T variable, U value) where T : BaseVariable<U>
+        public void RemoveActionObserverTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
         {
             var mockAction = Substitute.For<Action>();
             variable.AddObserver(mockAction);
@@ -113,7 +113,7 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void RemoveAllObserversTest<T, U>(T variable, U value) where T : BaseVariable<U>
+        public void RemoveAllObserversTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
         {
             var mockAction = Substitute.For<Action>();
             var mockObserver = Substitute.For<IVariableObserver>();

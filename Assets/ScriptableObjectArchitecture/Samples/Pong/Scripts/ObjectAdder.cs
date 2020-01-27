@@ -6,7 +6,7 @@ namespace Assets.ScriptableObjectArchitecture.Samples.Pong.Scripts
     public class ObjectAdder : MonoBehaviour
     {
         [SerializeField]
-        private GameObjectCollection _targetCollection = default(GameObjectCollection);
+        private GameObjectCollection _targetCollection = default;
 
         private void OnEnable()
         {

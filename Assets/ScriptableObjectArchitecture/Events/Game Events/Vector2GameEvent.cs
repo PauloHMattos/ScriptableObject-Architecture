@@ -1,13 +1,13 @@
 using ScriptableObjectArchitecture.Utility;
 using UnityEngine;
 
-namespace ScriptableObjectArchitecture.Events.Game_Events
+namespace ScriptableObjectArchitecture.Events.GameEvents
 {
     [System.Serializable]
     [CreateAssetMenu(
         fileName = "Vector2GameEvent.asset",
-        menuName = SOArchitecture_Utility.GAME_EVENT + "Structs/Vector2",
-        order = SOArchitecture_Utility.ASSET_MENU_ORDER_EVENTS + 10)]
+        menuName = SoArchitectureUtility.GAME_EVENT + "Structs/Vector2",
+        order = SoArchitectureUtility.ASSET_MENU_ORDER_EVENTS + 10)]
     public sealed class Vector2GameEvent : GameEventBase<Vector2>
     {
     } 

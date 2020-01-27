@@ -1,6 +1,6 @@
 ﻿using ScriptableObjectArchitecture.Events.Listeners;
 
-namespace ScriptableObjectArchitecture.Events.Game_Events
+namespace ScriptableObjectArchitecture.Events.GameEvents
 {
     public interface IGameEvent<T>
     {

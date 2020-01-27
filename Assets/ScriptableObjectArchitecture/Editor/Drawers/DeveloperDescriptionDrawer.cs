@@ -14,15 +14,15 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
         
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            var _showDescription = property.FindPropertyRelative("_showDescription");
+            var showDescription = property.FindPropertyRelative("_showDescription");
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
                 var content = new GUIContent("Description");
                 content.image = EditorGUIUtility.IconContent("TextAsset Icon").image;
-                _showDescription.boolValue = EditorGUILayout.Foldout(_showDescription.boolValue, content);
+                showDescription.boolValue = EditorGUILayout.Foldout(showDescription.boolValue, content, EditorStyles.foldoutHeader);
             }
-            if (_showDescription.boolValue)
+            if (showDescription.boolValue)
             {
                 DrawTextArea(ref position, property);
             }
@@ -33,14 +33,14 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
 
         private void DrawTextArea(ref Rect rect, SerializedProperty property)
         {
-            SerializedProperty stringValue = property.FindPropertyRelative("_value");
+            var stringValue = property.FindPropertyRelative("_value");
             stringValue.stringValue = EditorGUILayout.TextArea(stringValue.stringValue, Styles.TextAreaStyle);
             HandleInput(rect, property);
         }
 
         private void HandleInput(Rect textAreaRect, SerializedProperty property)
         {
-            Event e = Event.current;
+            var e = Event.current;
 
             if (e.type == EventType.MouseDown)
             {

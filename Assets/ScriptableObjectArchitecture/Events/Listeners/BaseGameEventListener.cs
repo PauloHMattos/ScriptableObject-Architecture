@@ -1,5 +1,5 @@
 ﻿using ScriptableObjectArchitecture.Attributes;
-using ScriptableObjectArchitecture.Events.Game_Events;
+using ScriptableObjectArchitecture.Events.GameEvents;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,19 +12,19 @@ namespace ScriptableObjectArchitecture.Events.Listeners
 where TEvent : GameEventBase<TType>
 where TResponse : UnityEvent<TType>
     {
-        protected override ScriptableObject GameEvent { get { return _event; } }
-        protected override UnityEventBase Response { get { return _response; } }
+        protected override ScriptableObject GameEvent => _event;
+        protected override UnityEventBase Response => _response;
 
         [Group("General", "GameManager Icon"), SerializeField]
-        protected TEvent _event = default(TEvent);
+        protected TEvent _event = default;
         [Group("Response", "d_CollabMoved Icon"), SerializeField]
-        protected TResponse _response = default(TResponse);
+        protected TResponse _response = default;
         [SerializeField]
-        private TEvent _previouslyRegisteredEvent = default(TEvent);
+        private TEvent _previouslyRegisteredEvent = default;
 
         [Group("Debug", "Search Icon")]
         [SerializeField]
-        protected TType _debugValue = default(TType);
+        protected TType _debugValue = default;
 
         public void OnEventRaised(TType value)
         {
@@ -64,17 +64,17 @@ where TResponse : UnityEvent<TType>
         where TEvent : GameEventBase
         where TResponse : UnityEvent
     {
-        protected override ScriptableObject GameEvent { get { return _event; } }
-        protected override UnityEventBase Response { get { return _response; } }
+        protected override ScriptableObject GameEvent => _event;
+        protected override UnityEventBase Response => _response;
 
         [Group("General", "GameManager Icon"), SerializeField]
-        protected TEvent _event = default(TEvent);
+        protected TEvent _event = default;
 
         [Group("Response", "d_CollabMoved Icon"), SerializeField]
-        protected TResponse _response = default(TResponse);
+        protected TResponse _response = default;
 
         [SerializeField, HideInInspector]
-        private TEvent _previouslyRegisteredEvent = default(TEvent);
+        private TEvent _previouslyRegisteredEvent = default;
 
         public void OnEventRaised()
         {

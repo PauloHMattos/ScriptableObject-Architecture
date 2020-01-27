@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Variables
 {
-    public abstract class Subject : SOArchitectureBaseObject, ISubject
+    public abstract class Subject : SoArchitectureBaseObject, ISubject
     {
-        public List<IVariableObserver> Observers { get { return _observers; } }
+        public List<IVariableObserver> Observers => _observers;
         private List<IVariableObserver> _observers = new List<IVariableObserver>();
 
-        public List<Action> Actions { get { return _actions; } }
+        public List<Action> Actions => _actions;
         private List<Action> _actions = new List<Action>();
 
 #if UNITY_EDITOR
@@ -23,11 +23,11 @@ namespace ScriptableObjectArchitecture.Variables
 
         public virtual void Raise()
         {
-            for (int i = _observers.Count - 1; i >= 0; i--)
+            for (var i = _observers.Count - 1; i >= 0; i--)
             {
                 _observers[i].OnVariableChanged();
             }
-            for (int i = _actions.Count - 1; i >= 0; i--)
+            for (var i = _actions.Count - 1; i >= 0; i--)
             {
                 _actions[i].Invoke();
             }

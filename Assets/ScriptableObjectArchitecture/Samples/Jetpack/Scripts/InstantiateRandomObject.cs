@@ -5,20 +5,20 @@ namespace Assets.ScriptableObjectArchitecture.Samples.Jetpack.Scripts
 {
     public class InstantiateRandomObject : MonoBehaviour
     {
-        public Transform parent;
-        public GameObject [] availableObjects;
-        public Vector3Reference [] availablePositions;
-        public Vector3Reference [] availableScales;
-        public FloatReference [] availableRotations;
+        public Transform Parent;
+        public GameObject [] AvailableObjects;
+        public Vector3Reference [] AvailablePositions;
+        public Vector3Reference [] AvailableScales;
+        public FloatReference [] AvailableRotations;
 
         public void Spawn()
         {
-            var obj = availableObjects[Random.Range(0, availableObjects.Length)];
+            var obj = AvailableObjects[Random.Range(0, AvailableObjects.Length)];
 
             Vector3 pos;
-            if (availablePositions != null && availablePositions.Length > 0)
+            if (AvailablePositions != null && AvailablePositions.Length > 0)
             {
-                pos = availablePositions[Random.Range(0, availablePositions.Length)].Value;
+                pos = AvailablePositions[Random.Range(0, AvailablePositions.Length)].Value;
             }
             else
             {
@@ -26,9 +26,9 @@ namespace Assets.ScriptableObjectArchitecture.Samples.Jetpack.Scripts
             }
 
             Quaternion rot;
-            if (availableRotations != null && availableRotations.Length > 0)
+            if (AvailableRotations != null && AvailableRotations.Length > 0)
             {
-                var euler = availableRotations[Random.Range(0, availableRotations.Length)];
+                var euler = AvailableRotations[Random.Range(0, AvailableRotations.Length)];
                 rot = Quaternion.Euler(0, 0, euler.Value);
             }
             else
@@ -37,9 +37,9 @@ namespace Assets.ScriptableObjectArchitecture.Samples.Jetpack.Scripts
             }
 
             Vector3 scl;
-            if (availableScales != null && availableScales.Length > 0)
+            if (AvailableScales != null && AvailableScales.Length > 0)
             {
-                scl = availableScales[Random.Range(0, availableScales.Length)].Value;
+                scl = AvailableScales[Random.Range(0, AvailableScales.Length)].Value;
             }
             else
             {
@@ -48,7 +48,7 @@ namespace Assets.ScriptableObjectArchitecture.Samples.Jetpack.Scripts
 
             //if (parent != null)
             {
-                Instantiate(obj, pos, rot, parent).transform.localScale = scl;
+                Instantiate(obj, pos, rot, Parent).transform.localScale = scl;
             }
         }
     }

@@ -6,7 +6,7 @@ namespace ScriptableObjectArchitecture.Utility
     /// Base class for SOArchitecture assets
     /// Implements developer descriptions
     /// </summary>
-    public abstract class SOArchitectureBaseMonoBehaviour : MonoBehaviour
+    public abstract class SoArchitectureBaseMonoBehaviour : MonoBehaviour
     {
 #if UNITY_EDITOR
 #pragma warning disable 0414
@@ -15,7 +15,7 @@ namespace ScriptableObjectArchitecture.Utility
         [SerializeField]
         private bool _showButttons = false;
         [SerializeField]
-        private DeveloperDescription DeveloperDescription = new DeveloperDescription();
+        private DeveloperDescription _developerDescription = new DeveloperDescription();
 #pragma warning restore
 #endif
     } 

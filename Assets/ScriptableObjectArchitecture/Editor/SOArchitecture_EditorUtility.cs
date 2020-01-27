@@ -9,9 +9,9 @@ using Type = System.Type;
 
 namespace Assets.ScriptableObjectArchitecture.Editor
 {
-    public static class SOArchitecture_EditorUtility
+    public static class SoArchitectureEditorUtility
     {
-        static SOArchitecture_EditorUtility()
+        static SoArchitectureEditorUtility()
         {
             CreateDebugStyle();
         }
@@ -20,49 +20,49 @@ namespace Assets.ScriptableObjectArchitecture.Editor
         /// A debug <see cref="GUIStyle"/> that allows for identification of EditorGUI Rect issues.
         /// </summary>
         public static GUIStyle DebugStyle { get; private set; }
-        private const float DebugStyleBackgroundAlpha = 0.33f;
+        private const float DEBUG_STYLE_BACKGROUND_ALPHA = 0.33f;
 
         private static PropertyDrawerGraph _propertyDrawerGraph;
         private static BindingFlags _fieldBindingsFlag = BindingFlags.Instance | BindingFlags.NonPublic;
 
         private class AssemblyDefinitionSurrogate
         {
-            public string name = "";
+            public string Name = "";
         }
 
         private static void CreatePropertyDrawerGraph()
         {
             _propertyDrawerGraph = new PropertyDrawerGraph();
-            HashSet<string> assemblyNamesToCheck = new HashSet<string>()
+            var assemblyNamesToCheck = new HashSet<string>()
             {
                 "Assembly-CSharp-Editor",
             };
 
             GetAllAssetDefintionNames(assemblyNamesToCheck);
 
-            string dataPath = Application.dataPath;
-            string libraryPath = dataPath.Substring(0, dataPath.LastIndexOf('/')) + "/Library/ScriptAssemblies";
+            var dataPath = Application.dataPath;
+            var libraryPath = dataPath.Substring(0, dataPath.LastIndexOf('/')) + "/Library/ScriptAssemblies";
 
-            foreach (string file in Directory.GetFiles(libraryPath))
+            foreach (var file in Directory.GetFiles(libraryPath))
             {
                 if (assemblyNamesToCheck.Contains(Path.GetFileNameWithoutExtension(file)) && Path.GetExtension(file) == ".dll")
                 {
-                    Assembly assembly = Assembly.LoadFrom(file);
+                    var assembly = Assembly.LoadFrom(file);
                     _propertyDrawerGraph.CreateGraph(assembly);
                 }
             }
         }
         private static void GetAllAssetDefintionNames(HashSet<string> targetList)
         {
-            string[] assemblyDefinitionGUIDs = AssetDatabase.FindAssets("t:asmdef");
+            var assemblyDefinitionGuiDs = AssetDatabase.FindAssets("t:asmdef");
 
-            foreach (string guid in assemblyDefinitionGUIDs)
+            foreach (var guid in assemblyDefinitionGuiDs)
             {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
+                var path = AssetDatabase.GUIDToAssetPath(guid);
 
                 if (path.StartsWith("Assets/"))
                 {
-                    string fullPath = Application.dataPath + path.Remove(0, path.IndexOf('/'));
+                    var fullPath = Application.dataPath + path.Remove(0, path.IndexOf('/'));
 
                     targetList.Add(GetNameValueFromAssemblyDefinition(fullPath));
                 }
@@ -70,17 +70,17 @@ namespace Assets.ScriptableObjectArchitecture.Editor
         }
         private static string GetNameValueFromAssemblyDefinition(string fullpath)
         {
-            string allText = File.ReadAllText(fullpath);
-            AssemblyDefinitionSurrogate surrogate = JsonUtility.FromJson<AssemblyDefinitionSurrogate>(allText);
+            var allText = File.ReadAllText(fullpath);
+            var surrogate = JsonUtility.FromJson<AssemblyDefinitionSurrogate>(allText);
 
-            return surrogate.name;
+            return surrogate.Name;
         }
         private static void CreateDebugStyle()
         {
             DebugStyle = new GUIStyle();
 
-            Color debugColor = Color.magenta;
-            debugColor.a = DebugStyleBackgroundAlpha;
+            var debugColor = Color.magenta;
+            debugColor.a = DEBUG_STYLE_BACKGROUND_ALPHA;
 
             DebugStyle.normal.background = CreateTexture(2, 2, debugColor);
         }
@@ -127,12 +127,12 @@ namespace Assets.ScriptableObjectArchitecture.Editor
         }
         private static Texture2D CreateTexture(int width, int height, Color col)
         {
-            Color[] pix = new Color[width * height];
-            for (int i = 0; i < pix.Length; ++i)
+            var pix = new Color[width * height];
+            for (var i = 0; i < pix.Length; ++i)
             {
                 pix[i] = col;
             }
-            Texture2D result = new Texture2D(width, height);
+            var result = new Texture2D(width, height);
             result.SetPixels(pix);
             result.Apply();
             return result;
@@ -149,13 +149,13 @@ namespace Assets.ScriptableObjectArchitecture.Editor
 
             public bool HasPropertyDrawer(Type type)
             {
-                foreach (Type supportedType in _supportedTypes)
+                foreach (var supportedType in _supportedTypes)
                 {
                     if (supportedType == type)
                         return true;
                 }
 
-                foreach (Type inheritedSupportedType in _supportedInheritedTypes)
+                foreach (var inheritedSupportedType in _supportedInheritedTypes)
                 {
                     if (type.IsSubclassOf(inheritedSupportedType))
                         return true;
@@ -170,18 +170,18 @@ namespace Assets.ScriptableObjectArchitecture.Editor
 
                 _checkedAssemblies.Add(assembly);
 
-                foreach (Type type in assembly.GetTypes())
+                foreach (var type in assembly.GetTypes())
                 {
-                    object[] attributes = type.GetCustomAttributes(typeof(CustomPropertyDrawer), false);
+                    var attributes = type.GetCustomAttributes(typeof(CustomPropertyDrawer), false);
 
-                    foreach (object attribute in attributes)
+                    foreach (var attribute in attributes)
                     {
                         if (attribute is CustomPropertyDrawer)
                         {
-                            CustomPropertyDrawer drawerData = attribute as CustomPropertyDrawer;
+                            var drawerData = attribute as CustomPropertyDrawer;
 
-                            bool useForChildren = (bool)typeof(CustomPropertyDrawer).GetField("m_UseForChildren", _fieldBindingsFlag).GetValue(drawerData);
-                            Type targetType = (Type)typeof(CustomPropertyDrawer).GetField("m_Type", _fieldBindingsFlag).GetValue(drawerData);
+                            var useForChildren = (bool)typeof(CustomPropertyDrawer).GetField("m_UseForChildren", _fieldBindingsFlag).GetValue(drawerData);
+                            var targetType = (Type)typeof(CustomPropertyDrawer).GetField("m_Type", _fieldBindingsFlag).GetValue(drawerData);
 
                             if (useForChildren)
                             {
@@ -255,7 +255,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor
             //    enm.MoveNext();
             //return enm.Current;
 
-            for (int i = 0; i <= index; i++)
+            for (var i = 0; i <= index; i++)
             {
                 if (!enm.MoveNext()) return null;
             }

@@ -3,19 +3,19 @@ using System.ComponentModel;
 using ScriptableObjectArchitecture.Utility;
 using UnityEngine;
 
-namespace ScriptableObjectArchitecture.Events.Game_Events
+namespace ScriptableObjectArchitecture.Events.GameEvents
 {
-    public abstract class StackTraceObject : SOArchitectureBaseObject, IStackTraceObject
+    public abstract class StackTraceObject : SoArchitectureBaseObject, IStackTraceObject
     {
 #if UNITY_EDITOR
         [SerializeField]
         private List<StackTraceEntry> _stackTraces = new List<StackTraceEntry>();
-        public List<StackTraceEntry> StackTraces { get { return _stackTraces; } }
+        public List<StackTraceEntry> StackTraces => _stackTraces;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddStackTrace()
         {
-            if (SOArchitecturePreferences.IsDebugEnabled)
+            if (SoArchitecturePreferences.IsDebugEnabled)
             {
                 var stackTrace = StackTraceEntry.Create();
                 _stackTraces.Insert(0, stackTrace);
@@ -25,7 +25,7 @@ namespace ScriptableObjectArchitecture.Events.Game_Events
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddStackTrace(object value)
         {
-            if (SOArchitecturePreferences.IsDebugEnabled)
+            if (SoArchitecturePreferences.IsDebugEnabled)
             {
                 var stackTrace = StackTraceEntry.Create(value);
                 _stackTraces.Insert(0, stackTrace);

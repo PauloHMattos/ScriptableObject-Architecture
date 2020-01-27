@@ -7,7 +7,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
     [CustomEditor(typeof(TimeVariable), true)]
     public class TimeVariableEditor : ReadOnlyFloatVariableEditor
     {
-        private TimeVariable Target { get { return (TimeVariable)target; } }
+        private TimeVariable Target => (TimeVariable)target;
         private SerializedProperty _timeType;
 
         protected override void OnEnable()

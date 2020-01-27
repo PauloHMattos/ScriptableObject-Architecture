@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
 {
     [CustomEditor(typeof(SceneVariable))]
-    internal sealed class SceneVariableEditor : SOArchitectureBaseObjectEditor
+    internal sealed class SceneVariableEditor : SoArchitectureBaseObjectEditor
     {
         // UI
         private const string SCENE_NOT_ASSIGNED_WARNING = "Please assign a scene as the current serialized values for " +
@@ -25,7 +25,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             {
                 var label = new GUIContent("Scene Info");
                 label.image = EditorGUIUtility.IconContent("SceneAsset Icon").image;
-                _showGroups.boolValue = EditorGUILayout.Foldout(_showGroups.boolValue, label);
+                _showGroups.boolValue = EditorGUILayout.Foldout(_showGroups.boolValue, label, EditorStyles.foldoutHeader);
                 if (_showGroups.boolValue)
                 {
                     DrawSceneInfo();

@@ -10,9 +10,9 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
     [CustomEditor(typeof(BaseVariable<>), true)]
     public class BaseVariableEditor : SubjectEditor
     {
-        private BaseVariable Target { get { return (BaseVariable)target; } }
-        protected bool IsClampable { get { return Target.Clampable; } }
-        protected bool IsClamped { get { return Target.IsClamped; } }
+        private BaseVariable Target => (BaseVariable)target;
+        protected bool IsClampable => Target.Clampable;
+        protected bool IsClamped => Target.IsClamped;
 
         private SerializedProperty _defaultValueProperty;
         private SerializedProperty _resetProperty;
@@ -63,7 +63,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
             {
                 var label = new GUIContent("General");
                 label.image = EditorGUIUtility.IconContent("GameManager Icon").image;
-                _showGeneral.boolValue = EditorGUILayout.Foldout(_showGeneral.boolValue, label);
+                _showGeneral.boolValue = EditorGUILayout.Foldout(_showGeneral.boolValue, label, EditorStyles.foldoutHeader);
                 if (_showGeneral.boolValue)
                 {
                     DrawGeneral();
@@ -85,7 +85,7 @@ namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
 
         protected virtual void DrawValue()
         {
-            string content = "Cannot display value. No PropertyDrawer for (" + Target.Type + ") [" + Target.ToString() + "]";
+            var content = "Cannot display value. No PropertyDrawer for (" + Target.Type + ") [" + Target.ToString() + "]";
 
             using (var scope = new EditorGUI.ChangeCheckScope())
             {

@@ -5,7 +5,7 @@ using Type = System.Type;
 
 namespace ScriptableObjectArchitecture.Collections
 {
-    public abstract class BaseCollection : SOArchitectureBaseObject, IEnumerable
+    public abstract class BaseCollection : SoArchitectureBaseObject, IEnumerable
     {
 
 #if UNITY_EDITOR
@@ -17,17 +17,11 @@ namespace ScriptableObjectArchitecture.Collections
 
         public object this[int index]
         {
-            get
-            {
-                return List[index];
-            }
-            set
-            {
-                List[index] = value;
-            }
+            get => List[index];
+            set => List[index] = value;
         }
 
-        public int Count { get { return List.Count; } }
+        public int Count => List.Count;
 
         public abstract IList List { get; }
         public abstract Type Type { get; }

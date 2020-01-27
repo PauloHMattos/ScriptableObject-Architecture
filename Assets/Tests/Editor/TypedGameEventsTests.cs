@@ -2,7 +2,7 @@
 using System.Collections;
 using NSubstitute;
 using NUnit.Framework;
-using ScriptableObjectArchitecture.Events.Game_Events;
+using ScriptableObjectArchitecture.Events.GameEvents;
 using ScriptableObjectArchitecture.Events.Listeners;
 using UnityEngine;
 
@@ -29,10 +29,10 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(typeof(TypedGameEventsTests), nameof(TypedGameEventsTests.TestCases))]
-        public void AddIGameEventListenerTest<T, U>(T gameEvent, U value) where T : GameEventBase<U>
+        public void AddIGameEventListenerTest<T, TU>(T gameEvent, TU value) where T : GameEventBase<TU>
         {
             var mockListener = Substitute.For<IGameEventListener>();
-            var mockTypedListener = Substitute.For<IGameEventListener<U>>();
+            var mockTypedListener = Substitute.For<IGameEventListener<TU>>();
             gameEvent.AddListener(mockListener);
             gameEvent.AddListener(mockListener);
             gameEvent.AddListener(mockTypedListener);
@@ -46,10 +46,10 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(typeof(TypedGameEventsTests), nameof(TypedGameEventsTests.TestCases))]
-        public void AddActionListenerTest<T, U>(T gameEvent, U value) where T : GameEventBase<U>
+        public void AddActionListenerTest<T, TU>(T gameEvent, TU value) where T : GameEventBase<TU>
         {
             var mockAction = Substitute.For<Action>();
-            var mockTyppedAction = Substitute.For<Action<U>>();
+            var mockTyppedAction = Substitute.For<Action<TU>>();
             gameEvent.AddListener(mockAction);
             gameEvent.AddListener(mockAction);
             gameEvent.AddListener(mockTyppedAction);
@@ -62,13 +62,13 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(typeof(TypedGameEventsTests), nameof(TypedGameEventsTests.TestCases))]
-        public void RaiseEnabledTypedGameEventTest<T, U>(T gameEvent, U value) where T : GameEventBase<U>
+        public void RaiseEnabledTypedGameEventTest<T, TU>(T gameEvent, TU value) where T : GameEventBase<TU>
         {
             var mockAction = Substitute.For<Action>();
             var mockListener = Substitute.For<IGameEventListener>();
 
-            var mockTypedAction = Substitute.For<Action<U>>();
-            var mockTypedListener = Substitute.For<IGameEventListener<U>>();
+            var mockTypedAction = Substitute.For<Action<TU>>();
+            var mockTypedListener = Substitute.For<IGameEventListener<TU>>();
 
 
             gameEvent.AddListener(mockAction);
@@ -89,10 +89,10 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(typeof(TypedGameEventsTests), nameof(TypedGameEventsTests.TestCases))]
-        public void RaiseDisabledTypedGameEventTest<T, U>(T gameEvent, U value) where T : GameEventBase<U>
+        public void RaiseDisabledTypedGameEventTest<T, TU>(T gameEvent, TU value) where T : GameEventBase<TU>
         {
-            var mockAction = Substitute.For<Action<U>>();
-            var mockListener = Substitute.For<IGameEventListener<U>>();
+            var mockAction = Substitute.For<Action<TU>>();
+            var mockListener = Substitute.For<IGameEventListener<TU>>();
             gameEvent.SetEnabled(false);
 
             gameEvent.AddListener(mockAction);
@@ -107,9 +107,9 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(typeof(TypedGameEventsTests), nameof(TypedGameEventsTests.TestCases))]
-        public void RemoveTypedIGameEventListenerTest<T, U>(T gameEvent, U value) where T : GameEventBase<U>
+        public void RemoveTypedIGameEventListenerTest<T, TU>(T gameEvent, TU value) where T : GameEventBase<TU>
         {
-            var mockListener = Substitute.For<IGameEventListener<U>>();
+            var mockListener = Substitute.For<IGameEventListener<TU>>();
             gameEvent.AddListener(mockListener);
             gameEvent.RemoveListener(mockListener);
             Assert.Zero(gameEvent.TypedListeners.Count);
@@ -119,9 +119,9 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(typeof(TypedGameEventsTests), nameof(TypedGameEventsTests.TestCases))]
-        public void RemoveTypedActionListenerTest<T, U>(T gameEvent, U value) where T : GameEventBase<U>
+        public void RemoveTypedActionListenerTest<T, TU>(T gameEvent, TU value) where T : GameEventBase<TU>
         {
-            var mockAction = Substitute.For<Action<U>>();
+            var mockAction = Substitute.For<Action<TU>>();
             gameEvent.AddListener(mockAction);
             gameEvent.RemoveListener(mockAction);
             Assert.Zero(gameEvent.TypedActions.Count);
@@ -131,10 +131,10 @@ namespace Assets.Tests.Editor
 
         [Test]
         [TestCaseSource(typeof(TypedGameEventsTests), nameof(TypedGameEventsTests.TestCases))]
-        public void RemoveAllListenersTest<T, U>(T gameEvent, U value) where T : GameEventBase<U>
+        public void RemoveAllListenersTest<T, TU>(T gameEvent, TU value) where T : GameEventBase<TU>
         {
-            var mockAction = Substitute.For<Action<U>>();
-            var mockListener = Substitute.For<IGameEventListener<U>>();
+            var mockAction = Substitute.For<Action<TU>>();
+            var mockListener = Substitute.For<IGameEventListener<TU>>();
             gameEvent.AddListener(mockAction);
             gameEvent.AddListener(mockListener);
             gameEvent.RemoveAll();

@@ -13,13 +13,13 @@ namespace ScriptableObjectArchitecture.Observers
         where TReference : BaseReference<TType, TVariable>
         where TResponse : UnityEvent<TType>
     {
-        [SerializeField] private TReference _comparationReference = default;
+        [SerializeField] private TReference _comparisonReference = default;
 
         protected override TType GetComparisonValue()
         {
-            if (_comparationReference.IsValueDefined)
+            if (_comparisonReference.IsValueDefined)
             {
-                _previousValue = _comparationReference.Value;
+                _previousValue = _comparisonReference.Value;
             }
             return base.GetComparisonValue();
         }

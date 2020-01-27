@@ -13,13 +13,9 @@ namespace ScriptableObjectArchitecture.Attributes
         public bool Background { get; set; } = true;
         private Color _prevColor;
 
-        public ColorAttribute(Color color)
+        public ColorAttribute(byte r, byte g, byte b, byte a = 255)
         {
-            Color = color;
-        }
-        public ColorAttribute(byte R, byte G, byte B, byte A = 255)
-        {
-            Color = new Color(R, G, B, A);
+            Color = new Color(r, g, b, a);
         }
 
 #if UNITY_EDITOR
