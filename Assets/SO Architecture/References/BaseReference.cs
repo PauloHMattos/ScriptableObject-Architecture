@@ -17,7 +17,7 @@ namespace ScriptableObjectArchitecture
         [SerializeField]
         protected TBase _constantValue = default;
         [SerializeField]
-        private TVariable _variable = default;
+        private TVariable _variable = default(TVariable);
         public TVariable Variable
         {
             get => _variable;
@@ -32,13 +32,13 @@ namespace ScriptableObjectArchitecture
         {
             get
             {
-                return (_useConstant || _variable == null) ? _constantValue : _variable.Value;
+                return (_useConstant || _variable is null) ? _constantValue : _variable.Value;
             }
             set
             {
-                if (!_useConstant && _variable != null)
+                if (!_useConstant && !(_variable is null))
                 {
-                    _variable.Value = value;
+                    Variable.Value = value;
                 }
                 else
                 {
@@ -51,7 +51,7 @@ namespace ScriptableObjectArchitecture
         {
             get
             {
-                return _useConstant || _variable != null;
+                return _useConstant || !(_variable is null);
             }
         }
 

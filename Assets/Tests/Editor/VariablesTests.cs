@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace Tests
 {
-
     [TestFixture]
     public class VariablesTests
     {
@@ -33,6 +32,15 @@ namespace Tests
                 yield return new TestCaseData(ScriptableObject.CreateInstance<Vector3Variable>(), Vector3.down);
                 yield return new TestCaseData(ScriptableObject.CreateInstance<Vector4Variable>(), Vector4.one);
             }
+        }
+
+        [Test]
+        [TestCaseSource(nameof(TestCases))]
+        public void VariableNullCheck<T, U>(T variable, U value) where T : BaseVariable<U>
+        {
+            Assert.IsNotNull(variable);
+
+            ScriptableObject.DestroyImmediate(variable);
         }
 
         [Test]
@@ -78,6 +86,8 @@ namespace Tests
             variable.Value = value;
             Assert.AreEqual(value, variable.Value);
             Assert.AreEqual(value, (U)variable);
+
+            ScriptableObject.DestroyImmediate(variable);
         }
 
         [Test]
@@ -92,6 +102,8 @@ namespace Tests
             Debug.unityLogger.logEnabled = true;
 
             Assert.AreEqual(default(U), variable.Value);
+
+            ScriptableObject.DestroyImmediate(variable);
         }
 
         [Test]
@@ -115,6 +127,8 @@ namespace Tests
             variable.MinClampValue = value;
             variable.MaxClampValue = value;
             Assert.AreEqual(value, variable.Value);
+
+            ScriptableObject.DestroyImmediate(variable);
         }
 
         [Test]

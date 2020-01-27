@@ -39,6 +39,8 @@ namespace Tests
         public void CreateCopyTest<T, U, V>(T reference, U variable, V value) where U : BaseVariable<V> where T : BaseReference<V, U>
         {
             var copy = reference.CreateCopy();
+
+            ScriptableObject.DestroyImmediate(variable);
         }
 
         [Test]
@@ -53,6 +55,8 @@ namespace Tests
 
             reference.Variable = variable;
             Assert.IsTrue(reference.IsValueDefined);
+
+            ScriptableObject.DestroyImmediate(variable);
         }
 
         [Test]
@@ -67,6 +71,8 @@ namespace Tests
             reference.Variable = variable;
 
             Assert.AreEqual(variable.ToString(), reference.ToString());
+
+            ScriptableObject.DestroyImmediate(variable);
         }
 
         [Test]
@@ -74,9 +80,6 @@ namespace Tests
         public void ChangeReferenceValueTest<T, U, V>(T reference, U variable, V value) where U : BaseVariable<V> where T : BaseReference<V, U>
         {
             var defValue = reference.Value;
-
-            var mockObserver = Substitute.For<IVariableObserver>();
-            variable.AddObserver(mockObserver);
 
             reference.Value = value;
             Assert.AreEqual(value, reference.Value);
@@ -91,6 +94,8 @@ namespace Tests
 
             reference.Value = defValue;
             Assert.AreEqual(defValue, variable.Value);
+
+            ScriptableObject.DestroyImmediate(variable);
         }
         /*
         [Test]
@@ -165,7 +170,7 @@ namespace Tests
             mockAction.Received(1).Invoke();
             mockObserver.Received(1).OnVariableChanged();
 
-            ScriptableObject.DestroyImmediate(reference);
+            ScriptableObject.DestroyImmediateImmediate(reference);
         }
 
         [Test]
@@ -177,7 +182,7 @@ namespace Tests
             reference.RemoveObserver(mockObserver);
             Assert.Zero(reference.Observers.Count);
 
-            ScriptableObject.DestroyImmediate(reference);
+            ScriptableObject.DestroyImmediateImmediate(reference);
         }
 
         [Test]
@@ -189,7 +194,7 @@ namespace Tests
             reference.RemoveObserver(mockAction);
             Assert.Zero(reference.Actions.Count);
 
-            ScriptableObject.DestroyImmediate(reference);
+            ScriptableObject.DestroyImmediateImmediate(reference);
         }
 
         [Test]
@@ -204,7 +209,7 @@ namespace Tests
             Assert.Zero(reference.Observers.Count);
             Assert.Zero(reference.Actions.Count);
 
-            ScriptableObject.DestroyImmediate(reference);
+            ScriptableObject.DestroyImmediateImmediate(reference);
         }
         */
     }
