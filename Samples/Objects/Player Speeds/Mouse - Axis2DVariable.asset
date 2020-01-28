@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd84f0d72a97d4d8f0fe9923a8271e, type: 3}
   m_Name: Mouse - Axis2DVariable
   m_EditorClassIdentifier: 
-  _showGroups: 0
+  _showGroups: 3
   _developerDescription:
     _showDescription: 1
     _value: 
-  _showObservers: 1
+  _showObservers: 0
   _showGeneral: 1
+  _value: {x: 0, y: 0}
   _resetWhenStart: 0
   _defaultValue: {x: 0, y: 0}
-  _value: {x: 0, y: 0}
   _readOnly: 1
   _raiseWarning: 1
   _isClamped: 0

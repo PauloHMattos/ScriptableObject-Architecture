@@ -8,14 +8,14 @@ namespace ScriptableObjectArchitecture.Variables
         fileName = "Axis2DVariable.asset",
         menuName = SoArchitectureUtility.VARIABLE_SUBMENU + "2D Axis",
         order = 124)]
-    public class Axis2DVariable : Vector2Variable
+    public class Axis2DVariable : ReadOnlyVariable<Vector2>
     {
         [Group("Axis Config", "Transform Icon"), SerializeField]
         protected string _xAxisName = "Horizontal";
         [SerializeField]
         protected string _yAxisName = "Vertical";
         [SerializeField]
-        protected bool _raw = false;
+        protected bool _raw;
 
         public override bool Clampable => false;
 
