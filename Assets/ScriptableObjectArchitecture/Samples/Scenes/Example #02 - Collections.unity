@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _showGroups: 0
-  _showButttons: 0
+  _showButtons: 0
   _developerDescription:
     _showDescription: 0
     _value: 
@@ -1363,7 +1363,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651639a1af81856448caf334816f4406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetSet: {fileID: 11400000, guid: 711814e21a7beb249833d6173e4082cc, type: 2}
+  _showGroups: 0
+  _showButtons: 1
+  _developerDescription:
+    _showDescription: 0
+    _value: 
+  TargetSet: {fileID: 11400000, guid: 711814e21a7beb249833d6173e4082cc, type: 2}
 --- !u!4 &2012918656
 Transform:
   m_ObjectHideFlags: 0
