@@ -15,7 +15,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
         public Color? Color;
     }
 
-    public class SoArchitectureBaseEditor : UnityEditor.Editor
+    public class SOArchitectureBaseEditor : UnityEditor.Editor
     {
         protected SerializedProperty _showGroups;
         protected SerializedProperty _showButtons;
@@ -125,36 +125,46 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             var methods = targetType.GetMethods(bindingFlags);
             var hideBase = targetType.GetCustomAttribute<HideBaseFieldsAttribute>() != null;
 
-            foreach (var method in methods)
+            if (methods.Length == 0)
             {
-                if (method.GetParameters().Length > 0)
-                {
-                    continue;
-                }
+                return;
+            }
 
-                if (!IsDrawable(method, hideBase, out var isPrivate))
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            using (new EditorGUI.IndentLevelScope())
+            {
+                _showButtons.boolValue = EditorGUILayout.Foldout(_showButtons.boolValue, new GUIContent("Buttons"),
+                    EditorStyles.foldoutHeader);
+                if (_showButtons.boolValue)
                 {
-                    continue;
-                }
-
-                var buttonAttribute = method.GetCustomAttribute<ButtonAttribute>(true);
-                if (buttonAttribute == null)
-                {
-                    continue;
-                }
-
-                EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-                using (new EditorGUI.IndentLevelScope())
-                {
-                    _showButtons.boolValue = EditorGUILayout.Foldout(_showButtons.boolValue, new GUIContent("Buttons"), EditorStyles.foldoutHeader);
-                    if (_showButtons.boolValue)
+                    foreach (var method in methods)
                     {
-                        var buttonText = string.IsNullOrEmpty(buttonAttribute.Text) ? method.Name : buttonAttribute.Text;
+                        if (method.GetParameters().Length > 0)
+                        {
+                            continue;
+                        }
+
+                        if (!IsDrawable(method, hideBase, out var isPrivate))
+                        {
+                            continue;
+                        }
+
+                        var buttonAttribute = method.GetCustomAttribute<ButtonAttribute>(true);
+                        if (buttonAttribute == null)
+                        {
+                            continue;
+                        }
+
+
+                        var buttonText = string.IsNullOrEmpty(buttonAttribute.Text)
+                            ? method.Name
+                            : buttonAttribute.Text;
                         DrawButton(buttonText, method);
                     }
+
                 }
-                EditorGUILayout.EndVertical();
             }
+            EditorGUILayout.EndVertical();
         }
 
         protected virtual void DrawButton(string buttonText, MethodInfo method)

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ScriptableObjectArchitecture.Samples.Pong.Scripts
+namespace ScriptableObjectArchitecture.Samples.Scripts
 {
     public class CollectionCountDisplayer : MonoBehaviour
     {

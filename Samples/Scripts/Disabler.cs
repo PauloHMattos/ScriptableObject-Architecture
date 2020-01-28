@@ -1,21 +1,33 @@
-﻿using ScriptableObjectArchitecture.Collections;
+﻿using ScriptableObjectArchitecture.Attributes;
+using ScriptableObjectArchitecture.Collections;
+using ScriptableObjectArchitecture.Utility;
 using UnityEngine;
 
-namespace ScriptableObjectArchitecture.Samples.Pong.Scripts
+namespace ScriptableObjectArchitecture.Samples.Scripts
 {
-    public class Disabler : MonoBehaviour
+    public class Disabler : SOArchitectureBaseMonoBehaviour
     {
-        [SerializeField]
-        private GameObjectCollection _targetSet = default;
+        [Group("General")]
+        public GameObjectCollection TargetSet;
 
+        [Button]
         public void DisableRandom()
         {
-            if (_targetSet.Count > 0)
+            if (TargetSet.Count > 0)
             {
-                var index = Random.Range(0, _targetSet.Count);
+                var index = Random.Range(0, TargetSet.Count);
 
-                var objToDisable = _targetSet[index];
+                var objToDisable = TargetSet[index];
                 objToDisable.SetActive(false);
+            }
+        }
+
+        [Button]
+        public void EnableAll()
+        {
+            for (int index = 0; index < TargetSet.Count; index++)
+            {
+                TargetSet[index].SetActive(true);
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using ScriptableObjectArchitecture.Collections;
 using UnityEngine;
 
-namespace ScriptableObjectArchitecture.Samples.Pong.Scripts
+namespace ScriptableObjectArchitecture.Samples.Scripts
 {
     public class ObjectAdder : MonoBehaviour
     {
