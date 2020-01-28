@@ -22,7 +22,7 @@ namespace ScriptableObjectArchitecture.Observers
 
         [Group("General", "GameManager Icon")]
         [SerializeField] protected ListenerOption _listenerOption = ListenerOption.OnChanged;
-        [SerializeField] protected float _delay;
+        [SerializeField, ShowIf(nameof(_listenerOption), ListenerOption.OnTimeInterval)] protected float _delay;
         private float _lastTime;
 
         public float Delay { get => _delay; set => _delay = value; }
@@ -67,7 +67,7 @@ namespace ScriptableObjectArchitecture.Observers
 
         [Group("General", "GameManager Icon")]
         [SerializeField] protected bool _raiseOnStart = true;
-        [SerializeField] protected TVariable _variable = default;
+        [SerializeField] protected TVariable _variable;
 
         protected virtual void OnEnable()
         {

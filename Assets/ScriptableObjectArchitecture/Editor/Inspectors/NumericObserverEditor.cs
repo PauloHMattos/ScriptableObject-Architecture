@@ -44,9 +44,10 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             if (groupName.Equals("Conditions"))
             {
                 _constrain.boolValue = EditorGUILayout.Toggle("Enabled", _constrain.boolValue);
-                EditorGUI.BeginDisabledGroup(!_constrain.boolValue);
-                DrawConditions();
-                EditorGUI.EndDisabledGroup();
+                if (_constrain.boolValue)
+                {
+                    DrawConditions();
+                }
                 return;
             }
             base.DrawCustomFields(fields, serializedObject, groupName);
