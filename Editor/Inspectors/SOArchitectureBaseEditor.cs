@@ -6,7 +6,7 @@ using ScriptableObjectArchitecture.Attributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
+namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
     internal class FieldGroup
     {

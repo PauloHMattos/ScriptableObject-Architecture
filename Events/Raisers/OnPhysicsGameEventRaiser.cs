@@ -8,8 +8,7 @@ namespace ScriptableObjectArchitecture.Events.Raisers
     {
         [Group("General", "GameManager Icon")]
         public LifeCycleOptions LifeCycle;
-        [Tag]
-        public string Tag = "";
+        [Tag] public string Tag = "";
         public LayerMask LayerMask;
 
         [Flags]

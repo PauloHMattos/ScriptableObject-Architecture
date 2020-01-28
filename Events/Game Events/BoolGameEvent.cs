@@ -1,7 +1,7 @@
 ﻿using ScriptableObjectArchitecture.Utility;
 using UnityEngine;
 
-namespace ScriptableObjectArchitecture.Events.GameEvents
+namespace ScriptableObjectArchitecture.Events.Game_Events
 {
     [System.Serializable]
     [CreateAssetMenu(

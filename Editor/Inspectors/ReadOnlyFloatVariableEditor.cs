@@ -1,7 +1,7 @@
 ﻿using ScriptableObjectArchitecture.Variables;
 using UnityEditor;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
+namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
 
     [CustomEditor(typeof(ReadOnlyFloatVariable), true)]

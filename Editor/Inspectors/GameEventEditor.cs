@@ -1,8 +1,8 @@
-﻿using ScriptableObjectArchitecture.Events.GameEvents;
+﻿using ScriptableObjectArchitecture.Events.Game_Events;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
+namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
     [CustomEditor(typeof(GameEventBase), true)]
     public sealed class GameEventEditor : BaseGameEventEditor

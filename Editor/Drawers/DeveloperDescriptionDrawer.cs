@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
+namespace ScriptableObjectArchitecture.Editor.Drawers
 {
     [CustomPropertyDrawer(typeof(DeveloperDescription))]
     public class DeveloperDescriptionDrawer : PropertyDrawer

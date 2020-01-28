@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
+namespace ScriptableObjectArchitecture.Editor.Drawers
 {
     public static class GenericPropertyDrawer
     {

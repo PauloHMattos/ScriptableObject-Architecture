@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace ScriptableObjectArchitecture.Events.GameEvents
+namespace ScriptableObjectArchitecture.Events.Game_Events
 {
     public class StackTraceEntry : IEquatable<StackTraceEntry>
     {

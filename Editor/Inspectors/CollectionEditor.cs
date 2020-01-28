@@ -1,10 +1,10 @@
-﻿using Assets.ScriptableObjectArchitecture.Editor.Drawers;
-using ScriptableObjectArchitecture.Collections;
+﻿using ScriptableObjectArchitecture.Collections;
+using ScriptableObjectArchitecture.Editor.Drawers;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
+namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
     [CustomEditor(typeof(BaseCollection), true)]
     public class CollectionEditor : SoArchitectureBaseObjectEditor

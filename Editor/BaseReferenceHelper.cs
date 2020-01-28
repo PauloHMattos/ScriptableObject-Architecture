@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Type = System.Type;
 
-namespace Assets.ScriptableObjectArchitecture.Editor
+namespace ScriptableObjectArchitecture.Editor
 {
     public static class BaseReferenceHelper
     {

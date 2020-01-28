@@ -4,7 +4,7 @@ using ScriptableObjectArchitecture.Variables;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
+namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
     [CustomEditor(typeof(SceneCollection), true)]
     public class SceneCollectionEditor : CollectionEditor
