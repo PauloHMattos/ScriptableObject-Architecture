@@ -40,11 +40,6 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             _raiseMethod = target.GetType().BaseType.GetMethod(nameof(IGameEventListener.OnEventRaised));
         }
 
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-        }
-
         protected override void DrawCustomFields(List<FieldInfo> fields, SerializedObject serializedObject, string groupName)
         {
             if (groupName.Equals("Debug"))

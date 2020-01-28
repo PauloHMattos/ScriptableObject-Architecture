@@ -105,7 +105,7 @@ namespace ScriptableObjectArchitecture.Variables
             }
             if (Clampable && IsClamped)
             {
-                SetValue(ClampValue(_value));
+                _value = ClampValue(_value);
             }
             return _value;
         }

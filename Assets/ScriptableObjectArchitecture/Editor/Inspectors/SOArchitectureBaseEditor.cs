@@ -228,7 +228,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
                 {
                     continue;
                 }
-                EditorGUILayout.PropertyField(property);
+                EditorGUILayout.PropertyField(property, true);
             }
         }
 
