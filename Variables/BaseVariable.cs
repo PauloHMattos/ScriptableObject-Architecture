@@ -81,12 +81,15 @@ namespace ScriptableObjectArchitecture.Variables
         public override void Awake()
         {
             base.Awake();
-            _readOnly = true;
-            _resetWhenStart = false;
-            _readOnly = true;
-            _resetWhenStart = false;
-            _isClamped = false;
-            _raiseWarning = false;
+            if (FullReadOnly)
+            {
+                _readOnly = true;
+                _resetWhenStart = false;
+                _readOnly = true;
+                _resetWhenStart = false;
+                _isClamped = false;
+                _raiseWarning = false;
+            }
         }
 
         public override void OnEnable()
