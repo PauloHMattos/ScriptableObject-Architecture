@@ -4,7 +4,7 @@ using UnityEditor;
 namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
     [CustomEditor(typeof(SOArchitectureBaseObject), true)]
-    public class SoArchitectureBaseObjectEditor : SoArchitectureBaseEditor
+    public class SoArchitectureBaseObjectEditor : SOArchitectureBaseEditor
     {
 
     }
