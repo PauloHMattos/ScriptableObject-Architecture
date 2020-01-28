@@ -1,5 +1,5 @@
 {
-    "name": "ScriptableObject-Architecture.Samples.Pong",
+    "name": "ScriptableObject-Architecture.Samples",
     "references": [
         "GUID:63ebd60d5c68886498ecfee04b5d6a12"
     ],

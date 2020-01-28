@@ -19,7 +19,6 @@ namespace ScriptableObjectArchitecture.Attributes
 #if UNITY_EDITOR
         internal override bool IsVisible(SerializedProperty property)
         {
-            var result = false;
             var owner = property.serializedObject.targetObject;
             var eventOwnerType = owner.GetType();
 
