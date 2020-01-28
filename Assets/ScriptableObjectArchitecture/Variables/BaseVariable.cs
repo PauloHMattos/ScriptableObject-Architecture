@@ -29,6 +29,7 @@ namespace ScriptableObjectArchitecture.Variables
         {
         }
     }
+
     public abstract class BaseVariable<T> : BaseVariable
     {
         public virtual T Value
@@ -63,26 +64,19 @@ namespace ScriptableObjectArchitecture.Variables
         public override bool ReadOnly { get => _readOnly; set => _readOnly = value; }
         public override bool IsClamped { get => _isClamped; set => _isClamped = value; }
         public override System.Type Type => typeof(T);
+        protected virtual bool FullReadOnly => false;
 
         [Group("General", "GameManager Icon")]
-        [SerializeField, HideInInspector]
-        protected bool _resetWhenStart = true;
-        [SerializeField, HideInInspector]
-        protected T _defaultValue;
-        [SerializeField, HideInInspector]
-        protected T _value = default;
+        [SerializeField] protected T _value;
+        [SerializeField, ShowIf(nameof(FullReadOnly), false)] protected bool _resetWhenStart = true;
+        [SerializeField, ShowIf(nameof(_resetWhenStart), true), Indent] protected T _defaultValue;
 
-        [SerializeField, HideInInspector]
-        protected bool _readOnly = false;
-        [SerializeField, HideInInspector]
-        private bool _raiseWarning = true;
+        [SerializeField, ShowIf(nameof(FullReadOnly), false)] protected bool _readOnly;
+        [SerializeField, ShowIf(nameof(_readOnly), true), Indent] protected bool _raiseWarning = true;
 
-        [SerializeField, HideInInspector]
-        protected bool _isClamped = false;
-        [SerializeField, HideInInspector]
-        protected T _minClampedValue = default;
-        [SerializeField, HideInInspector]
-        protected T _maxClampedValue = default;
+        [SerializeField, ShowIf(nameof(FullReadOnly), false)] protected bool _isClamped;
+        [SerializeField, ShowIf(nameof(_isClamped), true), Indent, Label("Min Value")] protected T _minClampedValue;
+        [SerializeField, ShowIf(nameof(_isClamped), true), Indent, Label("Max Value")] protected T _maxClampedValue;
 
         public override void OnEnable()
         {

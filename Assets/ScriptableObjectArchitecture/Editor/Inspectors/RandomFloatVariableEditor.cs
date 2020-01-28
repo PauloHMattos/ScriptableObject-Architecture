@@ -1,41 +1,41 @@
-﻿using ScriptableObjectArchitecture.Variables;
-using UnityEditor;
+﻿//using ScriptableObjectArchitecture.Variables;
+//using UnityEditor;
 
-namespace ScriptableObjectArchitecture.Editor.Inspectors
-{
-    [CustomEditor(typeof(RandomFloatVariable), true)]
-    public class RandomFloatVariableEditor : ReadOnlyFloatVariableEditor
-    {
-        private SerializedProperty _useTimeAsSeed;
-        private RandomFloatVariable Target => (RandomFloatVariable)target;
+//namespace ScriptableObjectArchitecture.Editor.Inspectors
+//{
+//    [CustomEditor(typeof(RandomFloatVariable), true)]
+//    public class RandomFloatVariableEditor : ReadOnlyFloatVariableEditor
+//    {
+//        private SerializedProperty _useTimeAsSeed;
+//        private RandomFloatVariable Target => (RandomFloatVariable)target;
 
 
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            _useTimeAsSeed = serializedObject.FindProperty("_useTimeAsSeed");
-        }
+//        protected override void OnEnable()
+//        {
+//            base.OnEnable();
+//            _useTimeAsSeed = serializedObject.FindProperty("_useTimeAsSeed");
+//        }
 
-        protected override void DrawValue()
-        {
-            // Call Value.get so the displayed value also gets updated
-            var value = Target.Value;
-            base.DrawValue();
+//        protected override void DrawValue()
+//        {
+//            // Call Value.get so the displayed value also gets updated
+//            var value = Target.Value;
+//            base.DrawValue();
 
-            EditorGUILayout.PropertyField(_useTimeAsSeed);
-            using (var scope = new EditorGUI.DisabledGroupScope(_useTimeAsSeed.boolValue))
-            {
-                var newSeed = EditorGUILayout.IntField("Seed", Target.Seed);
-                if (newSeed != Target.Seed)
-                {
-                    Target.Seed = newSeed;
-                }
-            }
-        }
+//            EditorGUILayout.PropertyField(_useTimeAsSeed);
+//            using (var scope = new EditorGUI.DisabledGroupScope(_useTimeAsSeed.boolValue))
+//            {
+//                var newSeed = EditorGUILayout.IntField("Seed", Target.Seed);
+//                if (newSeed != Target.Seed)
+//                {
+//                    Target.Seed = newSeed;
+//                }
+//            }
+//        }
 
-        protected override void DrawClampedFields(bool disableWithReadOnly)
-        {
-            base.DrawClampedFields(false);
-        }
-    }
-}
+//        protected override void DrawClampedFields(bool disableWithReadOnly)
+//        {
+//            base.DrawClampedFields(false);
+//        }
+//    }
+//}

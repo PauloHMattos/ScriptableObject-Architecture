@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Reflection;
 using UnityEditor;
-using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Attributes
 {
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     public class ShowIfAttribute : MultiPropertyAttribute
     {
         private readonly object _value;
@@ -18,16 +17,21 @@ namespace ScriptableObjectArchitecture.Attributes
         }
 
 #if UNITY_EDITOR
-        
         internal override bool IsVisible(SerializedProperty property)
         {
+            var result = false;
             var owner = property.serializedObject.targetObject;
             var eventOwnerType = owner.GetType();
 
             var field = eventOwnerType.GetField(FieldName, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
             if (field == null)
             {
-                return true;
+                var prop = eventOwnerType.GetProperty(FieldName, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
+                if (prop == null)
+                {
+                    return true;
+                }
+                return prop.GetValue(owner).Equals(_value);
             }
             return field.GetValue(owner).Equals(_value);
         }

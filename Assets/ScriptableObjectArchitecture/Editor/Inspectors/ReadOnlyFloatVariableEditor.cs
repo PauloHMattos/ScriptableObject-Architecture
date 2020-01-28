@@ -5,10 +5,11 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
 
     [CustomEditor(typeof(ReadOnlyFloatVariable), true)]
-    public class ReadOnlyFloatVariableEditor : BaseVariableEditor
+    public class ReadOnlyFloatVariableEditor : SubjectEditor
     {
-        protected override void DrawReadonlyField()
-        {
-        }
+
+        //protected override void DrawReadonlyField()
+        //{
+        //}
     }
 }

@@ -15,12 +15,19 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             base.OnEnable();
             _timeType = serializedObject.FindProperty("_timeType");
         }
-        protected override void DrawValue()
+
+        public override void OnInspectorGUI()
         {
-            // Call Value.get so the displayed value also gets updated
             var value = Target.Value;
-            base.DrawValue();
-            EditorGUILayout.PropertyField(_timeType, new GUIContent("Type"));
+            base.OnInspectorGUI();
         }
+
+        //protected override void DrawValue()
+        //{
+        //    // Call Value.get so the displayed value also gets updated
+        //    var value = Target.Value;
+        //    base.DrawValue();
+        //    EditorGUILayout.PropertyField(_timeType, new GUIContent("Type"));
+        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using ScriptableObjectArchitecture.Utility;
+﻿using ScriptableObjectArchitecture.Attributes;
+using ScriptableObjectArchitecture.Utility;
 using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Variables
@@ -9,10 +10,9 @@ namespace ScriptableObjectArchitecture.Variables
         order = 124)]
     public class TimeVariable : ReadOnlyFloatVariable
     {
+        [Group("General", "GameManager Icon")]
         [SerializeField]
-        private int _seed;
-        [SerializeField]
-        private TimeVariableType _timeType;
+        protected TimeVariableType _timeType;
 
         public override bool Clampable => false;
 

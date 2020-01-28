@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a1fbeb783df41428d5464d443e2265, type: 3}
   m_Name: Vector3One
   m_EditorClassIdentifier: 
-  DeveloperDescription:
+  _showGroups: 1
+  _developerDescription:
+    _showDescription: 0
     _value: 
+  _showObservers: 0
+  _showGeneral: 0
+  _value: {x: 1, y: 1, z: 1}
   _resetWhenStart: 0
   _defaultValue: {x: 0, y: 0, z: 0}
-  _value: {x: 1, y: 1, z: 1}
   _readOnly: 1
   _raiseWarning: 1
   _isClamped: 0

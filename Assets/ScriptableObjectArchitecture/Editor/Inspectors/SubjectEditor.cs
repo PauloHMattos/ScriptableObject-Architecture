@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
-
-    //[CustomEditor(typeof(Subject), true)]
+    [CustomEditor(typeof(Subject), true)]
     public class SubjectEditor : SoArchitectureBaseObjectEditor
     {
         private Subject Target => (Subject)target;
@@ -23,8 +22,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             using (new EditorGUI.IndentLevelScope())
             {
-                var label = new GUIContent("Observers");
-                label.image = EditorGUIUtility.IconContent("ViewToolOrbit").image;
+                var label = new GUIContent("Observers") {image = EditorGUIUtility.IconContent("ViewToolOrbit").image};
                 _showObservers.boolValue = EditorGUILayout.Foldout(_showObservers.boolValue, label, EditorStyles.foldoutHeader);
             }
             if (_showObservers.boolValue)
@@ -46,13 +44,13 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
                 {
                     var observer = Target.Observers[i];
                     var label = $"Element {i}";
-                    if (observer is Object)
+                    if (observer is Object obj)
                     {
-                        EditorGUILayout.ObjectField(label, observer as Object, observer.GetType(), true);
+                        EditorGUILayout.ObjectField(label, obj, obj.GetType(), true);
                     }
                     else
                     {
-                        EditorGUILayout.TextField(label, $"{observer.ToString()}");
+                        EditorGUILayout.TextField(label, $"{observer}");
                     }
                 }
             }

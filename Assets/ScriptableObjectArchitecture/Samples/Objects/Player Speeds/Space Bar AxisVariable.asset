@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebbe66f7739373043aba5ca51359c05c, type: 3}
   m_Name: Space Bar AxisVariable
   m_EditorClassIdentifier: 
-  _showGroups: 0
+  _showGroups: 1
   _developerDescription:
     _showDescription: 1
     _value: 
   _showObservers: 1
   _showGeneral: 1
+  _value: 0
   _resetWhenStart: 0
   _defaultValue: 0
-  _value: 0
   _readOnly: 1
   _raiseWarning: 1
   _isClamped: 0
