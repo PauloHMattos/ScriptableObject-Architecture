@@ -6,12 +6,14 @@ namespace ScriptableObjectArchitecture.Utility
     /// Base class for SOArchitecture assets
     /// Implements developer descriptions
     /// </summary>
-    public abstract class SoArchitectureBaseObject : ScriptableObject
+    public abstract class SOArchitectureBaseObject : ScriptableObject
     {
 #if UNITY_EDITOR
 #pragma warning disable 0414
         [SerializeField]
-        private int _showGroups = 0;
+        private int _showGroups;
+        [SerializeField]
+        private bool _showButtons;
         [SerializeField]
         private DeveloperDescription _developerDescription = new DeveloperDescription();
 #pragma warning restore
