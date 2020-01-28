@@ -1,5 +1,73 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2015830876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2015830877}
+  - component: {fileID: 2015830878}
+  m_Layer: 0
+  m_Name: Damage Control
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2015830877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015830876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4790722713147504}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2015830878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015830876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showGroups: 3
+  _showButttons: 0
+  _developerDescription:
+    _showDescription: 0
+    _value: 
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _event: {fileID: 11400000, guid: 6205baf386184bf4c879e8216918a90a, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 00040033833585f4b940c1e6c8d5d2e1, type: 2}
+        m_MethodName: Subtract
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 6a37932d0acd09746b3d2a9b91fc143e,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Variables.FloatVariable,
+            ScriptableObject-Architecture
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _previouslyRegisteredEvent: {fileID: 0}
 --- !u!1 &1347073845552512
 GameObject:
   m_ObjectHideFlags: 0
@@ -4764,6 +4832,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4824,13 +4893,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeveloperDescription:
+  _showGroups: 3
+  _showButttons: 0
+  _developerDescription:
+    _showDescription: 0
     _value: 
-  _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 11400000, guid: 6205baf386184bf4c879e8216918a90a,
-    type: 2}
   _event: {fileID: 11400000, guid: 6205baf386184bf4c879e8216918a90a, type: 2}
   _response:
     m_PersistentCalls:
@@ -4846,8 +4915,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 6205baf386184bf4c879e8216918a90a,
+    type: 2}
 --- !u!1 &1522689786157718
 GameObject:
   m_ObjectHideFlags: 0
@@ -4861,15 +4930,13 @@ GameObject:
   - component: {fileID: 33804990608882674}
   - component: {fileID: 23728631493493720}
   - component: {fileID: 65094364359253274}
-  - component: {fileID: 1286557328}
-  - component: {fileID: 6857978470570560221}
-  - component: {fileID: 1286557329}
-  - component: {fileID: 1286557330}
   - component: {fileID: 8942352042736008381}
   - component: {fileID: 3837924937405514797}
+  - component: {fileID: 1967340091}
+  - component: {fileID: 1967340090}
   m_Layer: 0
   m_Name: Event Example Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4886,6 +4953,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4956627087005180}
+  - {fileID: 2015830877}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4927,6 +4995,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -4964,250 +5033,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1286557328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522689786157718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2247ac7ba5964460989e12ca2a949217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
-        m_MethodName: SetValue
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 09bd5e4f3a551b74189d00bc745ac234,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Vector3Variable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
-        m_MethodName: Multiply
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: e764e13357fec0248ba927f62fde9779,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.FloatVariable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: de1ee4c5bc17bba40bf3f9c9f2433e7a, type: 2}
-        m_MethodName: Add
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Vector3Variable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  key:
-    _useConstant: 1
-    _constantValue: 119
-    _variable: {fileID: 0}
-  eventType: 2
---- !u!114 &6857978470570560221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522689786157718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2247ac7ba5964460989e12ca2a949217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
-        m_MethodName: SetValue
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 09bd5e4f3a551b74189d00bc745ac234,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Vector3Variable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
-        m_MethodName: Multiply
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: e764e13357fec0248ba927f62fde9779,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.FloatVariable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: de1ee4c5bc17bba40bf3f9c9f2433e7a, type: 2}
-        m_MethodName: Subtract
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Vector3Variable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  key:
-    _useConstant: 1
-    _constantValue: 115
-    _variable: {fileID: 0}
-  eventType: 2
---- !u!114 &1286557329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522689786157718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2247ac7ba5964460989e12ca2a949217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
-        m_MethodName: SetValue
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 47543e45adf4a064cbd98b7ce1c82bd3,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Vector3Variable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
-        m_MethodName: Multiply
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: e764e13357fec0248ba927f62fde9779,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.FloatVariable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: de1ee4c5bc17bba40bf3f9c9f2433e7a, type: 2}
-        m_MethodName: Add
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Vector3Variable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  key:
-    _useConstant: 1
-    _constantValue: 100
-    _variable: {fileID: 0}
-  eventType: 2
---- !u!114 &1286557330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522689786157718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2247ac7ba5964460989e12ca2a949217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
-        m_MethodName: SetValue
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 47543e45adf4a064cbd98b7ce1c82bd3,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Vector3Variable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
-        m_MethodName: Multiply
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: e764e13357fec0248ba927f62fde9779,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.FloatVariable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: de1ee4c5bc17bba40bf3f9c9f2433e7a, type: 2}
-        m_MethodName: Subtract
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Vector3Variable,
-            ScriptableObject-Architecture
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  key:
-    _useConstant: 1
-    _constantValue: 97
-    _variable: {fileID: 0}
-  eventType: 2
 --- !u!114 &8942352042736008381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5220,16 +5045,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01080821de04413a3ab69f7aec19c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeveloperDescription:
+  _showGroups: 0
+  _showButttons: 0
+  _developerDescription:
+    _showDescription: 0
     _value: 
-  _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 3
+  _listenerOption: 0
   _delay: 0
+  _raiseOnStart: 1
   _variable: {fileID: 11400000, guid: de1ee4c5bc17bba40bf3f9c9f2433e7a, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
-  _debugValue: {x: 0, y: 0, z: 0}
   _response:
     m_PersistentCalls:
       m_Calls:
@@ -5244,8 +5070,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.Vector3UnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &3837924937405514797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5258,16 +5082,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb43355ea144692951efe3859aa3ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeveloperDescription:
+  _showGroups: 1
+  _showButttons: 0
+  _developerDescription:
+    _showDescription: 0
     _value: 
-  _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _listnerOption: 0
+  _listenerOption: 0
   _delay: 0
+  _raiseOnStart: 1
   _variable: {fileID: 11400000, guid: 00040033833585f4b940c1e6c8d5d2e1, type: 2}
-  _previouslyRegisteredVariable: {fileID: 0}
-  _debugValue: 0
   _response:
     m_PersistentCalls:
       m_Calls:
@@ -5282,37 +5107,208 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.FloatUnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   _modifierCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.01
       inSlope: 0
       outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 1
+      value: 0.01
       inSlope: 0
       outSlope: 0
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _sample: 0
   _constrain: 1
   _equals: 1
   _bigger: 0
   _smaller: 1
-  _comparationReference:
+  _comparisonReference:
     _useConstant: 1
     _constantValue: 0
     _variable: {fileID: 0}
+--- !u!114 &1967340091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522689786157718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb43355ea144692951efe3859aa3ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showGroups: 1
+  _showButttons: 0
+  _developerDescription:
+    _showDescription: 0
+    _value: 
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _listenerOption: 3
+  _delay: 3
+  _raiseOnStart: 1
+  _variable: {fileID: 11400000, guid: b29a733e39d189343b70986d75d28d5a, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 00040033833585f4b940c1e6c8d5d2e1, type: 2}
+        m_MethodName: Add
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _modifierCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9998471
+      value: 2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _sample: 0
+  _constrain: 0
+  _equals: 0
+  _bigger: 0
+  _smaller: 0
+  _comparisonReference:
+    _useConstant: 1
+    _constantValue: 0
+    _variable: {fileID: 0}
+--- !u!114 &1967340090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522689786157718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed1dc96f9fac854dac5bb8f292c5f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showGroups: 1
+  _showButttons: 0
+  _developerDescription:
+    _showDescription: 0
+    _value: 
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _listenerOption: 3
+  _delay: 0
+  _raiseOnStart: 1
+  _variable: {fileID: 11400000, guid: 256f249e6293b90438367f6a234613ac, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
+        m_MethodName: SetValue
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 1c37aa89f46f99846ab9f9939528f702,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Variables.Vector3Variable,
+            ScriptableObject-Architecture
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
+        m_MethodName: Scale
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 27cb4e6fde194a34894a4d6195b0d0df,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Variables.Vector2Variable,
+            ScriptableObject-Architecture
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
+        m_MethodName: Multiply
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 3d77e9189a62a4b4daf63cbbff25a8ed,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Variables.FloatVariable,
+            ScriptableObject-Architecture
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
+        m_MethodName: Multiply
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: e764e13357fec0248ba927f62fde9779,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Variables.FloatVariable,
+            ScriptableObject-Architecture
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d, type: 2}
+        m_MethodName: Multiply
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 50
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: de1ee4c5bc17bba40bf3f9c9f2433e7a, type: 2}
+        m_MethodName: Add
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: c5dc71d5e3b151c45851ba6bd2a64f7d,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: ScriptableObjectArchitecture.Variables.Vector3Variable,
+            ScriptableObject-Architecture
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

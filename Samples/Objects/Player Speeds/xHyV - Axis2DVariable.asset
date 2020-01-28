@@ -9,12 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: eddd84f0d72a97d4d8f0fe9923a8271e, type: 3}
   m_Name: xHyV - Axis2DVariable
   m_EditorClassIdentifier: ScriptableObject-Architecture:ScriptableObjectArchitecture:Axis2DVariable
-  DeveloperDescription:
+  _showGroups: 0
+  _developerDescription:
+    _showDescription: 0
     _value: 
-  _resetWhenStart: 1
+  _showObservers: 0
+  _showGeneral: 0
+  _resetWhenStart: 0
   _defaultValue: {x: 0, y: 0}
   _value: {x: 0, y: 0}
   _readOnly: 1

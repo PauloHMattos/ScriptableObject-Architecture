@@ -6,7 +6,7 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture.Events.Listeners
 {
     [AddComponentMenu(SoArchitectureUtility.EVENT_LISTENER_SUBMENU + "Game Event Listener")]
-    public class GameEventListener : BaseGameEventListener<GameEventBase, UnityEvent>
+    public class GameEventListener : BaseGameEventListener<GameEvent, UnityEvent>
     {
     }
 }

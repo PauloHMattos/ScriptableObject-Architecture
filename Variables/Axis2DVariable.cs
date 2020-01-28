@@ -10,12 +10,12 @@ namespace ScriptableObjectArchitecture.Variables
         order = 124)]
     public class Axis2DVariable : Vector2Variable
     {
-        [Group("Axis Config"), SerializeField]
-        private string _xAxisName = "Horizontal";
+        [Group("Axis Config", "Transform Icon"), SerializeField]
+        protected string _xAxisName = "Horizontal";
         [SerializeField]
-        private string _yAxisName = "Vertical";
+        protected string _yAxisName = "Vertical";
         [SerializeField]
-        private bool _raw = false;
+        protected bool _raw = false;
 
         public override bool Clampable => false;
 
