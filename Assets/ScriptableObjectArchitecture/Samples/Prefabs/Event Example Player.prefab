@@ -5045,7 +5045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01080821de04413a3ab69f7aec19c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showGroups: 0
+  _showGroups: 2
   _showButttons: 0
   _developerDescription:
     _showDescription: 0
@@ -5082,7 +5082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb43355ea144692951efe3859aa3ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showGroups: 1
+  _showGroups: 3
   _showButttons: 0
   _developerDescription:
     _showDescription: 0
@@ -5091,7 +5091,7 @@ MonoBehaviour:
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _listenerOption: 0
   _delay: 0
-  _raiseOnStart: 1
+  _raiseOnStart: 0
   _variable: {fileID: 11400000, guid: 00040033833585f4b940c1e6c8d5d2e1, type: 2}
   _response:
     m_PersistentCalls:
@@ -5232,7 +5232,7 @@ MonoBehaviour:
   _listenerOption: 3
   _delay: 0
   _raiseOnStart: 1
-  _variable: {fileID: 11400000, guid: 256f249e6293b90438367f6a234613ac, type: 2}
+  _variable: {fileID: 11400000, guid: 27cb4e6fde194a34894a4d6195b0d0df, type: 2}
   _response:
     m_PersistentCalls:
       m_Calls:
