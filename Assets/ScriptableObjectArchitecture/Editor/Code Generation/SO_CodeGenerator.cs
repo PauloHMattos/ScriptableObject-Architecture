@@ -4,7 +4,7 @@ using System.Linq;
 using ScriptableObjectArchitecture.Utility;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Code_Generation
+namespace ScriptableObjectArchitecture.Editor.Code_Generation
 {
     public static class SoCodeGenerator
     {

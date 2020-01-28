@@ -3,7 +3,7 @@ using ScriptableObjectArchitecture.Attributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
+namespace ScriptableObjectArchitecture.Editor.Drawers
 {
     [CustomPropertyDrawer(typeof(MultiPropertyAttribute), true)]
     public class MultiPropertyDrawer : PropertyDrawer

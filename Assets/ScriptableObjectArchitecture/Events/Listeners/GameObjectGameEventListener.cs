@@ -1,4 +1,4 @@
-using ScriptableObjectArchitecture.Events.GameEvents;
+using ScriptableObjectArchitecture.Events.Game_Events;
 using ScriptableObjectArchitecture.Events.Responses;
 using ScriptableObjectArchitecture.Utility;
 using UnityEngine;

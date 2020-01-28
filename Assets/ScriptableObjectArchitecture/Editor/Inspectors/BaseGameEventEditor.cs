@@ -1,10 +1,9 @@
-﻿using ScriptableObjectArchitecture;
-using ScriptableObjectArchitecture.Events.GameEvents;
+﻿using ScriptableObjectArchitecture.Events.Game_Events;
 using ScriptableObjectArchitecture.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
+namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
     public abstract class BaseGameEventEditor : SoArchitectureBaseObjectEditor
     {

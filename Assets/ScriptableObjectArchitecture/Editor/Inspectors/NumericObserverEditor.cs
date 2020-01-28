@@ -4,7 +4,7 @@ using ScriptableObjectArchitecture.Observers;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
+namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
     [CustomEditor(typeof(NumericObserver<,,>), true)]
     public class NumericObserverEditor : BaseObserverEditor

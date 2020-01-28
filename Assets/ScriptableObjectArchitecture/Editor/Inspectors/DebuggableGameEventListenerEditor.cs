@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using ScriptableObjectArchitecture.Events.Listeners;
 using ScriptableObjectArchitecture.Observers;
@@ -7,7 +6,7 @@ using ScriptableObjectArchitecture.Utility;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
+namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
     [CustomEditor(typeof(BaseObserver), true)]
     public class BaseObserverEditor : DebuggableGameEventListenerEditor

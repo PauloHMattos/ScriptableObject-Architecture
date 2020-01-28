@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using ScriptableObjectArchitecture.Attributes;
-using ScriptableObjectArchitecture.Events.GameEvents;
+using ScriptableObjectArchitecture.Events.Game_Events;
 using ScriptableObjectArchitecture.Utility;
 using UnityEditor;
 using UnityEngine;

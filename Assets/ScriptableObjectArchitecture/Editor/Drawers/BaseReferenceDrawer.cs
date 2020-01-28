@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using Type = System.Type;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Drawers
+namespace ScriptableObjectArchitecture.Editor.Drawers
 {
 
     [CustomPropertyDrawer(typeof(BaseReference), true)]

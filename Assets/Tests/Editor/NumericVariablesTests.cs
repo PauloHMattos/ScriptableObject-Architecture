@@ -3,7 +3,7 @@ using NUnit.Framework;
 using ScriptableObjectArchitecture.Variables;
 using UnityEngine;
 
-namespace Assets.Tests.Editor
+namespace Tests.Editor
 {
     [TestFixture]
     public class NumericVariablesTests

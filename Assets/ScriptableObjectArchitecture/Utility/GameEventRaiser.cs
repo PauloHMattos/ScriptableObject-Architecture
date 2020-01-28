@@ -1,4 +1,4 @@
-﻿using ScriptableObjectArchitecture.Events.GameEvents;
+﻿using ScriptableObjectArchitecture.Events.Game_Events;
 using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Utility

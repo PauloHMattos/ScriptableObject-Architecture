@@ -6,7 +6,7 @@ using ScriptableObjectArchitecture.Observers;
 using ScriptableObjectArchitecture.Variables;
 using UnityEngine;
 
-namespace Assets.Tests.Editor
+namespace Tests.Editor
 {
     [TestFixture]
     public class VariablesTests

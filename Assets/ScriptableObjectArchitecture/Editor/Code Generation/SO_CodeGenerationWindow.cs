@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.AnimatedValues;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Code_Generation
+namespace ScriptableObjectArchitecture.Editor.Code_Generation
 {
     public class SoCodeGenerationWindow : EditorWindow
     {

@@ -1,5 +1,5 @@
 ﻿using ScriptableObjectArchitecture.Attributes;
-using ScriptableObjectArchitecture.Events.GameEvents;
+using ScriptableObjectArchitecture.Events.Game_Events;
 using UnityEngine;
 using UnityEngine.Events;
 

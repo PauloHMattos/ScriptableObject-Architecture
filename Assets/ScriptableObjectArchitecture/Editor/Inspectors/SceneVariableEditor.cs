@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
+namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
     [CustomEditor(typeof(SceneVariable))]
     internal sealed class SceneVariableEditor : SoArchitectureBaseObjectEditor

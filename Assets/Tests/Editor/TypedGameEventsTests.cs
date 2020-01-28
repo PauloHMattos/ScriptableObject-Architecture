@@ -2,11 +2,11 @@
 using System.Collections;
 using NSubstitute;
 using NUnit.Framework;
-using ScriptableObjectArchitecture.Events.GameEvents;
+using ScriptableObjectArchitecture.Events.Game_Events;
 using ScriptableObjectArchitecture.Events.Listeners;
 using UnityEngine;
 
-namespace Assets.Tests.Editor
+namespace Tests.Editor
 {
 
     [TestFixture]

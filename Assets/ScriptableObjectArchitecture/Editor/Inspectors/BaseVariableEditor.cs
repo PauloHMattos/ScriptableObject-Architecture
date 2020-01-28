@@ -1,10 +1,10 @@
-﻿using Assets.ScriptableObjectArchitecture.Editor.Drawers;
+﻿using ScriptableObjectArchitecture.Editor.Drawers;
 using ScriptableObjectArchitecture.Variables;
 using UnityEditor;
 using UnityEditor.AnimatedValues;
 using UnityEngine;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
+namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
 
     [CustomEditor(typeof(BaseVariable<>), true)]

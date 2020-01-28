@@ -11,7 +11,7 @@ namespace ScriptableObjectArchitecture.Events.Raisers
     {
         [Group("General", "GameManager Icon")]
         public KeyCodeReference Key;
-        public EventType EventType;
+        public EventTypeOptions EventType;
 
         protected override void Update()
         {

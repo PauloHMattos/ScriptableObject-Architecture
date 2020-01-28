@@ -1,10 +1,9 @@
 ﻿using System.Reflection;
-using ScriptableObjectArchitecture.Events.GameEvents;
+using ScriptableObjectArchitecture.Events.Game_Events;
 using UnityEditor;
 using UnityEngine;
-using Type = System.Type;
 
-namespace Assets.ScriptableObjectArchitecture.Editor.Inspectors
+namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
     [CustomEditor(typeof(GameEventBase<>), true)]
     public class TypedGameEventEditor : BaseGameEventEditor
