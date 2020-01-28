@@ -13,7 +13,7 @@ namespace ScriptableObjectArchitecture.Observers
         where TReference : BaseReference<TType, TVariable>
         where TResponse : UnityEvent<TType>
     {
-        [SerializeField] private TReference _comparisonReference = default;
+        [SerializeField] private TReference _comparisonReference;
 
         protected override TType GetComparisonValue()
         {
@@ -22,11 +22,6 @@ namespace ScriptableObjectArchitecture.Observers
                 _previousValue = _comparisonReference.Value;
             }
             return base.GetComparisonValue();
-        }
-
-        public override void OnVariableChanged()
-        {
-            base.OnVariableChanged();
         }
     }
 
@@ -38,10 +33,10 @@ namespace ScriptableObjectArchitecture.Observers
     {
         [Group("General", "GameManager Icon"), SerializeField] protected AnimationCurve _modifierCurve = AnimationCurve.Constant(0, 1, 1);
         [SerializeField] protected bool _sample = true;
-        [Group("Conditions", "Preset.Context"), SerializeField] protected bool _constrain = false;
-        [SerializeField, HideInInspector] private bool _equals = false;
-        [SerializeField, HideInInspector] private bool _bigger = false;
-        [SerializeField, HideInInspector] private bool _smaller = false;
+        [Group("Conditions", "Preset.Context"), SerializeField] protected bool _constrain;
+        [SerializeField] private bool _equals;
+        [SerializeField] private bool _bigger;
+        [SerializeField] private bool _smaller;
 
         protected TType _previousValue;
 
