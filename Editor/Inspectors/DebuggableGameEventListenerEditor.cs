@@ -109,7 +109,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
                 _raiseMethod.Invoke(target, null);
                 return;
             }
-            _raiseMethod.Invoke(target, new object[1] { value });
+            _raiseMethod.Invoke(target, new[] { value });
         }
     }
 }

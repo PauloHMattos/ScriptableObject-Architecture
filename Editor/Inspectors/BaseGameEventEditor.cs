@@ -11,7 +11,6 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
         private GameEventBase Event => (GameEventBase)target;
 
         private StackTrace _stackTrace;
-        private SerializedProperty _enabledProperty;
         private SerializedProperty _showListeners;
 
         protected abstract void DrawRaiseButton();
@@ -19,7 +18,6 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
         protected override void OnEnable()
         {
             base.OnEnable();
-            _enabledProperty = serializedObject.FindProperty("_enabled");
             _showListeners = serializedObject.FindProperty("_showListeners");
 
             _stackTrace = new StackTrace(Target);
@@ -45,7 +43,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
                 using (new EditorGUI.IndentLevelScope(1))
                 {
                     EditorGUI.BeginDisabledGroup(true);
-                    DrawListners();
+                    DrawListeners();
                     EditorGUI.EndDisabledGroup();
                 }
             }
@@ -64,7 +62,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             base.DrawDeveloperDescription();
         }
 
-        protected virtual void DrawListners()
+        protected virtual void DrawListeners()
         {
             var count = Event.Listeners.Count + Event.Actions.Count;
             var listeners = Event.Listeners;
