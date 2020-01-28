@@ -13,7 +13,9 @@ namespace ScriptableObjectArchitecture.Observers
         where TReference : BaseReference<TType, TVariable>
         where TResponse : UnityEvent<TType>
     {
+#pragma warning disable 0649
         [SerializeField] private TReference _comparisonReference;
+#pragma warning restore
 
         protected override TType GetComparisonValue()
         {
@@ -34,9 +36,11 @@ namespace ScriptableObjectArchitecture.Observers
         [Group("General", "GameManager Icon"), SerializeField] protected AnimationCurve _modifierCurve = AnimationCurve.Constant(0, 1, 1);
         [SerializeField] protected bool _sample = true;
         [Group("Conditions", "Preset.Context"), SerializeField] protected bool _constrain;
+#pragma warning disable 0649
         [SerializeField] private bool _equals;
         [SerializeField] private bool _bigger;
         [SerializeField] private bool _smaller;
+#pragma warning restore
 
         protected TType _previousValue;
 
