@@ -1,34 +1,24 @@
 {
-    "name": "com.paulomattos.scriptableobjectarchitecture",
-    "displayName": "ScriptableObject Architecture",
-    "description": "Makes using Scriptable Objects as a fundamental part of your architecture in Unity super easy",
-    "version": "VERSION",
-    "unity": "2019.2",
-    "license": "MIT",
+	"name": "com.paulomattos.scriptableobjectarchitecture",
+	"displayName": "ScriptableObject Architecture",
+	"description": "Makes using Scriptable Objects as a fundamental part of your architecture in Unity super easy",
+	"version": "VERSION",
+	"unity": "2019.2",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/PauloHMattos/ScriptableObject-Architecture.git"
 	},
 	"author": "Daniel Everland + Paulo Mattos",
-	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/PauloHMattos/ScriptableObject-Architecture/issues"
 	},
 	"homepage": "https://github.com/PauloHMattos/ScriptableObject-Architecture",
-  
-    "dependencies": 
-    {
-    },
+	"dependencies": {},
 	"samples": [
 		{
-		  "displayName": "Pong",
-		  "description": "Clone of the classic pong from 1972",
-		  "path": "Samples~/Pong"
-		},
-		{
-		  "displayName": "Jetpack Joyride",
-		  "description": "Simple clone from the mobile game Jetpack Joyride",
-		  "path": "Samples~/Jetpack"
+			"displayName": "Sample 1",
+			"path": "Samples~/"
 		}
-	]
+  ]
 }

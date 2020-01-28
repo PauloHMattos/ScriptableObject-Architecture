@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Events.Game_Events
 {
-    public abstract class StackTraceObject : SoArchitectureBaseObject, IStackTraceObject
+    public abstract class StackTraceObject : SOArchitectureBaseObject, IStackTraceObject
     {
 #if UNITY_EDITOR
         [SerializeField]

@@ -5,7 +5,7 @@ using Type = System.Type;
 
 namespace ScriptableObjectArchitecture.Collections
 {
-    public abstract class BaseCollection : SoArchitectureBaseObject, IEnumerable
+    public abstract class BaseCollection : SOArchitectureBaseObject, IEnumerable
     {
 
 #if UNITY_EDITOR
