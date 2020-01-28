@@ -46,7 +46,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             _raiseMethod.Invoke(target, new object[1] { value });
         }
 
-        //protected override void DrawListners()
+        //protected override void DrawListeners()
         //{
         //    var count = Event.Count + Event.Actions.Count;
         //    var listeners = Event.Listeners;
@@ -77,7 +77,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
         //    }
 
         //    EditorGUILayout.LabelField("Untyped Listeners");
-        //    base.DrawListners();
+        //    base.DrawListeners();
         //}
     }
 }
