@@ -5,8 +5,9 @@ using NUnit.Framework;
 using ScriptableObjectArchitecture.Events.Game_Events;
 using ScriptableObjectArchitecture.Events.Listeners;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace Tests.Editor
+namespace Tests.PlayMode
 {
 
     [TestFixture]
@@ -41,7 +42,7 @@ namespace Tests.Editor
             Assert.AreEqual(2, gameEvent.GetListenersCount(), "Event listener was not registred");
             Assert.AreEqual(1, gameEvent.TypedListeners.Count, "Event listener was not registred");
 
-            ScriptableObject.DestroyImmediate(gameEvent);
+            Object.DestroyImmediate(gameEvent);
         }
 
         [Test]
@@ -57,7 +58,7 @@ namespace Tests.Editor
             Assert.AreEqual(2, gameEvent.GetActionsCount(), "Event listener was not registred");
             Assert.AreEqual(1, gameEvent.TypedActions.Count, "Event listener was not registred");
 
-            ScriptableObject.DestroyImmediate(gameEvent);
+            Object.DestroyImmediate(gameEvent);
         }
 
         [Test]
@@ -84,7 +85,7 @@ namespace Tests.Editor
             mockTypedAction.Received(1).Invoke(value);
             mockTypedListener.Received(1).OnEventRaised(value);
 
-            ScriptableObject.DestroyImmediate(gameEvent);
+            Object.DestroyImmediate(gameEvent);
         }
 
         [Test]
@@ -102,7 +103,7 @@ namespace Tests.Editor
             mockAction.DidNotReceive().Invoke(value);
             mockListener.DidNotReceive().OnEventRaised(value);
 
-            ScriptableObject.DestroyImmediate(gameEvent);
+            Object.DestroyImmediate(gameEvent);
         }
 
         [Test]
@@ -114,7 +115,7 @@ namespace Tests.Editor
             gameEvent.RemoveListener(mockListener);
             Assert.Zero(gameEvent.TypedListeners.Count);
 
-            ScriptableObject.DestroyImmediate(gameEvent);
+            Object.DestroyImmediate(gameEvent);
         }
 
         [Test]
@@ -126,7 +127,7 @@ namespace Tests.Editor
             gameEvent.RemoveListener(mockAction);
             Assert.Zero(gameEvent.TypedActions.Count);
 
-            ScriptableObject.DestroyImmediate(gameEvent);
+            Object.DestroyImmediate(gameEvent);
         }
 
         [Test]
@@ -141,7 +142,7 @@ namespace Tests.Editor
             Assert.Zero(gameEvent.GetListenersCount());
             Assert.Zero(gameEvent.GetActionsCount());
 
-            ScriptableObject.DestroyImmediate(gameEvent);
+            Object.DestroyImmediate(gameEvent);
         }
     }
 }

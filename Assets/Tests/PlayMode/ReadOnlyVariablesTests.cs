@@ -5,8 +5,9 @@ using NUnit.Framework;
 using ScriptableObjectArchitecture.Observers;
 using ScriptableObjectArchitecture.Variables;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace Tests.Editor
+namespace Tests.PlayMode
 {
     [TestFixture]
     public class ReadOnlyVariablesTests
@@ -28,7 +29,7 @@ namespace Tests.Editor
         {
             Assert.AreEqual(typeof(TU), variable.Type);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
@@ -41,7 +42,7 @@ namespace Tests.Editor
             Assert.AreNotEqual(2, variable.Actions.Count, "Should not allow for the repetition of Observers");
             Assert.AreEqual(1, variable.Observers.Count, "Event listener was not registred");
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
@@ -54,7 +55,7 @@ namespace Tests.Editor
             Assert.AreNotEqual(2, variable.Actions.Count, "Should not allow for the repetition of Observers");
             Assert.AreEqual(1, variable.Actions.Count, "Event listener was not registred");
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
@@ -84,7 +85,7 @@ namespace Tests.Editor
             mockAction.DidNotReceive().Invoke();
             mockObserver.DidNotReceive().OnVariableChanged();
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
@@ -96,7 +97,7 @@ namespace Tests.Editor
             variable.RemoveObserver(mockObserver);
             Assert.Zero(variable.Observers.Count);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
@@ -108,7 +109,7 @@ namespace Tests.Editor
             variable.RemoveObserver(mockAction);
             Assert.Zero(variable.Actions.Count);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
@@ -123,7 +124,7 @@ namespace Tests.Editor
             Assert.Zero(variable.Observers.Count);
             Assert.Zero(variable.Actions.Count);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
     }
 }

@@ -4,7 +4,7 @@ using ScriptableObjectArchitecture.References;
 using ScriptableObjectArchitecture.Variables;
 using UnityEngine;
 
-namespace Tests.Editor
+namespace Tests.PlayMode
 {
     [TestFixture]
     public class ReferencesTests
@@ -39,7 +39,7 @@ namespace Tests.Editor
         {
             var copy = reference.CreateCopy();
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace Tests.Editor
             reference.Variable = variable;
             Assert.IsTrue(reference.IsValueDefined);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace Tests.Editor
 
             Assert.AreEqual(variable.ToString(), reference.ToString());
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
@@ -94,7 +94,7 @@ namespace Tests.Editor
             reference.Value = defValue;
             Assert.AreEqual(defValue, variable.Value);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
         /*
         [Test]

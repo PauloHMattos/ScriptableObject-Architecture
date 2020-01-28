@@ -4,8 +4,9 @@ using NUnit.Framework;
 using ScriptableObjectArchitecture.Events.Game_Events;
 using ScriptableObjectArchitecture.Events.Listeners;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace Tests.Editor
+namespace Tests.PlayMode
 {
 
     [TestFixture]
@@ -22,7 +23,7 @@ namespace Tests.Editor
         [TearDown]
         public void TearDown()
         {
-            ScriptableObject.DestroyImmediate(_gameEvent);
+            Object.DestroyImmediate(_gameEvent);
         }
 
         [Test]

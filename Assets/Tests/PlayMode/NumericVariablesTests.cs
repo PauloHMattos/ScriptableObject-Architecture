@@ -3,7 +3,7 @@ using NUnit.Framework;
 using ScriptableObjectArchitecture.Variables;
 using UnityEngine;
 
-namespace Tests.Editor
+namespace Tests.PlayMode
 {
     [TestFixture]
     public class NumericVariablesTests
@@ -42,7 +42,7 @@ namespace Tests.Editor
             other.Add(variable);
             Assert.AreEqual(value, other.Value);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Tests.Editor
             other.Subtract(variable);
             Assert.AreEqual(default(TU), other.Value);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
     }
 }

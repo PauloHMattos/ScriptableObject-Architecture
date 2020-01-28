@@ -5,8 +5,9 @@ using NUnit.Framework;
 using ScriptableObjectArchitecture.Observers;
 using ScriptableObjectArchitecture.Variables;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace Tests.Editor
+namespace Tests.PlayMode
 {
     [TestFixture]
     public class VariablesTests
@@ -37,79 +38,79 @@ namespace Tests.Editor
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void VariableNullCheck<T, TU>(T variable, TU value) where T : BaseVariable<TU>
+        public void VariableNullCheck<TVariable, TValue>(TVariable variable, TValue value) where TVariable : BaseVariable<TValue>
         {
             Assert.IsNotNull(variable);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void VariableTypeTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
+        public void VariableTypeTest<TVariable, TValue>(TVariable variable, TValue value) where TVariable : BaseVariable<TValue>
         {
-            Assert.AreEqual(typeof(TU), variable.Type);
+            Assert.AreEqual(typeof(TValue), variable.Type);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void AddIVariableObserverTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
+        public void AddIVariableObserverTest<TVariable, TValue>(TVariable variable, TValue value) where TVariable : BaseVariable<TValue>
         {
             var mockObserver = Substitute.For<IVariableObserver>();
             variable.AddObserver(mockObserver);
             variable.AddObserver(mockObserver);
             Assert.AreNotEqual(2, variable.Actions.Count, "Should not allow for the repetition of Observers");
-            Assert.AreEqual(1, variable.Observers.Count, "Event listener was not registred");
+            Assert.AreEqual(1, variable.Observers.Count, "Event listener was not registered");
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void AddActionObserverTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
+        public void AddActionObserverTest<TVariable, TValue>(TVariable variable, TValue value) where TVariable : BaseVariable<TValue>
         {
             var mockAction = Substitute.For<Action>();
             variable.AddObserver(mockAction);
             variable.AddObserver(mockAction);
             Assert.AreNotEqual(2, variable.Actions.Count, "Should not allow for the repetition of Observers");
-            Assert.AreEqual(1, variable.Actions.Count, "Event listener was not registred");
+            Assert.AreEqual(1, variable.Actions.Count, "Event listener was not registered");
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void ChangeVariableValueTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
+        public void ChangeVariableValueTest<TVariable, TValue>(TVariable variable, TValue value) where TVariable : BaseVariable<TValue>
         {
-            Assert.AreEqual(default(TU), variable.Value);
+            Assert.AreEqual(default(TValue), variable.Value);
             variable.Value = value;
             Assert.AreEqual(value, variable.Value);
-            Assert.AreEqual(value, (TU)variable);
+            Assert.AreEqual(value, (TValue)variable);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void ChangeReadOnlyVariableValueTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
+        public void ChangeReadOnlyVariableValueTest<TVariable, TValue>(TVariable variable, TValue value) where TVariable : BaseVariable<TValue>
         {
-            Assert.AreEqual(default(TU), variable.Value);
+            Assert.AreEqual(default(TValue), variable.Value);
             variable.ReadOnly = true;
-
+            variable.name = "ChangeReadOnlyVariableValueTest";
             Debug.unityLogger.logEnabled = false;
             variable.Value = value;
             Debug.unityLogger.logEnabled = true;
 
-            Assert.AreEqual(default(TU), variable.Value);
+            Assert.AreEqual(default(TValue), variable.Value);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void ChangeClampableVariableValueTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
+        public void ChangeClampableVariableValueTest<TVariable, TValue>(TVariable variable, TValue value) where TVariable : BaseVariable<TValue>
         {
             if (!variable.Clampable)
             {
@@ -123,18 +124,18 @@ namespace Tests.Editor
             variable.IsClamped = true;
             variable.MinClampValue = default;
             variable.MaxClampValue = default;
-            Assert.AreEqual(default(TU), variable.Value);
+            Assert.AreEqual(default(TValue), variable.Value);
 
             variable.MinClampValue = value;
             variable.MaxClampValue = value;
             Assert.AreEqual(value, variable.Value);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void RaiseVariableChangedEventTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
+        public void RaiseVariableChangedEventTest<TVariable, TValue>(TVariable variable, TValue value) where TVariable : BaseVariable<TValue>
         {
             var mockAction = Substitute.For<Action>();
             var mockObserver = Substitute.For<IVariableObserver>();
@@ -146,36 +147,36 @@ namespace Tests.Editor
             mockAction.Received(1).Invoke();
             mockObserver.Received(1).OnVariableChanged();
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void RemoveIVariableObserverTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
+        public void RemoveIVariableObserverTest<TVariable, TValue>(TVariable variable, TValue value) where TVariable : BaseVariable<TValue>
         {
             var mockObserver = Substitute.For<IVariableObserver>();
             variable.AddObserver(mockObserver);
             variable.RemoveObserver(mockObserver);
             Assert.Zero(variable.Observers.Count);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void RemoveActionObserverTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
+        public void RemoveActionObserverTest<TVariable, TValue>(TVariable variable, TValue value) where TVariable : BaseVariable<TValue>
         {
             var mockAction = Substitute.For<Action>();
             variable.AddObserver(mockAction);
             variable.RemoveObserver(mockAction);
             Assert.Zero(variable.Actions.Count);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
 
         [Test]
         [TestCaseSource(nameof(TestCases))]
-        public void RemoveAllObserversTest<T, TU>(T variable, TU value) where T : BaseVariable<TU>
+        public void RemoveAllObserversTest<TVariable, TValue>(TVariable variable, TValue value) where TVariable : BaseVariable<TValue>
         {
             var mockAction = Substitute.For<Action>();
             var mockObserver = Substitute.For<IVariableObserver>();
@@ -185,7 +186,7 @@ namespace Tests.Editor
             Assert.Zero(variable.Observers.Count);
             Assert.Zero(variable.Actions.Count);
 
-            ScriptableObject.DestroyImmediate(variable);
+            Object.DestroyImmediate(variable);
         }
     }
 }
