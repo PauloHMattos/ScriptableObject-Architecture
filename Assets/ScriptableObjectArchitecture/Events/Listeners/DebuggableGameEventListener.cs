@@ -11,7 +11,7 @@ using UnityEngine.Events;
 
 namespace ScriptableObjectArchitecture.Events.Listeners
 {
-    public abstract class DebuggableGameEventListener : SoArchitectureBaseMonoBehaviour, IStackTraceObject
+    public abstract class DebuggableGameEventListener : SOArchitectureBaseMonoBehaviour, IStackTraceObject
     {
 #if UNITY_EDITOR
 #pragma warning disable 0414

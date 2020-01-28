@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Variables
 {
-    public abstract class Subject : SoArchitectureBaseObject, ISubject
+    public abstract class Subject : SOArchitectureBaseObject, ISubject
     {
         public List<IVariableObserver> Observers => _observers;
         private List<IVariableObserver> _observers = new List<IVariableObserver>();

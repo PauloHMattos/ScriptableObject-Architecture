@@ -3,7 +3,7 @@ using UnityEditor;
 
 namespace ScriptableObjectArchitecture.Editor.Inspectors
 {
-    [CustomEditor(typeof(SoArchitectureBaseObject), true)]
+    [CustomEditor(typeof(SOArchitectureBaseObject), true)]
     public class SoArchitectureBaseObjectEditor : SoArchitectureBaseEditor
     {
 
