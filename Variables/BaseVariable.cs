@@ -78,6 +78,17 @@ namespace ScriptableObjectArchitecture.Variables
         [SerializeField, ShowIf(nameof(_isClamped), true), Indent, Label("Min Value")] protected T _minClampedValue;
         [SerializeField, ShowIf(nameof(_isClamped), true), Indent, Label("Max Value")] protected T _maxClampedValue;
 
+        public override void Awake()
+        {
+            base.Awake();
+            _readOnly = true;
+            _resetWhenStart = false;
+            _readOnly = true;
+            _resetWhenStart = false;
+            _isClamped = false;
+            _raiseWarning = false;
+        }
+
         public override void OnEnable()
         {
             base.OnEnable();

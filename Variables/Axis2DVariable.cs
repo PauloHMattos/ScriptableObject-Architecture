@@ -8,7 +8,8 @@ namespace ScriptableObjectArchitecture.Variables
         fileName = "Axis2DVariable.asset",
         menuName = SoArchitectureUtility.VARIABLE_SUBMENU + "2D Axis",
         order = 124)]
-    public class Axis2DVariable : ReadOnlyVariable<Vector2>
+    [HelpBox("ReadOnly variables does not trigger changed events", HelpBoxType.Info)]
+    public class Axis2DVariable : Vector2Variable
     {
         [Group("Axis Config", "Transform Icon"), SerializeField]
         protected string _xAxisName = "Horizontal";
@@ -17,6 +18,7 @@ namespace ScriptableObjectArchitecture.Variables
         [SerializeField]
         protected bool _raw;
 
+        protected override bool FullReadOnly => true;
         public override bool Clampable => false;
 
         public override void Awake()

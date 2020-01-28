@@ -814,14 +814,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1967340091, guid: c478e907c947a8f4fbf1ac2ffce44704, type: 3}
-      propertyPath: _showGroups
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1967340091, guid: c478e907c947a8f4fbf1ac2ffce44704, type: 3}
-      propertyPath: _constrain
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1522689786157718, guid: c478e907c947a8f4fbf1ac2ffce44704, type: 3}
       propertyPath: m_Name
       value: Event Example Player
@@ -868,16 +860,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4790722713147504, guid: c478e907c947a8f4fbf1ac2ffce44704, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3837924937405514797, guid: c478e907c947a8f4fbf1ac2ffce44704,
-        type: 3}
-      propertyPath: _showGroups
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3837924937405514797, guid: c478e907c947a8f4fbf1ac2ffce44704,
-        type: 3}
-      propertyPath: _constrain
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
