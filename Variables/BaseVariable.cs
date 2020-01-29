@@ -13,7 +13,7 @@ namespace ScriptableObjectArchitecture.Variables
 #if UNITY_EDITOR
 #pragma warning disable 0414
         [SerializeField]
-        private bool _showGeneral = false;
+        private bool _showGeneral;
 #pragma warning restore
 #endif
 
@@ -22,10 +22,6 @@ namespace ScriptableObjectArchitecture.Variables
         }
 
         public virtual void OnEnable()
-        {
-        }
-
-        public virtual void OnDisable()
         {
         }
     }
