@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using ScriptableObjectArchitecture.Attributes;
+using ScriptableObjectArchitecture.Editor.Drawers;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,11 +22,15 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
         protected SerializedProperty _showButtons;
         private SerializedProperty _developerDescription;
 
+        private GUIContent _noPropertyDrawerWarningGuiContent;
+        private const string NO_PROPERTY_WARNING_FORMAT = "No PropertyDrawer for type";
+
         protected virtual void OnEnable()
         {
             _showGroups = serializedObject.FindProperty("_showGroups");
             _showButtons = serializedObject.FindProperty("_showButtons");
             _developerDescription = serializedObject.FindProperty("_developerDescription");
+            _noPropertyDrawerWarningGuiContent = new GUIContent(NO_PROPERTY_WARNING_FORMAT);
         }
 
         public override void OnInspectorGUI()
@@ -238,7 +243,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
                 {
                     continue;
                 }
-                EditorGUILayout.PropertyField(property, true);
+                GenericPropertyDrawer.DrawPropertyDrawerLayout(fieldInfo.FieldType, new GUIContent(property.displayName), property, _noPropertyDrawerWarningGuiContent);
             }
         }
 

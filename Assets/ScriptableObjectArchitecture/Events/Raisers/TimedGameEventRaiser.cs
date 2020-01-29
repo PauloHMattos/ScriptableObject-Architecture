@@ -16,6 +16,7 @@ namespace ScriptableObjectArchitecture.Events.Raisers
 
         private float _lastTime;
 
+
         protected override void Update()
         {
             if (LifeCycle.HasFlag(LifeCycleOptions.OnUpdate))

@@ -9,13 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 156f4052644faf645bba864aa1fd4e16, type: 3}
-  m_Name: Thing Collection
+  m_Script: {fileID: 11500000, guid: edc690a6e84028a488f0c8e94cbc98bd, type: 3}
+  m_Name: GameObjectVariable
   m_EditorClassIdentifier: 
-  _showGroups: 0
+  _showGroups: 1
   _showButtons: 0
   _developerDescription:
     _showDescription: 0
     _value: 
-  _showCollectionItems: 1
-  _list: []
+  _showObservers: 0
+  _showGeneral: 0
+  _value: {fileID: 0}
+  _resetWhenStart: 1
+  _defaultValue: {fileID: 0}
+  _readOnly: 0
+  _raiseWarning: 1
+  _isClamped: 0
+  _minClampedValue: {fileID: 0}
+  _maxClampedValue: {fileID: 0}
