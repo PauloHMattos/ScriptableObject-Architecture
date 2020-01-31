@@ -607,7 +607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2027e9c768fc4a14b6adda790aa34396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showGroups: 16
+  _showGroups: 17
   _showButtons: 1
   _developerDescription:
     _showDescription: 0
@@ -1453,12 +1453,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651639a1af81856448caf334816f4406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showGroups: 0
+  _showGroups: 1
   _showButtons: 1
   _developerDescription:
     _showDescription: 0
     _value: 
   TargetSet: {fileID: 11400000, guid: 711814e21a7beb249833d6173e4082cc, type: 2}
+  LastDisabled:
+    _useConstant: 1
+    _constantValue: {fileID: 0}
+    _variable: {fileID: 0}
 --- !u!4 &2012918656
 Transform:
   m_ObjectHideFlags: 0

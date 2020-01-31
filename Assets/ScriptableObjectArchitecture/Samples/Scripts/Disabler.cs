@@ -1,6 +1,7 @@
 ﻿using ScriptableObjectArchitecture.Attributes;
 using ScriptableObjectArchitecture.Collections;
 using ScriptableObjectArchitecture.Utility;
+using ScriptableObjectArchitecture.References;
 using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Samples.Scripts
@@ -9,6 +10,8 @@ namespace ScriptableObjectArchitecture.Samples.Scripts
     {
         [Group("General")]
         public GameObjectCollection TargetSet;
+        public GameObjectReference LastDisabled;
+
 
         [Button]
         public void DisableRandom()
@@ -16,9 +19,9 @@ namespace ScriptableObjectArchitecture.Samples.Scripts
             if (TargetSet.Count > 0)
             {
                 var index = Random.Range(0, TargetSet.Count);
-
                 var objToDisable = TargetSet[index];
                 objToDisable.SetActive(false);
+                LastDisabled.Value = objToDisable;
             }
         }
 

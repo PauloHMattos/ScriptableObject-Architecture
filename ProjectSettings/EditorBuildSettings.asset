@@ -6,6 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ScriptableObjectArchitecture/Samples/Scenes/Example #02 - Collections.unity
+    path: Assets/ScriptableObjectArchitecture/Samples/Scenes/Example #02 - Collections,
+      References.unity
     guid: bdeea8d3973c52d40a7f13c01cf59f39
   m_configObjects: {}
