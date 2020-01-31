@@ -1,4 +1,5 @@
-﻿using ScriptableObjectArchitecture.Utility;
+﻿using ScriptableObjectArchitecture.Editor.Inspectors;
+using ScriptableObjectArchitecture.Utility;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace ScriptableObjectArchitecture.Editor.Drawers
             {
                 var content = new GUIContent("Description");
                 content.image = EditorGUIUtility.IconContent("TextAsset Icon").image;
-                showDescription.boolValue = EditorGUILayout.Foldout(showDescription.boolValue, content, EditorStyles.foldoutHeader);
+                showDescription.boolValue = EditorGUILayout.Foldout(showDescription.boolValue, content, SOArchitectureBaseEditor.Styles.FoldoutHeader);
             }
             if (showDescription.boolValue)
             {

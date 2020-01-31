@@ -607,8 +607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2027e9c768fc4a14b6adda790aa34396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showGroups: 23
-  _showButtons: 0
+  _showGroups: 16
+  _showButtons: 1
   _developerDescription:
     _showDescription: 0
     _value: 

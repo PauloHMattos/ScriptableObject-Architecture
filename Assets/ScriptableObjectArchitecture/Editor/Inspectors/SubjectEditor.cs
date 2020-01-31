@@ -23,7 +23,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             using (new EditorGUI.IndentLevelScope())
             {
                 var label = new GUIContent("Observers") {image = EditorGUIUtility.IconContent("ViewToolOrbit").image};
-                _showObservers.boolValue = EditorGUILayout.Foldout(_showObservers.boolValue, label, EditorStyles.foldoutHeader);
+                _showObservers.boolValue = EditorGUILayout.Foldout(_showObservers.boolValue, label, Styles.FoldoutHeader);
             }
             if (_showObservers.boolValue)
             {

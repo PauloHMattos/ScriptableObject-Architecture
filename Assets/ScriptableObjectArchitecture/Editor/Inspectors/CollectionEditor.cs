@@ -62,7 +62,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             {
                 var label = new GUIContent("Items");
                 label.image = EditorGUIUtility.IconContent("LightProbes Icon").image;
-                _showCollectionItems.boolValue = EditorGUILayout.Foldout(_showCollectionItems.boolValue, label, EditorStyles.foldoutHeader);
+                _showCollectionItems.boolValue = EditorGUILayout.Foldout(_showCollectionItems.boolValue, label, Styles.FoldoutHeader);
             }
             if (_showCollectionItems.boolValue)
             {
