@@ -37,11 +37,11 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
         {
             DrawCustomFields();
 
+            DrawButtonsGroup();
+
             DrawDeveloperDescription();
 
             DrawHelperBox();
-
-            DrawButtonsGroup();
 
             serializedObject.ApplyModifiedProperties();
         }
@@ -85,7 +85,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
                     var group = new FieldGroup();
                     group.GuiContent = currentHeader;
 
-                    var colorAttr = field.GetCustomAttributes<ColorAttribute>().Where(c => c.Background).FirstOrDefault();
+                    var colorAttr = field.GetCustomAttributes<ColorAttribute>().FirstOrDefault(c => c.Background);
                     if (colorAttr != null && colorAttr.Background)
                     {
                         group.Color = colorAttr.Color;
@@ -127,10 +127,10 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             var bindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
             var targetType = target.GetType();
-            var methods = targetType.GetMethods(bindingFlags);
+            var methods = targetType.GetMethods(bindingFlags).Where(m => m.GetCustomAttribute<ButtonAttribute>(true) != null).ToList();
             var hideBase = targetType.GetCustomAttribute<HideBaseFieldsAttribute>() != null;
 
-            if (methods.Length == 0)
+            if (methods.Count == 0)
             {
                 return;
             }
@@ -155,12 +155,6 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
                         }
 
                         var buttonAttribute = method.GetCustomAttribute<ButtonAttribute>(true);
-                        if (buttonAttribute == null)
-                        {
-                            continue;
-                        }
-
-
                         var buttonText = string.IsNullOrEmpty(buttonAttribute.Text)
                             ? method.Name
                             : buttonAttribute.Text;
