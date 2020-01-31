@@ -18,5 +18,4 @@ MonoBehaviour:
     _showDescription: 0
     _value: 
   _showCollectionItems: 1
-  _list:
-  - {fileID: 0}
+  _list: []

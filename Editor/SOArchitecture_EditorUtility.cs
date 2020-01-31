@@ -27,7 +27,8 @@ namespace ScriptableObjectArchitecture.Editor
 
         private class AssemblyDefinitionSurrogate
         {
-            public string Name = "";
+            // ReSharper disable once InconsistentNaming
+            public string name = "";
         }
 
         private static void CreatePropertyDrawerGraph()
@@ -73,7 +74,7 @@ namespace ScriptableObjectArchitecture.Editor
             var allText = File.ReadAllText(fullpath);
             var surrogate = JsonUtility.FromJson<AssemblyDefinitionSurrogate>(allText);
 
-            return surrogate.Name;
+            return surrogate.name;
         }
         private static void CreateDebugStyle()
         {
