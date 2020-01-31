@@ -139,7 +139,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             using (new EditorGUI.IndentLevelScope())
             {
                 _showButtons.boolValue = EditorGUILayout.Foldout(_showButtons.boolValue, new GUIContent("Buttons"),
-                    EditorStyles.foldoutHeader);
+                    Styles.FoldoutHeader);
                 if (_showButtons.boolValue)
                 {
                     foreach (var method in methods)
@@ -213,7 +213,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                 using (new EditorGUI.IndentLevelScope())
                 {
-                    show = EditorGUILayout.Foldout(show, group.Value.GuiContent, EditorStyles.foldoutHeader);
+                    show = EditorGUILayout.Foldout(show, group.Value.GuiContent, Styles.FoldoutHeader);
                     if (show)
                     {
                         var fields = group.Value.Fields;
@@ -255,6 +255,17 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             else
             {
                 intValue &= ~(1 << bitNumber);
+            }
+        }
+
+        public static class Styles
+        {
+            public static GUIStyle FoldoutHeader;
+
+            static Styles()
+            {
+                FoldoutHeader = new GUIStyle(EditorStyles.foldout);
+                FoldoutHeader.fontStyle = FontStyle.Bold;
             }
         }
     }

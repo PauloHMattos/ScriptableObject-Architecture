@@ -25,7 +25,7 @@ namespace ScriptableObjectArchitecture.Editor.Inspectors
             {
                 var label = new GUIContent("Scene Info");
                 label.image = EditorGUIUtility.IconContent("SceneAsset Icon").image;
-                _showGroups.boolValue = EditorGUILayout.Foldout(_showGroups.boolValue, label, EditorStyles.foldoutHeader);
+                _showGroups.boolValue = EditorGUILayout.Foldout(_showGroups.boolValue, label, Styles.FoldoutHeader);
                 if (_showGroups.boolValue)
                 {
                     DrawSceneInfo();
